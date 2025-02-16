@@ -1,0 +1,53 @@
+ <!-- history.html -->
+ {% extends "partials/dashboard-base.html" %}
+ {% block content %}
+ <section class="dashboard-section body-collapse">
+     <div class="overlay pt-120">
+         <div class="container-fluid">
+             <div class="card">
+                 <div class="card-header d-flex justify-content-between align-items-center">
+                     <h3 class="card-title">Generated Reports</h3>
+                     <a href="{% url 'reports:generate_report' %}" class="btn btn-success btn-sm">Generate New Report</a>
+                 </div>
+                 <div class="card-body">
+                     <table class="table table-hover table-striped">
+                         <thead class="thead-dark">
+                             <tr>
+                                 <th>Report Type</th>
+                                 <th>Date Range</th>
+                                 <th>Format</th>
+                                 <th>Generated At</th>
+                                 <th>Actions</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             {% for report in reports %}
+                             <tr>
+                                 <td>{{ report.report_type }}</td>
+                                 <td>{{ report.start_date }} to {{ report.end_date }}</td>
+                                 <td>{{ report.get_format_display }}</td>
+                                 <td>{{ report.generated_at }}</td>
+                                 <td>
+                                     <a href="{% url 'reports:download_report' report.id %}" 
+                                        class="btn btn-sm btn-primary">
+                                         <i class="fas fa-download"></i> Download
+                                     </a>
+                                     <a href="{% url 'reports:delete_report' report.id %}" 
+                                        class="btn btn-sm btn-danger">
+                                         <i class="fas fa-trash-alt"></i> Delete
+                                     </a>
+                                 </td>
+                             </tr>
+                             {% empty %}
+                             <tr>
+                                 <td colspan="5" class="text-center">No reports generated yet</td>
+                             </tr>
+                             {% endfor %}
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </section>
+ {% endblock %}
