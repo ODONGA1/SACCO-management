@@ -1,0 +1,89 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fruid">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="section-content">
+                        <div class="acc-details">
+                            <h3>Crypto Wallet</h3>
+                            
+                            <div class="crypto-balances row mt-4">
+                                <div class="col-md-4">
+                                    <div class="crypto-card bitcoin p-4 rounded">
+                                        <h5>Bitcoin</h5>
+                                        <h2>{{ wallet.bitcoin_balance|floatformat:6 }}</h2>
+                                        <small>≈ ${{ btc_value|intcomma }}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="crypto-card ethereum p-4 rounded">
+                                        <h5>Ethereum</h5>
+                                        <h2>{{ wallet.ethereum_balance|floatformat:6 }}</h2>
+                                        <small>≈ ${{ eth_value|intcomma }}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="crypto-card usdt p-4 rounded">
+                                        <h5>USDT</h5>
+                                        <h2>{{ wallet.usdt_balance|intcomma }}</h2>
+                                        <small>1:1 USD Pegged</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="crypto-actions mt-4">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="{% url 'financial_services:buy-crypto' %}" class="cmn-btn w-100">Buy Crypto</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="{% url 'financial_services:sell-crypto' %}" class="cmn-btn w-100">Sell Crypto</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="transaction-history mt-5">
+                                <h4>Recent Crypto Transactions</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Crypto</th>
+                                                <th>Amount</th>
+                                                <th>Value</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for tx in crypto_transactions %}
+                                            <tr>
+                                                <td>{{ tx.get_transaction_type_display }}</td>
+                                                <td>{{ tx.crypto_type }}</td>
+                                                <td>{{ tx.amount|floatformat:6 }}</td>
+                                                <td>${{ tx.fiat_amount|intcomma }}</td>
+                                                <td>{{ tx.timestamp|date:"M d, Y H:i" }}</td>
+                                            </tr>
+                                            {% empty %}
+                                            <tr>
+                                                <td colspan="5" class="text-center">No transactions found</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

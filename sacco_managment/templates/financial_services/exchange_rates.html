@@ -1,0 +1,338 @@
+{% comment %} {% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fruid">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="section-content">
+                        <div class="acc-details">
+                            <div class="top-area">
+                                <h3>Currency Exchange</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="single-input">
+                                            <label>From Currency</label>
+                                            <select class="form-select">
+                                                {% for rate in rates %}
+                                                <option value="{{ rate.base_currency }}">{{ rate.base_currency }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-input">
+                                            <label>To Currency</label>
+                                            <select class="form-select">
+                                                {% for rate in rates %}
+                                                <option value="{{ rate.target_currency }}">{{ rate.target_currency }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="conversion-box mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" placeholder="Amount">
+                                                <span class="input-group-text">USD</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="conversion-result bg-light p-3 rounded">
+                                                <h5>≈ €4,250.50</h5>
+                                                <small class="text-muted">Live Rate: 1 USD = 0.85 EUR</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="rate-table mt-5">
+                                    <h4>Live Exchange Rates</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Currency Pair</th>
+                                                    <th>Rate</th>
+                                                    <th>Last Updated</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for rate in rates %}
+                                                <tr>
+                                                    <td>{{ rate.base_currency }}/{{ rate.target_currency }}</td>
+                                                    <td>{{ rate.rate|floatformat:4 }}</td>
+                                                    <td>{{ rate.last_updated|timesince }} ago</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %} {% endcomment %}
+
+
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fluid">
+            <div class="row g-4">
+                <!-- Main Conversion Card -->
+                <div class="col-xxl-8">
+                    <div class="card exchange-card elevated-card">
+                        <div class="card-header border-0 bg-transparent">
+                            <h3 class="card-title">Currency Exchange</h3>
+                            <div class="currency-refresh">
+                                <button class="btn btn-icon refresh-rates" id="refreshRates">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <small class="text-muted">Rates update every 60 seconds</small>
+                            </div>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="conversion-engine">
+                                <div class="row g-3 align-items-end">
+                                    <!-- From Currency -->
+                                    <div class="col-md-5">
+                                        <div class="currency-input-group">
+                                            <label class="form-label">From</label>
+                                            <div class="currency-selector">
+                                                <select class="form-select-lg currency-dropdown" id="fromCurrency">
+                                                    {% for rate in rates %}
+                                                    <option value="{{ rate.base_currency }}" data-flag="{{ rate.base_currency|lower }}">
+                                                        {{ rate.base_currency }} - {{ rate.get_base_currency_display }}
+                                                    </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Swap Currencies -->
+                                    <div class="col-md-2 text-center">
+                                        <button class="btn btn-swap" id="swapCurrencies">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- To Currency -->
+                                    <div class="col-md-5">
+                                        <div class="currency-input-group">
+                                            <label class="form-label">To</label>
+                                            <div class="currency-selector">
+                                                <select class="form-select-lg currency-dropdown" id="toCurrency">
+                                                    {% for rate in rates %}
+                                                    <option value="{{ rate.target_currency }}" data-flag="{{ rate.target_currency|lower }}">
+                                                        {{ rate.target_currency }} - {{ rate.get_target_currency_display }}
+                                                    </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Amount Input -->
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <div class="amount-input-group">
+                                            <label class="form-label">Amount</label>
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-text currency-symbol">$</span>
+                                                <input type="number" 
+                                                       class="form-control form-control-lg" 
+                                                       id="exchangeAmount" 
+                                                       placeholder="0.00"
+                                                       step="0.01">
+                                                <button class="btn btn-convert" id="convertCurrency">
+                                                    Convert
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Conversion Result -->
+                                <div class="conversion-result mt-4">
+                                    <div class="result-card">
+                                        <div class="result-content">
+                                            <span class="result-amount">≈ €4,250.50</span>
+                                            <div class="rate-info">
+                                                <span class="live-badge">Live Rate</span>
+                                                <span class="exchange-rate">1 USD = 0.85 EUR</span>
+                                                <span class="rate-change positive">
+                                                    <i class="fas fa-arrow-up"></i> 0.12%
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-execute">
+                                            Execute Exchange
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Overview Widget -->
+                <div class="col-xxl-4">
+                    <div class="card market-overview elevated-card">
+                        <div class="card-header border-0 bg-transparent">
+                            <h3 class="card-title">Market Overview</h3>
+                            <div class="timeframe-selector">
+                                <select class="form-select form-select-sm">
+                                    <option>24H</option>
+                                    <option>7D</option>
+                                    <option>1M</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="market-chart" id="marketChart">
+                                <!-- JavaScript will inject the chart here -->
+                            </div>
+                            <div class="market-highlights">
+                                <div class="highlight-item positive">
+                                    <span class="currency-pair">EUR/USD</span>
+                                    <span class="rate-change">+0.15%</span>
+                                </div>
+                                <div class="highlight-item negative">
+                                    <span class="currency-pair">GBP/USD</span>
+                                    <span class="rate-change">-0.08%</span>
+                                </div>
+                                <div class="highlight-item positive">
+                                    <span class="currency-pair">JPY/USD</span>
+                                    <span class="rate-change">+0.22%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rates Table Enhanced -->
+                <div class="col-12">
+                    <div class="card rates-table elevated-card">
+                        <div class="card-header border-0 bg-transparent">
+                            <h3 class="card-title">Live Exchange Rates</h3>
+                            <div class="table-controls">
+                                <input type="text" class="form-control search-input" placeholder="Search currency...">
+                                <button class="btn btn-sort" data-sort="currency">
+                                    Sort <i class="fas fa-sort"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th data-sort="currency">Currency Pair</th>
+                                            <th data-sort="rate">Rate</th>
+                                            <th data-sort="change">24h Change</th>
+                                            <th data-sort="chart">Trend</th>
+                                            <th data-sort="updated">Last Updated</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for rate in rates %}
+                                        <tr>
+                                            <td>
+                                                <div class="currency-pair">
+                                                    <span class="flag-icon {{ rate.base_currency|lower }}"></span>
+                                                    <span class="flag-icon {{ rate.target_currency|lower }}"></span>
+                                                    1 {{ rate.base_currency }} → {{ rate.target_currency }}
+                                                </div>
+                                            </td>
+                                            <td class="rate-value">{{ rate.rate|floatformat:4 }}</td>
+                                            <td>
+                                                <span class="change-badge {% if rate.change > 0 %}positive{% else %}negative{% endif %}">
+                                                    {{ rate.change|floatformat:2 }}%
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="sparkline-chart" id="sparkline-{{ rate.id }}"></div>
+                                            </td>
+                                            <td>
+                                                <time datetime="{{ rate.last_updated|date:'c' }}">
+                                                    {{ rate.last_updated|timesince }} ago
+                                                </time>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-action">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modals -->
+<div class="exchange-modals">
+    <!-- Conversion Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1">
+        <!-- Modal content here -->
+    </div>
+
+    <!-- Historical Rates Modal -->
+    <div class="modal fade" id="historicalModal" tabindex="-1">
+        <!-- Modal content here -->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Initialize currency exchange functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize currency selectors with flags
+    initCurrencySelectors();
+    
+    // Setup real-time conversion calculator
+    setupConversionCalculator();
+    
+    // Initialize market trend charts
+    initMarketCharts();
+    
+    // Setup table sorting and filtering
+    initRateTableControls();
+    
+    // Setup periodic rate updates
+    startRateUpdates();
+});
+
+// Add your JavaScript implementation here...
+</script>
+{% endblock %}
