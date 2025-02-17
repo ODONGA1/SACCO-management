@@ -28,5 +28,7 @@ urlpatterns = [
     # Withdrawal
     path("withdraw/", views.initiate_withdrawal, name="initiate-withdrawal"),
     path("withdraw/process/", views.process_withdrawal, name="process-withdrawal"),
+    
+    # path('dashboard/', views.dashboard, name='dashboard'),
 
 ]
