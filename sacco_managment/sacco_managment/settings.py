@@ -173,7 +173,7 @@ JAZZMIN_SETTINGS = {
     "site_title": "SACCO Admin Pro",
     "site_header": "Prime SACCO Management",
     "site_brand": "Prime SACCO",
-    "site_logo": "assets/imgs/logo.png",
+    "site_logo": "assets/images/logo.png",
     "site_logo_classes": "img-circle",
     "site_icon": "img/favicon.ico",
     "welcome_sign": "Welcome to Prime SACCO Administration Portal",
