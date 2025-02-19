@@ -128,3 +128,6 @@ def dashboard(request):
         "notifications": notifications,  # Pass notifications to the template
     }
     return render(request, "account/dashboard.html", context)
+
+
+

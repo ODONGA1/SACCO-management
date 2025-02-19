@@ -1,6 +1,6 @@
 from django import forms 
 from account.models import KYC
-from django.forms import ImageField, FileInput, DateInput
+from django.forms import ImageField, FileInput, DateInput, TextInput   
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -22,3 +22,5 @@ class KYCForm(forms.ModelForm):
             "city": forms.TextInput(attrs={"placeholder":"City"}),
             'date_of_birth':DateInput
         }
+
+
