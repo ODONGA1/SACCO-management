@@ -118,8 +118,5 @@ class Notification(models.Model):
         ordering = ["-date"]
         verbose_name_plural = "Notification"
 
-    # def __str__(self):
-    #     return f"{self.user} - {self.notification_type}"
-
     def __str__(self):
         return f"Notification({self.user if self.user else 'Unknown User'} - {self.notification_type} - {self.date})"
