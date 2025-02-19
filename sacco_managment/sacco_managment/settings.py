@@ -78,6 +78,9 @@ USER_AGENTS_CACHE = 'default'
 
 ROOT_URLCONF = "sacco_managment.urls"
 
+LOGOUT_REDIRECT_URL = '/admin/login/'
+
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",

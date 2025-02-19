@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 
 from core import views
 
@@ -26,6 +27,8 @@ urlpatterns = [
     path("user/", include("user_auths.urls")),
     path("account/", include("account.urls")),
     path("financial_services/", include("financial_services.urls")),
+    path('admin/logout/', LogoutView.as_view(), name='logout')
+    
 ]
 
 
