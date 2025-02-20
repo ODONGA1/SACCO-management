@@ -18,6 +18,7 @@ django-js-asset==1.2.2
 django-mailgun-provider==0.2.3
 django-plaintext-password==0.1.0
 django-rest-auth==0.9.5
+django-pwa==1.0.10
 django-rest-framework==0.1.0
 django-social-share==2.2.1
 django-static-fontawesome==5.14.0.0

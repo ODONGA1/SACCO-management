@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     "reports",
     "support",
     "api",
+    
+    # PWA
+    "pwa",
 ]
 
 MIDDLEWARE = [
@@ -153,9 +156,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "/static/"
-
-
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # For production
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -170,6 +173,40 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "user_auths.User"
 
 
+
+
+# PWA Settings
+PWA_APP_NAME = 'Prime SACCO'
+PWA_APP_DESCRIPTION = "Prime SACCO Management System"
+PWA_APP_THEME_COLOR = '#4a90e2'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'portrait'
+PWA_APP_START_URL = '/'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/icons/icon-192x192.png',
+        'sizes': '192x192',
+        'type': 'image/png'
+    },
+    {
+        'src': '/static/icons/icon-512x512.png',
+        'sizes': '512x512',
+        'type': 'image/png'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/icons/splash-640x1136.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'
+
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static', 'serviceworker.js')
 
 JAZZMIN_SETTINGS = {
     # General Settings
