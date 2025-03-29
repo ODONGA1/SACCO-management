@@ -1,11 +1,11 @@
-{% extends 'base.html' %}{% load static %}
+{% extends 'base2.html' %}{% load static %}
 {% load sass_tags %}
 {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/date-picker.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/owlcarousel.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/prism.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/whether-icon.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/date-picker.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/owlcarousel.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/prism.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/whether-icon.scss' %}">
 <!-- Plugins css Ends-->
 {% endblock css %}
 {% block content %}
@@ -32,16 +32,16 @@
 {% endblock content %}
 {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/prism/prism.min.js' %}"></script>
-<script src="{% static 'assets/js/counter/jquery.waypoints.min.js' %}"></script>
-<script src="{% static 'assets/js/counter/jquery.counterup.min.js' %}"></script>
-<script src="{% static 'assets/js/counter/counter-custom.js' %}"></script>
-<script src="{% static 'assets/js/datepicker/date-picker/datepicker.js' %}"></script>
-<script src="{% static 'assets/js/datepicker/date-picker/datepicker.en.js' %}"></script>
-<script src="{% static 'assets/js/datepicker/date-picker/datepicker.custom.js' %}"></script>
-<script src="{% static 'assets/js/owlcarousel/owl.carousel.js' %}"></script>
-<script src="{% static 'assets/js/general-widget.js' %}"></script>
-<script src="{% static 'assets/js/tooltip-init.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/prism/prism.min.js' %}"></script>
+<script src="{% static 'assets2/js/counter/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'assets2/js/counter/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'assets2/js/counter/counter-custom.js' %}"></script>
+<script src="{% static 'assets2/js/datepicker/date-picker/datepicker.js' %}"></script>
+<script src="{% static 'assets2/js/datepicker/date-picker/datepicker.en.js' %}"></script>
+<script src="{% static 'assets2/js/datepicker/date-picker/datepicker.custom.js' %}"></script>
+<script src="{% static 'assets2/js/owlcarousel/owl.carousel.js' %}"></script>
+<script src="{% static 'assets2/js/general-widget.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

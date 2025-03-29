@@ -1,10 +1,10 @@
-{% extends 'base.html' %}{% load static %}
+{% extends 'base2.html' %}{% load static %}
 {% load sass_tags %}
 {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/animate.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/date-picker.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/dropzone.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/animate.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/date-picker.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/dropzone.scss' %}">
 <!-- Plugins css Ends-->
 
 {% endblock css %}
@@ -19,16 +19,16 @@
 {% endblock content %}
 {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/datepicker/date-picker/datepicker.js' %}"></script>
-<script src="{% static 'assets/js/datepicker/date-picker/datepicker.en.js' %}"></script>
-<script src="{% static 'assets/js/datepicker/date-picker/datepicker.custom.js' %}"></script>
-<script src="{% static 'assets/js/dropzone/dropzone.js' %}"></script>
-<script src="{% static 'assets/js/dropzone/dropzone-script.js' %}"></script>
-<script src="{% static 'assets/js/typeahead/handlebars.js' %}"></script>
-<script src="{% static 'assets/js/typeahead/typeahead.bundle.js' %}"></script>
-<script src="{% static 'assets/js/typeahead/typeahead.custom.js' %}"></script>
-<script src="{% static 'assets/js/typeahead-search/handlebars.js' %}"></script>
-<script src="{% static 'assets/js/typeahead-search/typeahead-custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/datepicker/date-picker/datepicker.js' %}"></script>
+<script src="{% static 'assets2/js/datepicker/date-picker/datepicker.en.js' %}"></script>
+<script src="{% static 'assets2/js/datepicker/date-picker/datepicker.custom.js' %}"></script>
+<script src="{% static 'assets2/js/dropzone/dropzone.js' %}"></script>
+<script src="{% static 'assets2/js/dropzone/dropzone-script.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead/handlebars.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead/typeahead.bundle.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead/typeahead.custom.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead-search/handlebars.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead-search/typeahead-custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}
