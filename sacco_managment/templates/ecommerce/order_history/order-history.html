@@ -1,11 +1,12 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/datatables.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/datatables.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -34,11 +35,20 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/1.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Long Top</a>
-                        <div class="order-process"><span class="order-process-circle"></span>Processing</div>
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/1.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Long Top</a>
+                        <div class="order-process">
+                          <span class="order-process-circle"></span>Processing
+                        </div>
                       </div>
                     </td>
                     <td>M</td>
@@ -49,11 +59,20 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/13.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Fancy watch</a>
-                        <div class="order-process"><span class="order-process-circle"></span>Processing</div>
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/13.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Fancy watch</a>
+                        <div class="order-process">
+                          <span class="order-process-circle"></span>Processing
+                        </div>
                       </div>
                     </td>
                     <td>35mm</td>
@@ -64,10 +83,19 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><img class="img-fluid img-30" src="{% static 'assets/images/product/4.png' %}" alt="#"></td>
                     <td>
-                      <div class="product-name"><a href="#">Man shoes</a>
-                        <div class="order-process"><span class="order-process-circle"></span>Processing</div>
+                      <img
+                        class="img-fluid img-30"
+                        src="{% static 'assets2/images/product/4.png' %}"
+                        alt="#"
+                      />
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Man shoes</a>
+                        <div class="order-process">
+                          <span class="order-process-circle"></span>Processing
+                        </div>
                       </div>
                     </td>
                     <td>8</td>
@@ -78,11 +106,23 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/10.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Ledis side bag</a>
-                        <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/10.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Ledis side bag</a>
+                        <div class="order-process">
+                          <span
+                            class="order-process-circle shipped-order"
+                          ></span
+                          >Shipped
+                        </div>
                       </div>
                     </td>
                     <td>22cm x 18cm</td>
@@ -93,11 +133,23 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/12.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Ledis Slipper</a>
-                        <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/12.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Ledis Slipper</a>
+                        <div class="order-process">
+                          <span
+                            class="order-process-circle shipped-order"
+                          ></span
+                          >Shipped
+                        </div>
                       </div>
                     </td>
                     <td>6</td>
@@ -108,11 +160,23 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/3.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Fancy ledis Jacket</a>
-                        <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/3.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Fancy ledis Jacket</a>
+                        <div class="order-process">
+                          <span
+                            class="order-process-circle shipped-order"
+                          ></span
+                          >Shipped
+                        </div>
                       </div>
                     </td>
                     <td>Xl</td>
@@ -123,11 +187,23 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/2.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Ledis Handbag</a>
-                        <div class="order-process"><span class="order-process-circle shipped-order"></span>Shipped</div>
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/2.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Ledis Handbag</a>
+                        <div class="order-process">
+                          <span
+                            class="order-process-circle shipped-order"
+                          ></span
+                          >Shipped
+                        </div>
                       </div>
                     </td>
                     <td>25cm x 20cm</td>
@@ -138,11 +214,20 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/15.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Iphone6 mobile</a>
-                        <div class="order-process"><span class="order-process-circle cancel-order"></span>Cancelled
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/15.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Iphone6 mobile</a>
+                        <div class="order-process">
+                          <span class="order-process-circle cancel-order"></span
+                          >Cancelled
                         </div>
                       </div>
                     </td>
@@ -154,11 +239,20 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/14.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Watch</a>
-                        <div class="order-process"><span class="order-process-circle cancel-order"></span>Cancelled
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/14.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Watch</a>
+                        <div class="order-process">
+                          <span class="order-process-circle cancel-order"></span
+                          >Cancelled
                         </div>
                       </div>
                     </td>
@@ -170,11 +264,20 @@
                     <td><i data-feather="more-vertical"></i></td>
                   </tr>
                   <tr>
-                    <td><a href="/ecommerce_product_page"><img class="img-fluid img-30"
-                          src="{% static 'assets/images/product/11.png' %}" alt="#"></a></td>
                     <td>
-                      <div class="product-name"><a href="#">Slipper</a>
-                        <div class="order-process"><span class="order-process-circle cancel-order"></span>Cancelled
+                      <a href="/ecommerce_product_page"
+                        ><img
+                          class="img-fluid img-30"
+                          src="{% static 'assets2/images/product/11.png' %}"
+                          alt="#"
+                      /></a>
+                    </td>
+                    <td>
+                      <div class="product-name">
+                        <a href="#">Slipper</a>
+                        <div class="order-process">
+                          <span class="order-process-circle cancel-order"></span
+                          >Cancelled
                         </div>
                       </div>
                     </td>
@@ -195,11 +298,10 @@
   </div>
   <!-- Container-fluid Ends -->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/datatable/datatables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'assets/js/datatable/datatables/datatable.custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/datatable/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets2/js/datatable/datatables/datatable.custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

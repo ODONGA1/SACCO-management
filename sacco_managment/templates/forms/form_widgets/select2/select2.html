@@ -1,11 +1,12 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/select2.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/select2.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
@@ -19,9 +20,10 @@
 
         <!-- Default Textbox end-->
         <!-- Input Groups start-->
-        {% include 'forms/form_widgets/select2/components/outline-color-variant.html' %}
-        {% include 'forms/form_widgets/select2/components/full-color-variant.html' %}
-
+        {% include
+        'forms/form_widgets/select2/components/outline-color-variant.html' %} {%
+        include 'forms/form_widgets/select2/components/full-color-variant.html'
+        %}
 
         <!-- Input Groups end// Container-fluid Ends
         -->
@@ -29,11 +31,10 @@
     </div>
   </div>
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/select2/select2.full.min.js' %}"></script>
-<script src="{% static 'assets/js/select2/select2-custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/select2/select2.full.min.js' %}"></script>
+<script src="{% static 'assets2/js/select2/select2-custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

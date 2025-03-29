@@ -1,11 +1,12 @@
-{% extends 'base2.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/animate.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/animate.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -13,8 +14,7 @@
   {% include 'project/project_list/components/projects.html' %}
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
 <script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
 <script src="{% static 'assets2/js/typeahead/handlebars.js' %}"></script>

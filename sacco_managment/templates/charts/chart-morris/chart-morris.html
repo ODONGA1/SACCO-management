@@ -1,6 +1,5 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -15,13 +14,12 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/chart/morris-chart/raphael.js' %}"></script>
-<script src="{% static 'assets/js/chart/morris-chart/morris.js' %}"> </script>
-<script src="{% static 'assets/js/chart/morris-chart/prettify.min.js' %}"></script>
-<script src="{% static 'assets/js/chart/morris-chart/morris-script.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/chart/morris-chart/raphael.js' %}"></script>
+<script src="{% static 'assets2/js/chart/morris-chart/morris.js' %}"></script>
+<script src="{% static 'assets2/js/chart/morris-chart/prettify.min.js' %}"></script>
+<script src="{% static 'assets2/js/chart/morris-chart/morris-script.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

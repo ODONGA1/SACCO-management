@@ -1,9 +1,10 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/prism.scss' %}">
-{% endblock css %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/prism.scss' %}"
+/>
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -13,30 +14,53 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Grid Options</h5><span>Bootstrap grid allows building an equal height flexbile blocks easily</span>
+            <h5>Grid Options</h5>
+            <span
+              >Bootstrap grid allows building an equal height flexbile blocks
+              easily</span
+            >
           </div>
           <div class="card-body">
-            <p>While Bootstrap uses <code>em </code>or <code>rem </code>for defining most sizes, <code>px</code> are
-              used for grid breakpoints and container widths. This is because the viewport width is in pixels and does
-              not change with the <a href="#">font size</a>.</p>
+            <p>
+              While Bootstrap uses <code>em </code>or <code>rem </code>for
+              defining most sizes, <code>px</code> are used for grid breakpoints
+              and container widths. This is because the viewport width is in
+              pixels and does not change with the <a href="#">font size</a>.
+            </p>
             <div class="table-responsive">
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th></th>
-                    <th class="text-center">Extra small<br><small>&lt;576px</small></th>
-                    <th class="text-center">Small<br><small>≥576px</small></th>
-                    <th class="text-center">Medium<br><small>≥768px</small></th>
-                    <th class="text-center">Large<br><small>≥992px</small></th>
-                    <th class="text-center">Extra large<br><small>≥1200px</small></th>
-                    <th class="text-center">Extra extra large<br><small class="digits">≥1400px</small></th>
+                    <th class="text-center">
+                      Extra small<br /><small>&lt;576px</small>
+                    </th>
+                    <th class="text-center">
+                      Small<br /><small>≥576px</small>
+                    </th>
+                    <th class="text-center">
+                      Medium<br /><small>≥768px</small>
+                    </th>
+                    <th class="text-center">
+                      Large<br /><small>≥992px</small>
+                    </th>
+                    <th class="text-center">
+                      Extra large<br /><small>≥1200px</small>
+                    </th>
+                    <th class="text-center">
+                      Extra extra large<br /><small class="digits"
+                        >≥1400px</small
+                      >
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th class="text-nowrap" scope="row">Grid behavior</th>
                     <td>Horizontal at all times</td>
-                    <td colspan="5">Collapsed to start, horizontal above breakpoints</td>
+                    <td colspan="5">
+                      Collapsed to start, horizontal above breakpoints
+                    </td>
                   </tr>
                   <tr>
                     <th class="text-nowrap" scope="row">Max container width</th>
@@ -89,9 +113,13 @@
           </div>
           <div class="card-body">
             <div class="grid-showcase">
-              <p>Using a single set of <code>.col-md-*</code> grid classes, you can create a basic grid system that
-                starts out stacked on mobile devices and tablet devices (the extra small to small range) before becoming
-                horizontal on desktop (medium) devices. Place grid columns within any <code>.row</code>.</p>
+              <p>
+                Using a single set of <code>.col-md-*</code> grid classes, you
+                can create a basic grid system that starts out stacked on mobile
+                devices and tablet devices (the extra small to small range)
+                before becoming horizontal on desktop (medium) devices. Place
+                grid columns within any <code>.row</code>.
+              </p>
               <div class="row">
                 <div class="col-md-1 text-center"><span>col-md-1</span></div>
                 <div class="col-md-2 text-center"><span>col-md-2</span></div>
@@ -111,8 +139,13 @@
                 <div class="col-md-12 text-center"><span>col-md-12</span></div>
               </div>
               <div class="code-box-copy">
-                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head7" title="Copy"><i
-                    class="icofont icofont-copy-alt"></i></button>
+                <button
+                  class="code-box-copy__btn btn-clipboard"
+                  data-clipboard-target="#example-head7"
+                  title="Copy"
+                >
+                  <i class="icofont icofont-copy-alt"></i>
+                </button>
                 <pre><code class="language-html" id="example-head7">&lt;!--  Grid Column Copy begin --&gt;
 &lt;div class="row"&gt;
 &lt;div class="col-md-1 text-center"&gt;
@@ -209,10 +242,15 @@ col-md-12
           </div>
           <div class="card-body">
             <div class="grid-showcase">
-              <p>Use the responsive<code>.row-cols-*</code>classes to quickly set the number of columns that best render
-                your content and layout. Whereas normal <code>.col-*</code>classes apply to the individual columns
-                (e.g., .col-md-4), the row columns classes are set on the parent <code>.row</code>as a default for
-                contained columns. With<code>.row-cols-auto</code>you can give the columns their natural width.</p>
+              <p>
+                Use the responsive<code>.row-cols-*</code>classes to quickly set
+                the number of columns that best render your content and layout.
+                Whereas normal <code>.col-*</code>classes apply to the
+                individual columns (e.g., .col-md-4), the row columns classes
+                are set on the parent <code>.row</code>as a default for
+                contained columns. With<code>.row-cols-auto</code>you can give
+                the columns their natural width.
+              </p>
               <div class="row row-cols-2 row-cols-lg-3">
                 <div class="col"><span>col-lg-3</span></div>
                 <div class="col"><span>col-lg-3</span></div>
@@ -228,8 +266,13 @@ col-md-12
                 <div class="col-4 col-lg-2"><span>col-4 col-lg-2</span></div>
               </div>
               <div class="code-box-copy">
-                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head2" title="Copy"><i
-                    class="icofont icofont-copy-alt"></i></button>
+                <button
+                  class="code-box-copy__btn btn-clipboard"
+                  data-clipboard-target="#example-head2"
+                  title="Copy"
+                >
+                  <i class="icofont icofont-copy-alt"></i>
+                </button>
                 <pre><code class="language-html" id="example-head2">&lt;!--  Grid Column Copy begin --&gt;
 &lt;div class="row"&gt;
 &lt;div class="col-md-1 text-center"&gt;
@@ -326,11 +369,20 @@ col-md-12
           </div>
           <div class="card-body">
             <div class="grid-showcase grid-align pb-0">
-              <p>Use flexbox alignment utilities to vertically and horizontally align columns.</p>
+              <p>
+                Use flexbox alignment utilities to vertically and horizontally
+                align columns.
+              </p>
               <div class="row">
-                <div class="col align-self-start"><span>One of three columns</span></div>
-                <div class="col align-self-center"><span>One of three columns</span></div>
-                <div class="col align-self-end"><span>One of three columns</span></div>
+                <div class="col align-self-start">
+                  <span>One of three columns</span>
+                </div>
+                <div class="col align-self-center">
+                  <span>One of three columns</span>
+                </div>
+                <div class="col align-self-end">
+                  <span>One of three columns</span>
+                </div>
               </div>
               <div class="row align-items-start">
                 <div class="col"><span>One of three columns</span></div>
@@ -348,8 +400,13 @@ col-md-12
                 <div class="col"><span>One of three columns</span></div>
               </div>
               <div class="code-box-copy">
-                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head3" title="Copy"><i
-                    class="icofont icofont-copy-alt"></i></button>
+                <button
+                  class="code-box-copy__btn btn-clipboard"
+                  data-clipboard-target="#example-head3"
+                  title="Copy"
+                >
+                  <i class="icofont icofont-copy-alt"></i>
+                </button>
                 <pre><code class="language-html" id="example-head3">&lt;!--  Vertical alignment Copy begin --&gt;
 &lt;div class="row"&gt;
 &lt;div class="col align-self-start"&gt;
@@ -432,18 +489,31 @@ One of three columns
           </div>
           <div class="card-body">
             <div class="grid-showcase">
-              <p>Use flexbox alignment utilities to vertically and horizontally align columns.</p>
+              <p>
+                Use flexbox alignment utilities to vertically and horizontally
+                align columns.
+              </p>
               <div class="row">
-                <div class="col-sm-9"><span>Level 1: .col-sm-9</span>
+                <div class="col-sm-9">
+                  <span>Level 1: .col-sm-9</span>
                   <div class="row">
-                    <div class="col-8 col-sm-6"><span>Level 2: .col-8 .col-sm-6</span></div>
-                    <div class="col-4 col-sm-6"><span>Level 2: .col-4 .col-sm-6</span></div>
+                    <div class="col-8 col-sm-6">
+                      <span>Level 2: .col-8 .col-sm-6</span>
+                    </div>
+                    <div class="col-4 col-sm-6">
+                      <span>Level 2: .col-4 .col-sm-6</span>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="code-box-copy">
-                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head4" title="Copy"><i
-                    class="icofont icofont-copy-alt"></i></button>
+                <button
+                  class="code-box-copy__btn btn-clipboard"
+                  data-clipboard-target="#example-head4"
+                  title="Copy"
+                >
+                  <i class="icofont icofont-copy-alt"></i>
+                </button>
                 <pre><code class="language-html" id="example-head4">&lt;!--  Nesting Column Copy begin --&gt;
 &lt;div class="row"&gt;
 &lt;div class="col-8 col-sm-6"&gt;
@@ -470,10 +540,13 @@ Level 2: .col-4 .col-sm-6
           </div>
           <div class="card-body">
             <div class="grid-showcase">
-              <p>Use <code>.order-</code> classes for controlling the <strong>visual order</strong> of your content.
-                These classes are responsive, so you can set the <code>order</code> by breakpoint (e.g.,
-                <code>.order-1.order-md-2</code>). Includes support for <code>1</code> through <code>12</code> across
-                all five grid tiers.
+              <p>
+                Use <code>.order-</code> classes for controlling the
+                <strong>visual order</strong> of your content. These classes are
+                responsive, so you can set the <code>order</code> by breakpoint
+                (e.g., <code>.order-1.order-md-2</code>). Includes support for
+                <code>1</code> through <code>12</code> across all five grid
+                tiers.
               </p>
               <div class="row">
                 <div class="col"><span>First, but unordered</span></div>
@@ -486,8 +559,13 @@ Level 2: .col-4 .col-sm-6
                 <div class="col order-first"><span>Third, but first</span></div>
               </div>
               <div class="code-box-copy">
-                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head5" title="Copy"><i
-                    class="icofont icofont-copy-alt"></i></button>
+                <button
+                  class="code-box-copy__btn btn-clipboard"
+                  data-clipboard-target="#example-head5"
+                  title="Copy"
+                >
+                  <i class="icofont icofont-copy-alt"></i>
+                </button>
                 <pre><code class="language-html" id="example-head5">&lt;!--  Order Copy begin --&gt;
 &lt;div class="row"&gt;
 &lt;div class="col"&gt;
@@ -536,34 +614,59 @@ One of three columns
           </div>
           <div class="card-body">
             <div class="grid-showcase">
-              <p>Move columns to the right using <code>.offset-md-*</code> classes. These classes increase the left
-                margin of a column by <code>*</code> columns. For example, <code>.offset-md-4</code> moves
-                <code>.col-md-4</code> over four columns.
+              <p>
+                Move columns to the right using
+                <code>.offset-md-*</code> classes. These classes increase the
+                left margin of a column by <code>*</code> columns. For example,
+                <code>.offset-md-4</code> moves <code>.col-md-4</code> over four
+                columns.
               </p>
               <div class="row">
                 <div class="col-md-4"><span>.col-md-4</span></div>
-                <div class="col-md-4 offset-md-4"><span>.col-md-4 .offset-md-4</span></div>
+                <div class="col-md-4 offset-md-4">
+                  <span>.col-md-4 .offset-md-4</span>
+                </div>
               </div>
               <div class="row">
-                <div class="col-md-3 offset-md-3"><span>.col-md-3 .offset-md-3</span></div>
-                <div class="col-md-3 offset-md-3"><span>.col-md-3 .offset-md-3</span></div>
+                <div class="col-md-3 offset-md-3">
+                  <span>.col-md-3 .offset-md-3</span>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                  <span>.col-md-3 .offset-md-3</span>
+                </div>
               </div>
               <div class="row">
-                <div class="col-md-6 offset-md-3"><span>.col-md-6 .offset-md-3</span></div>
+                <div class="col-md-6 offset-md-3">
+                  <span>.col-md-6 .offset-md-3</span>
+                </div>
               </div>
               <div class="row">
-                <div class="col-sm-5 col-md-6"><span>.col-sm-5 .col-md-6</span></div>
-                <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"><span>.col-sm-5 .offset-sm-2 .col-md-6
-                    .offset-md-0</span></div>
+                <div class="col-sm-5 col-md-6">
+                  <span>.col-sm-5 .col-md-6</span>
+                </div>
+                <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                  <span>.col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0</span>
+                </div>
               </div>
               <div class="row">
-                <div class="col-sm-6 col-md-5 col-lg-6"><span>.col-sm-6 .col-md-5 .col-lg-6</span></div>
-                <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"><span>.col-sm-6 .col-md-5 .offset-md-2
-                    .col-lg-6 .offset-lg-0</span></div>
+                <div class="col-sm-6 col-md-5 col-lg-6">
+                  <span>.col-sm-6 .col-md-5 .col-lg-6</span>
+                </div>
+                <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
+                  <span
+                    >.col-sm-6 .col-md-5 .offset-md-2 .col-lg-6
+                    .offset-lg-0</span
+                  >
+                </div>
               </div>
               <div class="code-box-copy">
-                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head6" title="Copy"><i
-                    class="icofont icofont-copy-alt"></i></button>
+                <button
+                  class="code-box-copy__btn btn-clipboard"
+                  data-clipboard-target="#example-head6"
+                  title="Copy"
+                >
+                  <i class="icofont icofont-copy-alt"></i>
+                </button>
                 <pre><code class="language-html" id="example-head6">&lt;!--  Offset Copy begin --&gt;
 &lt;div class="row"&gt;
 &lt;div class="col-md-4"&gt;
@@ -630,12 +733,11 @@ col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
-<script src="{% static 'assets/js/prism/prism.min.js' %}"></script>
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/clipboard/clipboard.min.js' %}"></script>
-<script src="{% static 'assets/js/custom-card/custom-card.js' %}"></script>
-<script src="{% static 'assets/js/tooltip-init.js' %}"></script>
+{% endblock content %} {% block scriptcontent %}
+<script src="{% static 'assets2/js/prism/prism.min.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/clipboard/clipboard.min.js' %}"></script>
+<script src="{% static 'assets2/js/custom-card/custom-card.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
 
 {% endblock scriptcontent %}

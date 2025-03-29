@@ -1,11 +1,12 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/dropzone.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/dropzone.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -19,9 +20,13 @@
           </div>
           <div class="card-body">
             <form class="dropzone" id="singleFileUpload" action="/upload.php">
-              <div class="dz-message needsclick"><i class="icon-cloud-up"></i>
-                <h6>Drop files here or click to upload.</h6><span class="note needsclick">(This is just a demo dropzone.
-                  Selected files are <strong>not</strong> actually uploaded.)</span>
+              <div class="dz-message needsclick">
+                <i class="icon-cloud-up"></i>
+                <h6>Drop files here or click to upload.</h6>
+                <span class="note needsclick"
+                  >(This is just a demo dropzone. Selected files are
+                  <strong>not</strong> actually uploaded.)</span
+                >
               </div>
             </form>
           </div>
@@ -33,10 +38,18 @@
             <h5>Multi File Upload</h5>
           </div>
           <div class="card-body">
-            <form class="dropzone dropzone-primary" id="multiFileUpload" action="/upload.php">
-              <div class="dz-message needsclick"><i class="icon-cloud-up"></i>
-                <h6>Drop files here or click to upload.</h6><span class="note needsclick">(This is just a demo dropzone.
-                  Selected files are <strong>not</strong> actually uploaded.)</span>
+            <form
+              class="dropzone dropzone-primary"
+              id="multiFileUpload"
+              action="/upload.php"
+            >
+              <div class="dz-message needsclick">
+                <i class="icon-cloud-up"></i>
+                <h6>Drop files here or click to upload.</h6>
+                <span class="note needsclick"
+                  >(This is just a demo dropzone. Selected files are
+                  <strong>not</strong> actually uploaded.)</span
+                >
               </div>
             </form>
           </div>
@@ -48,10 +61,18 @@
             <h5>File Type Validation</h5>
           </div>
           <div class="card-body">
-            <form class="dropzone dropzone-info" id="fileTypeValidation" action="/upload.php">
-              <div class="dz-message needsclick"><i class="icon-cloud-up"></i>
-                <h6>Drop files here or click to upload.</h6><span class="note needsclick">(This is just a demo dropzone.
-                  Selected files are <strong>not</strong> actually uploaded.)</span>
+            <form
+              class="dropzone dropzone-info"
+              id="fileTypeValidation"
+              action="/upload.php"
+            >
+              <div class="dz-message needsclick">
+                <i class="icon-cloud-up"></i>
+                <h6>Drop files here or click to upload.</h6>
+                <span class="note needsclick"
+                  >(This is just a demo dropzone. Selected files are
+                  <strong>not</strong> actually uploaded.)</span
+                >
               </div>
             </form>
           </div>
@@ -61,11 +82,10 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/dropzone/dropzone.js' %}"></script>
-<script src="{% static 'assets/js/dropzone/dropzone-script.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/dropzone/dropzone.js' %}"></script>
+<script src="{% static 'assets2/js/dropzone/dropzone-script.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

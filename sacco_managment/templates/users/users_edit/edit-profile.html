@@ -1,6 +1,5 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -8,15 +7,14 @@
   <div class="container-fluid">
     <div class="edit-profile">
       <div class="row">
-        {% include 'users/users_edit/components/user-profile.html' %}
-        {% include 'users/users_edit/components/edit-profile.html' %}
+        {% include 'users/users_edit/components/user-profile.html' %} {% include
+        'users/users_edit/components/edit-profile.html' %}
       </div>
     </div>
   </div>
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

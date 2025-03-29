@@ -1,11 +1,12 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/chartist.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/chartist.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -20,12 +21,11 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/chart/chartist/chartist.js' %}"></script>
-<script src="{% static 'assets/js/chart/chartist/chartist-plugin-tooltip.js' %}"></script>
-<script src="{% static 'assets/js/chart/chartist/chartist-custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/chart/chartist/chartist.js' %}"></script>
+<script src="{% static 'assets2/js/chart/chartist/chartist-plugin-tooltip.js' %}"></script>
+<script src="{% static 'assets2/js/chart/chartist/chartist-custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

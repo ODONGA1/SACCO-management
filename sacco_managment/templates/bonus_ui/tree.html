@@ -1,12 +1,17 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/scrollbar.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/tree.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/scrollbar.scss' %}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/tree.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -21,46 +26,59 @@
           <div class="card-body">
             <div id="treeBasic">
               <ul>
-                <li>Admin
+                <li>
+                  Admin
                   <ul>
-                    <li data-jstree="{&quot;opened&quot;:true}">Assets
+                    <li data-jstree='{"opened":true}'>
+                      assets2
                       <ul>
-                        <li data-jstree="{&quot;opened&quot;:false}">Css
+                        <li data-jstree='{"opened":false}'>
+                          Css
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Css one
+                            <li data-jstree='{"selected":false,"type":"file"}'>
+                              Css one
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Css two</li>
+                            <li data-jstree='{"type":"file"}'>Css two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Js
+                        <li data-jstree='{"opened":true}'>
+                          Js
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:true,&quot;type&quot;:&quot;file&quot;}">Js one</li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Js two</li>
+                            <li data-jstree='{"selected":true,"type":"file"}'>
+                              Js one
+                            </li>
+                            <li data-jstree='{"type":"file"}'>Js two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Scss
+                        <li data-jstree='{"opened":true}'>
+                          Scss
                           <ul>
-                            <li data-jstree="{&quot;opened&quot;:false}">Sub Child
+                            <li data-jstree='{"opened":false}'>
+                              Sub Child
                               <ul>
-                                <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Sub
-                                  File</li>
-                                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Sub File</li>
+                                <li
+                                  data-jstree='{"selected":false,"type":"file"}'
+                                >
+                                  Sub File
+                                </li>
+                                <li data-jstree='{"type":"file"}'>Sub File</li>
                               </ul>
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Scss two</li>
+                            <li data-jstree='{"type":"file"}'>Scss two</li>
                           </ul>
                         </li>
                       </ul>
                     </li>
-                    <li data-jstree="{&quot;opened&quot;:true}">Default
+                    <li data-jstree='{"opened":true}'>
+                      Default
                       <ul>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Dashboard</li>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Typography</li>
+                        <li data-jstree='{"type":"file"}'>Dashboard</li>
+                        <li data-jstree='{"type":"file"}'>Typography</li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">index file</li>
+                <li data-jstree='{"type":"file"}'>index file</li>
               </ul>
             </div>
           </div>
@@ -74,46 +92,59 @@
           <div class="card-body">
             <div id="treecheckbox">
               <ul>
-                <li>Admin
+                <li>
+                  Admin
                   <ul>
-                    <li data-jstree="{&quot;opened&quot;:true}">Assets
+                    <li data-jstree='{"opened":true}'>
+                      assets2
                       <ul>
-                        <li data-jstree="{&quot;opened&quot;:false}">Css
+                        <li data-jstree='{"opened":false}'>
+                          Css
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Css one
+                            <li data-jstree='{"selected":false,"type":"file"}'>
+                              Css one
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Css two</li>
+                            <li data-jstree='{"type":"file"}'>Css two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Js
+                        <li data-jstree='{"opened":true}'>
+                          Js
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:true,&quot;type&quot;:&quot;file&quot;}">Js one</li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Js two</li>
+                            <li data-jstree='{"selected":true,"type":"file"}'>
+                              Js one
+                            </li>
+                            <li data-jstree='{"type":"file"}'>Js two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Scss
+                        <li data-jstree='{"opened":true}'>
+                          Scss
                           <ul>
-                            <li data-jstree="{&quot;opened&quot;:false}">Sub Child
+                            <li data-jstree='{"opened":false}'>
+                              Sub Child
                               <ul>
-                                <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Sub
-                                  File</li>
-                                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Sub File</li>
+                                <li
+                                  data-jstree='{"selected":false,"type":"file"}'
+                                >
+                                  Sub File
+                                </li>
+                                <li data-jstree='{"type":"file"}'>Sub File</li>
                               </ul>
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Scss two</li>
+                            <li data-jstree='{"type":"file"}'>Scss two</li>
                           </ul>
                         </li>
                       </ul>
                     </li>
-                    <li data-jstree="{&quot;opened&quot;:true}">Default
+                    <li data-jstree='{"opened":true}'>
+                      Default
                       <ul>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Dashboard</li>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Typography</li>
+                        <li data-jstree='{"type":"file"}'>Dashboard</li>
+                        <li data-jstree='{"type":"file"}'>Typography</li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">index file</li>
+                <li data-jstree='{"type":"file"}'>index file</li>
               </ul>
             </div>
           </div>
@@ -127,46 +158,59 @@
           <div class="card-body">
             <div id="dragTree">
               <ul>
-                <li>Admin
+                <li>
+                  Admin
                   <ul>
-                    <li data-jstree="{&quot;opened&quot;:true}">Assets
+                    <li data-jstree='{"opened":true}'>
+                      assets2
                       <ul>
-                        <li data-jstree="{&quot;opened&quot;:false}">Css
+                        <li data-jstree='{"opened":false}'>
+                          Css
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Css one
+                            <li data-jstree='{"selected":false,"type":"file"}'>
+                              Css one
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Css two</li>
+                            <li data-jstree='{"type":"file"}'>Css two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Js
+                        <li data-jstree='{"opened":true}'>
+                          Js
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:true,&quot;type&quot;:&quot;file&quot;}">Js one</li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Js two</li>
+                            <li data-jstree='{"selected":true,"type":"file"}'>
+                              Js one
+                            </li>
+                            <li data-jstree='{"type":"file"}'>Js two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Scss
+                        <li data-jstree='{"opened":true}'>
+                          Scss
                           <ul>
-                            <li data-jstree="{&quot;opened&quot;:false}">Sub Child
+                            <li data-jstree='{"opened":false}'>
+                              Sub Child
                               <ul>
-                                <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Sub
-                                  File</li>
-                                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Sub File</li>
+                                <li
+                                  data-jstree='{"selected":false,"type":"file"}'
+                                >
+                                  Sub File
+                                </li>
+                                <li data-jstree='{"type":"file"}'>Sub File</li>
                               </ul>
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Scss two</li>
+                            <li data-jstree='{"type":"file"}'>Scss two</li>
                           </ul>
                         </li>
                       </ul>
                     </li>
-                    <li data-jstree="{&quot;opened&quot;:true}">Default
+                    <li data-jstree='{"opened":true}'>
+                      Default
                       <ul>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Dashboard</li>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Typography</li>
+                        <li data-jstree='{"type":"file"}'>Dashboard</li>
+                        <li data-jstree='{"type":"file"}'>Typography</li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">index file</li>
+                <li data-jstree='{"type":"file"}'>index file</li>
               </ul>
             </div>
           </div>
@@ -180,46 +224,59 @@
           <div class="card-body">
             <div id="contextmenu">
               <ul>
-                <li>Admin
+                <li>
+                  Admin
                   <ul>
-                    <li data-jstree="{&quot;opened&quot;:true}">Assets
+                    <li data-jstree='{"opened":true}'>
+                      assets2
                       <ul>
-                        <li data-jstree="{&quot;opened&quot;:false}">Css
+                        <li data-jstree='{"opened":false}'>
+                          Css
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Css one
+                            <li data-jstree='{"selected":false,"type":"file"}'>
+                              Css one
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Css two</li>
+                            <li data-jstree='{"type":"file"}'>Css two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Js
+                        <li data-jstree='{"opened":true}'>
+                          Js
                           <ul>
-                            <li data-jstree="{&quot;selected&quot;:true,&quot;type&quot;:&quot;file&quot;}">Js one</li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Js two</li>
+                            <li data-jstree='{"selected":true,"type":"file"}'>
+                              Js one
+                            </li>
+                            <li data-jstree='{"type":"file"}'>Js two</li>
                           </ul>
                         </li>
-                        <li data-jstree="{&quot;opened&quot;:true}">Scss
+                        <li data-jstree='{"opened":true}'>
+                          Scss
                           <ul>
-                            <li data-jstree="{&quot;opened&quot;:false}">Sub Child
+                            <li data-jstree='{"opened":false}'>
+                              Sub Child
                               <ul>
-                                <li data-jstree="{&quot;selected&quot;:false,&quot;type&quot;:&quot;file&quot;}">Sub
-                                  File</li>
-                                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Sub File</li>
+                                <li
+                                  data-jstree='{"selected":false,"type":"file"}'
+                                >
+                                  Sub File
+                                </li>
+                                <li data-jstree='{"type":"file"}'>Sub File</li>
                               </ul>
                             </li>
-                            <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Scss two</li>
+                            <li data-jstree='{"type":"file"}'>Scss two</li>
                           </ul>
                         </li>
                       </ul>
                     </li>
-                    <li data-jstree="{&quot;opened&quot;:true}">Default
+                    <li data-jstree='{"opened":true}'>
+                      Default
                       <ul>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Dashboard</li>
-                        <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">Typography</li>
+                        <li data-jstree='{"type":"file"}'>Dashboard</li>
+                        <li data-jstree='{"type":"file"}'>Typography</li>
                       </ul>
                     </li>
                   </ul>
                 </li>
-                <li data-jstree="{&quot;type&quot;:&quot;file&quot;}">index file</li>
+                <li data-jstree='{"type":"file"}'>index file</li>
               </ul>
             </div>
           </div>
@@ -229,11 +286,10 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/tree/jstree.min.js' %}"></script>
-<script src="{% static 'assets/js/tree/tree.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/tree/jstree.min.js' %}"></script>
+<script src="{% static 'assets2/js/tree/tree.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

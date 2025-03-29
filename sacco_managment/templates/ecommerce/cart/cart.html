@@ -1,6 +1,5 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -28,17 +27,29 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><img class="img-fluid img-40" src="{% static 'assets/images/product/1.png' %}" alt="#"></td>
                       <td>
-                        <div class="product-name"><a href="#">
+                        <img
+                          class="img-fluid img-40"
+                          src="{% static 'assets2/images/product/1.png' %}"
+                          alt="#"
+                        />
+                      </td>
+                      <td>
+                        <div class="product-name">
+                          <a href="#">
                             <h6>Long Top</h6>
-                          </a></div>
+                          </a>
+                        </div>
                       </td>
                       <td>$21</td>
                       <td>
                         <fieldset class="qty-box">
                           <div class="input-group">
-                            <input class="touchspin text-center" type="text" value="5">
+                            <input
+                              class="touchspin text-center"
+                              type="text"
+                              value="5"
+                            />
                           </div>
                         </fieldset>
                       </td>
@@ -46,17 +57,29 @@
                       <td>$12456</td>
                     </tr>
                     <tr>
-                      <td><img class="img-fluid img-40" src="{% static 'assets/images/product/13.png' %}" alt="#"></td>
                       <td>
-                        <div class="product-name"><a href="#">
+                        <img
+                          class="img-fluid img-40"
+                          src="{% static 'assets2/images/product/13.png' %}"
+                          alt="#"
+                        />
+                      </td>
+                      <td>
+                        <div class="product-name">
+                          <a href="#">
                             <h6>Fancy watch</h6>
-                          </a></div>
+                          </a>
+                        </div>
                       </td>
                       <td>$50</td>
                       <td>
                         <fieldset class="qty-box">
                           <div class="input-group">
-                            <input class="touchspin text-center" type="text" value="5">
+                            <input
+                              class="touchspin text-center"
+                              type="text"
+                              value="5"
+                            />
                           </div>
                         </fieldset>
                       </td>
@@ -64,17 +87,29 @@
                       <td>$12456</td>
                     </tr>
                     <tr>
-                      <td><img class="img-fluid img-40" src="{% static 'assets/images/product/4.png' %}" alt="#"></td>
                       <td>
-                        <div class="product-name"><a href="#">
+                        <img
+                          class="img-fluid img-40"
+                          src="{% static 'assets2/images/product/4.png' %}"
+                          alt="#"
+                        />
+                      </td>
+                      <td>
+                        <div class="product-name">
+                          <a href="#">
                             <h6>Man shoes</h6>
-                          </a></div>
+                          </a>
+                        </div>
                       </td>
                       <td>$11</td>
                       <td>
                         <fieldset class="qty-box">
                           <div class="input-group">
-                            <input class="touchspin text-center" type="text" value="5">
+                            <input
+                              class="touchspin text-center"
+                              type="text"
+                              value="5"
+                            />
                           </div>
                         </fieldset>
                       </td>
@@ -84,19 +119,35 @@
                     <tr>
                       <td colspan="4">
                         <div class="input-group">
-                          <input class="form-control me-2" type="text" placeholder="Enter coupan code"><a
-                            class="btn btn-primary" href="#">Apply</a>
+                          <input
+                            class="form-control me-2"
+                            type="text"
+                            placeholder="Enter coupan code"
+                          /><a class="btn btn-primary" href="#">Apply</a>
                         </div>
                       </td>
                       <td class="total-amount">
-                        <h6 class="m-0"><span class="f-w-600">Total Price :</span></h6>
+                        <h6 class="m-0">
+                          <span class="f-w-600">Total Price :</span>
+                        </h6>
                       </td>
                       <td><span>$6935.00 </span></td>
                     </tr>
                     <tr>
-                      <td class="text-end" colspan="5"><a class="btn btn-secondary cart-btn-transform"
-                          href="/ecommerce_product_view">Continue shopping</a></td>
-                      <td><a class="btn btn-success cart-btn-transform" href="/ecommerce_checkout">Check out</a></td>
+                      <td class="text-end" colspan="5">
+                        <a
+                          class="btn btn-secondary cart-btn-transform"
+                          href="/ecommerce_product_view"
+                          >Continue shopping</a
+                        >
+                      </td>
+                      <td>
+                        <a
+                          class="btn btn-success cart-btn-transform"
+                          href="/ecommerce_checkout"
+                          >Check out</a
+                        >
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -109,12 +160,11 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/touchspin/vendors.min.js' %}"></script>
-<script src="{% static 'assets/js/touchspin/touchspin.js' %}"></script>
-<script src="{% static 'assets/js/touchspin/input-groups.min.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/touchspin/vendors.min.js' %}"></script>
+<script src="{% static 'assets2/js/touchspin/touchspin.js' %}"></script>
+<script src="{% static 'assets2/js/touchspin/input-groups.min.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

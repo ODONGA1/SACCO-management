@@ -1,11 +1,12 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/prism.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/prism.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -25,18 +26,32 @@
           </div>
           <div class="card-body">
             <h5>Step 1</h5>
-            <p>On this layout, First of all you have to add the class rtl attribute in body tag</p>
+            <p>
+              On this layout, First of all you have to add the class rtl
+              attribute in body tag
+            </p>
             <h5>Step 2</h5>
-            <p>Contents are change right to left from left to right respectively</p>
+            <p>
+              Contents are change right to left from left to right respectively
+            </p>
             <h5>Step 3</h5>
-            <p>when you want to change spacing left to right at that right left spacing you have to unset css and apply
-              right spacing in css</p>
+            <p>
+              when you want to change spacing left to right at that right left
+              spacing you have to unset css and apply right spacing in css
+            </p>
             <h5>Step 4</h5>
-            <p>Sometimes js are not change directly with text-align css,so that time you have to copy js and change the
-              class as rtl="true".</p>
+            <p>
+              Sometimes js are not change directly with text-align css,so that
+              time you have to copy js and change the class as rtl="true".
+            </p>
             <div class="code-box-copy">
-              <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head" title="Copy"><i
-                  class="icofont icofont-copy-alt"></i></button>
+              <button
+                class="code-box-copy__btn btn-clipboard"
+                data-clipboard-target="#example-head"
+                title="Copy"
+              >
+                <i class="icofont icofont-copy-alt"></i>
+              </button>
               <pre><code class="language-html" id="example-head">&lt;!-- Cod Box Copy begin --&gt;
 &lt;div class=&quot;card-body&quot;&gt;
 &lt;h5&gt;Step 1&lt;/h5&gt;
@@ -60,18 +75,17 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <script>
   $(document).ready(function () {
     localStorage.setItem("layout", "rtl");
-  })
+  });
 </script>
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/prism/prism.min.js' %}"></script>
-<script src="{% static 'assets/js/clipboard/clipboard.min.js' %}"></script>
-<script src="{% static 'assets/js/custom-card/custom-card.js' %}"></script>
-<script src="{% static 'assets/js/tooltip-init.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/prism/prism.min.js' %}"></script>
+<script src="{% static 'assets2/js/clipboard/clipboard.min.js' %}"></script>
+<script src="{% static 'assets2/js/custom-card/custom-card.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

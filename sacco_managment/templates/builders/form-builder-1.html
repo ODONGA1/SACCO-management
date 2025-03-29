@@ -1,6 +1,5 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -11,7 +10,8 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>Drag & Drop components</h5><span>Copy the html code from View HTML tab </span>
+              <h5>Drag & Drop components</h5>
+              <span>Copy the html code from View HTML tab </span>
             </div>
             <div class="card-body">
               <div class="row clearfix form-builder">
@@ -42,16 +42,15 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/counter/jquery.waypoints.min.js' %}"></script>
-<script src="{% static 'assets/js/counter/jquery.counterup.min.js' %}"></script>
-<script src="{% static 'assets/js/counter/counter-custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/counter/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'assets2/js/counter/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'assets2/js/counter/counter-custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 <!-- theme js -->
-<script src="{% static 'assets/js/form-builder/form-builder-1/require.js' %}"></script>
-<script src="{% static 'assets/js/form-builder/form-builder-1/main-built.js' %}"></script>
+<script src="{% static 'assets2/js/form-builder/form-builder-1/require.js' %}"></script>
+<script src="{% static 'assets2/js/form-builder/form-builder-1/main-built.js' %}"></script>
 
 {% endblock scriptcontent %}

@@ -1,12 +1,13 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/datatables.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/datatables.scss' %}"
+/>
 
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -16,14 +17,26 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">DOM / jQuery </h5><span>Events assigned to the table can be exceptionally useful for user
-              interaction, however you must be aware that DataTables will add and remove rows from the DOM as they are
-              needed (i.e. when paging only the visible elements are actually available in the DOM). As such, this can
-              lead to the odd hiccup when working with events.</span><span>One of the best ways of dealing with this is
-              through the use of delegated events with jQuery's <code>on</code> method, as shown in this example. This
-              example also uses the DataTables<code class="api" title="DataTables API method">row().data()API</code>
-              method to retrieve information about the selected row - the row's data so we can show it in the
-              <code>alert</code> message in this case.</span>
+            <h5 class="mb-3">DOM / jQuery</h5>
+            <span
+              >Events assigned to the table can be exceptionally useful for user
+              interaction, however you must be aware that DataTables will add
+              and remove rows from the DOM as they are needed (i.e. when paging
+              only the visible elements are actually available in the DOM). As
+              such, this can lead to the odd hiccup when working with
+              events.</span
+            ><span
+              >One of the best ways of dealing with this is through the use of
+              delegated events with jQuery's <code>on</code> method, as shown in
+              this example. This example also uses the DataTables<code
+                class="api"
+                title="DataTables API method"
+                >row().data()API</code
+              >
+              method to retrieve information about the selected row - the row's
+              data so we can show it in the
+              <code>alert</code> message in this case.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -516,19 +529,29 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">DataTables events</h5><span>DataTables fires a number of custom events which you can bind
-              to in the standard jQuery fashion (although note that the namespace <code>dt</code><em>must</em> be used),
-              allowing your code to perform custom actions when these events occur.</span><span>All custom events fired
-              by DataTables are fired with the namespace <code>dt</code> in order to prevent conflicts arising with
-              other jQuery plug-ins which
-              also fire events. The DataTables <code class="api" title="DataTables API method">on().API</code> method
-              can be
-              used like the jQuery <code>on()</code> method, but will automatically append the <code>dt</code> namespace
-              if required.</span><span>This example shows the use of the <code class="event"
-                title="DataTables event">order:event</code>, <code class="event"
-                title="DataTables event">search:event</code> and <code class="event"
-                title="DataTables event">page:event</code> events by adding a notification that the event fired to an
-              element on the page to show that they have indeed fired.</span>
+            <h5 class="mb-3">DataTables events</h5>
+            <span
+              >DataTables fires a number of custom events which you can bind to
+              in the standard jQuery fashion (although note that the namespace
+              <code>dt</code><em>must</em> be used), allowing your code to
+              perform custom actions when these events occur.</span
+            ><span
+              >All custom events fired by DataTables are fired with the
+              namespace <code>dt</code> in order to prevent conflicts arising
+              with other jQuery plug-ins which also fire events. The DataTables
+              <code class="api" title="DataTables API method">on().API</code>
+              method can be used like the jQuery <code>on()</code> method, but
+              will automatically append the <code>dt</code> namespace if
+              required.</span
+            ><span
+              >This example shows the use of the
+              <code class="event" title="DataTables event">order:event</code>,
+              <code class="event" title="DataTables event">search:event</code>
+              and
+              <code class="event" title="DataTables event">page:event</code>
+              events by adding a notification that the event fired to an element
+              on the page to show that they have indeed fired.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -1022,16 +1045,25 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Column rendering</h5><span>Each column has an optional rendering control called <code
-                class="option" title="DataTables initialisation option">columns.render:option</code>which can be used to
-              process the content of each cell before the data is used. <code class="option"
-                title="DataTables initialisation option">columns.render:option</code>has a wide array of
-              options available to it for rendering different types of data orthogonally (ordering, searching, display
-              etc), but it can be used very simply to manipulate the
-              content of a cell, as shown here.</span><span>
-              This example shows the person's age combined with their name in the first column, hiding the age column.
-              This technique can be useful for adding links,
-              assigning colours based on content rules and any other form of text manipulation you require.</span>
+            <h5 class="mb-3">Column rendering</h5>
+            <span
+              >Each column has an optional rendering control called
+              <code class="option" title="DataTables initialisation option"
+                >columns.render:option</code
+              >which can be used to process the content of each cell before the
+              data is used.
+              <code class="option" title="DataTables initialisation option"
+                >columns.render:option</code
+              >has a wide array of options available to it for rendering
+              different types of data orthogonally (ordering, searching, display
+              etc), but it can be used very simply to manipulate the content of
+              a cell, as shown here.</span
+            ><span>
+              This example shows the person's age combined with their name in
+              the first column, hiding the age column. This technique can be
+              useful for adding links, assigning colours based on content rules
+              and any other form of text manipulation you require.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -1524,18 +1556,30 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Page length options</h5><span>It is possible to easily customise the options shown in the
-              length menu (by default at the top left of the table) using the <code class="option"
-                title="DataTables initialisation option">lengthMenu</code> initialisation option.</span><span>This
-              parameter can take one of two forms:</span>
+            <h5 class="mb-3">Page length options</h5>
+            <span
+              >It is possible to easily customise the options shown in the
+              length menu (by default at the top left of the table) using the
+              <code class="option" title="DataTables initialisation option"
+                >lengthMenu</code
+              >
+              initialisation option.</span
+            ><span>This parameter can take one of two forms:</span>
             <ul class="list-circle ms-4 mt-2">
-              <li>A 1D array of options which will be used for both the displayed option and the value, or</li>
               <li>
-                A 2D array in which the first array is used to define the value options and the second array the
-                displayed options (useful for language strings such as
-                'All').
+                A 1D array of options which will be used for both the displayed
+                option and the value, or
               </li>
-            </ul><span>The example below shows a 2D array being used to include a "Show all" records option.</span>
+              <li>
+                A 2D array in which the first array is used to define the value
+                options and the second array the displayed options (useful for
+                language strings such as 'All').
+              </li>
+            </ul>
+            <span
+              >The example below shows a 2D array being used to include a "Show
+              all" records option.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -2028,16 +2072,32 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Multiple table control elements</h5><span>As is described by the basic DOM positioning
-              example you can use the <code class="option" title="DataTables initialisation option">dom</code>
-              initialisation parameter to move DataTables features around the table to where you want
-              them.</span><span>In addition to this, you can also use <code class="option"
-                title="DataTables initialisation option">dom:option</code> to create multiple instances of these table
-              controls. Simply include the feature's identification letter
-              where you want it to appear, as many times as you wish, and the controls will all sync up (note that
-              obviously the table (<code class="string" title="String">t:string</code>) should be included only
-              once).</span><span>This is shown in the demo below where the four key built-in features are duplicated
-              above and below the table.</span>
+            <h5 class="mb-3">Multiple table control elements</h5>
+            <span
+              >As is described by the basic DOM positioning example you can use
+              the
+              <code class="option" title="DataTables initialisation option"
+                >dom</code
+              >
+              initialisation parameter to move DataTables features around the
+              table to where you want them.</span
+            ><span
+              >In addition to this, you can also use
+              <code class="option" title="DataTables initialisation option"
+                >dom:option</code
+              >
+              to create multiple instances of these table controls. Simply
+              include the feature's identification letter where you want it to
+              appear, as many times as you wish, and the controls will all sync
+              up (note that obviously the table (<code
+                class="string"
+                title="String"
+                >t:string</code
+              >) should be included only once).</span
+            ><span
+              >This is shown in the demo below where the four key built-in
+              features are duplicated above and below the table.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -2530,20 +2590,35 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Complex headers with column visibility</h5><span>Complex headers (using
-              <code>colspan</code> / <code>rowspan</code>) can be used to group columns of similar information in
-              DataTables, creating a very
-              powerful visual effect.</span><span>In addition to the basic behaviour, DataTables can also take
-              <code>colspan</code> and <code>rowspan</code> into account when working with hidden columns.
-              The <code>colspan</code> and <code>rowspan</code> attributes for each cell are automatically calculated
-              and rendered on the page for you. This allows the<code class="option"
-                title="DataTables initialisation option">columns.visible:option</code>option and<code class="api"
-                title="DataTables API method">column().visible():API</code> method to take into
-              account <code>rowspan</code> / <code>colspan</code> cells, drawing the header correctly.</span><span>Note
-              that each column must have at least one unique cell (i.e. a cell without <code>colspan</code>) so
-              DataTables can use that cell to detect the column and
-              use it to apply ordering.</span><span>The example below shows a header spanning multiple cells over the
-              contact information, with one of the columns that the span covers being hidden.</span>
+            <h5 class="mb-3">Complex headers with column visibility</h5>
+            <span
+              >Complex headers (using <code>colspan</code> /
+              <code>rowspan</code>) can be used to group columns of similar
+              information in DataTables, creating a very powerful visual
+              effect.</span
+            ><span
+              >In addition to the basic behaviour, DataTables can also take
+              <code>colspan</code> and <code>rowspan</code> into account when
+              working with hidden columns. The <code>colspan</code> and
+              <code>rowspan</code> attributes for each cell are automatically
+              calculated and rendered on the page for you. This allows the<code
+                class="option"
+                title="DataTables initialisation option"
+                >columns.visible:option</code
+              >option and<code class="api" title="DataTables API method"
+                >column().visible():API</code
+              >
+              method to take into account <code>rowspan</code> /
+              <code>colspan</code> cells, drawing the header correctly.</span
+            ><span
+              >Note that each column must have at least one unique cell (i.e. a
+              cell without <code>colspan</code>) so DataTables can use that cell
+              to detect the column and use it to apply ordering.</span
+            ><span
+              >The example below shows a header spanning multiple cells over the
+              contact information, with one of the columns that the span covers
+              being hidden.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -3040,19 +3115,33 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Read HTML to data objects</h5><span>
-              When DataTables reads the table content from an HTML table (rather than an Ajax or Javascript data
-              source), by default it will read the information in the
-              table into an array that DataTables stores internally. Each array element represents a
-              column.</span><span>It can be very useful to have DataTables read the information into an object rather
-              than an array, an option that can be triggered using the<code class="option"
-                title="DataTables initialisation option">columns.data:option</code> initialisation option to
-              define how you want the data to be stored. Typically <code class="option"
-                title="DataTables initialisation option">columns.data:option</code> is used with Ajax sourced data to
-              tell DataTables where to read
-              data from, but as can be seen here it also tells DataTables where to write the data to.</span><span>This
-              ability to store data into an object can be very useful when working with the DataTables API after the
-              table has been initialised.</span>
+            <h5 class="mb-3">Read HTML to data objects</h5>
+            <span>
+              When DataTables reads the table content from an HTML table (rather
+              than an Ajax or Javascript data source), by default it will read
+              the information in the table into an array that DataTables stores
+              internally. Each array element represents a column.</span
+            ><span
+              >It can be very useful to have DataTables read the information
+              into an object rather than an array, an option that can be
+              triggered using the<code
+                class="option"
+                title="DataTables initialisation option"
+                >columns.data:option</code
+              >
+              initialisation option to define how you want the data to be
+              stored. Typically
+              <code class="option" title="DataTables initialisation option"
+                >columns.data:option</code
+              >
+              is used with Ajax sourced data to tell DataTables where to read
+              data from, but as can be seen here it also tells DataTables where
+              to write the data to.</span
+            ><span
+              >This ability to store data into an object can be very useful when
+              working with the DataTables API after the table has been
+              initialised.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -3545,12 +3634,18 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Language file</h5><span>As well as being able to pass language information to DataTables
-              through the <code class="option"
-                title="DataTables initialisation option">language:option</code>initialisation option, you can also store
-              the language information in a file, which DataTables can
-              load by Ajax using the <code class="option"
-                title="DataTables initialisation option">language.url:option</code>option.</span>
+            <h5 class="mb-3">Language file</h5>
+            <span
+              >As well as being able to pass language information to DataTables
+              through the
+              <code class="option" title="DataTables initialisation option"
+                >language:option</code
+              >initialisation option, you can also store the language
+              information in a file, which DataTables can load by Ajax using the
+              <code class="option" title="DataTables initialisation option"
+                >language.url:option</code
+              >option.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -4043,15 +4138,25 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Setting defaults</h5><span>When working with DataTables over multiple pages it is often
-              useful to set the initialisation defaults to common values (for example you might want to set<code
-                class="option" title="DataTables initialisation option">dom:option</code> to a common value so all
-              tables
-              get the same layout). This can be done using the <code>$.fn.dataTable.defaults</code> object. This object
-              will take all of the same parameters as the
-              DataTables initialisation object, but in this case you are setting the default for all future
-              initialisations of DataTables.</span><span>This example shows the searching and ordering features of
-              DataTables being disabled by default, which is reflected in the table when it is initialised.</span>
+            <h5 class="mb-3">Setting defaults</h5>
+            <span
+              >When working with DataTables over multiple pages it is often
+              useful to set the initialisation defaults to common values (for
+              example you might want to set<code
+                class="option"
+                title="DataTables initialisation option"
+                >dom:option</code
+              >
+              to a common value so all tables get the same layout). This can be
+              done using the <code>$.fn.dataTable.defaults</code> object. This
+              object will take all of the same parameters as the DataTables
+              initialisation object, but in this case you are setting the
+              default for all future initialisations of DataTables.</span
+            ><span
+              >This example shows the searching and ordering features of
+              DataTables being disabled by default, which is reflected in the
+              table when it is initialised.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -4544,15 +4649,26 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Row created callback</h5><span>The following example shows how a callback function can be
-              used to format a particular row at draw time. For each row that is generated for display, the<code
-                class="option" title="DataTables initialisation option">createdRow:option</code> function is called
-              once and once only. It is passed the create row node which can then be modified.</span><span>
-              In this case a trivial example of making the 'salary' column blue and bold by adding a CSS class to the
-              container cell if the salary is greater than
-              $150,000. Note that <code class="option"
-                title="DataTables initialisation option">columns.createdCell</code> could also be used to create exactly
-              the same effect.</span>
+            <h5 class="mb-3">Row created callback</h5>
+            <span
+              >The following example shows how a callback function can be used
+              to format a particular row at draw time. For each row that is
+              generated for display, the<code
+                class="option"
+                title="DataTables initialisation option"
+                >createdRow:option</code
+              >
+              function is called once and once only. It is passed the create row
+              node which can then be modified.</span
+            ><span>
+              In this case a trivial example of making the 'salary' column blue
+              and bold by adding a CSS class to the container cell if the salary
+              is greater than $150,000. Note that
+              <code class="option" title="DataTables initialisation option"
+                >columns.createdCell</code
+              >
+              could also be used to create exactly the same effect.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -5045,14 +5161,22 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Row grouping</h5><span>Although DataTables doesn't have row grouping built-in (picking one
-              of the many methods available would overly limit the DataTables core), it is most certainly possible to
-              give the look and feel of row grouping.</span><span>In the example below the 'group' is the office
-              location, which is based on the information in the third column (which is set to hidden). The grouping
-              indicator is added by the <code>drawCallback:option </code>function, which will parse through the rows
-              which are displayed, and enter a grouping TR element where a new group is found. A click event handler is
-              added for the grouping rows to allow the grouping order to be restored as well as ordering by any other
-              column.</span>
+            <h5 class="mb-3">Row grouping</h5>
+            <span
+              >Although DataTables doesn't have row grouping built-in (picking
+              one of the many methods available would overly limit the
+              DataTables core), it is most certainly possible to give the look
+              and feel of row grouping.</span
+            ><span
+              >In the example below the 'group' is the office location, which is
+              based on the information in the third column (which is set to
+              hidden). The grouping indicator is added by the
+              <code>drawCallback:option </code>function, which will parse
+              through the rows which are displayed, and enter a grouping TR
+              element where a new group is found. A click event handler is added
+              for the grouping rows to allow the grouping order to be restored
+              as well as ordering by any other column.</span
+            >
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -5535,16 +5659,32 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Footer callback</h5><span>Through the use of the header and footer callback manipulation
-              functions provided by DataTables (<code class="option"
-                title="DataTables initialisation option">headerCallback:option</code> and <code class="option"
-                title="DataTables initialisation option">footerCallback:option</code>), it is possible to
-              perform some powerful and useful data manipulation functions, such as summarising data in the
-              table.</span><span>The example below shows a footer callback being used to total the data for a column
-              (both the visible and the hidden data) using the <code class="api"
-                title="DataTables API method">column().data():API</code> API method and <code class="api"
-                title="DataTables API method">column().footer():API</code> for writing the value into the
-              footer.</span>
+            <h5 class="mb-3">Footer callback</h5>
+            <span
+              >Through the use of the header and footer callback manipulation
+              functions provided by DataTables (<code
+                class="option"
+                title="DataTables initialisation option"
+                >headerCallback:option</code
+              >
+              and
+              <code class="option" title="DataTables initialisation option"
+                >footerCallback:option</code
+              >), it is possible to perform some powerful and useful data
+              manipulation functions, such as summarising data in the
+              table.</span
+            ><span
+              >The example below shows a footer callback being used to total the
+              data for a column (both the visible and the hidden data) using the
+              <code class="api" title="DataTables API method"
+                >column().data():API</code
+              >
+              API method and
+              <code class="api" title="DataTables API method"
+                >column().footer():API</code
+              >
+              for writing the value into the footer.</span
+            >
           </div>
           <div class="card-body table-responsive">
             <table class="display" id="advance-12">
@@ -5967,23 +6107,37 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Footer callback</h5><span>
-              DataTables inserts DOM elements around the table to control DataTables features, and you can make use of
-              this mechanism as well to insert your own custom
-              elements. In this example a <code class="tag" title="HTML tag">div</code> with a class of '-string
-              toolbar' is created using <code class="option" title="DataTables initialisation option">dom</code>, and
-              jQuery then used to insert HTML into
-              that element to create the toolbar. You could put whatever HTML you want into the toolbar!</span><span>
-              For more complex features, or for creating reusable plug-ins, DataTables also has a feature plug-in API
-              available, which can be used to create plug-ins
-              which are used in a table by a single character reference in the <code class="option"
-                title="DataTables initialisation option">dom</code> option (like the built in option of <code
-                class="string" title="String">f</code> refers to 'filtering input',
-              you could have an <code class="string" title="String">F</code> option which creates your own filtering
-              input control, custom to your app).</span><span>
-              There are a number of extensions for DataTables that make use of this ability. For example, Buttons is a
-              feature plug-in for DataTables that adds buttons into a toolbar for a table (copy to clipboard, save to
-              Excel / PDF, and more).</span>
+            <h5 class="mb-3">Footer callback</h5>
+            <span>
+              DataTables inserts DOM elements around the table to control
+              DataTables features, and you can make use of this mechanism as
+              well to insert your own custom elements. In this example a
+              <code class="tag" title="HTML tag">div</code> with a class of
+              '-string toolbar' is created using
+              <code class="option" title="DataTables initialisation option"
+                >dom</code
+              >, and jQuery then used to insert HTML into that element to create
+              the toolbar. You could put whatever HTML you want into the
+              toolbar!</span
+            ><span>
+              For more complex features, or for creating reusable plug-ins,
+              DataTables also has a feature plug-in API available, which can be
+              used to create plug-ins which are used in a table by a single
+              character reference in the
+              <code class="option" title="DataTables initialisation option"
+                >dom</code
+              >
+              option (like the built in option of
+              <code class="string" title="String">f</code> refers to 'filtering
+              input', you could have an
+              <code class="string" title="String">F</code> option which creates
+              your own filtering input control, custom to your app).</span
+            ><span>
+              There are a number of extensions for DataTables that make use of
+              this ability. For example, Buttons is a feature plug-in for
+              DataTables that adds buttons into a toolbar for a table (copy to
+              clipboard, save to Excel / PDF, and more).</span
+            >
           </div>
           <div class="card-body table-responsive">
             <table class="display" id="advance-13">
@@ -6474,13 +6628,19 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5 class="mb-3">Order direction sequence control </h5><span>
-              At times you may wish to change the default ordering direction sequence for columns (some or all of them)
-              to be 'descending' rather than DataTables' default
-              ascending. This can be done through the use of the <code class="option"
-                title="DataTables initialisation option">columns.orderSequence:option</code> initialisation parameter.
-              This parameter also allows you to limit the ordering to a single
-              direction, or you could add complex behaviour to the ordering interaction.</span>
+            <h5 class="mb-3">Order direction sequence control</h5>
+            <span>
+              At times you may wish to change the default ordering direction
+              sequence for columns (some or all of them) to be 'descending'
+              rather than DataTables' default ascending. This can be done
+              through the use of the
+              <code class="option" title="DataTables initialisation option"
+                >columns.orderSequence:option</code
+              >
+              initialisation parameter. This parameter also allows you to limit
+              the ordering to a single direction, or you could add complex
+              behaviour to the ordering interaction.</span
+            >
           </div>
           <div class="card-body table-responsive">
             <table class="display" id="advance-14">
@@ -6970,11 +7130,10 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/datatable/datatables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'assets/js/datatable/datatables/datatable.custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/datatable/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets2/js/datatable/datatables/datatable.custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

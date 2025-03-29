@@ -1,12 +1,17 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/scrollbar.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/owlcarousel.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/scrollbar.scss' %}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/owlcarousel.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -20,18 +25,42 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-1">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -41,18 +70,42 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-2">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -62,18 +115,42 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-3">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -83,17 +160,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-4">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -103,17 +202,69 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-5">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/11.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/12.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/13.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/14.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/15.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/11.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/12.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/13.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/14.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider-auto-width/15.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/11.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/12.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/13.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/14.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/15.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/11.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/12.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/13.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/14.jpg' %}"
+                  alt=""
+                />
+              </div>
+              <div class="item">
+                <img
+                  src="{% static 'assets2/images/slider-auto-width/15.jpg' %}"
+                  alt=""
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -123,17 +274,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-6">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -143,17 +316,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-7">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -163,17 +358,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-8">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -183,17 +400,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-9">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -203,17 +442,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-10">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -223,17 +484,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-12">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -243,17 +526,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-13">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -263,17 +568,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-14">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -283,17 +610,39 @@
           </div>
           <div class="card-body">
             <div class="owl-carousel owl-theme" id="owl-carousel-15">
-              <div class="item"><img src="{% static 'assets/images/slider/1.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/2.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/3.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/4.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/5.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/6.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/7.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/8.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/9.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/10.jpg' %}" alt=""></div>
-              <div class="item"><img src="{% static 'assets/images/slider/11.jpg' %}" alt=""></div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/1.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/2.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/3.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/4.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/5.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/6.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/7.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/8.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/9.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/10.jpg' %}" alt="" />
+              </div>
+              <div class="item">
+                <img src="{% static 'assets2/images/slider/11.jpg' %}" alt="" />
+              </div>
             </div>
           </div>
         </div>
@@ -302,12 +651,11 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/owlcarousel/owl.carousel.js' %}"></script>
-<script src="{% static 'assets/js/owlcarousel/owl-custom.js' %}"></script>
-<script src="{% static 'assets/js/tooltip-init.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/owlcarousel/owl.carousel.js' %}"></script>
+<script src="{% static 'assets2/js/owlcarousel/owl-custom.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

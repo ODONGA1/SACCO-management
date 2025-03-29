@@ -1,29 +1,26 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
-
 
   <!-- Container-fluid starts-->
   <div class="container-fluid">
     <div class="typeahead">
       <div class="row">
         {% include 'forms/form_widgets/typeahead/components/top-section.html' %}
-        {% include 'forms/form_widgets/typeahead/components/middle-section.html' %}
-        {% include 'forms/form_widgets/typeahead/components/bottom-section.html' %}
-
+        {% include 'forms/form_widgets/typeahead/components/middle-section.html'
+        %} {% include
+        'forms/form_widgets/typeahead/components/bottom-section.html' %}
       </div>
     </div>
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/typeahead/handlebars.js' %}"></script>
-<script src="{% static 'assets/js/typeahead/typeahead.bundle.js' %}"></script>
-<script src="{% static 'assets/js/typeahead/typeahead.custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead/handlebars.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead/typeahead.bundle.js' %}"></script>
+<script src="{% static 'assets2/js/typeahead/typeahead.custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

@@ -1,6 +1,5 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -10,8 +9,11 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Headings</h5><span>All HTML headings, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>, are
-              available.</span>
+            <h5>Headings</h5>
+            <span
+              >All HTML headings, <code>&lt;h1&gt;</code> through
+              <code>&lt;h6&gt;</code>, are available.</span
+            >
           </div>
           <div class="card-body typography">
             <div class="row">
@@ -24,11 +26,19 @@
                 <h6>This is a Heading 6</h6>
               </div>
               <div class="col-sm-12 col-xl-6">
-                <p class="h1 txt-primary">Heading 1<small>Sub Heading</small></p>
-                <p class="h2 txt-secondary">Heading 2<small>Sub Heading</small></p>
-                <p class="h3 txt-success">Heading 3<small>Sub Heading</small></p>
+                <p class="h1 txt-primary">
+                  Heading 1<small>Sub Heading</small>
+                </p>
+                <p class="h2 txt-secondary">
+                  Heading 2<small>Sub Heading</small>
+                </p>
+                <p class="h3 txt-success">
+                  Heading 3<small>Sub Heading</small>
+                </p>
                 <p class="h4 txt-info">Heading 4<small>Sub Heading</small></p>
-                <p class="h5 txt-warning">Heading 5<small>Sub Heading</small></p>
+                <p class="h5 txt-warning">
+                  Heading 5<small>Sub Heading</small>
+                </p>
                 <p class="h6 txt-danger">Heading 6<small>Sub Heading</small></p>
               </div>
             </div>
@@ -128,20 +138,31 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Headings</h5><span>Use the included utility classes to recreate the small secondary heading text.
+            <h5>Headings</h5>
+            <span
+              >Use the included utility classes to recreate the small secondary
+              heading text.
             </span>
           </div>
           <div class="card-body typography">
-            <h3>Fancy display heading<small class="text-muted">With faded secondary text</small></h3>
+            <h3>
+              Fancy display heading<small class="text-muted"
+                >With faded secondary text</small
+              >
+            </h3>
           </div>
         </div>
       </div>
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Display headings</h5><span>Traditional heading elements are designed to work best in the meat of your
-              page content. When you need a heading to stand out, consider using a <strong>display heading</strong>—a
-              larger, slightly more opinionated heading style.</span>
+            <h5>Display headings</h5>
+            <span
+              >Traditional heading elements are designed to work best in the
+              meat of your page content. When you need a heading to stand out,
+              consider using a <strong>display heading</strong>—a larger,
+              slightly more opinionated heading style.</span
+            >
           </div>
           <div class="card-body typography">
             <h1 class="display-1">Display 1</h1>
@@ -154,34 +175,52 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Lead</h5><span>Make a paragraph stand out by adding <code>.lead</code>.</span>
+            <h5>Lead</h5>
+            <span
+              >Make a paragraph stand out by adding <code>.lead</code>.</span
+            >
           </div>
           <div class="card-body">
-            <p class="lead">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non
-              commodo luctus.</p>
+            <p class="lead">
+              Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+              auctor. Duis mollis, est non commodo luctus.
+            </p>
           </div>
         </div>
       </div>
       <div class="col-sm-12 col-xl-6">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Inline text elements</h5><span>Styling for common inline HTML5 elements.</span>
+            <h5>Inline text elements</h5>
+            <span>Styling for common inline HTML5 elements.</span>
           </div>
           <div class="card-body">
-            <p>You can use the mark tag to
-              <mark>highlight</mark> text.
+            <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+            <p>
+              <del
+                >This line of text is meant to be treated as deleted text.</del
+              >
             </p>
             <p>
-              <del>This line of text is meant to be treated as deleted text.</del>
+              <s
+                >This line of text is meant to be treated as no longer
+                accurate.</s
+              >
             </p>
             <p>
-              <s>This line of text is meant to be treated as no longer accurate.</s>
+              <ins
+                >This line of text is meant to be treated as an addition to the
+                document.</ins
+              >
             </p>
-            <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
             <p>
               <u>This line of text will render as underlined</u>
             </p>
-            <p><small>This line of text is meant to be treated as fine print.</small></p>
+            <p>
+              <small
+                >This line of text is meant to be treated as fine print.</small
+              >
+            </p>
             <p><strong>This line rendered as bold text.</strong></p>
             <p><em>This line rendered as italicized text.</em></p>
           </div>
@@ -190,18 +229,42 @@
       <div class="col-sm-12 col-xl-6">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Text Color</h5><span>You can Give text color by using txt-* class</span>
+            <h5>Text Color</h5>
+            <span>You can Give text color by using txt-* class</span>
           </div>
           <div class="card-body">
-            <p class="txt-primary">This is Primary text You can archive this adding <code>.txt-primary</code> class</p>
-            <p class="txt-secondary">This is Secondary text You can archive this adding <code>.txt-secondary</code>
-              class</p>
-            <p class="txt-success">This is Success text You can archive this adding <code>.txt-success</code> class</p>
-            <p class="txt-info">This is Info text You can archive this adding <code>.txt-info</code> class</p>
-            <p class="txt-warning">This is Warning text You can archive this adding <code>.txt-warning</code> class</p>
-            <p class="txt-danger">This is Danger text You can archive this adding <code>.txt-danger</code> class</p>
-            <p class="txt-dark">This is Dark text You can archive this adding <code>.txt-dark</code> class</p>
-            <p class="txt-primary">This is Primary text You can archive this adding <code>.txt-primary</code> class</p>
+            <p class="txt-primary">
+              This is Primary text You can archive this adding
+              <code>.txt-primary</code> class
+            </p>
+            <p class="txt-secondary">
+              This is Secondary text You can archive this adding
+              <code>.txt-secondary</code> class
+            </p>
+            <p class="txt-success">
+              This is Success text You can archive this adding
+              <code>.txt-success</code> class
+            </p>
+            <p class="txt-info">
+              This is Info text You can archive this adding
+              <code>.txt-info</code> class
+            </p>
+            <p class="txt-warning">
+              This is Warning text You can archive this adding
+              <code>.txt-warning</code> class
+            </p>
+            <p class="txt-danger">
+              This is Danger text You can archive this adding
+              <code>.txt-danger</code> class
+            </p>
+            <p class="txt-dark">
+              This is Dark text You can archive this adding
+              <code>.txt-dark</code> class
+            </p>
+            <p class="txt-primary">
+              This is Primary text You can archive this adding
+              <code>.txt-primary</code> class
+            </p>
           </div>
         </div>
       </div>
@@ -246,15 +309,42 @@
               <div class="col-sm-12 col-xl-4">
                 <h4>Icon list</h4>
                 <ul>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
-                  <li><i class="fa fa-angle-double-right txt-primary m-r-10"></i>Lorem ipsum dolor sit amet</li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
+                  <li>
+                    <i class="fa fa-angle-double-right txt-primary m-r-10"></i
+                    >Lorem ipsum dolor sit amet
+                  </li>
                 </ul>
               </div>
             </div>
@@ -264,37 +354,50 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>Blockquotes</h5><span>Add a <code>&lt;footer class="blockquote-footer"&gt;</code> for identifying the
-              source. Wrap the name of the source work in <code>&lt;cite&gt;</code>.</span>
+            <h5>Blockquotes</h5>
+            <span
+              >Add a <code>&lt;footer class="blockquote-footer"&gt;</code> for
+              identifying the source. Wrap the name of the source work in
+              <code>&lt;cite&gt;</code>.</span
+            >
           </div>
           <div class="card-body">
             <p class="sub-title">Naming a source</p>
             <div class="figure d-block">
               <blockquote class="blockquote mb-0">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Integer posuere erat a ante.
                 </p>
               </blockquote>
-              <div class="blockquote-footer mt-0">Someone famous in
+              <div class="blockquote-footer mt-0">
+                Someone famous in
                 <cite title="Source Title">Source Title</cite>
               </div>
             </div>
             <p class="sub-title">Alignment Center</p>
             <div class="figure text-center d-block">
               <blockquote class="blockquote mb-0">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Integer posuere erat a ante.
                 </p>
               </blockquote>
-              <div class="blockquote-footer mt-0">Someone famous in
+              <div class="blockquote-footer mt-0">
+                Someone famous in
                 <cite title="Source Title">Source Title</cite>
               </div>
             </div>
             <p class="sub-title">Alignment Right</p>
             <div class="figure text-end d-block">
               <blockquote class="blockquote mb-0">
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Integer posuere erat a ante.
                 </p>
               </blockquote>
-              <div class="blockquote-footer mt-0 mb-0">Someone famous in
+              <div class="blockquote-footer mt-0 mb-0">
+                Someone famous in
                 <cite title="Source Title">Source Title</cite>
               </div>
             </div>
@@ -305,10 +408,9 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/tooltip-init.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

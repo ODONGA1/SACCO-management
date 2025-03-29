@@ -1,9 +1,10 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/todo.scss' %}">
-{% endblock css %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/todo.scss' %}"
+/>
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -11,10 +12,9 @@
   {% include 'to_do/components/to-do.html' %}
   <!-- Container-fluid ends                    -->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/todo/todo.js' %}"></script>
-<script src="{% static 'assets/js/tooltip-init.js' %}"></script>
+{% endblock content %} {% block scriptcontent %}
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/todo/todo.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
 
 {% endblock scriptcontent %}

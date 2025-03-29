@@ -1,11 +1,12 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/datatables.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/datatables.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -21,12 +22,19 @@
             <div class="row">
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/01.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/01.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -37,19 +45,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/02.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/02.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -60,19 +78,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/03.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/03.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -83,19 +111,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart </a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/04.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/04.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -106,19 +144,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/05.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/05.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -129,19 +177,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/06.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/06.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -152,19 +210,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/05.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/05.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -175,19 +243,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/07.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/07.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -198,19 +276,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/08.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/08.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -221,19 +309,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/01.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/01.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -244,19 +342,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/02.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/02.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -267,19 +375,29 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-2 box-col-3 col-md-4 col-sm-6">
                 <div class="prooduct-details-box">
-                  <div class="media"><a href="/ecommerce_product_page"><img class="align-self-center img-fluid"
-                        src="{% static 'assets/images/ecommerce/03.jpg' %}" alt="#"></a>
+                  <div class="media">
+                    <a href="/ecommerce_product_page"
+                      ><img
+                        class="align-self-center img-fluid"
+                        src="{% static 'assets2/images/ecommerce/03.jpg' %}"
+                        alt="#"
+                    /></a>
                     <div class="media-body">
-                      <div class="product-name"><a href="/ecommerce_product_page">
+                      <div class="product-name">
+                        <a href="/ecommerce_product_page">
                           <h6>Fancy Women's Cotton</h6>
-                        </a></div>
+                        </a>
+                      </div>
                       <ul class="rating">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -290,7 +408,10 @@
                       <div class="price">Price<span>: 210$</span></div>
                       <div class="avaiabilty">
                         <div class="text-success">In stock</div>
-                      </div><a class="btn btn-primary btn-xs" href="ecommerce_cart">Move to Cart</a>
+                      </div>
+                      <a class="btn btn-primary btn-xs" href="ecommerce_cart"
+                        >Move to Cart</a
+                      >
                     </div>
                   </div>
                 </div>
@@ -303,11 +424,10 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/datatable/datatables/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'assets/js/datatable/datatables/datatable.custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/datatable/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets2/js/datatable/datatables/datatable.custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

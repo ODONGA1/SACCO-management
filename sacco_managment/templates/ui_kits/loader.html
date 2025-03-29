@@ -1,6 +1,5 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -107,7 +106,7 @@
               <div class="col-sm-6 col-md-3">
                 <h6 class="sub-title mb-0 text-center">Loader 16</h6>
                 <div class="loader-box">
-                  <div class="loader-40"> </div>
+                  <div class="loader-40"></div>
                 </div>
               </div>
               <div class="col-sm-6 col-md-3">
@@ -232,10 +231,9 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/tooltip-init.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

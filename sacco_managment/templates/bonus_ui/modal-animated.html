@@ -1,12 +1,17 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/scrollbar.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/animate.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/scrollbar.scss' %}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/animate.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -24,17 +29,28 @@
                 <div id="animation-box">
                   <div class="card">
                     <div class="animate-widget">
-                      <div><img class="img-fluid" src="{% static 'assets/images/banner/3.jpg' %}" alt=""></div>
+                      <div>
+                        <img
+                          class="img-fluid"
+                          src="{% static 'assets2/images/banner/3.jpg' %}"
+                          alt=""
+                        />
+                      </div>
                       <div class="text-center p-25">
-                        <p class="text-muted mb-0">Denouncing pleasure and praising pain was born and I will give you a
-                          complete account of the system, and expound the actual teachings</p>
+                        <p class="text-muted mb-0">
+                          Denouncing pleasure and praising pain was born and I
+                          will give you a complete account of the system, and
+                          expound the actual teachings
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-md-12 text-center">
-                <form class="form-inline theme-form row justify-content-center animated-modal d-flex">
+                <form
+                  class="form-inline theme-form row justify-content-center animated-modal d-flex"
+                >
                   <div class="mb-2 me-2 mb-0 animated-modal-md-mb w-auto">
                     <label class="me-3">Entrances</label>
                     <select class="form-select" id="entrance">
@@ -76,8 +92,12 @@
                       </optgroup>
                       <optgroup label="Rotating Entrances">
                         <option value="rotateIn">rotateIn</option>
-                        <option value="rotateInDownLeft">rotateInDownLeft</option>
-                        <option value="rotateInDownRight">rotateInDownRight</option>
+                        <option value="rotateInDownLeft">
+                          rotateInDownLeft
+                        </option>
+                        <option value="rotateInDownRight">
+                          rotateInDownRight
+                        </option>
                         <option value="rotateInUpLeft">rotateInUpLeft</option>
                         <option value="rotateInUpRight">rotateInUpRight</option>
                       </optgroup>
@@ -140,10 +160,16 @@
                       </optgroup>
                       <optgroup label="Rotating Exits">
                         <option value="rotateOut">rotateOut</option>
-                        <option value="rotateOutDownLeft">rotateOutDownLeft</option>
-                        <option value="rotateOutDownRight">rotateOutDownRight</option>
+                        <option value="rotateOutDownLeft">
+                          rotateOutDownLeft
+                        </option>
+                        <option value="rotateOutDownRight">
+                          rotateOutDownRight
+                        </option>
                         <option value="rotateOutUpLeft">rotateOutUpLeft</option>
-                        <option value="rotateOutUpRight">rotateOutUpRight</option>
+                        <option value="rotateOutUpRight">
+                          rotateOutUpRight
+                        </option>
                       </optgroup>
                       <optgroup label="Sliding Exits">
                         <option value="slideOutUp">slideOutUp</option>
@@ -165,8 +191,14 @@
                   </div>
                   <!-- Button trigger modal-->
                   <div class="mb-2 mb-0 me-0 w-auto">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal"
-                      data-bs-target="#myModal">Launch demo modal</button>
+                    <button
+                      class="btn btn-primary"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#myModal"
+                    >
+                      Launch demo modal
+                    </button>
                   </div>
                 </form>
               </div>
@@ -175,15 +207,28 @@
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
               <div class="modal-dialog" role="document">
                 <div>
-                  <button class="btn-close theme-close" type="button" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                  <button
+                    class="btn-close theme-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
                   <div class="modal-body">
                     <div class="card">
                       <div class="animate-widget">
-                        <div><img class="img-fluid" src="{% static 'assets/images/banner/3.jpg' %}" alt=""></div>
+                        <div>
+                          <img
+                            class="img-fluid"
+                            src="{% static 'assets2/images/banner/3.jpg' %}"
+                            alt=""
+                          />
+                        </div>
                         <div class="text-center p-25">
-                          <p class="text-muted mb-0">Denouncing pleasure and praising pain was born and I will give you
-                            a complete account of the system, and expound the actual teachings</p>
+                          <p class="text-muted mb-0">
+                            Denouncing pleasure and praising pain was born and I
+                            will give you a complete account of the system, and
+                            expound the actual teachings
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -198,10 +243,9 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/modal-animated.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/modal-animated.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

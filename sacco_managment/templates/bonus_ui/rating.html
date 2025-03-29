@@ -1,11 +1,12 @@
-{% extends 'base.html' %}{% load static %}
-{% load sass_tags %}
-{% block css %}
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/rating.scss' %}">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/rating.scss' %}"
+/>
 <!-- Plugins css Ends-->
-{% endblock css %}
-{% block content %}
+{% endblock css %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
 
@@ -99,7 +100,9 @@
               <select id="u-rating-reversed" name="rating" autocomplete="off">
                 <option value="Strongly Agree">Strongly Agree</option>
                 <option value="Agree">Agree</option>
-                <option value="Neither Agree or Disagree" selected="selected">Neither Agree or Disagree</option>
+                <option value="Neither Agree or Disagree" selected="selected">
+                  Neither Agree or Disagree
+                </option>
                 <option value="Disagree">Disagree</option>
                 <option value="Strongly Disagree">Strongly Disagree</option>
               </select>
@@ -114,7 +117,11 @@
           </div>
           <div class="card-body">
             <div class="rating-container">
-              <select id="u-rating-fontawesome" name="rating" autocomplete="off">
+              <select
+                id="u-rating-fontawesome"
+                name="rating"
+                autocomplete="off"
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -157,7 +164,12 @@
             <div class="rating-container">
               <div class="star-ratings">
                 <div class="stars stars-example-fontawesome-o">
-                  <select id="u-rating-fontawesome-o" name="rating" data-current-rating="5.6" autocomplete="off">
+                  <select
+                    id="u-rating-fontawesome-o"
+                    name="rating"
+                    data-current-rating="5.6"
+                    autocomplete="off"
+                  >
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -167,11 +179,14 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                     <option value="9">9</option>
-                    <option value="10">10</option>
-                  </select><span class="title current-rating font-primary">Current rating: <span
-                      class="value digits"></span></span><span class="title your-rating font-primary hidden">Your
-                    rating: <span class="value digits"></span><a class="clear-rating" href="javascript:void(0)"><i
-                        class="fa fa-times-circle"></i></a></span>
+                    <option value="10">10</option></select
+                  ><span class="title current-rating font-primary"
+                    >Current rating: <span class="value digits"></span></span
+                  ><span class="title your-rating font-primary hidden"
+                    >Your rating: <span class="value digits"></span
+                    ><a class="clear-rating" href="javascript:void(0)"
+                      ><i class="fa fa-times-circle"></i></a
+                  ></span>
                 </div>
               </div>
             </div>
@@ -182,11 +197,10 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/rating/jquery.barrating.js' %}"></script>
-<script src="{% static 'assets/js/rating/rating-script.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/rating/jquery.barrating.js' %}"></script>
+<script src="{% static 'assets2/js/rating/rating-script.js' %}"></script>
 <!-- Plugins JS Ends-->
 {% endblock scriptcontent %}

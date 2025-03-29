@@ -1,12 +1,16 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load sass_tags %}
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/animate.scss' %}">
-<link rel="stylesheet" type="text/css" href="{% sass_src 'assets/scss/vendors/scrollbar.scss' %}">
+{% extends 'base.html' %} {% load static %} {% load sass_tags %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/animate.scss' %}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets2/scss/vendors/scrollbar.scss' %}"
+/>
 
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}
   <!-- Container-fluid starts-->
@@ -20,17 +24,28 @@
                 <div id="animation-box">
                   <div class="card">
                     <div class="animate-widget">
-                      <div><img class="img-fluid" src="{% static 'assets/images/banner/3.jpg' %}" alt=""></div>
+                      <div>
+                        <img
+                          class="img-fluid"
+                          src="{% static 'assets2/images/banner/3.jpg' %}"
+                          alt=""
+                        />
+                      </div>
                       <div class="text-center p-25">
-                        <p class="text-muted mb-0">Denouncing pleasure and praising pain was born and I will give you a
-                          complete account of the system, and expound the actual teachings</p>
+                        <p class="text-muted mb-0">
+                          Denouncing pleasure and praising pain was born and I
+                          will give you a complete account of the system, and
+                          expound the actual teachings
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <form class="theme-form text-center">
                   <div class="mb-3">
-                    <select class="form-select input input--dropdown js-animations text-center text-md-start">
+                    <select
+                      class="form-select input input--dropdown js-animations text-center text-md-start"
+                    >
                       <optgroup label="Attention Seekers">
                         <option value="bounce">bounce</option>
                         <option value="flash">flash</option>
@@ -91,17 +106,27 @@
                       </optgroup>
                       <optgroup label="Rotating Entrances">
                         <option value="rotateIn">rotateIn</option>
-                        <option value="rotateInDownLeft">rotateInDownLeft</option>
-                        <option value="rotateInDownRight">rotateInDownRight</option>
+                        <option value="rotateInDownLeft">
+                          rotateInDownLeft
+                        </option>
+                        <option value="rotateInDownRight">
+                          rotateInDownRight
+                        </option>
                         <option value="rotateInUpLeft">rotateInUpLeft</option>
                         <option value="rotateInUpRight">rotateInUpRight</option>
                       </optgroup>
                       <optgroup label="Rotating Exits">
                         <option value="rotateOut">rotateOut</option>
-                        <option value="rotateOutDownLeft">rotateOutDownLeft</option>
-                        <option value="rotateOutDownRight">rotateOutDownRight</option>
+                        <option value="rotateOutDownLeft">
+                          rotateOutDownLeft
+                        </option>
+                        <option value="rotateOutDownRight">
+                          rotateOutDownRight
+                        </option>
                         <option value="rotateOutUpLeft">rotateOutUpLeft</option>
-                        <option value="rotateOutUpRight">rotateOutUpRight</option>
+                        <option value="rotateOutUpRight">
+                          rotateOutUpRight
+                        </option>
                       </optgroup>
                       <optgroup label="Sliding Entrances">
                         <option value="slideInUp">slideInUp</option>
@@ -137,7 +162,9 @@
                       </optgroup>
                     </select>
                   </div>
-                  <button class="js-triggeraNimation btn btn-primary">Animate it</button>
+                  <button class="js-triggeraNimation btn btn-primary">
+                    Animate it
+                  </button>
                 </form>
               </div>
             </div>
@@ -147,8 +174,11 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header pb-0">
-            <h5>How to use it?</h5><span>All you have to do is to add animation name class attribute to html element,
-              like :<code>Fade</code></span>
+            <h5>How to use it?</h5>
+            <span
+              >All you have to do is to add animation name class attribute to
+              html element, like :<code>Fade</code></span
+            >
           </div>
           <div class="card-body options">
             <div>flash</div>
@@ -229,11 +259,10 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
-{% endblock content %}
-{% block scriptcontent %}
+{% endblock content %} {% block scriptcontent %}
 <!-- Plugins JS start-->
-<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-<script src="{% static 'assets/js/animation/animate-custom.js' %}"></script>
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/animation/animate-custom.js' %}"></script>
 <!-- Plugins JS Ends-->
 
 {% endblock %}
