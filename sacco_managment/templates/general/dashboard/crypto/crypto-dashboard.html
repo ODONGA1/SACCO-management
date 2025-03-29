@@ -1,20 +1,8 @@
 {% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
 <!-- Plugins css start-->
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% sass_src 'assets2/scss/vendors/animate.scss' %}"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% sass_src 'assets2/scss/vendors/chartist.scss' %}"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% sass_src 'assets2/scss/vendors/photoswipe.scss' %}"
-/>
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/animate.scss' %}" />
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/chartist.scss' %}" />
+<link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/photoswipe.scss' %}" />
 <!-- Plugins css Ends-->
 {% endblock css %} {% block content %}
 <div class="page-body">
@@ -23,9 +11,9 @@
   <!-- Container-fluid starts-->
   <div class="container-fluid crypto-dash">
     <div class="row">
-      {% include 'general/dashboard/crypto/components/crypto-top.html' %} {%
-      include 'general/dashboard/crypto/components/crypto-middle.html' %} {%
-      include 'general/dashboard/crypto/components/crypto-bottom.html' %}
+      {% include 'general/dashboard/crypto/components/crypto-top.html' %} 
+      {% include 'general/dashboard/crypto/components/crypto-middle.html' %} 
+      {% include 'general/dashboard/crypto/components/crypto-bottom.html' %}
     </div>
     <!-- Container-fluid Ends-->
   </div>

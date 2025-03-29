@@ -5,21 +5,6 @@ from account.models import Account
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-# def transaction_lists(request):
-#     sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="transfer").order_by("-created_at")
-#     reciever_transaction = Transaction.objects.filter(reciever=request.user, transaction_type="transfer").order_by("-created_at")
-
-#     request_sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="request")
-#     request_reciever_transaction = Transaction.objects.filter(reciever=request.user, transaction_type="request")
-
-#     context = {
-#         "sender_transaction": sender_transaction,
-#         "reciever_transaction": reciever_transaction,
-#         "request_sender_transaction": request_sender_transaction,
-#         "request_reciever_transaction": request_reciever_transaction,
-#     }
-
-#     return render(request, "transaction/transaction-list.html", context)
 
 def transaction_lists(request):
     sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="transfer").order_by("-date")
