@@ -1,0 +1,34 @@
+{% extends 'base.html' %}{% load static %}
+{% load sass_tags %}
+{% block content %}
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts                    -->
+
+  <div class="container-fluid">
+    <div class="row">
+      {% include 'forms/form_widgets/switch/components/basic-switch.html' %}
+      {% include 'forms/form_widgets/switch/components/switch-color.html' %}
+      {% include 'forms/form_widgets/switch/components/switch-outline.html' %}
+      {% include 'forms/form_widgets/switch/components/switch-unchecked-outline.html' %}
+      {% include 'forms/form_widgets/switch/components/switch-sizing.html' %}
+      {% include 'forms/form_widgets/switch/components/switch-with-icon.html' %}
+      {% include 'forms/form_widgets/switch/components/switch-with-color.html' %}
+
+
+
+
+
+
+
+    </div>
+  </div>
+  <!-- Container-fluid Ends-->
+</div>
+{% endblock content %}
+{% block scriptcontent %}
+<!-- Plugins JS start-->
+<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
+<!-- Plugins JS Ends-->
+{% endblock scriptcontent %}

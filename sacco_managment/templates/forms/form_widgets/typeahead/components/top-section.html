@@ -1,0 +1,67 @@
+{% load static %}
+{% load sass_tags %}
+<div class="col-sm-12 col-md-6">
+  <div class="card">
+    <div class="card-header pb-0">
+      <h5>Basic Demo</h5><span>This is the simple demo for Typeahead.</span>
+    </div>
+    <div class="card-body">
+      <div id="the-basics">
+        <form class="theme-form">
+          <div>
+            <input class="typeahead form-control" type="text" placeholder="States of USA">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 col-md-6">
+  <div class="card">
+    <div class="card-header pb-0">
+      <h5>Prefetch</h5><span>Prefetched data is fetched and processed on initialization</span>
+    </div>
+    <div class="card-body">
+      <div id="prefetch">
+        <form class="theme-form">
+          <div>
+            <input class="typeahead form-control" type="text" placeholder="Countries">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 col-md-6">
+  <div class="card">
+    <div class="card-header pb-0">
+      <h5>Bloodhound (Suggestion Engine)</h5><span>Bloodhound offers advanced functionalities such as prefetching and
+        backfilling with remote data.</span>
+    </div>
+    <div class="card-body">
+      <div id="bloodhound">
+        <form class="theme-form">
+          <div>
+            <input class="typeahead form-control" type="text" placeholder="States of USA">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 col-md-6">
+  <div class="card">
+    <div class="card-header pb-0">
+      <h5>Remote</h5><span>Remote data is only used when the data provided by local and prefetch is insufficient</span>
+    </div>
+    <div class="card-body">
+      <div id="remote">
+        <form class="theme-form">
+          <div>
+            <input class="typeahead form-control" type="text" placeholder="Choose Option">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

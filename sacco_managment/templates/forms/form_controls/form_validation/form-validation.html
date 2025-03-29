@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% load static %}
+{% load sass_tags %}
+{% block content %}
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts-->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+
+        {% include 'forms/form_controls/form_validation/components/custom-styles.html' %}
+        {% include 'forms/form_controls/form_validation/components/browser-defaults.html' %}
+        {% include 'forms/form_controls/form_validation/components/supported-elements.html' %}
+        {% include 'forms/form_controls/form_validation/components/tooltips.html' %}
+
+      </div>
+    </div>
+  </div>
+  <!-- Container-fluid Ends-->
+</div>
+{% endblock content %}
+{% block scriptcontent %}
+<!-- Plugins JS start-->
+<script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets/js/form-validation-custom.js' %}"></script>
+<!-- Plugins JS Ends-->
+{% endblock scriptcontent %}
