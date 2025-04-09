@@ -13,7 +13,7 @@ class CreditCardForm(forms.ModelForm):
         fields = ['name', 'number', 'month', 'year', 'cvv', 'card_type']
 
 class AmountForm(forms.ModelForm):
-    amount = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder":"$30"}))
+    amount = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder":"UGX30"}))
     
     class Meta:
         model = CreditCard
