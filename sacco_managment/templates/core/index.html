@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-xl-5 col-md-6">
+                        <!-- <div class="col-xxl-4 col-xl-5 col-md-6">
                             <div class="send-money">
                                 <form action="#">
                                     <div class="currency-area">
@@ -98,7 +98,133 @@
                                     </div>
                                 </form>
                             </div>
+                        </div> -->
+
+                        <div class="col-xxl-4 col-xl-5 col-md-6">
+                            <div class="send-money">
+                                <form action="#">
+                                    <div class="currency-area">
+                                        <div class="left-side">
+                                            <span class="mdr">You send</span>
+                                            <h5 id="send-amount">1,000</h5>
+                                        </div>
+                                        <div class="right-side">
+                                            <select id="send-currency" onchange="updateConversion()">
+                                                <option value="USD">USD</option>
+                                                <option value="UGX">UGX</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="calculation">
+                                        <div class="head-area">
+                                            <img src="{% static 'assets/images/icon/conversion.png' %}" alt="image">
+                                            <span class="mdr highlight">Show calculation</span>
+                                        </div>
+                                        <div class="calculation-details">
+                                            <div class="single-area d-flex align-items-center">
+                                                <div class="left-area">
+                                                    <i class="fas fa-minus"></i>
+                                                    <span class="mdr" id="fee-amount">10.04 USD</span>
+                                                </div>
+                                                <div class="right-area">
+                                                    <span class="mdr">Our fee</span>
+                                                </div>
+                                            </div>
+                                            <div class="single-area d-flex align-items-center">
+                                                <div class="left-area">
+                                                    <i class="fas fa-equals"></i>
+                                                    <span class="mdr" id="convert-amount">989.96 USD</span>
+                                                </div>
+                                                <div class="right-area">
+                                                    <span class="mdr">We'll Convert</span>
+                                                </div>
+                                            </div>
+                                            <div class="single-area d-flex align-items-center">
+                                                <div class="left-area">
+                                                    <i class="fas fa-times"></i>
+                                                    <span class="mdr" id="exchange-rate">1 USD = 3,750 UGX</span>
+                                                </div>
+                                                <div class="right-area">
+                                                    <span class="mdr highlight">Exchange Rate</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="currency-area">
+                                        <div class="left-side">
+                                            <span class="mdr">Recipient gets</span>
+                                            <h5 id="receive-amount">3,750,000</h5>
+                                        </div>
+                                        <div class="right-side recipient">
+                                            <select id="receive-currency" onchange="updateConversion()">
+                                                <option value="UGX">UGX</option>
+                                                <option value="USD">USD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="btn-area mt-40">
+                                        <a href="{% url 'user_auths:register' %}" class="cmn-btn w-100">Get Started</a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
+                        
+                        <script>
+                            // Current exchange rate (1 USD to UGX)
+                            const exchangeRate = 3750;
+                            
+                            function updateConversion() {
+                                const sendCurrency = document.getElementById('send-currency').value;
+                                const receiveCurrency = document.getElementById('receive-currency').value;
+                                let sendAmount = parseFloat(document.getElementById('send-amount').textContent.replace(/,/g, ''));
+                                
+                                // Calculate fee (2% of amount or 10 USD, whichever is higher)
+                                let fee = Math.max(sendAmount * 0.02, 10);
+                                let amountAfterFee = sendAmount - fee;
+                                let receiveAmount;
+                                
+                                if (sendCurrency === 'USD' && receiveCurrency === 'UGX') {
+                                    receiveAmount = amountAfterFee * exchangeRate;
+                                    document.getElementById('exchange-rate').textContent = `1 USD = ${exchangeRate.toLocaleString()} UGX`;
+                                } 
+                                else if (sendCurrency === 'UGX' && receiveCurrency === 'USD') {
+                                    receiveAmount = amountAfterFee / exchangeRate;
+                                    document.getElementById('exchange-rate').textContent = `1 USD = ${exchangeRate.toLocaleString()} UGX`;
+                                }
+                                else if (sendCurrency === receiveCurrency) {
+                                    receiveAmount = amountAfterFee;
+                                    document.getElementById('exchange-rate').textContent = `1 ${sendCurrency} = 1 ${receiveCurrency}`;
+                                }
+                                
+                                // Update all displayed values
+                                document.getElementById('fee-amount').textContent = fee.toLocaleString('en-US', {
+                                    maximumFractionDigits: 2,
+                                    style: 'currency',
+                                    currency: sendCurrency
+                                });
+                                
+                                document.getElementById('convert-amount').textContent = amountAfterFee.toLocaleString('en-US', {
+                                    maximumFractionDigits: 2,
+                                    style: 'currency',
+                                    currency: sendCurrency
+                                });
+                                
+                                document.getElementById('receive-amount').textContent = receiveAmount.toLocaleString('en-US', {
+                                    maximumFractionDigits: 2
+                                });
+                            }
+                            
+                            // Initialize conversion on page load
+                            document.addEventListener('DOMContentLoaded', function() {
+                                updateConversion();
+                            });
+                        </script>
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
