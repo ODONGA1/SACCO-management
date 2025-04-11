@@ -60,7 +60,7 @@ class DepositForm(forms.ModelForm):
     def clean_amount(self):
         amount = self.cleaned_data.get('amount')
         if amount < 10:  # Minimum deposit amount
-            raise ValidationError("Minimum deposit amount is $10")
+            raise ValidationError("Minimum deposit amount is UGX10")
         return amount
 
 class WithdrawalForm(forms.ModelForm):

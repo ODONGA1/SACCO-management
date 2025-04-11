@@ -56,7 +56,7 @@ def generate_pdf_report(transactions, start_date, end_date, report):
     y = 750
     pdf.drawString(100, y, "Date")
     pdf.drawString(250, y, "Description")
-    pdf.drawString(450, y, "Amount ($)")
+    pdf.drawString(450, y, "Amount (UGX)")
     pdf.line(100, y - 10, 500, y - 10)
     y -= 30
     

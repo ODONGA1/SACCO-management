@@ -109,46 +109,6 @@
                                         </li>
                                         {% endfor %}
 
-                                        <!-- <li>
-                                            <a href="javascript:void(0)" class="d-flex">
-                                                <div class="img-area">
-                                                    <img src="{% static 'assets1/images/user-2.png' %}" class="max-un" alt="image">
-                                                </div>
-                                                <div class="text-area">
-                                                    <p class="mdr"><b>James Deed</b> requested a payment of
-                                                        <b>£890.00</b>
-                                                    </p>
-                                                    <p class="mdr time-area">08.09AM</p>
-                                                </div>
-                                            </a>
-                                            <i class="fa-solid fa-caret-right"></i>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="d-flex">
-                                                <div class="img-area">
-                                                    <img src="{% static 'assets1/images/master-card.png' %}" class="max-un" alt="image">
-                                                </div>
-                                                <div class="text-area">
-                                                    <p class="mdr">Your new payment method has beed added successfully
-                                                    </p>
-                                                    <p class="mdr time-area">09.39AM</p>
-                                                </div>
-                                            </a>
-                                            <i class="fa-solid fa-caret-right"></i>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="d-flex">
-                                                <div class="img-area">
-                                                    <img src="{% static 'assets1/images/user-3.png' %}" class="max-un" alt="image">
-                                                </div>
-                                                <div class="text-area">
-                                                    <p class="mdr">You received a payment of <b>$250.00</b> from Goerge
-                                                        Michael</p>
-                                                    <p class="mdr time-area">Yesterday</p>
-                                                </div>
-                                            </a>
-                                            <i class="fa-solid fa-caret-right"></i>
-                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -261,6 +221,16 @@
                             <li>
                                 <a href="{% url 'financial_services:initiate-withdrawal' %}">
                                     <img src="{% static 'assets1/images/icon/withdraw.png' %}" alt="Withdraw"> <span>Withdraw Money</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'core:apply-loan' %}">
+                                    <img src="{% static 'assets1/images/icon/loan.png' %}" alt="Loan"> <span>Apply for Loan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'core:loan-status' %}">
+                                    <img src="{% static 'assets1/images/icon/loan-status.png' %}" alt="Loan Status"> <span>My Loans</span>
                                 </a>
                             </li>
                         </ul>

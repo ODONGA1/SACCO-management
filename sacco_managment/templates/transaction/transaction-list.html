@@ -75,7 +75,7 @@
                                                                 {% endif %}
                                                             </td>
                                                             <td>
-                                                                <p>-${{s.amount|intcomma}}</p>
+                                                                <p>-UGX{{s.amount|intcomma}}</p>
                                                             </td>
                                                             <td>
                                                                 <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i class="fas fa-eye"></i></a>
@@ -127,7 +127,7 @@
                                                                 {% endif %}
                                                             </td>
                                                             <td>
-                                                                <p>+${{s.amount|intcomma}}</p>
+                                                                <p>+UGX{{s.amount|intcomma}}</p>
                                                             </td>
                                                             <td>
                                                                 <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i class="fas fa-eye"></i></a>
@@ -260,7 +260,7 @@
                                                                 {% endif %}
                                                             </td>
                                                             <td>
-                                                                <p>+${{s.amount|intcomma}}</p>
+                                                                <p>+UGX{{s.amount|intcomma}}</p>
                                                             </td>
                                                             <td>
                                                                 
