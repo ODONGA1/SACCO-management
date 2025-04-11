@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 {% load sass_tags %}
 <div class="col-xl-3 col-md-6 dash-lg-50 box-col-6">
   <div class="card crypto-chart overflow-hidden">
@@ -22,7 +23,7 @@
           <h5 class="font-primary">Bitcoin</h5><span>(BTC)</span>
         </div>
         <div class="media-end">
-          <h6>305.64</h6><span class="badge badge-light-primary"><i data-feather="arrow-up"> </i>7.6</span>
+          <h6>UGX {{account.account_balance|intcomma}}</h6><span class="badge badge-light-primary"><i data-feather="arrow-up"> </i>7.6</span>
         </div>
       </div>
     </div>
