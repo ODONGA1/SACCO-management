@@ -3,6 +3,8 @@ from user_auths.models import User
 from account.models import Account
 from shortuuid.django_fields import ShortUUIDField
 
+User = get_user_model() 
+
 TRANSACTION_TYPE = (
     ("transfer", "Transfer"),
     ("recieved", "Recieved"),
