@@ -1,61 +1,142 @@
 from django.db import models
+from django.utils import timezone
 from user_auths.models import User
-from account.models import Account
 from shortuuid.django_fields import ShortUUIDField
-from core.models import Transaction
-
-class ExchangeRate(models.Model):
-    base_currency = models.CharField(max_length=3, default='USD')
-    target_currency = models.CharField(max_length=3)
-    rate = models.DecimalField(max_digits=12, decimal_places=6)
-    last_updated = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.base_currency}/{self.target_currency}"
-
-class Recipient(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    account_number = models.CharField(max_length=20)
-    bank_name = models.CharField(max_length=100)
-    nickname = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.nickname} - {self.account_number}"
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 
 class CryptoWallet(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bitcoin_balance = models.DecimalField(max_digits=15, decimal_places=8, default=0)
-    ethereum_balance = models.DecimalField(max_digits=15, decimal_places=8, default=0)
-    usdt_balance = models.DecimalField(max_digits=15, decimal_places=2, default=0)
-
-class CryptoTransaction(models.Model):
-    CRYPTO_TYPES = (
+    WALLET_TYPES = (
         ('BTC', 'Bitcoin'),
         ('ETH', 'Ethereum'),
         ('USDT', 'Tether'),
+        ('LTC', 'Litecoin'),
+        ('XRP', 'Ripple'),
+        ('BCH', 'Bitcoin Cash'),
     )
     
-    transaction_id = ShortUUIDField(unique=True, length=15, max_length=20, prefix="CRY")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    crypto_type = models.CharField(max_length=4, choices=CRYPTO_TYPES)
-    amount = models.DecimalField(max_digits=15, decimal_places=8)
-    transaction_type = models.CharField(max_length=10, choices=[('BUY', 'Buy'), ('SELL', 'Sell')])
-    fiat_amount = models.DecimalField(max_digits=12, decimal_places=2)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-class Deposit(models.Model):
-    deposit_id = ShortUUIDField(unique=True, length=10, prefix="DEP")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=12, decimal_places=2)
-    method = models.CharField(max_length=20, choices=[('BANK', 'Bank Transfer'), ('CARD', 'Credit Card')])
-    status = models.CharField(max_length=20, default='PENDING', choices=[('PENDING', 'Pending'), ('COMPLETED', 'Completed')])
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='crypto_wallets')
+    wallet_type = models.CharField(max_length=4, choices=WALLET_TYPES)
+    address = models.CharField(max_length=255, unique=True)
+    balance = models.DecimalField(
+        max_digits=20, 
+        decimal_places=8, 
+        default=0,
+        validators=[MinValueValidator(Decimal('0'))]
+    )
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        unique_together = ('user', 'wallet_type')
+        ordering = ['-created_at']
+        verbose_name = 'Crypto Wallet'
+        verbose_name_plural = 'Crypto Wallets'
+    
+    def __str__(self):
+        return f"{self.user.username}'s {self.get_wallet_type_display()} Wallet"
+    
+    def clean(self):
+        if self.balance < 0:
+            raise ValidationError("Wallet balance cannot be negative")
 
-class Withdrawal(models.Model):
-    withdrawal_id = ShortUUIDField(unique=True, length=10, prefix="WTH")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=12, decimal_places=2)
-    method = models.CharField(max_length=20, choices=[('BANK', 'Bank Transfer'), ('CRYPTO', 'Crypto Wallet')])
-    status = models.CharField(max_length=20, default='PENDING', choices=[('PENDING', 'Pending'), ('COMPLETED', 'Completed')])
-    created_at = models.DateTimeField(auto_now_add=True)
+class CryptoTransaction(models.Model):
+    TRANSACTION_TYPES = (
+        ('BUY', 'Purchase'),
+        ('SELL', 'Sale'),
+        ('SWAP', 'Swap'),
+        ('TRANSFER_IN', 'Transfer In'),
+        ('TRANSFER_OUT', 'Transfer Out'),
+    )
+    
+    STATUS_CHOICES = (
+        ('PENDING', 'Pending'),
+        ('CONFIRMED', 'Confirmed'),
+        ('FAILED', 'Failed'),
+        ('CANCELLED', 'Cancelled'),
+    )
+    
+    txid = ShortUUIDField(
+        unique=True, 
+        length=15, 
+        prefix="tx_",
+        alphabet='1234567890ABCDEFGHJKLMNPQRSTUVWXYZ'
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
+    wallet = models.ForeignKey(CryptoWallet, on_delete=models.PROTECT, related_name='transactions')
+    transaction_type = models.CharField(max_length=12, choices=TRANSACTION_TYPES)
+    amount = models.DecimalField(
+        max_digits=20, 
+        decimal_places=8,
+        validators=[MinValueValidator(Decimal('0.00000001'))]
+    )
+    network_fee = models.DecimalField(
+        max_digits=12, 
+        decimal_places=8, 
+        default=0,
+        validators=[MinValueValidator(Decimal('0'))]
+    )
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
+    tx_hash = models.CharField(max_length=255, blank=True, null=True)
+    metadata = models.JSONField(default=dict, blank=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+    confirmed_at = models.DateTimeField(null=True, blank=True)
+    
+    class Meta:
+        ordering = ['-timestamp']
+        indexes = [
+            models.Index(fields=['txid']),
+            models.Index(fields=['user', 'wallet']),
+            models.Index(fields=['status', 'timestamp']),
+        ]
+        verbose_name = 'Crypto Transaction'
+        verbose_name_plural = 'Crypto Transactions'
+    
+    def __str__(self):
+        return f"{self.txid} - {self.get_transaction_type_display()}"
+    
+    def save(self, *args, **kwargs):
+        if self.status == 'CONFIRMED' and not self.confirmed_at:
+            self.confirmed_at = timezone.now()
+        super().save(*args, **kwargs)
+
+class ExchangeRate(models.Model):
+    RATE_TYPES = (
+        ('BUY', 'Buy Rate'),
+        ('SELL', 'Sell Rate'),
+        ('MID', 'Mid Market Rate'),
+    )
+    
+    PROVIDERS = (
+        ('BINANCE', 'Binance'),
+        ('COINBASE', 'Coinbase'),
+        ('KRAKEN', 'Kraken'),
+        ('MANUAL', 'Manual Entry'),
+    )
+    
+    base_currency = models.CharField(max_length=3, default='USD')
+    target_currency = models.CharField(max_length=4)
+    rate_type = models.CharField(max_length=4, choices=RATE_TYPES)
+    rate = models.DecimalField(
+        max_digits=12, 
+        decimal_places=6,
+        validators=[MinValueValidator(Decimal('0.000001'))]
+    )
+    provider = models.CharField(max_length=10, choices=PROVIDERS)
+    effective_date = models.DateField(default=timezone.now)
+    expires_at = models.DateTimeField(default=timezone.now() + timezone.timedelta(days=1))
+    
+    class Meta:
+        ordering = ['-effective_date']
+        unique_together = ('base_currency', 'target_currency', 'rate_type', 'effective_date')
+        verbose_name = 'Exchange Rate'
+        verbose_name_plural = 'Exchange Rates'
+    
+    def __str__(self):
+        return f"{self.base_currency}/{self.target_currency} {self.rate_type} @ {self.rate}"
+    
+    def save(self, *args, **kwargs):
+        if not self.expires_at:
+            self.expires_at = timezone.now() + timezone.timedelta(days=1)
+        super().save(*args, **kwargs)

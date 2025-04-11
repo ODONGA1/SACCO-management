@@ -1,6 +1,7 @@
 from django.contrib import admin
 from core.models import Transaction, CreditCard, Notification
 from account.models import Account
+from django.utils import timezone
 from .models import LoanApplication, LoanRepayment
 
 class TransactionAdmin(admin.ModelAdmin):
