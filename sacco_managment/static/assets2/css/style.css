@@ -9,7 +9,7 @@
 -----------------------------------------------------------------------------------
  */
 :root {
-    --theme-deafult: #6362e7;
+    --theme-deafult: #212529;
     --theme-secondary: #ffc500
 }
 
@@ -915,7 +915,7 @@
 }
 
 .font-primary {
-    color: #6362e7 !important
+    color: #212529 !important
 }
 
 .font-secondary {
@@ -968,11 +968,11 @@
 }
 
 .label-theme {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .label-primary {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .label-secondary {
@@ -1004,7 +1004,7 @@
 }
 
 .badge-primary {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .badge-secondary {
@@ -1044,7 +1044,7 @@
 }
 
 .bg-primary {
-    background-color: #6362e7 !important;
+    background-color: #212529 !important;
     color: #fff
 }
 
@@ -1138,7 +1138,7 @@
 }
 
 .txt-primary {
-    color: #6362e7 !important
+    color: #212529 !important
 }
 
 .txt-secondary {
@@ -1355,8 +1355,8 @@
 
 .btn-outline-primary-2x {
     border-width: 2px;
-    border-color: #6362e7;
-    color: #6362e7;
+    border-color: #212529;
+    color: #212529;
     background-color: transparent
 }
 
@@ -1474,13 +1474,13 @@
 }
 
 .btn-outline-primary {
-    border-color: #6362e7;
-    color: #6362e7;
+    border-color: #212529;
+    color: #212529;
     background-color: transparent
 }
 
 .btn-outline-primary.disabled {
-    color: #6362e7
+    color: #212529
 }
 
 .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active {
@@ -1723,8 +1723,8 @@
 }
 
 .btn-outline-primary-2x:not([disabled]):not(.disabled).active {
-    background-color: #6362e7;
-    border-color: #6362e7;
+    background-color: #212529;
+    border-color: #212529;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     color: white
@@ -1851,7 +1851,7 @@
 }
 
 table thead .border-bottom-primary th, table tbody .border-bottom-primary th, table tbody .border-bottom-primary td {
-    border-bottom: 1px solid #6362e7 !important
+    border-bottom: 1px solid #212529 !important
 }
 
 table thead .border-bottom-secondary th, table tbody .border-bottom-secondary th, table tbody .border-bottom-secondary td {
@@ -1883,9 +1883,9 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .table-styling .table-primary, .table-styling.table-primary {
-    background-color: #6362e7;
+    background-color: #212529;
     color: #fff;
-    border: 3px solid #6362e7
+    border: 3px solid #212529
 }
 
 .table-styling .table-primary thead, .table-styling.table-primary thead {
@@ -2003,23 +2003,23 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .b-primary {
-    border: 1px solid #6362e7 !important
+    border: 1px solid #212529 !important
 }
 
 .b-t-primary {
-    border-top: 1px solid #6362e7 !important
+    border-top: 1px solid #212529 !important
 }
 
 .b-b-primary {
-    border-bottom: 1px solid #6362e7 !important
+    border-bottom: 1px solid #212529 !important
 }
 
 .b-l-primary {
-    border-left: 1px solid #6362e7 !important
+    border-left: 1px solid #212529 !important
 }
 
 .b-r-primary {
-    border-right: 1px solid #6362e7 !important
+    border-right: 1px solid #212529 !important
 }
 
 .b-secondary {
@@ -2203,7 +2203,7 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .fill-primary {
-    fill: #6362e7
+    fill: #212529
 }
 
 .fill-secondary {
@@ -2240,7 +2240,7 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .map-js-height .btn-group input {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .map-js-height .btn-group input+input {
@@ -2299,7 +2299,7 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .options>div:hover {
-    background-color: #6362e7;
+    background-color: #212529;
     color: #fff;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease
@@ -2330,12 +2330,12 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 
 .dropzone .dz-preview .dz-error-message {
     background: #fff !important;
-    color: #6362e7 !important;
-    border: 1px solid #6362e7
+    color: #212529 !important;
+    border: 1px solid #212529
 }
 
 .dropzone .dz-preview .dz-error-message:after {
-    border-bottom: 6px solid #6362e7 !important
+    border-bottom: 6px solid #212529 !important
 }
 
 .typeahead .theme-form .form-group {
@@ -2443,7 +2443,7 @@ body {
     font-size: 14px;
     overflow-x: hidden;
     font-family: "Roboto", sans-serif;
-    color: #1e2f65
+    color: #195C59
 }
 
 ul {
@@ -2999,16 +2999,16 @@ strong~p {
 }
 
 .alert-primary .alert-link {
-    color: #6362e7
+    color: #212529
 }
 
 .alert-primary hr {
-    border-top-color: #6362e7
+    border-top-color: #212529
 }
 
 .alert-primary.dark {
-    background-color: #6362e7;
-    border-color: #6362e7;
+    background-color: #212529;
+    border-color: #212529;
     color: #fafafa
 }
 
@@ -3018,8 +3018,8 @@ strong~p {
 
 .alert-primary.outline, .alert-primary.outline-2x {
     background-color: rgba(0, 0, 0, 0);
-    border-color: #6362e7;
-    color: #6362e7
+    border-color: #212529;
+    color: #212529
 }
 
 .alert-primary.outline .btn-close, .alert-primary.outline-2x .btn-close {
@@ -3030,7 +3030,7 @@ strong~p {
 .alert-primary.inverse {
     background-color: transparent;
     padding: 13px 20px 13px 65px;
-    border-color: #6362e7;
+    border-color: #212529;
     color: #2b2b2b
 }
 
@@ -3041,7 +3041,7 @@ strong~p {
     left: 54px;
     width: 0;
     height: 0;
-    border-left: 7px solid #6362e7;
+    border-left: 7px solid #212529;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent
 }
@@ -3049,7 +3049,7 @@ strong~p {
 .alert-primary.inverse i {
     padding: 17px 20px;
     display: inline-block;
-    background-color: #6362e7;
+    background-color: #212529;
     color: #fff;
     border-radius: 3px 0 0 3px;
     position: absolute;
@@ -4357,7 +4357,7 @@ strong~p {
 }
 
 .input-air-primary:focus {
-    border-color: #6362e7
+    border-color: #212529
 }
 
 .btn-air-secondary {
@@ -4940,9 +4940,9 @@ strong~p {
 }
 
 .custom-card .card-social li:hover a {
-    border: 1px solid #6362e7;
+    border: 1px solid #212529;
     background-color: #fff;
-    color: #6362e7
+    color: #212529
 }
 
 .custom-card .profile-details h6 {
@@ -5013,7 +5013,7 @@ strong~p {
     padding: 4px;
     margin: 0;
     font-size: 13px;
-    color: #1e2f65
+    color: #195C59
 }
 
 .color-box {
@@ -9329,7 +9329,7 @@ strong~p {
 .light-theme-color ul li:nth-child(13) span:before {
     content: "#979eb7";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9370,7 +9370,7 @@ strong~p {
 .light-theme-color ul li:nth-child(12) span:before {
     content: "#9ea5bc";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9411,7 +9411,7 @@ strong~p {
 .light-theme-color ul li:nth-child(11) span:before {
     content: "#a6acc2";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9452,7 +9452,7 @@ strong~p {
 .light-theme-color ul li:nth-child(10) span:before {
     content: "#adb3c7";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9493,7 +9493,7 @@ strong~p {
 .light-theme-color ul li:nth-child(9) span:before {
     content: "#b5bacc";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9534,7 +9534,7 @@ strong~p {
 .light-theme-color ul li:nth-child(8) span:before {
     content: "#bcc1d1";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9575,7 +9575,7 @@ strong~p {
 .light-theme-color ul li:nth-child(7) span:before {
     content: "#c4c8d6";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9616,7 +9616,7 @@ strong~p {
 .light-theme-color ul li:nth-child(6) span:before {
     content: "#cbcfdc";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9657,7 +9657,7 @@ strong~p {
 .light-theme-color ul li:nth-child(5) span:before {
     content: "#d3d6e1";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9698,7 +9698,7 @@ strong~p {
 .light-theme-color ul li:nth-child(4) span:before {
     content: "#dbdde6";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9739,7 +9739,7 @@ strong~p {
 .light-theme-color ul li:nth-child(3) span:before {
     content: "#e2e4eb";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9780,7 +9780,7 @@ strong~p {
 .light-theme-color ul li:nth-child(2) span:before {
     content: "#eaebf0";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -9821,7 +9821,7 @@ strong~p {
 .light-theme-color ul li:nth-child(1) span:before {
     content: "#f1f2f6";
     display: block;
-    color: #1e2f65;
+    color: #195C59;
     text-align: center
 }
 
@@ -10157,15 +10157,15 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
 }
 
 .clockpicker-canvas line {
-    stroke: #6362e7
+    stroke: #212529
 }
 
 .clockpicker-canvas-fg, .clockpicker-canvas-bearing {
-    fill: #6362e7
+    fill: #212529
 }
 
 .daterangepicker td.available:hover, .daterangepicker th.available:hover {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .datepicker--day-name {
@@ -10177,16 +10177,16 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
     color: #000;
     border-radius: 5px;
     font-weight: bold;
-    border: 2px solid #6362e7
+    border: 2px solid #212529
 }
 
 .datepicker--cell.-focus- {
-    background: #6362e7;
+    background: #212529;
     color: #fff
 }
 
 .datepicker--cell.-selected- {
-    background: #6362e7
+    background: #212529
 }
 
 .daterangepicker.ltr {
@@ -10208,7 +10208,7 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
 }
 
 .daterangepicker.ltr tr td.active {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .daterangepicker.ltr .ranges {
@@ -10216,18 +10216,18 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
 }
 
 .daterangepicker.ltr .ranges li {
-    color: #6362e7
+    color: #212529
 }
 
 .daterangepicker.ltr .ranges li:hover {
-    background-color: #6362e7;
-    border: 1px solid #6362e7;
+    background-color: #212529;
+    border: 1px solid #212529;
     color: #fff
 }
 
 .daterangepicker.ltr .ranges li.active {
-    background-color: #6362e7;
-    border: 1px solid #6362e7;
+    background-color: #212529;
+    border: 1px solid #212529;
     color: #fff
 }
 
@@ -10275,11 +10275,11 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
     color: #fff;
     height: 34px;
     width: 34px;
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .daterangepicker th.month, .daterangepicker td.month {
-    color: #6362e7;
+    color: #212529;
     letter-spacing: 1px;
     text-transform: uppercase
 }
@@ -10616,7 +10616,7 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
 }
 
 .form-builder .popover-header {
-    background-color: #6362e7;
+    background-color: #212529;
     padding: 15px
 }
 
@@ -10792,7 +10792,7 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
 }
 
 .stepwizard .stepwizard-row .stepwizard-step .btn-primary {
-    background-color: #6362e7 !important;
+    background-color: #212529 !important;
     color: #fff
 }
 
@@ -11678,7 +11678,7 @@ form.basic-html-input-control-form input[type="time"]::after {
     bottom: 0;
     width: 10px;
     height: 50%;
-    background: #6362e7;
+    background: #212529;
     -webkit-transform-origin: center bottom;
     transform-origin: center bottom;
     -webkit-box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
@@ -12199,7 +12199,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 
 .loader-wrapper .theme-loader .loader-p:before {
     content: "";
-    border: 1em solid #6362e7;
+    border: 1em solid #212529;
     border-radius: 50%;
     width: inherit;
     height: inherit;
@@ -12215,7 +12215,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 
 .loader-wrapper .theme-loader .loader-p:after {
     content: "";
-    border: 1em solid #6362e7;
+    border: 1em solid #212529;
     border-radius: 50%;
     width: inherit;
     height: inherit;
@@ -12291,7 +12291,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .loader-box .loader-1 {
-    border: 0.2em dotted #6362e7;
+    border: 0.2em dotted #212529;
     border-radius: 50%;
     -webkit-animation: 1s loader-01 linear infinite;
     animation: 1s loader-01 linear infinite
@@ -12528,7 +12528,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 
 .loader-box .loader-7:before, .loader-box .loader-7:after {
     content: "";
-    border: 0.2em solid #6362e7;
+    border: 0.2em solid #212529;
     border-radius: 50%;
     width: inherit;
     height: inherit;
@@ -12837,7 +12837,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .loader-box .loader-13 {
-    color: #6362e7;
+    color: #212529;
     position: relative;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -13287,7 +13287,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .loader-box .loader-19 {
-    border-top: 0.2em solid #6362e7;
+    border-top: 0.2em solid #212529;
     border-right: 0.2em solid transparent;
     -webkit-animation: loader-19 1s linear infinite;
     animation: loader-19 1s linear infinite;
@@ -13581,7 +13581,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .loader-box .loader-25 {
-    border: 0.1em #6362e7 solid;
+    border: 0.1em #212529 solid;
     position: relative;
     -webkit-animation: loader-25-1 5s linear infinite;
     animation: loader-25-1 5s linear infinite
@@ -13592,7 +13592,7 @@ form.basic-html-input-control-form input[type="time"]::after {
     height: 0.2em;
     position: absolute;
     content: "";
-    background-color: #6362e7;
+    background-color: #212529;
     bottom: calc(100% + 0.2em);
     left: -0.4em;
     -webkit-animation: loader-25-2 1s ease-in-out infinite;
@@ -13601,25 +13601,25 @@ form.basic-html-input-control-form input[type="time"]::after {
 
 @-webkit-keyframes loader-25-1 {
     0% {
-        -webkit-box-shadow: inset 0 0 0 0 #6362e7;
-        box-shadow: inset 0 0 0 0 #6362e7
+        -webkit-box-shadow: inset 0 0 0 0 #212529;
+        box-shadow: inset 0 0 0 0 #212529
     }
 
     100% {
-        -webkit-box-shadow: inset 0 -1em 0 0 #6362e7;
-        box-shadow: inset 0 -1em 0 0 #6362e7
+        -webkit-box-shadow: inset 0 -1em 0 0 #212529;
+        box-shadow: inset 0 -1em 0 0 #212529
     }
 }
 
 @keyframes loader-25-1 {
     0% {
-        -webkit-box-shadow: inset 0 0 0 0 #6362e7;
-        box-shadow: inset 0 0 0 0 #6362e7
+        -webkit-box-shadow: inset 0 0 0 0 #212529;
+        box-shadow: inset 0 0 0 0 #212529
     }
 
     100% {
-        -webkit-box-shadow: inset 0 -1em 0 0 #6362e7;
-        box-shadow: inset 0 -1em 0 0 #6362e7
+        -webkit-box-shadow: inset 0 -1em 0 0 #212529;
+        box-shadow: inset 0 -1em 0 0 #212529
     }
 }
 
@@ -13928,7 +13928,7 @@ form.basic-html-input-control-form input[type="time"]::after {
     height: 0.4em;
     width: 0.4em;
     top: 0;
-    background-color: #6362e7;
+    background-color: #212529;
     border-radius: 50%
 }
 
@@ -14464,10 +14464,10 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .loader-box .loader-41 {
-    border: 0.05em #6362e7 solid;
+    border: 0.05em #212529 solid;
     border-radius: 0.2em;
     position: relative;
-    background: linear-gradient(45deg, transparent 48%, #6362e7 50%, #6362e7 50%, transparent 52%, transparent), linear-gradient(-45deg, transparent 48%, #6362e7 50%, #6362e7 50%, transparent 52%, transparent);
+    background: linear-gradient(45deg, transparent 48%, #212529 50%, #212529 50%, transparent 52%, transparent), linear-gradient(-45deg, transparent 48%, #212529 50%, #212529 50%, transparent 52%, transparent);
     background-size: 0.5em 0.5em;
     background-position: 0% 0%;
     -webkit-animation: loader-41 1s infinite linear;
@@ -15350,41 +15350,41 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .ribbon-primary {
-    background: #6362e7
+    background: #212529
 }
 
 .ribbon-primary {
-    background: #6362e7
+    background: #212529
 }
 
 .ribbon-bookmark.ribbon-primary:before {
-    border-color: #6362e7;
+    border-color: #212529;
     border-right-color: transparent
 }
 
 .ribbon-bookmark.ribbon-right.ribbon-primary:before {
-    border-right-color: #6362e7;
+    border-right-color: #212529;
     border-left-color: transparent
 }
 
 .ribbon-bookmark.ribbon-vertical-left.ribbon-primary:before, .ribbon-bookmark.ribbon-vertical-right.ribbon-primary:before {
-    border-right-color: #6362e7;
+    border-right-color: #212529;
     border-bottom-color: transparent
 }
 
 .ribbon-primary.ribbon-corner:before {
-    border-top-color: #6362e7;
-    border-left-color: #6362e7
+    border-top-color: #212529;
+    border-left-color: #212529
 }
 
 .ribbon-primary.ribbon-corner.ribbon-right:before {
-    border-right-color: #6362e7;
+    border-right-color: #212529;
     border-left-color: transparent
 }
 
 .ribbon-primary.ribbon-corner.ribbon-bottom:before {
     border-top-color: transparent;
-    border-bottom-color: #6362e7
+    border-bottom-color: #212529
 }
 
 .ribbon-primary.ribbon-clip:before {
@@ -16257,7 +16257,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .product-page-main .border-tab.nav-tabs .nav-item .nav-link.active, .product-page-main .border-tab.nav-tabs .nav-item .nav-link.show, .product-page-main .border-tab.nav-tabs .nav-item .nav-link:focus {
-    border-bottom: 2px solid #6362e7
+    border-bottom: 2px solid #212529
 }
 
 .border-tab.nav-tabs {
@@ -16642,11 +16642,11 @@ form.basic-html-input-control-form input[type="time"]::after {
 .table thead.table-primary {
     background-color: rgba(99, 98, 231, 0.1);
     --bs-table-bg: rgba($primary-color, 0.1);
-    color: #6362e7
+    color: #212529
 }
 
 .table thead.table-primary tr th {
-    color: #6362e7
+    color: #212529
 }
 
 .table-primary thead tr th {
@@ -16675,7 +16675,7 @@ form.basic-html-input-control-form input[type="time"]::after {
 }
 
 .table-hover tbody tr:hover th, .table-hover tbody tr:hover td {
-    color: #6362e7
+    color: #212529
 }
 
 .table-dark th {
@@ -16826,7 +16826,7 @@ thead, tbody, tfoot, tr, td, th {
 }
 
 .table-styling.table-primary.table-striped tbody tr:nth-of-type(odd):hover {
-    color: #6362e7
+    color: #212529
 }
 
 .table-styling.table-primary.table-striped tbody tr:nth-of-type(even):hover th, .table-styling.table-primary.table-striped tbody tr:nth-of-type(even):hover td {
@@ -16839,7 +16839,7 @@ thead, tbody, tfoot, tr, td, th {
 }
 
 .table-success tr th {
-    color: #6362e7
+    color: #212529
 }
 
 .bootstrap-touchspin input.touchspin {
@@ -17397,7 +17397,7 @@ thead, tbody, tfoot, tr, td, th {
     font-size: 36px;
     font-weight: 600;
     padding-right: 5px;
-    color: #6362e7;
+    color: #212529;
     line-height: 1
 }
 
@@ -17429,7 +17429,7 @@ thead, tbody, tfoot, tr, td, th {
 }
 
 .blog-box .blog-details-second .blog-post-date .blg-month {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .blog-box .blog-details-second .blog-post-date .blg-date {
@@ -18975,7 +18975,7 @@ p.data-attributes svg {
 
 .chat-box .chat-right-aside .chat .chat-message .text-box .input-txt-bx {
     height: 50px;
-    border: 2px solid #6362e7;
+    border: 2px solid #212529;
     padding-left: 18px;
     font-size: 12px;
     letter-spacing: 1px
@@ -19041,7 +19041,7 @@ p.data-attributes svg {
     height: 30px;
     border-radius: 5px;
     background-color: rgba(99, 98, 231, 0.08);
-    color: #6362e7;
+    color: #212529;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -19054,7 +19054,7 @@ p.data-attributes svg {
 }
 
 .chat-box .chat-menu .user-profile .user-content .social-list li:hover a {
-    background-color: #6362e7;
+    background-color: #212529;
     color: #fff
 }
 
@@ -19092,7 +19092,7 @@ p.data-attributes svg {
 }
 
 .chat-box .chat-menu .user-profile .image .icon-wrapper i {
-    color: #6362e7
+    color: #212529
 }
 
 .chat-box .chat-menu .user-profile .image .avatar {
@@ -19182,11 +19182,11 @@ p.data-attributes svg {
 
 .chat-box .chat-menu .nav-tabs .nav-item .material-border {
     border-width: 1px;
-    border-color: #6362e7
+    border-color: #212529
 }
 
 .chat-box .chat-menu .nav-tabs .nav-item .nav-link.active {
-    color: #6362e7 !important
+    color: #212529 !important
 }
 
 .chat-box .chat-menu.show {
@@ -20059,7 +20059,7 @@ p.data-attributes svg {
 
 .sales-state .sales-small-chart h6 {
     text-align: center;
-    color: #1e2f65;
+    color: #195C59;
     font-size: 15px;
     margin-bottom: 0;
     font-weight: 700
@@ -20736,7 +20736,7 @@ p.data-attributes svg {
 
 .badge-light-primary {
     background-color: #fff;
-    color: #6362e7
+    color: #212529
 }
 
 .badge-light-secondary {
@@ -20905,7 +20905,7 @@ p.data-attributes svg {
 }
 
 .earning-card .earning-content h4 {
-    color: #1e2f65;
+    color: #195C59;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 5px
@@ -20920,7 +20920,7 @@ p.data-attributes svg {
 
 .earning-card .earning-content h6 {
     font-size: 14px;
-    color: #1e2f65;
+    color: #195C59;
     font-weight: 700;
     margin-bottom: 15px
 }
@@ -20943,7 +20943,7 @@ p.data-attributes svg {
 }
 
 .news-update h5 {
-    color: #1e2f65;
+    color: #195C59;
     margin-bottom: 9px
 }
 
@@ -21000,7 +21000,7 @@ p.data-attributes svg {
 }
 
 .ongoing-project table thead tr th {
-    color: #1e2f65
+    color: #195C59
 }
 
 .ongoing-project table thead tr th:last-child {
@@ -21097,7 +21097,7 @@ p.data-attributes svg {
 }
 
 .recent-activity table tr td .media .media-body h5 {
-    color: #1e2f65;
+    color: #195C59;
     margin-bottom: 9px
 }
 
@@ -21138,7 +21138,7 @@ p.data-attributes svg {
 
 .total-transactions .report-sec .card-header h5 {
     font-size: 15px !important;
-    color: #1e2f65;
+    color: #195C59;
     font-weight: 500
 }
 
@@ -21148,7 +21148,7 @@ p.data-attributes svg {
 
 .total-transactions .report-sec .report-content h5 {
     font-weight: 700;
-    color: #1e2f65;
+    color: #195C59;
     letter-spacing: 1px
 }
 
@@ -22208,7 +22208,7 @@ p.data-attributes svg {
     border-radius: 100%;
     font-size: 28px;
     background-color: #fff;
-    color: #6362e7;
+    color: #212529;
     margin-top: -55px;
     margin-bottom: 15px
 }
@@ -23416,7 +23416,7 @@ footer.blockquote-footer {
 
 .candlestick-chart .candlestick-detail h3 {
     font-size: 22px;
-    color: #1e2f65
+    color: #195C59
 }
 
 .candlestick-chart .candlestick-detail h4 {
@@ -23975,7 +23975,7 @@ footer.blockquote-footer {
 .square-product-setting .icon-grid svg {
     width: 20px;
     height: 20px;
-    color: #6362e7
+    color: #212529
 }
 
 .product-filter .banner-product {
@@ -24115,12 +24115,12 @@ footer.blockquote-footer {
     margin-bottom: 10px;
     height: 36px;
     background-color: rgba(99, 98, 231, 0.05);
-    color: #6362e7;
+    color: #212529;
     font-weight: 600
 }
 
 .feature-products .filter-toggle {
-    color: #6362e7;
+    color: #212529;
     background-color: rgba(99, 98, 231, 0.05)
 }
 
@@ -24216,7 +24216,7 @@ footer.blockquote-footer {
 }
 
 .product-box .modal .modal-header .product-box .product-details .product-size ul li button {
-    color: #6362e7;
+    color: #212529;
     width: 35px;
     height: 35px;
     font-size: 16px;
@@ -24229,7 +24229,7 @@ footer.blockquote-footer {
 }
 
 .product-box .modal .modal-header .product-box .product-details .product-size ul li.active button {
-    background-color: #6362e7 !important;
+    background-color: #212529 !important;
     color: #fff
 }
 
@@ -24316,7 +24316,7 @@ footer.blockquote-footer {
 }
 
 .product-box .product-img .product-hover ul li a {
-    color: #6362e7
+    color: #212529
 }
 
 .product-box .product-img .product-hover ul li .btn {
@@ -24324,7 +24324,7 @@ footer.blockquote-footer {
 }
 
 .product-box .product-img .product-hover ul li:hover {
-    background-color: #6362e7;
+    background-color: #212529;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease
 }
@@ -24371,7 +24371,7 @@ footer.blockquote-footer {
 }
 
 .product-page-main .owl-item.current .item {
-    border: 1px solid #6362e7
+    border: 1px solid #212529
 }
 
 .product-page-main .product-slider {
@@ -24445,7 +24445,7 @@ footer.blockquote-footer {
 .product-price {
     font-size: 16px;
     font-weight: 700;
-    color: #6362e7
+    color: #212529
 }
 
 .product-price del {
@@ -24505,7 +24505,7 @@ footer.blockquote-footer {
 }
 
 .product-social li a:hover {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .product-social li a:hover i {
@@ -24540,7 +24540,7 @@ footer.blockquote-footer {
 }
 
 .filter-block ul li .form-check .form-check-input:checked {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .filter-block ul li:nth-child(n+2) {
@@ -24548,7 +24548,7 @@ footer.blockquote-footer {
 }
 
 ul.pro-services li svg {
-    color: #6362e7;
+    color: #212529;
     margin-right: 15px
 }
 
@@ -24874,11 +24874,11 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .email-wrap .email-app-sidebar .main-menu>li a:hover>.title {
-    color: #6362e7
+    color: #212529
 }
 
 .email-wrap .email-app-sidebar .main-menu>li a:hover>.badge {
-    color: #6362e7
+    color: #212529
 }
 
 .email-wrap .email-app-sidebar ul li a {
@@ -25065,7 +25065,7 @@ ul.pro-services li:nth-child(n+2) {
 
 .email-wrap .media-body h6 {
     margin-bottom: 2px;
-    color: #6362e7;
+    color: #212529;
     margin-top: 3px;
     font-weight: 600;
     display: inline-block;
@@ -25519,7 +25519,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .error-page1 .primary-color {
-    fill: #6362e7
+    fill: #212529
 }
 
 .error-page1 .primary-color.opacity-05 {
@@ -25804,7 +25804,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .navigation-option ul li:hover a {
-    color: #6362e7
+    color: #212529
 }
 
 .navigation-option ul li a {
@@ -25824,7 +25824,7 @@ ul.pro-services li:nth-child(n+2) {
 .updates-faq {
     width: 40px;
     height: 40px;
-    border: 1px solid #6362e7;
+    border: 1px solid #212529;
     border-radius: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -25990,11 +25990,11 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .file-sidebar .btn.btn-light:hover {
-    color: #6362e7 !important
+    color: #212529 !important
 }
 
 .file-sidebar .btn.btn-light:hover svg {
-    stroke: #6362e7
+    stroke: #212529
 }
 
 .file-sidebar .btn svg {
@@ -26049,19 +26049,19 @@ ul.pro-services li:nth-child(n+2) {
 .file-sidebar .btn.btn-light {
     background-color: rgba(99, 98, 231, 0.05) !important;
     border: none !important;
-    color: #1e2f65
+    color: #195C59
 }
 
 .file-sidebar .btn.btn-light:hover {
-    color: #6362e7 !important
+    color: #212529 !important
 }
 
 .file-sidebar .btn.btn-light:hover svg {
-    stroke: #6362e7
+    stroke: #212529
 }
 
 .file-sidebar h6 {
-    color: #1e2f65;
+    color: #195C59;
     font-size: 14px;
     font-weight: 500
 }
@@ -26887,7 +26887,7 @@ ul.pro-services li:nth-child(n+2) {
 
 .dropdown .dropdown-toggle {
     background-color: rgba(115, 102, 255, 0.08);
-    color: #6362e7;
+    color: #212529;
     padding: 5px 32px;
     width: 100%;
     text-align: left
@@ -27085,7 +27085,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .job-search .job-description ul li:hover {
-    color: #6362e7
+    color: #212529
 }
 
 .job-search .job-description .theme-form {
@@ -27741,7 +27741,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .browse .browse-articles ul li:hover h5 {
-    color: #6362e7
+    color: #212529
 }
 
 @media only screen and (max-width: 1199px) {
@@ -27854,7 +27854,7 @@ ul.pro-services li:nth-child(n+2) {
 .landing-page .title h1 {
     font-size: 36px;
     font-weight: 700;
-    color: #6362e7;
+    color: #212529;
     letter-spacing: 1px;
     text-transform: uppercase;
     width: -webkit-fit-content;
@@ -27867,7 +27867,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .landing-page .title h1:before {
-    background-color: #6362e7;
+    background-color: #212529;
     content: '';
     display: block;
     height: 2px;
@@ -27876,7 +27876,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .landing-page .title h1:after {
-    background-color: #6362e7;
+    background-color: #212529;
     content: '';
     display: block;
     margin-left: auto;
@@ -27916,16 +27916,16 @@ ul.pro-services li:nth-child(n+2) {
 
 .landing-page .navbar-nav .nav-item .nav-link:hover, .landing-page .navbar-nav .nav-item .nav-link.active {
     opacity: 1;
-    text-shadow: 0 0 0 #6362e7;
+    text-shadow: 0 0 0 #212529;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    color: #6362e7
+    color: #212529
 }
 
 .landing-page .btn-landing {
     border-radius: 5px;
     color: #fff;
-    background-color: #6362e7;
+    background-color: #212529;
     padding: 12px 30px;
     line-height: 1;
     font-weight: 600;
@@ -27946,7 +27946,7 @@ ul.pro-services li:nth-child(n+2) {
 
 .landing-page .btn-landing.btn-white {
     background-color: #fff !important;
-    color: #6362e7
+    color: #212529
 }
 
 .landing-page .landing-header {
@@ -28235,16 +28235,16 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .landing-page .demo-section .demo-box .demo-title .btn {
-    color: #6362e7;
+    color: #212529;
     text-transform: capitalize;
-    border: 1px solid #6362e7;
+    border: 1px solid #212529;
     padding: 8px 15px;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease
 }
 
 .landing-page .demo-section .demo-box .demo-title .btn:hover {
-    background-color: #6362e7;
+    background-color: #212529;
     color: #fff
 }
 
@@ -28378,7 +28378,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .landing-page .framework ul.framworks-list li:hover h6 {
-    color: #6362e7
+    color: #212529
 }
 
 .landing-page .core-feature {
@@ -28441,7 +28441,7 @@ ul.pro-services li:nth-child(n+2) {
 .landing-page .core-feature .feature-box .icon-wrraper svg {
     width: 40%;
     height: auto;
-    color: #6362e7;
+    color: #212529;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease
 }
@@ -28459,7 +28459,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .landing-page .core-feature .feature-box:hover .icon-wrraper {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .landing-page .core-feature .feature-box:hover .icon-wrraper svg {
@@ -28471,7 +28471,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .landing-page .color-primary {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .landing-page .color-secondary {
@@ -28552,7 +28552,7 @@ ul.pro-services li:nth-child(n+2) {
 .landing-page .counter-sec .counter-box .count-number h3 {
     font-size: 40px;
     margin-bottom: unset;
-    color: #6362e7;
+    color: #212529;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease
 }
@@ -28568,7 +28568,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .landing-page .counter-sec .counter-box:hover .count-number {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .landing-page .counter-sec .counter-box:hover .count-number h3 {
@@ -29073,7 +29073,7 @@ ul.pro-services li:nth-child(n+2) {
     }
 
     .landing-page .landing-header ul.landing-menu li.nav-item:hover a.nav-link {
-        color: #6362e7
+        color: #212529
     }
 
     .landing-page .landing-header .buy-block .toggle-menu {
@@ -29575,7 +29575,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .categories ul li:hover a {
-    color: #6362e7
+    color: #212529
 }
 
 .upcoming-course .media+.media {
@@ -29661,7 +29661,7 @@ ul.pro-services li:nth-child(n+2) {
 .show-hide span {
     cursor: pointer;
     font-size: 13px;
-    color: #6362e7
+    color: #212529
 }
 
 .show-hide span .show-hide span:before {
@@ -29748,7 +29748,7 @@ ul.pro-services li:nth-child(n+2) {
 .login-form .form-group .input-group-text {
     background-color: rgba(99, 98, 231, 0.1);
     border: none;
-    color: #6362e7
+    color: #212529
 }
 
 .login-form .form-group input {
@@ -30085,10 +30085,10 @@ ul.pro-services li:nth-child(n+2) {
     vertical-align: middle;
     border-top: none;
     background-color: rgba(99, 98, 231, 0.05);
-    border: 1px solid #6362e7;
+    border: 1px solid #212529;
     padding: 15px;
     font-size: 16px;
-    color: #6362e7;
+    color: #212529;
     font-weight: 600
 }
 
@@ -30340,7 +30340,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .pricing-block .pricing-header h2 {
-    color: #6362e7;
+    color: #212529;
     font-weight: 600;
     font-size: 30px;
     text-transform: uppercase;
@@ -30352,7 +30352,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .pricing-block .pricing-header .price-box {
-    background-color: #6362e7;
+    background-color: #212529;
     border-radius: 5px;
     width: 90px;
     height: 90px;
@@ -30461,7 +30461,7 @@ ul.pro-services li:nth-child(n+2) {
     line-height: 0.9;
     margin-bottom: 30px;
     font-weight: 600;
-    color: #6362e7
+    color: #212529
 }
 
 .pricing-simple .card-body h6 {
@@ -30771,7 +30771,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .progress-round-primary .progress-bar {
-    background-color: #6362e7;
+    background-color: #212529;
     border-radius: 50px
 }
 
@@ -31475,7 +31475,7 @@ ul.pro-services li:nth-child(n+2) {
     width: 15px;
     height: 15px;
     margin-right: 5px;
-    color: #6362e7
+    color: #212529
 }
 
 .social-tab ul li a:hover {
@@ -31483,7 +31483,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .social-tab ul li a.active {
-    background-color: #6362e7 !important;
+    background-color: #212529 !important;
     color: #fff !important
 }
 
@@ -31508,7 +31508,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .social-tab .input-group .input-group-text {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .social-tab .input-group .input-group-text i {
@@ -31547,7 +31547,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .social-list .media .media-body:hover a {
-    color: #6362e7
+    color: #212529
 }
 
 .photos {
@@ -31632,7 +31632,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .timeline-content .comments-box .input-group .input-group-text {
-    background-color: #6362e7;
+    background-color: #212529;
     padding: 10px
 }
 
@@ -32027,7 +32027,7 @@ ul.pro-services li:nth-child(n+2) {
 
 .invoice .table-striped tbody tr h6 {
     text-transform: capitalize;
-    color: #6362e7;
+    color: #212529;
     font-weight: 500
 }
 
@@ -32802,8 +32802,8 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .timeliny .timeliny-timeline .timeliny-timeblock.active .timeliny-dot {
-    border-color: #6362e7;
-    background-color: #6362e7;
+    border-color: #212529;
+    background-color: #212529;
     -webkit-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.33);
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.33)
 }
@@ -32831,7 +32831,7 @@ ul.pro-services li:nth-child(n+2) {
 
 .timeliny .timeliny-timeline .timeliny-timeblock:not(.inactive):not(.active) .timeliny-dot:hover {
     border-color: #ecf3fa;
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .timeliny .timeliny-timeline .timeliny-timeblock:not(.inactive):not(.active) .timeliny-dot:hover::before {
@@ -32855,7 +32855,7 @@ ul.pro-services li:nth-child(n+2) {
     top: 0;
     width: 1px;
     height: 100%;
-    background-color: #6362e7
+    background-color: #212529
 }
 
 @media (min-width: 768px) {
@@ -32873,7 +32873,7 @@ ul.pro-services li:nth-child(n+2) {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid #6362e7
+    border-top: 8px solid #212529
 }
 
 .timeliny .timeliny-vertical-line::after {
@@ -32885,7 +32885,7 @@ ul.pro-services li:nth-child(n+2) {
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid #6362e7
+    border-bottom: 8px solid #212529
 }
 
 .timeliny .timeliny-timeline .timeliny-timeblock.active .timeliny-dot::after {
@@ -32997,11 +32997,11 @@ ul.pro-services li:nth-child(n+2) {
 
 .user-profile .social-media ul.user-list-social li a i {
     font-size: 14px;
-    color: #6362e7
+    color: #212529
 }
 
 .user-profile .social-media ul.user-list-social li:hover a {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .user-profile .social-media ul.user-list-social li:hover a i {
@@ -33081,7 +33081,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .user-profile .profile-header .userpro-box .icon-wrapper i {
-    color: #6362e7
+    color: #212529
 }
 
 .user-profile .profile-header .userpro-box h4 {
@@ -33243,7 +33243,7 @@ ul.pro-services li:nth-child(n+2) {
 .user-profile .post-about ul li .icon svg {
     width: 18px;
     height: 18px;
-    color: #6362e7
+    color: #212529
 }
 
 .user-profile .post-about ul li h5 {
@@ -33396,7 +33396,7 @@ ul.pro-services li:nth-child(n+2) {
     line-height: 40px;
     color: #fff;
     text-align: center;
-    background: #6362e7;
+    background: #212529;
     border-radius: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%)
@@ -33431,7 +33431,7 @@ ul.pro-services li:nth-child(n+2) {
 
 .u-step.active, .u-step.current {
     color: #fff;
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .u-step.active p, .u-step.current p {
@@ -33443,7 +33443,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .u-step.active .u-step-number, .u-step.current .u-step-number {
-    color: #6362e7;
+    color: #212529;
     background-color: #fff
 }
 
@@ -33606,7 +33606,7 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .u-pearl-icon i.icon-check {
-    color: #6362e7
+    color: #212529
 }
 
 .u-pearl-icon .icon-check {
@@ -33620,7 +33620,7 @@ ul.pro-services li:nth-child(n+2) {
     width: 36px;
     height: 36px;
     line-height: 1.8;
-    color: #6362e7;
+    color: #212529;
     text-align: center;
     background: #ecf3fa;
     border: 2px solid #ecf3fa;
@@ -33645,23 +33645,23 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .u-pearl.active:after, .u-pearl.active:before {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .u-pearl.current:after, .u-pearl.current:before {
-    background-color: #6362e7 !important
+    background-color: #212529 !important
 }
 
 .u-pearl.active .u-pearl-icon, .u-pearl.active .u-pearl-number {
-    color: #6362e7;
-    border-color: #6362e7;
+    color: #212529;
+    border-color: #212529;
     -webkit-transform: scale(1.3);
     transform: scale(1.3)
 }
 
 .u-pearl.current .u-pearl-icon, .u-pearl.current .u-pearl-number {
-    color: #6362e7;
-    border-color: #6362e7;
+    color: #212529;
+    border-color: #212529;
     -webkit-transform: scale(1.3);
     transform: scale(1.3)
 }
@@ -33676,13 +33676,13 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .u-pearl.disabled .u-pearl-icon, .u-pearl.disabled .u-pearl-number {
-    color: #6362e7;
+    color: #212529;
     background-color: #ecf3fa;
     border-color: #ecf3fa
 }
 
 .u-pearl.error:before {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 .u-pearl.error:after {
@@ -33696,13 +33696,13 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .u-pearl.done:after, .u-pearl.done:before {
-    background-color: #6362e7 !important
+    background-color: #212529 !important
 }
 
 .u-pearl.done .u-pearl-icon, .u-pearl.done .u-pearl-number {
     color: #fff;
-    background-color: #6362e7;
-    border-color: #6362e7
+    background-color: #212529;
+    border-color: #212529
 }
 
 .u-pearls-lg .u-pearl:after, .u-pearls-lg .u-pearl:before {
@@ -33969,7 +33969,7 @@ body.dark-only .user-profile .profile-post .post-body .post-react h6 {
 }
 
 body.dark-only .user-profile .profile-post .post-body .post-comment li label a {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .user-profile .post-about ul li h5 {
@@ -34067,7 +34067,7 @@ body.dark-only .default-dash .icon-box .onhover-show-div ul li:last-child {
 }
 
 body.dark-only .default-dash .icon-box .onhover-show-div ul li:hover a {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .default-dash .icon-box .onhover-show-div ul li a {
@@ -34088,7 +34088,7 @@ body.dark-only .default-dash .profile-greeting .greeting-user .btn {
 }
 
 body.dark-only .default-dash .profile-greeting .greeting-user .btn:hover {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .default-dash .profile-greeting .greeting-user h1 {
@@ -34146,7 +34146,7 @@ body.dark-only .ecommerce-dash .icon-box .onhover-show-div ul li:last-child {
 }
 
 body.dark-only .ecommerce-dash .icon-box .onhover-show-div ul li:hover a {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .ecommerce-dash .icon-box .onhover-show-div ul li a {
@@ -34182,7 +34182,7 @@ body.dark-only .crypto-dash .buy-sell .buy-sell-form .form-group .dropdown .drop
 }
 
 body.dark-only .crypto-dash .buy-sell .buy-sell-form .form-group .dropdown .dropdown-toggle:hover {
-    background-color: #6362e7
+    background-color: #212529
 }
 
 body.dark-only .crypto-dash .buy-sell .card-header .media ul {
@@ -34237,7 +34237,7 @@ body.dark-only .icon-box .onhover-show-div ul li:last-child {
 }
 
 body.dark-only .icon-box .onhover-show-div ul li:hover a {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .icon-box .onhover-show-div ul li a {
@@ -34269,7 +34269,7 @@ body.dark-only .general-widget .widget-feedback ul li h4 {
 }
 
 body.dark-only .general-widget .contact-form .form-icon i {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .general-widget .social-widget-card .card-footer .row .col:nth-child(n+2) {
@@ -34632,11 +34632,11 @@ body.dark-only .clockpicker-popover .popover-content .clockpicker-plate {
 }
 
 body.dark-only .clockpicker-popover .popover-content .clockpicker-tick {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .clockpicker-popover .popover-content .clockpicker-tick:hover {
-    color: #1e2f65
+    color: #195C59
 }
 
 body.dark-only .tooltip.bs-tooltip-top .tooltip-arrow:before {
@@ -35366,7 +35366,7 @@ body.dark-only .datepicker {
 }
 
 body.dark-only .datepicker .datepicker--cell.-current- {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .cal-date-widget .datepicker {
@@ -35378,7 +35378,7 @@ body.dark-only .cal-date-widget .datepicker .datepicker--cell-day {
 }
 
 body.dark-only .cal-date-widget .datepicker .datepicker--cell.-current- {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .default-datepicker .datepicker-inline .datepicker {
@@ -36350,7 +36350,7 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-primary th, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-primary td, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-secondary th, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-secondary td, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-success th, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-success td, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-info th, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-info td, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-warning th, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-warning td, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-light th, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-light td, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-danger th, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-danger td {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .bg-primary, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .bg-secondary, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .bg-success, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .bg-info, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .bg-warning, body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .bg-danger {
@@ -37198,7 +37198,7 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .email-wrap .inbox .m
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .email-wrap .inbox .media-body h6 {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .email-wrap .email-wrapper .emailread-group:nth-child(n+2) {
@@ -37206,7 +37206,7 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .email-wrap .email-wr
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .email-wrap .email-app-sidebar .media-body h6 {
-    color: #6362e7
+    color: #212529
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .email-wrap .email-app-sidebar .media img {
@@ -38417,11 +38417,11 @@ body.dark-only .f1 .f1-steps .f1-step .f1-step-icon {
 }
 
 body.dark-only .f1 .f1-steps .f1-step.active .f1-step-icon {
-    background-color: #6362e7 !important
+    background-color: #212529 !important
 }
 
 body.dark-only .stepwizard .stepwizard-row .stepwizard-step a {
-    border: 1px solid #6362e7
+    border: 1px solid #212529
 }
 
 body.dark-only .stepwizard .stepwizard-row .stepwizard-step .btn-light {
@@ -38431,7 +38431,7 @@ body.dark-only .stepwizard .stepwizard-row .stepwizard-step .btn-light {
 }
 
 body.dark-only .stepwizard .stepwizard-row .stepwizard-step .btn-primary {
-    background-color: #6362e7 !important
+    background-color: #212529 !important
 }
 
 body.dark-only .user-profile .ttl-info h6 {
@@ -40597,7 +40597,7 @@ body .for-dark {
 
 .popover .popover-header {
     background-color: #eae8ff;
-    color: #6362e7;
+    color: #212529;
     border-bottom: none
 }
 
@@ -40626,7 +40626,7 @@ body .for-dark {
 
 .tooltip .tooltip-inner {
     background-color: #eae8ff;
-    color: #6362e7
+    color: #212529
 }
 
 .tooltip .tooltip-arrow:before {
@@ -40756,15 +40756,15 @@ body .for-dark {
 }
 
 .border-tab .nav-tabs .nav-item .nav-link.active {
-    border-bottom: 2px solid #6362e7
+    border-bottom: 2px solid #212529
 }
 
 .border-tab .nav-tabs .nav-item .nav-link.show {
-    border-bottom: 2px solid #6362e7
+    border-bottom: 2px solid #212529
 }
 
 .border-tab .nav-tabs .nav-item .nav-link:focus {
-    border-bottom: 2px solid #6362e7
+    border-bottom: 2px solid #212529
 }
 
 .tabbed-card .nav-tabs .nav-item .nav-link {
@@ -40978,7 +40978,7 @@ body .for-dark {
 }
 
 .left-side-header a {
-    color: #1e2f65;
+    color: #195C59;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -41007,7 +41007,7 @@ body .for-dark {
 .left-side-header .input-group span svg {
     height: 18px;
     width: 18px;
-    stroke: #1e2f65
+    stroke: #195C59
 }
 
 .left-side-header .input-group input {
@@ -41113,8 +41113,8 @@ body .for-dark {
     left: 0;
     height: 100%;
     border-radius: 20px;
-    border-color: #6362e7;
-    background-color: #6362e7;
+    border-color: #212529;
+    background-color: #212529;
     padding: 0 20px
 }
 
@@ -41190,7 +41190,7 @@ body .for-dark {
     display: flex;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid #6362e7;
+    border: 1px solid #212529;
     border: none;
     margin-left: auto;
     margin-right: auto;
@@ -41293,7 +41293,7 @@ body .for-dark {
 
 .add-post .needs-validation label {
     font-weight: 500;
-    color: #1e2f65;
+    color: #195C59;
     opacity: 1
 }
 
@@ -41820,7 +41820,7 @@ body .for-dark {
 
 .page-wrapper .page-header .header-wrapper .nav-right .flip-card .flip-card-inner .front button, .page-wrapper .page-header .header-wrapper .nav-right .flip-card .flip-card-inner .back button {
     background-color: rgba(0, 0, 0, 0);
-    color: #6362e7;
+    color: #212529;
     border: none
 }
 
@@ -43421,13 +43421,13 @@ body .for-dark {
 
 .page-wrapper.compact-sidebar .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links li a.active {
     background: rgba(99, 98, 231, 0.1);
-    color: #6362e7;
+    color: #212529;
     border-radius: 20px;
     margin: 0 10px
 }
 
 .page-wrapper.compact-sidebar .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links li a.active span {
-    color: #6362e7
+    color: #212529
 }
 
 .page-wrapper.compact-sidebar .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links li a.active~.sidebar-submenu, .page-wrapper.compact-sidebar .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links li a.active~.mega-menu-container {
@@ -43477,7 +43477,7 @@ body .for-dark {
 
 .page-wrapper.compact-sidebar .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links li .sidebar-submenu li a.active, .page-wrapper.compact-sidebar .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links li .mega-menu-container li a.active {
     background-color: rgba(99, 98, 231, 0.1);
-    color: #6362e7;
+    color: #212529;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease
 }
@@ -43795,7 +43795,7 @@ body .for-dark {
 }
 
 .page-wrapper.modern-type .alert-primary {
-    color: #6362e7
+    color: #212529
 }
 
 .page-wrapper.modern-type .project-box {
@@ -45749,7 +45749,7 @@ html[dir="rtl"] .prooduct-details-box .close {
 }
 
 html[dir="rtl"] .b-l-primary {
-    border-right: 1px solid #6362e7 !important;
+    border-right: 1px solid #212529 !important;
     border-left: unset !important
 }
 
@@ -47201,7 +47201,7 @@ html[dir="rtl"] .inverse i {
 }
 
 html[dir="rtl"] .alert-primary.inverse:before {
-    border-right: 7px solid #6362e7;
+    border-right: 7px solid #212529;
     right: 54px;
     left: unset;
     border-left: unset
