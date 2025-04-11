@@ -1,109 +1,116 @@
 {% extends "partials/dashboard-base.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %}
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card card-border shadow">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0"><i class="fas fa-hand-holding-usd me-2"></i>Loan Application</h4>
-                </div>
-                <div class="card-body">
-                    <form method="POST" class="needs-validation" novalidate>
-                        {% csrf_token %}
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    {{ form.loan_type }}
-                                    <label for="{{ form.loan_type.id_for_label }}">Loan Type</label>
-                                    <div class="invalid-feedback">Please select a loan type</div>
-                                </div>
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fruid">
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="section-content">
+                        <div class="transactions-area">
+                            <div class="section-text">
+                                <h5>New Loan Application</h5>
+                                <p>Fill in the details below to apply for a loan</p>
                             </div>
-                            
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    {{ form.amount }}
-                                    <label for="{{ form.amount.id_for_label }}">Loan Amount (UGX)</label>
-                                    <div class="invalid-feedback">Please enter a valid amount</div>
-                                </div>
+                            <div class="form-area">
+                                <form method="POST" class="needs-validation" novalidate>
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="single-input">
+                                                <label>Loan Type</label>
+                                                {{ form.loan_type }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="single-input">
+                                                <label>Amount (UGX)</label>
+                                                {{ form.amount }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="single-input">
+                                                <label>Duration (Months)</label>
+                                                {{ form.duration_months }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="single-input">
+                                                <label>Loan Purpose</label>
+                                                {{ form.purpose }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="cmn-btn w-100 mt-40">
+                                                Submit Application
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    {{ form.duration_months }}
-                                    <label for="{{ form.duration_months.id_for_label }}">Repayment Period (Months)</label>
-                                    <div class="invalid-feedback">1-60 months required</div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    {{ form.purpose }}
-                                    <label for="{{ form.purpose.id_for_label }}">Loan Purpose</label>
-                                    <div class="invalid-feedback">Please describe the loan purpose</div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 mt-4">
-                                <button type="submit" class="btn btn-primary btn-lg w-100">
-                                    <i class="fas fa-paper-plane me-2"></i>Submit Application
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="card card-border shadow">
-                <div class="card-header bg-info text-white">
-                    <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Loan Details</h5>
-                </div>
-                <div class="card-body">
-                    <div class="loan-calculator">
-                        <h6 class="text-muted">Estimated Repayment</h6>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span>Monthly Payment:</span>
-                            <strong id="monthly-payment">UGX 0.00</strong>
-                        </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span>Total Repayment:</span>
-                            <strong id="total-repayment">UGX 0.00</strong>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Total Interest:</span>
-                            <strong id="total-interest">UGX 0.00</strong>
                         </div>
                     </div>
-
-                    <hr class="my-4">
-
-                    <h6 class="text-muted mb-3"><i class="fas fa-percentage me-2"></i>Interest Rates</h6>
-                    <ul class="list-unstyled">
-                        <li class="d-flex justify-content-between py-2">
-                            <span>Personal Loan</span>
-                            <span class="text-primary">12%</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                            <span>Business Loan</span>
-                            <span class="text-primary">10%</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                            <span>Emergency Loan</span>
-                            <span class="text-primary">15%</span>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                            <span>Education Loan</span>
-                            <span class="text-primary">8%</span>
-                        </li>
-                    </ul>
+                </div>
+                <div class="col-xl-4">
+                    <div class="sidebar-right">
+                        <div class="transactions-sidebar">
+                            <div class="section-text">
+                                <h5>Loan Details</h5>
+                                <p>Calculation preview</p>
+                            </div>
+                            <div class="sidebar-content">
+                                <ul class="loan-details">
+                                    <li>
+                                        <span>Monthly Payment:</span>
+                                        <strong id="monthly-payment">UGX 0.00</strong>
+                                    </li>
+                                    <li>
+                                        <span>Total Repayment:</span>
+                                        <strong id="total-repayment">UGX 0.00</strong>
+                                    </li>
+                                    <li>
+                                        <span>Total Interest:</span>
+                                        <strong id="total-interest">UGX 0.00</strong>
+                                    </li>
+                                </ul>
+                                <div class="rates-table">
+                                    <h6>Interest Rates</h6>
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Personal Loan</td>
+                                                <td class="text-end">12%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Business Loan</td>
+                                                <td class="text-end">10%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Emergency Loan</td>
+                                                <td class="text-end">15%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Education Loan</td>
+                                                <td class="text-end">8%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Include the same JavaScript calculator from previous answer -->
+{% endblock %}
+
+ 
+<script src="{% static 'js/jquery.min.js' %}"></script>
 
 <script>
 // Add real-time loan calculation
