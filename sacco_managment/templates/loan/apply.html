@@ -1,0 +1,144 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card card-border shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-hand-holding-usd me-2"></i>Loan Application</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.loan_type }}
+                                    <label for="{{ form.loan_type.id_for_label }}">Loan Type</label>
+                                    <div class="invalid-feedback">Please select a loan type</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.amount }}
+                                    <label for="{{ form.amount.id_for_label }}">Loan Amount (UGX)</label>
+                                    <div class="invalid-feedback">Please enter a valid amount</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.duration_months }}
+                                    <label for="{{ form.duration_months.id_for_label }}">Repayment Period (Months)</label>
+                                    <div class="invalid-feedback">1-60 months required</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.purpose }}
+                                    <label for="{{ form.purpose.id_for_label }}">Loan Purpose</label>
+                                    <div class="invalid-feedback">Please describe the loan purpose</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-paper-plane me-2"></i>Submit Application
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="card card-border shadow">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Loan Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="loan-calculator">
+                        <h6 class="text-muted">Estimated Repayment</h6>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Monthly Payment:</span>
+                            <strong id="monthly-payment">UGX 0.00</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Total Repayment:</span>
+                            <strong id="total-repayment">UGX 0.00</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Total Interest:</span>
+                            <strong id="total-interest">UGX 0.00</strong>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h6 class="text-muted mb-3"><i class="fas fa-percentage me-2"></i>Interest Rates</h6>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between py-2">
+                            <span>Personal Loan</span>
+                            <span class="text-primary">12%</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2">
+                            <span>Business Loan</span>
+                            <span class="text-primary">10%</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2">
+                            <span>Emergency Loan</span>
+                            <span class="text-primary">15%</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2">
+                            <span>Education Loan</span>
+                            <span class="text-primary">8%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Add real-time loan calculation
+document.addEventListener('DOMContentLoaded', function() {
+    const amountInput = document.getElementById('id_amount');
+    const durationInput = document.getElementById('id_duration_months');
+    const loanTypeSelect = document.getElementById('id_loan_type');
+    
+    function calculateRepayment() {
+        const amount = parseFloat(amountInput.value) || 0;
+        const duration = parseInt(durationInput.value) || 1;
+        const rate = {
+            'personal': 12,
+            'business': 10,
+            'emergency': 15,
+            'education': 8
+        }[loanTypeSelect.value] || 12;
+
+        const monthlyRate = rate / 100 / 12;
+        const numerator = monthlyRate * Math.pow(1 + monthlyRate, duration);
+        const denominator = Math.pow(1 + monthlyRate, duration) - 1;
+        const monthly = amount * (numerator / denominator);
+        const total = monthly * duration;
+
+        document.getElementById('monthly-payment').textContent = `UGX ${monthly.toFixed(2)}`;
+        document.getElementById('total-repayment').textContent = `UGX ${total.toFixed(2)}`;
+        document.getElementById('total-interest').textContent = `UGX ${(total - amount).toFixed(2)}`;
+    }
+
+    [amountInput, durationInput, loanTypeSelect].forEach(el => {
+        el.addEventListener('input', calculateRepayment);
+    });
+    
+    calculateRepayment();
+});
+</script>
+
+{% endblock %}

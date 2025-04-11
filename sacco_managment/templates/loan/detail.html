@@ -1,0 +1,122 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="card card-border shadow">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0"><i class="fas fa-file-invoice-dollar me-2"></i>Loan Details</h4>
+            <div class="d-flex gap-2">
+                <a href="#" class="btn btn-light btn-sm">
+                    <i class="fas fa-download me-2"></i>PDF
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h5 class="mb-3">Loan Summary</h5>
+                    <dl class="row">
+                        <dt class="col-sm-5">Loan ID:</dt>
+                        <dd class="col-sm-7">#{{ loan.id }}</dd>
+
+                        <dt class="col-sm-5">Application Date:</dt>
+                        <dd class="col-sm-7">{{ loan.date_applied|date:"d M Y" }}</dd>
+
+                        <dt class="col-sm-5">Loan Type:</dt>
+                        <dd class="col-sm-7">{{ loan.get_loan_type_display }}</dd>
+
+                        <dt class="col-sm-5">Interest Rate:</dt>
+                        <dd class="col-sm-7">{{ loan.interest_rate }}%</dd>
+                    </dl>
+                </div>
+                
+                <div class="col-md-6">
+                    <h5 class="mb-3">Financial Summary</h5>
+                    <dl class="row">
+                        <dt class="col-sm-5">Total Amount:</dt>
+                        <dd class="col-sm-7">UGX {{ loan.amount|floatformat:2 }}</dd>
+
+                        <dt class="col-sm-5">Total Repayment:</dt>
+                        <dd class="col-sm-7">UGX {{ loan.total_repayment|floatformat:2 }}</dd>
+
+                        <dt class="col-sm-5">Total Paid:</dt>
+                        <dd class="col-sm-7 text-success">UGX {{ total_paid|floatformat:2 }}</dd>
+
+                        <dt class="col-sm-5">Remaining Balance:</dt>
+                        <dd class="col-sm-7 text-danger">UGX {{ balance|floatformat:2 }}</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h5 class="mb-3"><i class="fas fa-calendar-alt me-2"></i>Repayment Schedule</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Due Date</th>
+                                    <th>Amount Due</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for payment in repayment_schedule %}
+                                <tr>
+                                    <td>{{ payment.due_date|date:"d M Y" }}</td>
+                                    <td>UGX {{ payment.amount|floatformat:2 }}</td>
+                                    <td>UGX {{ payment.principal|floatformat:2 }}</td>
+                                    <td>UGX {{ payment.interest|floatformat:2 }}</td>
+                                    <td>
+                                        <span class="badge 
+                                            {% if payment.paid %}bg-success
+                                            {% else %}bg-warning{% endif %}">
+                                            {% if payment.paid %}Paid{% else %}Pending{% endif %}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-comment me-2"></i>Admin Comments</h6>
+                            <p class="card-text">{{ loan.admin_comment|default:"No comments available" }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mt-3 mt-md-0">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-chart-line me-2"></i>Repayment Progress</h6>
+                            <div class="progress" style="height: 25px;">
+                                <div class="progress-bar bg-success" role="progressbar" 
+                                     style="width: {% widthratio total_paid loan.total_repayment 100 %}%">
+                                    {% widthratio total_paid loan.total_repayment 100 %}%
+                                </div>
+                            </div>
+                            <div class="mt-2 text-center">
+                                <small class="text-muted">
+                                    {{ total_paid|floatformat:2 }} of {{ loan.total_repayment|floatformat:2 }} UGX
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from decimal import Decimal
-from .models import LoanApplication, LoanRepayment, Notification, Transaction
+from .models import LoanApplication, LoanRepayment, Notification, Transaction, LOAN_TYPES, LOAN_STATUS
 from account.models import Account
 from .forms import LoanApplicationForm
 from django.db.models import Sum

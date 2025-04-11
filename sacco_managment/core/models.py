@@ -3,7 +3,7 @@ from user_auths.models import User
 from account.models import Account
 from shortuuid.django_fields import ShortUUIDField
 
-User = get_user_model() 
+# User = get_user_model() 
 
 TRANSACTION_TYPE = (
     ("transfer", "Transfer"),
@@ -50,30 +50,31 @@ NOTIFICATION_TYPE = (
 
 
 # loan model
-class LoanApplication(models.Model):
-    LOAN_STATUS = (
-        ('pending', 'Pending'),
-        ('approved', 'Approved'),
-        ('rejected', 'Rejected'),
-        ('disbursed', 'Disbursed'),
-        ('completed', 'Completed'),
-    )
 
-    LOAN_TYPES = (
-        ('personal', 'Personal Loan'),
-        ('business', 'Business Loan'),
-        ('emergency', 'Emergency Loan'),
-        ('education', 'Education Loan'),
-    )
-    
+
+LOAN_TYPES = (
+    ('personal', 'Personal Loan'),
+    ('business', 'Business Loan'),
+    ('emergency', 'Emergency Loan'),
+    ('education', 'Education Loan'),
+)
+
+LOAN_STATUS = (
+    ('pending', 'Pending'),
+    ('approved', 'Approved'),
+    ('rejected', 'Rejected'),
+    ('disbursed', 'Disbursed'),
+    ('completed', 'Completed'),
+)
+class LoanApplication(models.Model):
+    loan_type = models.CharField(max_length=20, choices=LOAN_TYPES)
+    status = models.CharField(max_length=20, choices=LOAN_STATUS, default='pending')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    loan_type = models.CharField(max_length=20, choices=LOAN_TYPES)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     duration_months = models.PositiveIntegerField()
     interest_rate = models.DecimalField(max_digits=5, decimal_places=2)
     purpose = models.TextField()
-    status = models.CharField(max_length=20, choices=LOAN_STATUS, default='pending')
     date_applied = models.DateTimeField(auto_now_add=True)
     date_approved = models.DateTimeField(null=True, blank=True)
     date_disbursed = models.DateTimeField(null=True, blank=True)
