@@ -45,6 +45,11 @@ urlpatterns = [
     path("delete_card/<card_id>/", credit_card.delete_card, name="delete_card"),
     
      
+     # Loan URLs
+    path('loans/apply/', loan_views.apply_for_loan, name='apply-loan'),
+    path('loans/', loan_views.loan_status, name='loan-status'),
+    path('loans/<int:loan_id>/', loan_views.loan_detail, name='loan-detail'),
+    path('loans/<int:loan_id>/repay/', loan_views.repay_loan, name='repay-loan'),
     
 
 
