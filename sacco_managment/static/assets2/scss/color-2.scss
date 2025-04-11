@@ -16,11 +16,11 @@
 @import "utils/variables";
 
 :root {
-    --theme-deafult:#10539c;
+    --theme-deafult:#1D7C78;
     --theme-secondary: #ec9a71;
 }
 
-$primary-color: #10539c;
+$primary-color: #1D7C78;
 $secondary-color : #ec9a71;
 $gradient-primary: linear-gradient($secondary-color, $primary-color);
 $gradient-primary-direction: linear-gradient(to right, lighten($primary-color, 10%), darken($primary-color, 8%));

@@ -44,9 +44,7 @@ urlpatterns = [
     path("withdraw_fund/<card_id>/", credit_card.withdraw_fund, name="withdraw_fund"),
     path("delete_card/<card_id>/", credit_card.delete_card, name="delete_card"),
     
-    
-    
-        # zeta
+    # zeta
     
     # dashboard paths
 
