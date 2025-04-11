@@ -47,6 +47,70 @@ NOTIFICATION_TYPE = (
 )
 
 
+# loan model
+class LoanApplication(models.Model):
+    LOAN_STATUS = (
+        ('pending', 'Pending'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+        ('disbursed', 'Disbursed'),
+        ('completed', 'Completed'),
+    )
+
+    LOAN_TYPES = (
+        ('personal', 'Personal Loan'),
+        ('business', 'Business Loan'),
+        ('emergency', 'Emergency Loan'),
+        ('education', 'Education Loan'),
+    )
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    loan_type = models.CharField(max_length=20, choices=LOAN_TYPES)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    duration_months = models.PositiveIntegerField()
+    interest_rate = models.DecimalField(max_digits=5, decimal_places=2)
+    purpose = models.TextField()
+    status = models.CharField(max_length=20, choices=LOAN_STATUS, default='pending')
+    date_applied = models.DateTimeField(auto_now_add=True)
+    date_approved = models.DateTimeField(null=True, blank=True)
+    date_disbursed = models.DateTimeField(null=True, blank=True)
+    admin_comment = models.TextField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.loan_type} - {self.amount}"
+    
+    @property
+    def monthly_repayment(self):
+        monthly_rate = self.interest_rate / 100 / 12
+        numerator = monthly_rate * (1 + monthly_rate) ** self.duration_months
+        denominator = (1 + monthly_rate) ** self.duration_months - 1
+        return self.amount * (numerator / denominator)
+    
+    @property
+    def total_repayment(self):
+        return self.monthly_repayment * self.duration_months
+    
+    @property
+    def total_interest(self):
+        return self.total_repayment - self.amount
+
+
+class LoanRepayment(models.Model):
+    loan = models.ForeignKey(LoanApplication, on_delete=models.CASCADE, related_name='repayments')
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    payment_date = models.DateTimeField(auto_now_add=True)
+    transaction = models.ForeignKey('Transaction', on_delete=models.SET_NULL, null=True, blank=True)
+    is_paid = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f"Repayment for {self.loan} - {self.amount}"
+
+
+
+# loan model
+
 class Transaction(models.Model):
     transaction_id = ShortUUIDField(
         unique=True, length=15, max_length=20, prefix="TRN")
