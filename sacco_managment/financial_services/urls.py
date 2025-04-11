@@ -1,53 +1,28 @@
 from django.urls import path
 from . import views
+from django.views.generic import TemplateView
 
 app_name = "financial_services"
 
 urlpatterns = [
+    # Dashboard
     path("crypto/", views.crypto_dashboard, name="crypto-dashboard"),
+    path("crypto/wallet/<int:wallet_id>/", views.wallet_detail, name="wallet-detail"),
+    
+    # Transactions
     path("crypto/transaction/", views.create_transaction, name="create-transaction"),
     path("crypto/swap/", views.swap_crypto, name="swap-crypto"),
     path("crypto/transfer/", views.transfer_crypto, name="transfer-crypto"),
+    path("crypto/history/", views.transaction_history, name="transaction-history"),
+    path("crypto/transaction/<str:txid>/", views.TransactionDetailView.as_view(), name="transaction-detail"),
+    
+    # Reports
+    path("crypto/reports/", views.generate_reports, name="generate-reports"),
+    
+    # Exchange Rates
     path("exchange-rates/", views.exchange_rates, name="exchange-rates"),
- 
-    # Keep other existing URLs
-    path("exchange-rates/", views.exchange_rates, name="exchange-rates"),
+    path("api/exchange-rates/", views.get_exchange_rates_api, name="get-exchange-rates-api"),
+    
+    # API Endpoints
+    path("api/wallet-balance/<int:wallet_id>/", views.get_wallet_balance_api, name="get-wallet-balance-api"),
 ]
-
-
-
-
-# from django.urls import path
-# from financial_services import views
-
-
-# app_name = "financial_services"
-
-# urlpatterns = [
-    
-#     # Exchange
-#     path("exchange-rates/", views.exchange_rates, name="exchange-rates"),
-#     path("currency-exchange/", views.currency_exchange, name="currency-exchange"),
-    
-#     # Recipients
-#     path("recipients/", views.recipient_list, name="recipient-list"),
-#     path("recipients/add/", views.add_recipient, name="add-recipient"),
-#     path("recipients/<int:pk>/edit/", views.edit_recipient, name="edit-recipient"),
-#     path("recipients/<int:pk>/delete/", views.delete_recipient, name="delete-recipient"),
-    
-#     # Crypto
-#     path("crypto-wallet/", views.crypto_wallet, name="crypto-wallet"),
-#     path("buy-crypto/", views.buy_crypto, name="buy-crypto"),
-#     path("sell-crypto/", views.sell_crypto, name="sell-crypto"),
-    
-#     # Deposit
-#     path("deposit/", views.initiate_deposit, name="initiate-deposit"),
-#     path("deposit/process/", views.process_deposit, name="process-deposit"),
-    
-#     # Withdrawal
-#     path("withdraw/", views.initiate_withdrawal, name="initiate-withdrawal"),
-#     path("withdraw/process/", views.process_withdrawal, name="process-withdrawal"),
-    
-#     # path('dashboard/', views.dashboard, name='dashboard'),
-
-# ]

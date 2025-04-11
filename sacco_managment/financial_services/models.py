@@ -4,7 +4,10 @@ from user_auths.models import User
 from shortuuid.django_fields import ShortUUIDField
 from django.core.validators import MinValueValidator
 from decimal import Decimal
+import shortuuid
 
+
+metadata = models.JSONField(default=dict, blank=True)
 class CryptoWallet(models.Model):
     WALLET_TYPES = (
         ('BTC', 'Bitcoin'),
@@ -13,6 +16,10 @@ class CryptoWallet(models.Model):
         ('LTC', 'Litecoin'),
         ('XRP', 'Ripple'),
         ('BCH', 'Bitcoin Cash'),
+    )
+    wallet_type = models.CharField(
+        max_length=10,
+        choices=WALLET_TYPES
     )
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='crypto_wallets')
@@ -42,10 +49,12 @@ class CryptoWallet(models.Model):
             raise ValidationError("Wallet balance cannot be negative")
 
 class CryptoTransaction(models.Model):
+# CryptoTransaction model
     TRANSACTION_TYPES = (
         ('BUY', 'Purchase'),
         ('SELL', 'Sale'),
-        ('SWAP', 'Swap'),
+        ('SWAP_IN', 'Swap In'),
+        ('SWAP_OUT', 'Swap Out'),
         ('TRANSFER_IN', 'Transfer In'),
         ('TRANSFER_OUT', 'Transfer Out'),
     )
@@ -58,13 +67,22 @@ class CryptoTransaction(models.Model):
     )
     
     txid = ShortUUIDField(
-        unique=True, 
-        length=15, 
-        prefix="tx_",
-        alphabet='1234567890ABCDEFGHJKLMNPQRSTUVWXYZ'
-    )
+            unique=True,
+            length=15,
+            prefix="tx_",
+            alphabet='1234567890ABCDEFGHJKLMNPQRSTUVWXYZ',
+            default=shortuuid.uuid  # Keep this but handle the warning
+        )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
-    wallet = models.ForeignKey(CryptoWallet, on_delete=models.PROTECT, related_name='transactions')
+    
+    wallet = models.ForeignKey(
+        'CryptoWallet',
+        on_delete=models.PROTECT,
+        null=True,  # Temporary
+        blank=True
+    
+    )
     transaction_type = models.CharField(max_length=12, choices=TRANSACTION_TYPES)
     amount = models.DecimalField(
         max_digits=20, 
@@ -140,3 +158,35 @@ class ExchangeRate(models.Model):
         if not self.expires_at:
             self.expires_at = timezone.now() + timezone.timedelta(days=1)
         super().save(*args, **kwargs)
+        
+        
+        
+class CryptoSwap(models.Model):
+    txid = ShortUUIDField(
+        unique=True, 
+        length=15, 
+        prefix="swap_",
+        alphabet='1234567890ABCDEFGHJKLMNPQRSTUVWXYZ'
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    source_transaction = models.ForeignKey(
+        CryptoTransaction, 
+        on_delete=models.PROTECT,
+        related_name='source_swaps'
+    )
+    target_transaction = models.ForeignKey(
+        CryptoTransaction,
+        on_delete=models.PROTECT,
+        related_name='target_swaps'
+    )
+    exchange_rate = models.DecimalField(max_digits=12, decimal_places=6)
+    swap_fee = models.DecimalField(max_digits=12, decimal_places=8)
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ['-timestamp']
+        verbose_name = 'Crypto Swap'
+        verbose_name_plural = 'Crypto Swaps'
+
+    def __str__(self):
+        return f"Swap {self.txid}"

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import CryptoWallet, CryptoTransaction, ExchangeRate
+from .models import CryptoWallet, CryptoTransaction, ExchangeRate, CryptoSwap
 
 @admin.register(CryptoWallet)
 class CryptoWalletAdmin(admin.ModelAdmin):
@@ -58,3 +58,20 @@ class ExchangeRateAdmin(admin.ModelAdmin):
         return obj.expires_at > timezone.now()
     is_active.boolean = True
     is_active.short_description = 'Active'
+    
+    
+    
+@admin.register(CryptoSwap)
+class CryptoSwapAdmin(admin.ModelAdmin):
+    list_display = ('txid', 'user', 'source_currency', 'target_currency', 'exchange_rate', 'timestamp')
+    list_filter = ('timestamp',)
+    search_fields = ('txid', 'user__username')
+    readonly_fields = ('timestamp',)
+    
+    def source_currency(self, obj):
+        return obj.source_transaction.wallet.wallet_type
+    source_currency.short_description = 'Source Currency'
+    
+    def target_currency(self, obj):
+        return obj.target_transaction.wallet.wallet_type
+    target_currency.short_description = 'Target Currency'

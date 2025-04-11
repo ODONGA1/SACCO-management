@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Transaction Details</h4>
+                        <a href="{% url 'financial_services:transaction-history' %}" class="btn btn-sm btn-outline-secondary">
+                            Back to History
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5>Transaction Information</h5>
+                            <dl class="row">
+                                <dt class="col-sm-4">Transaction ID:</dt>
+                                <dd class="col-sm-8">{{ transaction.txid }}</dd>
+                                
+                                <dt class="col-sm-4">Date:</dt>
+                                <dd class="col-sm-8">{{ transaction.timestamp|date:"M d, Y H:i" }}</dd>
+                                
+                                <dt class="col-sm-4">Type:</dt>
+                                <dd class="col-sm-8">
+                                    <span class="badge bg-{% if transaction.transaction_type == 'BUY' %}success{% elif transaction.transaction_type in ['SELL','TRANSFER_OUT'] %}danger{% else %}info{% endif %}">
+                                        {{ transaction.get_transaction_type_display }}
+                                    </span>
+                                </dd>
+                                
+                                <dt class="col-sm-4">Status:</dt>
+                                <dd class="col-sm-8">
+                                    <span class="badge bg-{% if transaction.status == 'CONFIRMED' %}success{% elif transaction.status == 'FAILED' %}danger{% else %}warning{% endif %}">
+                                        {{ transaction.get_status_display }}
+                                    </span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Amount Details</h5>
+                            <dl class="row">
+                                <dt class="col-sm-4">Wallet:</dt>
+                                <dd class="col-sm-8">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://cryptoicon-api.vercel.app/api/icon/{{ transaction.wallet.wallet_type|lower }}" 
+                                             width="20" height="20" class="me-2">
+                                        {{ transaction.wallet.get_wallet_type_display }}
+                                    </div>
+                                </dd>
+                                
+                                <dt class="col-sm-4">Amount:</dt>
+                                <dd class="col-sm-8 {% if transaction.transaction_type == 'BUY' %}text-success{% elif transaction.transaction_type in ['SELL','TRANSFER_OUT'] %}text-danger{% endif %}">
+                                    {% if transaction.transaction_type == 'BUY' %}+{% elif transaction.transaction_type in ['SELL','TRANSFER_OUT'] %}-{% endif %}
+                                    {{ transaction.amount|floatformat:8 }} {{ transaction.wallet.wallet_type }}
+                                </dd>
+                                
+                                {% if transaction.network_fee > 0 %}
+                                <dt class="col-sm-4">Network Fee:</dt>
+                                <dd class="col-sm-8">{{ transaction.network_fee|floatformat:8 }} {{ transaction.wallet.wallet_type }}</dd>
+                                {% endif %}
+                                
+                                {% if transaction.tx_hash %}
+                                <dt class="col-sm-4">Transaction Hash:</dt>
+                                <dd class="col-sm-8">
+                                    <code>{{ transaction.tx_hash }}</code>
+                                    <button class="btn btn-sm btn-outline-secondary ms-2" onclick="navigator.clipboard.writeText('{{ transaction.tx_hash }}')">
+                                        <i class="bi bi-clipboard"></i>
+                                    </button>
+                                </dd>
+                                {% endif %}
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    {% if transaction.metadata %}
+                    <div class="mb-4">
+                        <h5>Additional Information</h5>
+                        <div class="card">
+                            <div class="card-body">
+                                <pre class="mb-0">{{ transaction.metadata|pprint }}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if related_transaction %}
+                    <div class="alert alert-info">
+                        <h5><i class="bi bi-arrow-left-right me-2"></i>Related Transaction</h5>
+                        <p>This transaction is part of a swap operation.</p>
+                        <a href="{% url 'financial_services:transaction-detail' related_transaction.txid %}" class="btn btn-sm btn-info">
+                            View Related Transaction
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
