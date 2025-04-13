@@ -178,8 +178,8 @@ class Notification(models.Model):
     amount = models.IntegerField(default=0)
     is_read = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
-    nid = ShortUUIDField(length=10, max_length=25,
-                         alphabet="abcdefghijklmnopqrstuvxyz")
+    nid = ShortUUIDField(length=10, max_length=25, alphabet="abcdefghijklmnopqrstuvxyz")
+    message = models.TextField(blank=True, null=True)  
 
     class Meta:
         ordering = ["-date"]

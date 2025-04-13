@@ -33,6 +33,6 @@ class LoanApplicationForm(forms.ModelForm):
     
     def clean_duration_months(self):
         duration = self.cleaned_data.get('duration_months')
-        if duration < 1 or duration > 60:  # Max 5 years
+        if duration < 1 or duration > 12:  # Max 1 years
             raise forms.ValidationError("Loan duration must be between 1 and 60 months")
         return duration
