@@ -265,7 +265,7 @@ JAZZMIN_SETTINGS = {
         {"app": "sacco"},
         {"model": "sacco.Member"},
         {"model": "sacco.Transaction"},
-        {"name": "Support", "url": "https://support.primesacco.com", "new_window": True},
+        {"name": "Support", "url": "https://support.gemsacco.com", "new_window": True},
     ],
 
     # Sidebar Customization
