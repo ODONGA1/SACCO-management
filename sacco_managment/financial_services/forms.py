@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from decimal import Decimal
-from .models import CryptoWallet
+from .models import CryptoWallet, CryptoTransaction
 
 class CryptoTransactionForm(forms.ModelForm):
     class Meta:

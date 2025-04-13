@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.core.validators import MinValueValidator, RegexValidator
+from django.core.validators import MinValueValidator
 from django.utils import timezone
 from decimal import Decimal
-import shortuuid
 from shortuuid.django_fields import ShortUUIDField
+import shortuuid
 
 User = get_user_model()
 
@@ -20,22 +20,7 @@ class CryptoWallet(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wallets')
     wallet_type = models.CharField(max_length=10, choices=WALLET_TYPES)
-    address = models.CharField(
-        max_length=255,
-        unique=True,
-        validators=[
-            RegexValidator(
-                regex='^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$',
-                message='Invalid Bitcoin address format',
-                code='invalid_address'
-            ) if wallet_type == 'BTC' else 
-            RegexValidator(
-                regex='^0x[a-fA-F0-9]{40}$',
-                message='Invalid Ethereum address format',
-                code='invalid_address'
-            ) for wallet_type in [x[0] for x in WALLET_TYPES]
-        ][0]
-    )
+    address = models.CharField(max_length=255, unique=True, null=True, blank=True)   
     balance = models.DecimalField(
         max_digits=20, 
         decimal_places=8, 
@@ -45,6 +30,7 @@ class CryptoWallet(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     metadata = models.JSONField(default=dict, blank=True)
 
     class Meta:
@@ -55,10 +41,6 @@ class CryptoWallet(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s {self.get_wallet_type_display()} Wallet"
-
-    def clean(self):
-        if self.balance < Decimal('0'):
-            raise ValidationError("Wallet balance cannot be negative")
 
 
 class CryptoTransaction(models.Model):
@@ -77,18 +59,26 @@ class CryptoTransaction(models.Model):
         ('FAILED', 'Failed'),
         ('CANCELLED', 'Cancelled'),
     )
-    
+
+    # TEMP: Allow nulls for migration & data backfill
     txid = ShortUUIDField(
         length=16,
         prefix="tx_",
         alphabet='1234567890ABCDEFGHJKLMNPQRSTUVWXYZ',
-        unique=True
+        unique=True,
+        null=True,
+        blank=True,
+        default=shortuuid.uuid
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
+
+    # TEMP: Allow nulls for migration & data backfill
     wallet = models.ForeignKey(
         CryptoWallet,
         on_delete=models.PROTECT,
-        related_name='transactions'
+        related_name='transactions',
+        null=True,
+        blank=True
     )
     transaction_type = models.CharField(max_length=12, choices=TRANSACTION_TYPES)
     amount = models.DecimalField(
@@ -150,7 +140,13 @@ class ExchangeRate(models.Model):
         decimal_places=6,
         validators=[MinValueValidator(Decimal('0.000001'))]
     )
-    provider = models.CharField(max_length=10, choices=PROVIDERS)
+    
+    provider = models.CharField(
+        max_length=10,
+        choices=PROVIDERS,
+        default='BINANCE'
+    )
+
     effective_date = models.DateField(default=timezone.now)
     expires_at = models.DateTimeField(default=timezone.now() + timezone.timedelta(days=1))
     last_updated = models.DateTimeField(auto_now=True)
@@ -171,11 +167,15 @@ class ExchangeRate(models.Model):
 
 
 class CryptoSwap(models.Model):
+    # TEMP: Allow nulls for migration & data backfill
     txid = ShortUUIDField(
         length=16,
         prefix="swap_",
         alphabet='1234567890ABCDEFGHJKLMNPQRSTUVWXYZ',
-        unique=True
+        unique=True,
+        null=True,
+        blank=True,
+        default=shortuuid.uuid
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='swaps')
     source_transaction = models.ForeignKey(

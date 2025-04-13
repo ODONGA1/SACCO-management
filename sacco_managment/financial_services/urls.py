@@ -17,5 +17,14 @@ urlpatterns = [
     # Swap
     path("swap/", views.swap_crypto, name="swap-crypto"),
     
+      # Exchange Rates
+    path("rates/", views.exchange_rates, name="exchange-rates"),
+    path("api/rates/", views.get_exchange_rates_api, name="exchange-rates-api"),
     
+    # Reports
+    path("reports/", views.generate_reports, name="generate-reports"),
+    
+    # API Endpoints
+    path("api/wallet/<int:wallet_id>/", views.get_wallet_balance_api, name="wallet-balance-api"),
+
 ]
