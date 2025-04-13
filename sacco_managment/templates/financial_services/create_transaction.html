@@ -1,13 +1,37 @@
-{% extends 'base.html' %}
-
+{% extends 'partials/dashboard-base.html' %}
+{% load static %}
+{% load humanize %}
 {% block content %}
-<h2>Create Transaction</h2>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="cmn-btn w-100 mt-40">Submit</button>
-</form>
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-content">
+                        <div class="transactions-area">
+                            <div class="section-text">
+                                <h5>Create Transaction</h5>
+                                <p>Fill out the form to create a new transaction</p>
+                            </div>
 
-<a href="{% url 'crypto_dashboard' %}">Back to Dashboard</a>
+                            <!-- Create Transaction Form -->
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-green-light w-100 mt-4">Submit</button>
+                            </form>
+
+                            <!-- Action Links -->
+                            <div class="action-links mt-4">
+                                <a href="{% url 'financial_services:crypto_dashboard' %}" class="btn btn-green-medium">Back to Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

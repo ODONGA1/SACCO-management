@@ -14,7 +14,7 @@ def dashboard(request):
         wallet__user=request.user
     ).order_by('-timestamp')[:10]
     
-    return render(request, 'crypto/dashboard.html', {
+    return render(request, 'financial_services/dashboard.html', {
         'wallets': wallets,
         'transactions': transactions
     })
@@ -44,7 +44,7 @@ def create_transaction(request):
     else:
         form = TransactionForm(user=request.user)
     
-    return render(request, 'crypto/create_transaction.html', {'form': form})
+    return render(request, 'financial_services/create_transaction.html', {'form': form})
 
 @login_required
 def transaction_history(request):
@@ -52,7 +52,7 @@ def transaction_history(request):
         wallet__user=request.user
     ).order_by('-timestamp')
     
-    return render(request, 'crypto/transaction_history.html', {
+    return render(request, 'financial_services/transaction_history.html', {
         'transactions': transactions
     })
 
