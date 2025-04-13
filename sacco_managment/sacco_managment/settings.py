@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     
     # PWA
     "pwa",
-    'sass_processor',
+    # 'sass_processor',
 ]
 
 MIDDLEWARE = [
