@@ -113,39 +113,53 @@
 <script src="{% static 'js/jquery.min.js' %}"></script>
 
 <script>
-// Add real-time loan calculation
-document.addEventListener('DOMContentLoaded', function() {
-    const amountInput = document.getElementById('id_amount');
-    const durationInput = document.getElementById('id_duration_months');
-    const loanTypeSelect = document.getElementById('id_loan_type');
+    // Add real-time loan calculation
+    document.addEventListener('DOMContentLoaded', function() {
+        const amountInput = document.getElementById('id_amount');
+        const durationInput = document.getElementById('id_duration_months');
+        const loanTypeSelect = document.getElementById('id_loan_type');
+        
+        function calculateRepayment() {
+            const amount = parseFloat(amountInput.value) || 0;
+            const duration = parseInt(durationInput.value) || 1;
+            const rate = {
+                'personal': 12,
+                'business': 10,
+                'emergency': 15,
+                'education': 8
+            }[loanTypeSelect.value] || 12;
     
-    function calculateRepayment() {
-        const amount = parseFloat(amountInput.value) || 0;
-        const duration = parseInt(durationInput.value) || 1;
-        const rate = {
-            'personal': 12,
-            'business': 10,
-            'emergency': 15,
-            'education': 8
-        }[loanTypeSelect.value] || 12;
-
-        const monthlyRate = rate / 100 / 12;
-        const numerator = monthlyRate * Math.pow(1 + monthlyRate, duration);
-        const denominator = Math.pow(1 + monthlyRate, duration) - 1;
-        const monthly = amount * (numerator / denominator);
-        const total = monthly * duration;
-
-        document.getElementById('monthly-payment').textContent = `UGX ${monthly.toFixed(2)}`;
-        document.getElementById('total-repayment').textContent = `UGX ${total.toFixed(2)}`;
-        document.getElementById('total-interest').textContent = `UGX ${(total - amount).toFixed(2)}`;
-    }
-
-    [amountInput, durationInput, loanTypeSelect].forEach(el => {
-        el.addEventListener('input', calculateRepayment);
+            // Monthly interest rate
+            const monthlyRate = rate / 100 / 12;
+    
+            // Calculate the monthly payment using the formula
+            const numerator = monthlyRate * Math.pow(1 + monthlyRate, duration);
+            const denominator = Math.pow(1 + monthlyRate, duration) - 1;
+            const monthlyPayment = amount * (numerator / denominator);
+    
+            // If monthlyPayment is NaN or less than or equal to zero, default to 0
+            if (isNaN(monthlyPayment) || monthlyPayment <= 0) {
+                return;
+            }
+    
+            const totalRepayment = monthlyPayment * duration; // Total repayment over the loan period
+            const totalInterest = totalRepayment - amount; // Total interest is the total repayment minus the principal amount
+    
+            // Update the UI with the calculated values
+            document.getElementById('monthly-payment').textContent = `UGX ${monthlyPayment.toFixed(2)}`;
+            document.getElementById('total-repayment').textContent = `UGX ${totalRepayment.toFixed(2)}`;
+            document.getElementById('total-interest').textContent = `UGX ${totalInterest.toFixed(2)}`;
+        }
+    
+        // Listen for changes in the loan type, amount, or duration and recalculate
+        [amountInput, durationInput, loanTypeSelect].forEach(el => {
+            el.addEventListener('input', calculateRepayment);
+        });
+        
+        // Initial calculation when the page is loaded
+        calculateRepayment();
     });
-    
-    calculateRepayment();
-});
-</script>
+    </script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>    
 
 {% endblock %}

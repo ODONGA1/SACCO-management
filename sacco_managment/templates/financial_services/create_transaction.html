@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Transaction</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="cmn-btn w-100 mt-40">Submit</button>
+</form>
+
+<a href="{% url 'crypto_dashboard' %}">Back to Dashboard</a>
+{% endblock %}
