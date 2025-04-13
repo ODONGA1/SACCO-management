@@ -203,16 +203,34 @@
                                     <img src="{% static 'assets1/images/icon/exchange.png' %}" alt="Exchange"> <span>transaction_history</span>
                                 </a>
                             </li>
-                           <li>
-                                <a href="{% url 'core:loan-status' %}">
-                                    <img src="{% static 'assets1/images/icon/recipients.png' %}" alt="Recipients"> <span>Loan Status</span>
-                                </a>
-                            </li>  
+
                             <li>
-                                <a href="{% url 'financial_services:crypto_dashboard' %}">
-                                    <img src="{% static 'assets1/images/icon/crypto.png' %}" alt="Crypto"> <span>Crypto</span>
+                                <a data-bs-toggle="collapse" href="#loansMenu" role="button" aria-expanded="false" aria-controls="loansMenu">
+                                    <img src="{% static 'assets1/images/icon/limit.png' %}" alt="Loans">
+                                    <span>Loans</span>
                                 </a>
+                                <ul class="collapse list-unstyled ps-4" id="loansMenu">
+                                    <li><a href="{% url 'core:apply-loan' %}">Apply for Loan</a></li>
+                                    <li><a href="{% url 'core:loan-status' %}">Loan Status</a></li>
+                                    <li><a href="{% url 'core:loan-history' %}">Loan History</a></li>
+                                    <li><a href="{% url 'core:repayment-history' %}">Repayment History</a></li>
+                                </ul>
                             </li>
+                            
+
+                            <li>
+                                <a data-bs-toggle="collapse" href="#cryptoMenu" role="button" aria-expanded="false" aria-controls="cryptoMenu">
+                                    <img src="{% static 'assets1/images/icon/crypto.png' %}" alt="Crypto">
+                                    <span>Crypto</span>
+                                </a>
+                                <ul class="collapse list-unstyled ps-4" id="cryptoMenu">
+                                    <li><a href="{% url 'financial_services:crypto_dashboard' %}">Crypto Dashboard</a></li>
+                                    <li><a href="{% url 'financial_services:transaction_history' %}">Crypto History</a></li>
+                                    <li><a href="{% url 'financial_services:generate_report' %}">Crypto Report</a></li>
+                                </ul>
+                            </li>
+
+
                             <li>
                                 <a href="{% url 'financial_services:transaction_history' %}">
                                     <img src="{% static 'assets1/images/icon/deposit.png' %}" alt="Deposit"> <span>Crypto History</span>
@@ -223,16 +241,15 @@
                                     <img src="{% static 'assets1/images/icon/withdraw.png' %}" alt="Withdraw"> <span>Crypto Report</span>
                                 </a>
                             </li>
+                            
+
                             <li>
-                                <a href="{% url 'core:apply-loan' %}">
-                                    <img src="{% static 'assets1/images/icon/loan.png' %}" alt="Loan"> <span>Apply for Loan</span>
+                                <a href="{% url 'account:all-credit-cards' %}">
+                                    <img src="{% static 'assets1/images/icon/card.png' %}" alt="Cards">
+                                    <span>My Cards</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{% url 'core:loan-status' %}">
-                                    <img src="{% static 'assets1/images/icon/loan-status.png' %}" alt="Loan Status"> <span>My Loans</span>
-                                </a>
-                            </li>
+ 
                         </ul>
                         <ul class="bottom-item">
                             <li class="active">

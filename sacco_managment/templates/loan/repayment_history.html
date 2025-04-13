@@ -1,0 +1,61 @@
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fruid">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="section-content">
+                        <div class="transactions-area">
+                            <div class="section-text text-center mb-4">
+                                <h5>Loan Repayment History</h5>
+                                <p>Track your repayments across all loans</p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table text-white">
+                                    <thead>
+                                        <tr>
+                                            <th>Loan Type</th>
+                                            <th>Amount Paid</th>
+                                            <th>Payment Date</th>
+                                            <th>Status</th>
+                                            <th>Transaction</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for repayment in repayments %}
+                                        <tr>
+                                            <td>{{ repayment.loan.get_loan_type_display }}</td>
+                                            <td>UGX {{ repayment.amount|intcomma }}</td>
+                                            <td>{{ repayment.payment_date|date:"M d, Y" }}</td>
+                                            <td>
+                                                <span class="badge {% if repayment.is_paid %}bg-success{% else %}bg-warning{% endif %}">
+                                                    {% if repayment.is_paid %}Paid{% else %}Pending{% endif %}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {% if repayment.transaction %}
+                                                    <small>{{ repayment.transaction.transaction_id }}</small>
+                                                {% else %}
+                                                    <em>—</em>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="5" class="text-center">No repayments made yet.</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

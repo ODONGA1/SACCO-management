@@ -1,0 +1,67 @@
+{% extends 'partials/dashboard-base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fruid">
+            <div class="row justify-content-center">
+                <div class="col-xl-11 col-lg-11">
+                    <div class="section-content">
+
+                        <div class="transactions-area">
+                            <div class="section-text text-center mb-4">
+                                <h5>All Credit Cards</h5>
+                                <p>Review your added credit cards and their balances</p>
+                            </div>
+
+                            <div class="row">
+                                {% for card in credit_cards %}
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="card__main">
+                                        <div class="{% if card.card_type == 'verve' %}Front_card{% elif card.card_type == 'master' %}masterCard{% else %}visaCard{% endif %}">
+                                            <div class="top_card">
+                                                <span class="visa">{{ card.card_type|upper }}</span>
+                                                <div class="logo">
+                                                    <img src="{% static 'assets1/images/logo.png' %}" class="logo" alt="logo">
+                                                </div>
+                                            </div>
+                                            <div class="middle_card mt-4">
+                                                <span class="chip"></span>
+                                                <div class="card_number">{{ card.number }}</div>
+                                            </div>
+                                            <div class="bottom_card">
+                                                <div class="card_info">
+                                                    <div class="card_holder_name">${{ card.amount|intcomma }}</div>
+                                                    <div class="card_holder_name">{{ card.name }}</div>
+                                                </div>
+                                                <div class="card_info">
+                                                    <div class="card_holder_info">
+                                                        <span>{{ card.month }}</span><span class="slash">/</span><span>{{ card.year }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <a href="{% url 'core:card-detail' card.card_id %}" class="btn btn-sm btn-primary w-100">View Card</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="col-12 text-center">
+                                    <p>You don’t have any credit cards yet. <a href="{% url 'account:dashboard' %}" class="text-info">Add one from dashboard</a>.</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</section>
+
+{% endblock %}

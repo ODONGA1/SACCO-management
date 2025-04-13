@@ -150,3 +150,16 @@ def repay_loan(request, loan_id):
         'monthly_repayment': loan.monthly_repayment,
     }
     return render(request, 'loan/repay.html', context)
+
+
+
+@login_required
+def loan_history(request):
+    loans = LoanApplication.objects.filter(user=request.user).order_by('-date_applied')
+    return render(request, 'loan/history.html', {'loans': loans})
+
+#  All repayments (across all loans)
+@login_required
+def repayment_history(request):
+    repayments = LoanRepayment.objects.filter(loan__user=request.user).order_by('-payment_date')
+    return render(request, 'loan/repayment_history.html', {'repayments': repayments})

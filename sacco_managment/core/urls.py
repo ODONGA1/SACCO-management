@@ -5,7 +5,9 @@ from .views import (
     apply_for_loan, 
     loan_status, 
     loan_detail, 
-    repay_loan
+    repay_loan,
+    loan_history,
+    repayment_history,
 )
 
 
@@ -53,10 +55,13 @@ urlpatterns = [
     
      
      # Loan URLs
-   path('loans/apply/', apply_for_loan, name='apply-loan'),
+    path('loans/apply/', apply_for_loan, name='apply-loan'),
     path('loans/', loan_status, name='loan-status'),
+    path('loans/history/', loan_history, name='loan-history'),
+    path('loans/repayments/', repayment_history, name='repayment-history'),
     path('loans/<int:loan_id>/', loan_detail, name='loan-detail'),
     path('loans/<int:loan_id>/repay/', repay_loan, name='repay-loan'),
+    
     
 
 

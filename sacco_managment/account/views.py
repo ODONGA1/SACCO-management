@@ -131,3 +131,7 @@ def dashboard(request):
 
 
 
+@login_required
+def all_credit_cards(request):
+    cards = CreditCard.objects.filter(user=request.user)
+    return render(request, "credit_card/all-card.html", {"credit_cards": cards})
