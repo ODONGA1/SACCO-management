@@ -1,61 +1,73 @@
 from django.db import models
-from user_auths.models import User
-from account.models import Account
-from shortuuid.django_fields import ShortUUIDField
-from core.models import Transaction
+from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 
-class ExchangeRate(models.Model):
-    base_currency = models.CharField(max_length=3, default='USD')
-    target_currency = models.CharField(max_length=3)
-    rate = models.DecimalField(max_digits=12, decimal_places=6)
-    last_updated = models.DateTimeField(auto_now=True)
+# Get the custom User model
+User = get_user_model()
 
-    def __str__(self):
-        return f"{self.base_currency}/{self.target_currency}"
-
-class Recipient(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    account_number = models.CharField(max_length=20)
-    bank_name = models.CharField(max_length=100)
-    nickname = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.nickname} - {self.account_number}"
-
+# financial_services/models.py
 class CryptoWallet(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bitcoin_balance = models.DecimalField(max_digits=15, decimal_places=8, default=0)
-    ethereum_balance = models.DecimalField(max_digits=15, decimal_places=8, default=0)
-    usdt_balance = models.DecimalField(max_digits=15, decimal_places=2, default=0)
-
-class CryptoTransaction(models.Model):
-    CRYPTO_TYPES = (
+    WALLET_TYPES = (
         ('BTC', 'Bitcoin'),
         ('ETH', 'Ethereum'),
         ('USDT', 'Tether'),
     )
     
-    transaction_id = ShortUUIDField(unique=True, length=15, max_length=20, prefix="CRY")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    crypto_type = models.CharField(max_length=4, choices=CRYPTO_TYPES)
-    amount = models.DecimalField(max_digits=15, decimal_places=8)
-    transaction_type = models.CharField(max_length=10, choices=[('BUY', 'Buy'), ('SELL', 'Sell')])
-    fiat_amount = models.DecimalField(max_digits=12, decimal_places=2)
+    wallet_type = models.CharField(max_length=10, choices=WALLET_TYPES)
+    balance = models.DecimalField(
+        max_digits=20, 
+        decimal_places=8, 
+        default=0,
+        validators=[MinValueValidator(Decimal('0'))]
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'wallet_type')
+
+    def __str__(self):
+        return f"{self.user.username}'s {self.wallet_type} Wallet"
+
+
+
+class CryptoTransaction(models.Model):
+    # Transaction types (Deposit, Withdrawal, Transfer)
+    TRANSACTION_TYPES = (
+        ('DEPOSIT', 'Deposit'),
+        ('WITHDRAWAL', 'Withdrawal'),
+        ('TRANSFER', 'Transfer'),
+    )
+    
+    # Transaction statuses (Pending, Completed, Failed)
+    STATUS_CHOICES = (
+        ('PENDING', 'Pending'),
+        ('COMPLETED', 'Completed'),
+        ('FAILED', 'Failed'),
+    )
+    
+    # ForeignKey to the CryptoWallet model
+    wallet = models.ForeignKey(CryptoWallet, on_delete=models.PROTECT)
+    
+    # Transaction type (Deposit, Withdrawal, etc.)
+    transaction_type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
+    
+    # Transaction amount (Decimal for precision)
+    amount = models.DecimalField(max_digits=20, decimal_places=8)
+    
+    # Transaction status (Pending, Completed, Failed)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
+    
+    # Timestamp when the transaction is created
     timestamp = models.DateTimeField(auto_now_add=True)
+    
+    # Description of the transaction
+    description = models.TextField(blank=True)
 
-class Deposit(models.Model):
-    deposit_id = ShortUUIDField(unique=True, length=10, prefix="DEP")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=12, decimal_places=2)
-    method = models.CharField(max_length=20, choices=[('BANK', 'Bank Transfer'), ('CARD', 'Credit Card')])
-    status = models.CharField(max_length=20, default='PENDING', choices=[('PENDING', 'Pending'), ('COMPLETED', 'Completed')])
-    created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        # Order transactions by timestamp in descending order
+        ordering = ['-timestamp']
 
-class Withdrawal(models.Model):
-    withdrawal_id = ShortUUIDField(unique=True, length=10, prefix="WTH")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=12, decimal_places=2)
-    method = models.CharField(max_length=20, choices=[('BANK', 'Bank Transfer'), ('CRYPTO', 'Crypto Wallet')])
-    status = models.CharField(max_length=20, default='PENDING', choices=[('PENDING', 'Pending'), ('COMPLETED', 'Completed')])
-    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.transaction_type} of {self.amount} {self.wallet.wallet_type}"

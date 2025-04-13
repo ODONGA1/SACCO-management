@@ -27,7 +27,8 @@ urlpatterns = [
     path("user/", include("user_auths.urls")),
     path("account/", include("account.urls")),
     path("financial_services/", include("financial_services.urls")),
-    path('admin/logout/', LogoutView.as_view(), name='logout'),
+
+    # path('admin/logout/', LogoutView.as_view(), name='logout'),
     
 
     

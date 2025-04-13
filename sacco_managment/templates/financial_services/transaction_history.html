@@ -1,0 +1,55 @@
+{% extends 'partials/dashboard-base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-content">
+                        <div class="transactions-area">
+                            <div class="section-text">
+                                <h5>Transaction History</h5>
+                                <p>View your recent transaction history</p>
+                            </div>
+
+                            <!-- Transaction History Table -->
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tx in transactions %}
+                                    <tr>
+                                        <td>{{ tx.timestamp|date:"D, d M Y H:i" }}</td>
+                                        <td>{{ tx.get_transaction_type_display }}</td>
+                                        <td>{{ tx.amount|floatformat:2 }}</td>
+                                        <td>{{ tx.wallet.wallet_type }}</td>
+                                        <td>{{ tx.get_status_display }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <!-- Action Links -->
+                            <div class="action-links mt-4">
+                                <a href="{% url 'financial_services:crypto_dashboard' %}" class="btn btn-green-medium mb-3">Back to Dashboard</a>
+                                <a href="{% url 'financial_services:generate_report' %}" class="btn btn-green-dark mb-3">Download Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'partials/dashboard-base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content  %}
+
+<section class="dashboard-section body-collapse">
+    <div class="overlay pt-120">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-content">
+                        <div class="transactions-area">
+                            <div class="section-text">
+                                <h5>My Crypto Wallets</h5>
+                                <p>Your wallet balances and recent transactions</p>
+                            </div>
+
+                            <!-- Wallets List -->
+                            <div class="wallets mb-4">
+                                {% for wallet in wallets %}
+                                <div class="wallet mb-3 p-3 border rounded shadow-sm">
+                                    <h3>{{ wallet.wallet_type }}</h3>
+                                    <p>Balance: {{ wallet.balance }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Recent Transactions -->
+                            <h3>Recent Transactions</h3>
+                            <ul>
+                                {% for tx in transactions %}
+                                <li>{{ tx.timestamp }} - {{ tx.transaction_type }}: {{ tx.amount }} {{ tx.wallet.wallet_type }}</li>
+                                {% endfor %}
+                            </ul>
+
+                            <!-- Action Links with proper spacing and green buttons -->
+                            <div class="action-links mt-4">
+                                <a href="{% url 'financial_services:create_transaction' %}" class="btn btn-green-light mb-2">New Transaction</a>
+                                <a href="{% url 'financial_services:transaction_history' %}" class="btn btn-green-medium mb-2">View All Transactions</a>
+                                <a href="{% url 'financial_services:generate_report' %}" class="btn btn-green-dark mb-2">Download Report</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

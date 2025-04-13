@@ -831,7 +831,7 @@ label {
 
 .header-section .navbar-area .dashboard-nav .single-item.language-area .language-content li:hover,
 .header-section .navbar-area .dashboard-nav .single-item.language-area .language-content li.active {
-    background-color: #6C3AFF;
+    background-color: #051f03;
     color: var(--bs-white);
 }
 
@@ -999,7 +999,7 @@ label {
 }
 
 .dashboard-section .dropdown-area .dropdown-menu li a:hover {
-    background-color: #6C3AFF;
+    background-color: #051f03;
     color: var(--bs-white);
 }
 
@@ -1570,7 +1570,7 @@ label {
 }
 
 .dashboard-section.pay .main-content .single-item:hover {
-    border: 1px solid #6C3AFF;
+    border: 1px solid #051f03;
 }
 
 .dashboard-section.pay.step .main-content .choose-recipient .step-area {
