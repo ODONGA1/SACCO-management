@@ -28,9 +28,8 @@ class CryptoWallet(models.Model):
         validators=[MinValueValidator(Decimal('0'))]
     )
     is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-
     metadata = models.JSONField(default=dict, blank=True)
 
     class Meta:
@@ -41,7 +40,6 @@ class CryptoWallet(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s {self.get_wallet_type_display()} Wallet"
-
 
 class CryptoTransaction(models.Model):
     TRANSACTION_TYPES = (
@@ -60,7 +58,6 @@ class CryptoTransaction(models.Model):
         ('CANCELLED', 'Cancelled'),
     )
 
-    # TEMP: Allow nulls for migration & data backfill
     txid = ShortUUIDField(
         length=16,
         prefix="tx_",
@@ -71,8 +68,6 @@ class CryptoTransaction(models.Model):
         default=shortuuid.uuid
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
-
-    # TEMP: Allow nulls for migration & data backfill
     wallet = models.ForeignKey(
         CryptoWallet,
         on_delete=models.PROTECT,
@@ -117,7 +112,6 @@ class CryptoTransaction(models.Model):
             self.confirmed_at = timezone.now()
         super().save(*args, **kwargs)
 
-
 class ExchangeRate(models.Model):
     RATE_TYPES = (
         ('BUY', 'Buy Rate'),
@@ -140,15 +134,13 @@ class ExchangeRate(models.Model):
         decimal_places=6,
         validators=[MinValueValidator(Decimal('0.000001'))]
     )
-    
     provider = models.CharField(
         max_length=10,
         choices=PROVIDERS,
         default='BINANCE'
     )
-
     effective_date = models.DateField(default=timezone.now)
-    expires_at = models.DateTimeField(default=timezone.now() + timezone.timedelta(days=1))
+    expires_at = models.DateTimeField(default=timezone.now)
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -165,9 +157,7 @@ class ExchangeRate(models.Model):
             self.expires_at = timezone.now() + timezone.timedelta(days=1)
         super().save(*args, **kwargs)
 
-
 class CryptoSwap(models.Model):
-    # TEMP: Allow nulls for migration & data backfill
     txid = ShortUUIDField(
         length=16,
         prefix="swap_",
