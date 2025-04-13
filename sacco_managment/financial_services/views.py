@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db import transaction
+from django.db import transaction as db_transaction
 from django.utils import timezone
-from django.http import JsonResponse, HttpResponse
-from django.views.generic import View
+from django.http import JsonResponse
+from django.views.generic import DetailView
+from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.http import require_http_methods
 from .models import CryptoWallet, CryptoTransaction, ExchangeRate, CryptoSwap
 from .forms import CryptoTransactionForm, CryptoSwapForm, CryptoTransferForm
 import logging
@@ -13,9 +16,6 @@ from decimal import Decimal
 import csv
 from datetime import datetime
 from io import StringIO
-import shortuuid
-
-
 
 logger = logging.getLogger(__name__)
 
@@ -24,44 +24,38 @@ def crypto_dashboard(request):
     wallets = CryptoWallet.objects.filter(
         user=request.user, 
         is_active=True
-    ).select_related('user').prefetch_related('transactions')
+    ).select_related('user')
     
     transactions = CryptoTransaction.objects.filter(
         user=request.user
-    ).select_related('wallet').order_by('-timestamp')[:15]
+    ).select_related('wallet').order_by('-timestamp')[:10]
     
     context = {
         'wallets': wallets,
         'transactions': transactions,
-        'total_balance': sum(w.balance for w in wallets)
     }
     return render(request, 'financial_services/crypto_dashboard.html', context)
 
+
 @login_required
-@transaction.atomic
+@db_transaction.atomic
 def create_transaction(request):
     if request.method == 'POST':
-        form = CryptoTransactionForm(request.POST, user=request.user)
+        form = CryptoTransactionForm(request.POST, user=request.user, request=request)
         if form.is_valid():
             try:
-                crypto_transaction = form.save(commit=False)
-                crypto_transaction.user = request.user
+                transaction = form.save()
                 
-                # Process transaction based on type
-                wallet = crypto_transaction.wallet
-                if crypto_transaction.transaction_type in ['BUY', 'TRANSFER_IN']:
-                    wallet.balance += crypto_transaction.amount
-                elif crypto_transaction.transaction_type in ['SELL', 'SWAP', 'TRANSFER_OUT']:
-                    wallet.balance -= (crypto_transaction.amount + crypto_transaction.network_fee)
-                
-                # Save both objects in transaction
+                # Update wallet balance
+                wallet = transaction.wallet
+                if transaction.transaction_type in ['BUY', 'TRANSFER_IN', 'SWAP_IN']:
+                    wallet.balance += transaction.amount
+                else:
+                    wallet.balance -= (transaction.amount + transaction.network_fee)
                 wallet.save()
-                crypto_transaction.save()
                 
-                messages.success(request, 
-                    f"Transaction {crypto_transaction.txid} created successfully!"
-                )
-                return redirect('financial_services:crypto-dashboard')
+                messages.success(request, f"Transaction {transaction.txid} created successfully!")
+                return redirect('financial_services:transaction-detail', txid=transaction.txid)
                 
             except Exception as e:
                 logger.error(f"Transaction failed: {str(e)}", exc_info=True)
@@ -71,49 +65,54 @@ def create_transaction(request):
     
     return render(request, 'financial_services/create_transaction.html', {'form': form})
 
+
 @login_required
+@cache_page(60 * 5)  # Cache for 5 minutes
 def exchange_rates(request):
-    now = timezone.now()
     rates = ExchangeRate.objects.filter(
-        expires_at__gte=now
+        expires_at__gte=timezone.now()
     ).order_by('base_currency', 'target_currency', '-effective_date').distinct(
         'base_currency', 'target_currency'
     )
     
-    # Group by rate type for display
-    rate_groups = {
-        'buy': rates.filter(rate_type='BUY'),
-        'sell': rates.filter(rate_type='SELL'),
-        'mid': rates.filter(rate_type='MID'),
+    context = {
+        'buy_rates': rates.filter(rate_type='BUY'),
+        'sell_rates': rates.filter(rate_type='SELL'),
+        'mid_rates': rates.filter(rate_type='MID'),
+        'last_updated': timezone.now()
     }
-    
-    return render(request, 'financial_services/exchange_rates.html', {
-        'rate_groups': rate_groups,
-        'last_updated': now
-    })
+    return render(request, 'financial_services/exchange_rates.html', context)
+
 
 @login_required
 def wallet_detail(request, wallet_id):
     wallet = get_object_or_404(CryptoWallet, id=wallet_id, user=request.user)
     transactions = wallet.transactions.all().order_by('-timestamp')
     
-    return render(request, 'financial_services/wallet_detail.html', {
+    # Pagination
+    paginator = Paginator(transactions, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
         'wallet': wallet,
-        'transactions': transactions
-    })
+        'page_obj': page_obj
+    }
+    return render(request, 'financial_services/wallet_detail.html', context)
+
 
 @login_required
+@require_http_methods(["GET"])
 def get_exchange_rates_api(request):
-    """API endpoint for AJAX requests to get current exchange rates"""
     rates = ExchangeRate.objects.filter(
         expires_at__gte=timezone.now()
-    ).values('base_currency', 'target_currency', 'rate_type', 'rate')
+    ).values('base_currency', 'target_currency', 'rate_type', 'rate', 'provider')
     
     return JsonResponse(list(rates), safe=False)
 
 
 @login_required
-@transaction.atomic
+@db_transaction.atomic
 def swap_crypto(request):
     if request.method == 'POST':
         form = CryptoSwapForm(request.POST, user=request.user)
@@ -123,20 +122,20 @@ def swap_crypto(request):
                 target_currency = form.cleaned_data['target_currency']
                 amount = form.cleaned_data['amount']
                 
-                # Get exchange rate
+                # Get current exchange rate
                 rate = ExchangeRate.objects.filter(
                     base_currency=source_wallet.wallet_type,
                     target_currency=target_currency,
                     rate_type='MID',
                     expires_at__gte=timezone.now()
-                ).first()
+                ).order_by('-effective_date').first()
                 
                 if not rate:
                     messages.error(request, "No exchange rate available for this pair")
                     return redirect('financial_services:swap-crypto')
                 
                 # Calculate amounts with 0.5% swap fee
-                swap_fee = Decimal('0.005')  # 0.5%
+                swap_fee = Decimal('0.005')
                 fee_amount = amount * swap_fee
                 net_amount = amount - fee_amount
                 target_amount = net_amount * rate.rate
@@ -146,12 +145,12 @@ def swap_crypto(request):
                     user=request.user,
                     wallet_type=target_currency,
                     defaults={
-                        'address': f"{request.user.id}_{target_currency}_{shortuuid.uuid()}",
+                        'address': f"{request.user.id}_{target_currency}_{timezone.now().timestamp()}",
                         'balance': 0
                     }
                 )
                 
-                # Create debit transaction
+                # Create transactions
                 debit_tx = CryptoTransaction.objects.create(
                     user=request.user,
                     wallet=source_wallet,
@@ -159,23 +158,24 @@ def swap_crypto(request):
                     amount=amount,
                     network_fee=fee_amount,
                     status='CONFIRMED',
+                    ip_address=request.META.get('REMOTE_ADDR'),
                     metadata={
-                        'swap_type': 'OUT',
+                        'swap': True,
                         'target_currency': target_currency,
                         'exchange_rate': float(rate.rate),
                         'target_amount': float(target_amount)
                     }
                 )
                 
-                # Create credit transaction
                 credit_tx = CryptoTransaction.objects.create(
                     user=request.user,
                     wallet=target_wallet,
                     transaction_type='SWAP_IN',
                     amount=target_amount,
                     status='CONFIRMED',
+                    ip_address=request.META.get('REMOTE_ADDR'),
                     metadata={
-                        'swap_type': 'IN',
+                        'swap': True,
                         'source_currency': source_wallet.wallet_type,
                         'exchange_rate': float(rate.rate),
                         'source_amount': float(amount)
@@ -188,7 +188,10 @@ def swap_crypto(request):
                     source_transaction=debit_tx,
                     target_transaction=credit_tx,
                     exchange_rate=rate.rate,
-                    swap_fee=fee_amount
+                    swap_fee=fee_amount,
+                    metadata={
+                        'ip_address': request.META.get('REMOTE_ADDR')
+                    }
                 )
                 
                 # Update balances
@@ -210,11 +213,12 @@ def swap_crypto(request):
     
     return render(request, 'financial_services/swap_crypto.html', {
         'form': form,
-        'swap_fee': Decimal('0.5')  # 0.5%
+        'swap_fee_percent': '0.5'
     })
 
+
 @login_required
-@transaction.atomic
+@db_transaction.atomic
 def transfer_crypto(request):
     if request.method == 'POST':
         form = CryptoTransferForm(request.POST, user=request.user)
@@ -232,31 +236,27 @@ def transfer_crypto(request):
                     transaction_type='TRANSFER_OUT',
                     amount=amount,
                     network_fee=network_fee,
-                    status='PENDING',  # Would be updated when blockchain confirms
+                    status='PENDING',
+                    ip_address=request.META.get('REMOTE_ADDR'),
                     metadata={
                         'recipient_address': recipient_address,
                         'network': wallet.wallet_type
                     }
                 )
                 
-                # Update balance (immediate deduction for pending transfer)
+                # Update balance
                 wallet.balance -= (amount + network_fee)
                 wallet.save()
                 
-                # In a real implementation, you would:
-                # 1. Broadcast the transaction to the network
-                # 2. Update status when confirmation is received
-                # 3. Store the transaction hash
-                
-                # For demo purposes, we'll simulate a successful transfer
+                # In production, you would broadcast to blockchain here
                 tx.tx_hash = f"0x{''.join([str(i) for i in range(10)])}{''.join([chr(97+i) for i in range(6)])}"
                 tx.status = 'CONFIRMED'
                 tx.save()
                 
                 messages.success(request, 
-                    f"Transfer of {amount:.8f} {wallet.wallet_type} to {recipient_address[:6]}...{recipient_address[-4:]} completed"
+                    f"Transfer of {amount:.8f} {wallet.wallet_type} completed"
                 )
-                return redirect('financial_services:crypto-dashboard')
+                return redirect('financial_services:transaction-detail', txid=tx.txid)
                 
             except Exception as e:
                 logger.error(f"Transfer failed: {str(e)}", exc_info=True)
@@ -266,8 +266,9 @@ def transfer_crypto(request):
     
     return render(request, 'financial_services/transfer_crypto.html', {
         'form': form,
-        'default_fee': Decimal('0.0005')  # Default network fee
+        'default_fee': Decimal('0.0005')
     })
+
 
 @login_required
 def transaction_history(request):
@@ -296,11 +297,11 @@ def transaction_history(request):
     wallets = CryptoWallet.objects.filter(user=request.user, is_active=True)
     
     # Pagination
+    paginator = Paginator(transactions, 25)
     page_number = request.GET.get('page', 1)
-    paginator = Paginator(transactions, 25)  # Show 25 transactions per page
     page_obj = paginator.get_page(page_number)
     
-    return render(request, 'financial_services/transaction_history.html', {
+    context = {
         'page_obj': page_obj,
         'wallets': wallets,
         'wallet_filter': wallet_filter,
@@ -308,7 +309,9 @@ def transaction_history(request):
         'status_filter': status_filter,
         'date_from': date_from,
         'date_to': date_to,
-    })
+    }
+    return render(request, 'financial_services/transaction_history.html', context)
+
 
 @login_required
 def generate_reports(request):
@@ -318,20 +321,16 @@ def generate_reports(request):
         date_from = request.POST.get('date_from')
         date_to = request.POST.get('date_to')
         
-        # Create base queryset
         transactions = CryptoTransaction.objects.filter(
             user=request.user,
             timestamp__gte=date_from,
             timestamp__lte=date_to
-        )
+        ).select_related('wallet').order_by('timestamp')
         
         if wallet_id:
             transactions = transactions.filter(wallet_id=wallet_id)
         
-        transactions = transactions.select_related('wallet').order_by('timestamp')
-        
         if report_type == 'csv':
-            # Generate CSV report
             response = HttpResponse(content_type='text/csv')
             response['Content-Disposition'] = f'attachment; filename="crypto_report_{datetime.now().date()}.csv"'
             
@@ -357,9 +356,7 @@ def generate_reports(request):
             return response
         
         elif report_type == 'pdf':
-            # In a real implementation, you would use a library like ReportLab
-            # or WeasyPrint to generate PDF reports
-            # This is a simplified version that returns a text response
+            # Simplified version - in production use ReportLab or WeasyPrint
             buffer = StringIO()
             buffer.write(f"Cryptocurrency Transaction Report\n")
             buffer.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
@@ -379,39 +376,52 @@ def generate_reports(request):
             response['Content-Disposition'] = f'attachment; filename="crypto_report_{datetime.now().date()}.txt"'
             return response
     
-    # GET request - show form
+    # GET request
     wallets = CryptoWallet.objects.filter(user=request.user, is_active=True)
     default_date_from = (timezone.now() - timezone.timedelta(days=30)).strftime('%Y-%m-%d')
     default_date_to = timezone.now().strftime('%Y-%m-%d')
     
-    return render(request, 'financial_services/generate_reports.html', {
+    context = {
         'wallets': wallets,
         'default_date_from': default_date_from,
         'default_date_to': default_date_to
-    })
+    }
+    return render(request, 'financial_services/generate_reports.html', context)
 
-class TransactionDetailView(View):
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+
+@method_decorator(login_required, name='dispatch')
+class TransactionDetailView(DetailView):
+    model = CryptoTransaction
+    template_name = 'financial_services/transaction_detail.html'
+    context_object_name = 'transaction'
+    slug_field = 'txid'
+    slug_url_kwarg = 'txid'
     
-    def get(self, request, txid):
-        transaction = get_object_or_404(
-            CryptoTransaction, 
-            txid=txid, 
-            user=request.user
-        )
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        transaction = self.object
         
-        related_transaction = None
-        if 'related_transaction' in transaction.metadata:
-            related_transaction = CryptoTransaction.objects.filter(
-                txid=transaction.metadata['related_transaction']
-            ).first()
+        # Find related transaction for swaps
+        if 'swap' in transaction.metadata:
+            if transaction.transaction_type == 'SWAP_OUT':
+                context['related_transaction'] = CryptoTransaction.objects.filter(
+                    metadata__swap=True,
+                    metadata__source_currency=transaction.wallet.wallet_type,
+                    metadata__source_amount=float(transaction.amount),
+                    timestamp__gte=transaction.timestamp - timezone.timedelta(minutes=5)
+                ).exclude(id=transaction.id).first()
+            elif transaction.transaction_type == 'SWAP_IN':
+                context['related_transaction'] = CryptoTransaction.objects.filter(
+                    metadata__swap=True,
+                    metadata__target_currency=transaction.wallet.wallet_type,
+                    metadata__target_amount=float(transaction.amount),
+                    timestamp__gte=transaction.timestamp - timezone.timedelta(minutes=5)
+                ).exclude(id=transaction.id).first()
         
-        return render(request, 'financial_services/transaction_detail.html', {
-            'transaction': transaction,
-            'related_transaction': related_transaction
-        })
+        return context
 
 
 @login_required

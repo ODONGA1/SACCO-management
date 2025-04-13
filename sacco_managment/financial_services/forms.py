@@ -1,8 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import CryptoTransaction, CryptoWallet
 from django.utils import timezone
 from decimal import Decimal
+from .models import CryptoWallet
 
 class CryptoTransactionForm(forms.ModelForm):
     class Meta:
@@ -30,12 +30,10 @@ class CryptoTransactionForm(forms.ModelForm):
                 'min': '0'
             }),
         }
-        labels = {
-            'network_fee': 'Network Fee (Optional)'
-        }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        self.request = kwargs.pop('request', None)
         super().__init__(*args, **kwargs)
         
         if self.user:
@@ -44,7 +42,6 @@ class CryptoTransactionForm(forms.ModelForm):
                 is_active=True
             ).select_related('user')
             
-        # Add currency symbols to wallet choices
         wallet_choices = []
         for wallet in self.fields['wallet'].queryset:
             wallet_choices.append((
@@ -73,7 +70,7 @@ class CryptoTransactionForm(forms.ModelForm):
         fee = cleaned_data.get('network_fee', Decimal('0'))
         
         if wallet and transaction_type and amount:
-            if transaction_type in ['SELL', 'SWAP', 'TRANSFER_OUT']:
+            if transaction_type in ['SELL', 'SWAP_OUT', 'TRANSFER_OUT']:
                 total_debit = amount + fee
                 if total_debit > wallet.balance:
                     raise ValidationError(
@@ -82,7 +79,17 @@ class CryptoTransactionForm(forms.ModelForm):
                     )
         
         return cleaned_data
-    
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.user = self.user
+        if self.request:
+            instance.ip_address = self.request.META.get('REMOTE_ADDR')
+        if commit:
+            instance.save()
+        return instance
+
+
 class CryptoSwapForm(forms.Form):
     source_wallet = forms.ModelChoiceField(
         queryset=CryptoWallet.objects.none(),
@@ -131,6 +138,7 @@ class CryptoSwapForm(forms.Form):
                 raise ValidationError("Cannot swap to the same currency")
         
         return cleaned_data
+
 
 class CryptoTransferForm(forms.Form):
     wallet = forms.ModelChoiceField(
@@ -188,8 +196,13 @@ class CryptoTransferForm(forms.Form):
 
     def clean_recipient_address(self):
         address = self.cleaned_data['recipient_address'].strip()
-        if len(address) < 10:  # Basic validation - adjust for specific crypto requirements
-            raise ValidationError("Invalid wallet address format")
+        wallet_type = self.cleaned_data.get('wallet').wallet_type if self.cleaned_data.get('wallet') else None
+        
+        if wallet_type == 'BTC' and not (address.startswith('1') or address.startswith('3') or address.startswith('bc1')):
+            raise ValidationError("Invalid Bitcoin address format")
+        elif wallet_type == 'ETH' and not (address.startswith('0x') and len(address) == 42):
+            raise ValidationError("Invalid Ethereum address format")
+        
         return address
 
     def clean(self):
