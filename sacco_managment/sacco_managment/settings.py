@@ -30,7 +30,22 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['sacco-management.onrender.com', '127.0.0.1', 'localhost']
 
+LANGUAGE_CODE = 'en'
 
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('fr', 'French'),
+    ('sw', 'Swahili'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale', 
+    
+]
 
 # Application definition
 
