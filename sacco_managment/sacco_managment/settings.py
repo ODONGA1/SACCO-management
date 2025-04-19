@@ -246,7 +246,7 @@ JAZZMIN_SETTINGS = {
     "site_header": "Prime SACCO Management",
     "site_brand": "Prime SACCO",
     "site_logo": "assets/images/logo1.png",
-    "site_logo_classes": "img-circle",
+    # "site_logo_classes": "img-circle",
     "site_icon": "img/favicon.ico",
     "welcome_sign": "Welcome to Gems SACCO Administration Portal",
     "copyright": "Prime SACCO Ltd ",
