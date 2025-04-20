@@ -239,6 +239,7 @@ PWA_APP_LANG = 'en-US'
 
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static', 'serviceworker.js')
 
+
 JAZZMIN_SETTINGS = {
     # General Settings
     "site_title": "SACCO Admin Pro",

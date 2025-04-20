@@ -1,10 +1,11 @@
-const CACHE_NAME = 'Prime SACCO';
+const CACHE_NAME = 'prime-sacco-cache-v1';
+
 const ASSETS = [
   '/',
-  '/static/asset/css/styles.css',
-  '/static/asset/js/app.js',
-  '/static/asset/icons/icon-192x192.png',
-  '/static/asset/icons/icon-512x512.png',
+  '/static/css/styles.css',
+  '/static/js/app.js',
+  '/static/icons/icon-192x192.png',
+  '/static/icons/icon-512x512.png',
   // Add other static assets here
 ];
 
