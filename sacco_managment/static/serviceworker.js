@@ -4,8 +4,8 @@ const ASSETS = [
   '/',  // homepage
   '/static/assets/css/styles.css',
   '/static/assets/js/app.js',
-  '/static/icons/icon-192x192.png',
-  '/static/icons/icon-512x512.png',
+  '/static/icon/icon-192x192.png',
+  '/static/icon/icon-512x512.png',
   // Add more assets if needed
 ];
 
