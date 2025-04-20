@@ -26,6 +26,7 @@ GENDER = (
 
 IDENTITY_TYPE = (
     ("national_id_card", "National ID Card"),
+    ("Refugee_id_card", "Refugee ID Card"),
     ("drivers_licence", "Drives Licence"),
     ("international_passport", "International Passport")
 )
