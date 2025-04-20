@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     'django.contrib.sites',
+    # 'django.contrib.sites',
     
 
     
@@ -217,12 +218,12 @@ PWA_APP_ORIENTATION = 'portrait'
 PWA_APP_START_URL = '/'
 PWA_APP_ICONS = [
     {
-        'src': '/static/icons/icon-192x192.png',
+        'src': '/static/icon/icon-192x192.png',
         'sizes': '192x192',
         'type': 'image/png'
     },
     {
-        'src': '/static/icons/icon-512x512.png',
+        'src': '/static/icon/icon-512x512.png',
         'sizes': '512x512',
         'type': 'image/png'
     }
@@ -243,8 +244,8 @@ PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static', 'serviceworker.js')
 JAZZMIN_SETTINGS = {
     # General Settings
     "site_title": "SACCO Admin Pro",
-    "site_header": "Prime SACCO Management",
-    "site_brand": "Prime SACCO",
+    "site_header": "Gem SACCO Management",
+    "site_brand": "Gem SACCO",
     "site_logo": "assets/images/logo1.png",
     # "site_logo_classes": "img-circle",
     "site_icon": "img/favicon.ico",
