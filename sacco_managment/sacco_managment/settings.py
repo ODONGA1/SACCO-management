@@ -251,6 +251,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to Gems SACCO Administration Portal",
     "copyright": "Prime SACCO Ltd ",
 
+
     # Theme Settings
     "theme": "flatly",
     "dark_mode_theme": "cyborg",
