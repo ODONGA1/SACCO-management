@@ -1,4 +1,4 @@
-#!C:\Users\Jack Mwisa\Documents\GitHub\SACCO-management-\sacco_managment\venv\Scripts\python.exe
+#!C:\Users\Jack Mwisa\Documents\GitHub\SACCO-management\sacco_managment\venv\Scripts\python.exe
 
 import sys
 import json
