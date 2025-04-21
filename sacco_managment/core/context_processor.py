@@ -1,4 +1,5 @@
 from core.models import Notification
+from .models import Loan
 
 def default(request):
     notifications = None
@@ -10,3 +11,9 @@ def default(request):
     return {
         "notifications": notifications,  
     }
+
+def active_loan(request):
+    if request.user.is_authenticated:
+        active_loan = Loan.objects.filter(user=request.user, status='active').first()
+        return {'active_loan': active_loan}
+    return {}
