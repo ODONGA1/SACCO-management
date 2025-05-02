@@ -81,12 +81,25 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",  
+    "django.contrib.auth.middleware.AuthenticationMiddleware",   
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_user_agents.middleware.UserAgentMiddleware",
 ]
+
+# Logout settings
+LOGOUT_REDIRECT_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = '/admin/'
+LOGIN_URL = '/admin/login/'
+
+# CSRF settings
+CSRF_USE_SESSIONS = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = not DEBUG  # True in production
+CSRF_TRUSTED_ORIGINS = ['https://sacco-management.onrender.com'] 
+
+
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -278,6 +291,8 @@ JAZZMIN_SETTINGS = {
     },
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-dot-circle",
+    "logout_url": "/admin/logout/",
+    "logout_redirect_url": "/admin/login/",
 
     # Top Menu Configuration
     "topmenu_links": [
@@ -287,6 +302,12 @@ JAZZMIN_SETTINGS = {
         {"model": "sacco.Member"},
         {"model": "sacco.Transaction"},
         {"name": "Support", "url": "https://support.gemsacco.com", "new_window": True},
+        {
+            "name": "Logout", 
+            "url": "/admin/logout/",
+            "new_window": False,
+            "icon": "fas fa-sign-out-alt",
+        },
     ],
 
     # Sidebar Customization
