@@ -18,9 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
-from django.conf.urls.i18n import i18n_patterns
-
-from core import views
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,18 +26,14 @@ urlpatterns = [
     path("user/", include("user_auths.urls")),
     path("account/", include("account.urls")),
     path("financial_services/", include("financial_services.urls")),
+    
+    # Proper logout URL configuration
+    path('admin/logout/', csrf_exempt(LogoutView.as_view()), name='admin_logout'),
+    
+    # PWA URLs
     path('', include('pwa.urls')),
-
-    # path('admin/logout/', LogoutView.as_view(), name='logout'),
-    
-
-    
 ]
 
-
-
 if settings.DEBUG:
-    urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
