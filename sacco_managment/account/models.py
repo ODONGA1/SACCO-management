@@ -39,6 +39,35 @@ def user_directory_path(instance, filename):
 
 class Account(models.Model):
     
+    class Account(models.Model):
+    # ... existing fields ...
+    
+    # New fields for account tiers
+    ACCOUNT_TIERS = (
+        ('basic', 'Basic'),
+        ('premium', 'Premium'),
+        ('business', 'Business'),
+    )
+    tier = models.CharField(max_length=20, choices=ACCOUNT_TIERS, default='basic')
+    is_joint = models.BooleanField(default=False)
+    joint_owners = models.ManyToManyField(User, blank=True, related_name='joint_accounts')
+    is_frozen = models.BooleanField(default=False)
+    last_activity = models.DateTimeField(auto_now=True)
+    
+    # New methods
+    def freeze_account(self):
+        self.is_frozen = True
+        self.save()
+        
+    def unfreeze_account(self):
+        self.is_frozen = False
+        self.save()
+        
+    def check_dormancy(self):
+        from django.utils import timezone
+        if (timezone.now() - self.last_activity).days > 180:  # 6 months inactive
+            self.account_status = 'in-active'
+            self.save()
     
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     user =  models.OneToOneField(User, on_delete=models.CASCADE)
