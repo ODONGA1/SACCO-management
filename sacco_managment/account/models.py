@@ -39,7 +39,7 @@ def user_directory_path(instance, filename):
 
 class Account(models.Model):
     
-    
+     
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     user =  models.OneToOneField(User, on_delete=models.CASCADE)
     account_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00) #123 345 789 102
@@ -105,4 +105,6 @@ post_save.connect(create_account, sender=User)
 post_save.connect(save_account, sender=User)
 
 # some more model
+
+
 
