@@ -1,4 +1,4 @@
-from core.models import Notification
+from core.models import Notification, LoanApplication
 from .models import Loan
 
 def default(request):
@@ -15,5 +15,8 @@ def default(request):
 def active_loan(request):
     if request.user.is_authenticated:
         active_loan = Loan.objects.filter(user=request.user, status='active').first()
-        return {'active_loan': active_loan}
+        return {'active_loan': LoanApplication.objects.filter(
+            user=request.user, 
+            status='active'
+        ).first()}
     return {}

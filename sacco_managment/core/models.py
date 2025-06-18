@@ -7,8 +7,10 @@ from shortuuid.django_fields import ShortUUIDField
 
 TRANSACTION_TYPE = (
     ("transfer", "Transfer"),
-    ("recieved", "Recieved"),
-    ("withdraw", "withdraw"),
+    ("received", "Received"),
+    ("withdraw", "withdraw"),        
+    ("deposit", "Deposit"),   
+    ("loan_disbursement", "Loan Disbursement"),  
     ("refund", "Refund"),
     ("request", "Payment Request"),
     ("none", "None")
@@ -48,6 +50,10 @@ NOTIFICATION_TYPE = (
 
 )
 
+PROVIDER_CHOICES = (
+        ("MTN", "MTN"),
+        ("Airtel", "Airtel"),
+)
 
 # loan model
 
@@ -123,13 +129,11 @@ class Transaction(models.Model):
     amount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     description = models.CharField(max_length=1000, null=True, blank=True)
 
-    reciever = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, related_name="reciever")
-    sender = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, related_name="sender")
-
-    reciever_account = models.ForeignKey(
-        Account, on_delete=models.SET_NULL, null=True, related_name="reciever_account")
+    receiver = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="receiver")
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="sender")
+    receiver_account = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True, related_name="receiver_account")
+    
+    
     sender_account = models.ForeignKey(
         Account, on_delete=models.SET_NULL, null=True, related_name="sender_account")
 

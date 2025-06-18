@@ -258,6 +258,23 @@ PWA_APP_LANG = 'en-US'
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static', 'serviceworker.js')
 
 
+
+
+# Mobile Money Config
+MOBILE_MONEY_CONFIG = {
+    'FLUTTERWAVE_KEY': os.getenv('FLW_PUBLIC_KEY'),
+    'FLUTTERWAVE_SECRET': os.getenv('FLW_SECRET_KEY'),
+    'CALLBACK_URL': 'https://yoursacco.com/webhook/mobile-money/',
+    'DEPOSIT_LIMITS': {
+        'DAILY': 5000000,
+        'WEEKLY': 20000000,
+        'MONTHLY': 50000000
+    }
+}
+
+
+
+#JAZZMIN SETTINGS
 JAZZMIN_SETTINGS = {
     # General Settings
     "site_title": "SACCO Admin Pro",
