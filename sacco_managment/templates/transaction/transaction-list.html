@@ -231,59 +231,50 @@
                             <p><small>{{s.date|date:"h:i"}}</small></p>
                             <p class="mdr">{{s.date|date:"d M, Y"}}</p>
                           </td>
+                          
                           <td>
-                            {% if s.status == 'completed' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'pending' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'failed' %}
-                            <p class="danger">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'processing' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_sent' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_settled' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_processing'
-                            %}
-                            <p class="inprogress">{{s.status|title}}</p>
+                            {% if s.status == 'completed' or s.status == 'request_sent' or s.status == 'request_settled' %}
+                              <p class="text-success">{{ s.status|title }}</p>
+                            {% elif s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing' %}
+                              <p class="inprogress">{{ s.status|title }}</p>
+                            {% elif s.status == 'failed' %}
+                              <p class="danger">{{ s.status|title }}</p>
+                            {% else %}
+                              <p class="text-muted">{{ s.status|title }}</p>
                             {% endif %}
                           </td>
+
+
+
                           <td>
                             <p>+${{s.amount|intcomma}}</p>
                           </td>
+                          
+                          
                           <td>
-                            {% if s.status == "request_sent" %}
-                            <a
-                              href="{% url 'core:transaction-detail' s.transaction_id %}"
-                              class="btn btn-primary"
-                              ><i class="fas fa-eye"></i> View</a
-                            >
-                            <a
-                              href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
-                              class="btn btn-danger"
-                            >
-                              <i class="fas fa-x"></i> Delete</a
-                            >
-                            {% endif %} {% if s.status == "request_processing"
-                            %}
-                            <a
-                              href="{% url 'core:transaction-detail' s.transaction_id %}"
-                              class="btn btn-primary"
-                              ><i class="fas fa-eye"></i> View</a
-                            >
-                            <a
-                              href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
-                              class="btn btn-danger"
-                            >
-                              <i class="fas fa-x"></i> Delete</a
-                            >
-                            {% endif %} {% if s.status == "request_settled" %}
-                            <a class="btn btn-success"
-                              ><i class="fas fa-check-circle"></i> Settled</a
-                            >
+                            {% if s.status == "request_sent" or s.status == "request_processing" %}
+                              <a
+                                href="{% url 'core:transaction-detail' s.transaction_id %}"
+                                class="btn btn-primary"
+                              >
+                                <i class="fas fa-eye"></i> View
+                              </a>
+                              <a
+                                href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
+                                class="btn btn-danger"
+                              >
+                                <i class="fas fa-x"></i> Delete
+                              </a>
+                            {% elif s.status == "request_settled" %}
+                              <a class="btn btn-success">
+                                <i class="fas fa-check-circle"></i> Settled
+                              </a>
                             {% endif %}
                           </td>
+
+
+
+
                         </tr>
                         {% endfor %}
                       </tbody>
@@ -321,24 +312,21 @@
                             <p><small>{{s.date|date:"h:i"}}</small></p>
                             <p class="mdr">{{s.date|date:"d M, Y"}}</p>
                           </td>
+                          
+                          
                           <td>
-                            {% if s.status == 'completed' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'pending' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'failed' %}
-                            <p class="danger">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'processing' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_sent' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_settled' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_processing'
-                            %}
-                            <p class="inprogress">{{s.status|title}}</p>
+                            {% if s.status in 'completed request_sent request_settled' %}
+                              <p class="text-success">{{ s.status|title }}</p>
+                            {% elif s.status in 'pending processing request_processing' %}
+                              <p class="inprogress">{{ s.status|title }}</p>
+                            {% elif s.status == 'failed' %}
+                              <p class="danger">{{ s.status|title }}</p>
+                            {% else %}
+                              <p>{{ s.status|title }}</p>
                             {% endif %}
                           </td>
+                          
+                          
                           <td>
                             <p>+UGX{{s.amount|intcomma}}</p>
                           </td>

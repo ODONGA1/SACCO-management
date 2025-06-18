@@ -331,58 +331,47 @@
                           </td>
                           <td>
                             {% if s.status == 'completed' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'pending' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'failed' %}
-                            <p class="danger">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'processing' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_sent' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_settled' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% if s.status == 'request_processing' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} 
-                            {% endfor %}
-                          </td>
+                                <p class="text-success">{{s.status|title}}</p>
+                            {% elif s.status == 'pending' %}
+                                <p class="inprogress">{{s.status|title}}</p>
+                            {% elif s.status == 'failed' %}
+                                <p class="danger">{{s.status|title}}</p>
+                            {% elif s.status == 'processing' %}
+                                <p class="inprogress">{{s.status|title}}</p>
+                            {% elif s.status == 'request_sent' %}
+                                <p class="text-success">{{s.status|title}}</p>
+                            {% elif s.status == 'request_settled' %}
+                                <p class="text-success">{{s.status|title}}</p>
+                            {% elif s.status == 'request_processing' %}
+                                <p class="inprogress">{{s.status|title}}</p>
+                            {% endif %}
+                        </td>
+
 
                           <td>
                             <p>+${{s.amount|intcomma}}</p>
                           </td>
                           <td>
-                            {% if s.status == "request_sent" %}
-                            <a
-                              href="{% url 'core:transaction-detail' s.transaction_id %}"
-                              class="btn btn-primary"
-                              ><i class="fas fa-eye"></i> View</a
-                            >
-                            <a
-                              href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
-                              class="btn btn-danger"
-                            >
-                              <i class="fas fa-x"></i> Delete</a
-                            >
-                            {% endif %} {% if s.status == "request_processing"
-                            %}
-                            <a
-                              href="{% url 'core:transaction-detail' s.transaction_id %}"
-                              class="btn btn-primary"
-                              ><i class="fas fa-eye"></i> View</a
-                            >
-                            <a
-                              href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
-                              class="btn btn-danger"
-                            >
-                              <i class="fas fa-x"></i> Delete</a
-                            >
-                            {% endif %} {% if s.status == "request_settled" %}
-                            <a class="btn btn-success"
-                              ><i class="fas fa-check-circle"></i> Settled</a
-                            >
+                            {% if s.status == "request_sent" or s.status == "request_processing" %}
+                                <a
+                                href="{% url 'core:transaction-detail' s.transaction_id %}"
+                                class="btn btn-primary"
+                                >
+                                <i class="fas fa-eye"></i> View
+                                </a>
+                                <a
+                                href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
+                                class="btn btn-danger"
+                                >
+                                <i class="fas fa-x"></i> Delete
+                                </a>
+                            {% elif s.status == "request_settled" %}
+                                <a class="btn btn-success">
+                                <i class="fas fa-check-circle"></i> Settled
+                                </a>
                             {% endif %}
-                          </td>
+                            </td>
+
                         </tr>
                         {% endfor %}
                       </tbody>
@@ -420,24 +409,18 @@
                             <p><small>{{s.date|date:"h:i"}}</small></p>
                             <p class="mdr">{{s.date|date:"d M, Y"}}</p>
                           </td>
-                          <td>
-                            {% if s.status == 'completed' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'pending' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'failed' %}
-                            <p class="danger">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'processing' %}
-                            <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_sent' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_settled' %}
-                            <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_processing'
-                            %}
-                            <p class="inprogress">{{s.status|title}}</p>
+                         <td>
+                            {% if s.status == 'completed' or s.status == 'request_sent' or s.status == 'request_settled' %}
+                                <p class="text-success">{{ s.status|title }}</p>
+                            {% elif s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing' %}
+                                <p class="inprogress">{{ s.status|title }}</p>
+                            {% elif s.status == 'failed' %}
+                                <p class="danger">{{ s.status|title }}</p>
+                            {% else %}
+                                <p>{{ s.status|title }}</p>
                             {% endif %}
-                          </td>
+                        </td>
+
                           <td>
                             <p>+${{s.amount|intcomma}}</p>
                           </td>
@@ -606,52 +589,35 @@
               <ul class="recipients-item">
                 {% for n in notifications %}
                 <li>
-                  <a href="javascript:void(0)" class="d-flex">
+                    <a href="javascript:void(0)" class="d-flex">
                     <div class="text-area">
-                      {% if n.notification_type == "Credit Alert" %}
-                      <p class="mdr">
-                        You received a payment of <b>${{n.amount}}</b>
-                      </p>
-                      {% endif %} {% if n.notification_type == "Debit Alert" %}
-                      <p class="mdr">
-                        You sent a payment of <b>${{n.amount}}</b>
-                      </p>
-                      {% endif %} {% if n.notification_type == "Sent Payment
-                      Request" %}
-                      <p class="mdr">
-                        You sent a <b>payment request</b> of
-                        <b>${{n.amount}}</b>
-                      </p>
-                      {% endif %} {% if n.notification_type == "Recieved Payment
-                      Request" %}
-                      <p class="mdr">
-                        You received a <b>payment request</b> of
-                        <b>${{n.amount}}</b>
-                      </p>
-                      {% endif %} {% if n.notification_type == "Funded Credit
-                      Card" %}
-                      <p class="mdr">
-                        You funded your credit card with <b>${{n.amount}}</b>
-                      </p>
-                      {% endif %} {% if n.notification_type == "Withdrew Credit
-                      Card Funds" %}
-                      <p class="mdr">
-                        You withdrew <b>${{n.amount}}</b> from your credit card
-                      </p>
-                      {% endif %} {% if n.notification_type == "Deleted Credit
-                      Card" %}
-                      <p class="mdr">You deleted your credit card</p>
-                      {% endif %} {% if n.notification_type == "Added Credit
-                      Card" %}
-                      <p class="mdr">You added a new credit card</p>
-                      {% endif %}
-                      <p class="mdr time-area">{{n.date}}</p>
+                        {% if n.notification_type == "Credit Alert" %}
+                        <p class="mdr">You received a payment of <b>${{ n.amount }}</b></p>
+                        {% elif n.notification_type == "Debit Alert" %}
+                        <p class="mdr">You sent a payment of <b>${{ n.amount }}</b></p>
+                        {% elif n.notification_type == "Sent Payment Request" %}
+                        <p class="mdr">You sent a <b>payment request</b> of <b>${{ n.amount }}</b></p>
+                        {% elif n.notification_type == "Recieved Payment Request" %}
+                        <p class="mdr">You received a <b>payment request</b> of <b>${{ n.amount }}</b></p>
+                        {% elif n.notification_type == "Funded Credit Card" %}
+                        <p class="mdr">You funded your credit card with <b>${{ n.amount }}</b></p>
+                        {% elif n.notification_type == "Withdrew Credit Card Funds" %}
+                        <p class="mdr">You withdrew <b>${{ n.amount }}</b> from your credit card</p>
+                        {% elif n.notification_type == "Deleted Credit Card" %}
+                        <p class="mdr">You deleted your credit card</p>
+                        {% elif n.notification_type == "Added Credit Card" %}
+                        <p class="mdr">You added a new credit card</p>
+                        {% else %}
+                        <p class="mdr">You have a new notification.</p>
+                        {% endif %}
+                        <p class="mdr time-area">{{ n.date }}</p>
                     </div>
-                  </a>
-                  <i class="fa-solid fa-caret-right"></i>
+                    </a>
+                    <i class="fa-solid fa-caret-right"></i>
                 </li>
                 {% endfor %}
-              </ul>
+                </ul>
+
             </div>
           </div>
         </div>
