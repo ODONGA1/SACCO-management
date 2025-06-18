@@ -1,6 +1,5 @@
 from django import forms
 from account.models import KYC
-from .models import PROVIDER_CHOICES
 from django.forms import ImageField, FileInput, DateInput, TextInput
 
 
@@ -28,24 +27,4 @@ class KYCForm(forms.ModelForm):
         }
 
 
-class MobileMoneyDepositForm(forms.Form):
-    phone_number = forms.CharField(max_length=15)
-    provider = forms.ChoiceField(choices=PROVIDER_CHOICES)
-    amount = forms.DecimalField(
-        max_digits=12, decimal_places=2, min_value=1000)
-
-    def clean_phone_number(self):
-        phone = self.cleaned_data['phone_number']
-        if not phone.startswith('256'):
-            raise forms.ValidationError("Phone number must start with 256")
-        if len(phone) != 12:
-            raise forms.ValidationError("Invalid phone number length")
-        return phone
-
-
-class MobileMoneyWithdrawalForm(forms.Form):
-    phone_number = forms.CharField(max_length=15)
-    provider = forms.ChoiceField(choices=PROVIDER_CHOICES)
-    amount = forms.DecimalField(
-        max_digits=12, decimal_places=2, min_value=1000)
-
+ 

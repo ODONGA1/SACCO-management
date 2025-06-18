@@ -5,8 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from core.forms import CreditCardForm
 from core.models import CreditCard, Notification, Transaction
-from django.views.decorators.csrf import csrf_exempt
-from .models import MobileMoneyTransaction
+ 
 
 @login_required
 def account(request):
@@ -174,87 +173,4 @@ def mobile_money_deposit(request):
     
     return render(request, 'mobile_money/deposit.html', {'form': form})
 
-@login_required
-def mobile_money_withdrawal(request):
-    if request.method == 'POST':
-        form = MobileMoneyWithdrawalForm(request.POST)
-        if form.is_valid():
-            account = request.user.account
-            amount = form.cleaned_data['amount']
-            
-            if account.available_balance < amount:
-                messages.error(request, "Insufficient funds")
-                return redirect('core:mobile-money-withdrawal')
-            
-            # Create withdrawal request
-            transaction = Transaction.objects.create(
-                user=request.user,
-                amount=amount,
-                transaction_type="mobile_money_withdrawal",
-                status="pending",
-                description=f"Mobile Money Withdrawal to {form.cleaned_data['phone_number']}"
-            )
-            
-            MobileMoneyTransaction.objects.create(
-                transaction=transaction,
-                provider=form.cleaned_data['provider'],
-                phone_number=form.cleaned_data['phone_number'],
-                transaction_ref=f"MMW-{timezone.now().timestamp()}"
-            )
-            
-            # Lock funds
-            account.locked_funds += amount
-            account.save()
-            
-            messages.success(request, "Withdrawal request submitted. Waiting for admin approval.")
-            return redirect('account:account')
-    else:
-        form = MobileMoneyWithdrawalForm()
-    
-    return render(request, 'mobile_money/withdrawal.html', {'form': form})
-
-@csrf_exempt
-def mobile_money_webhook(request):
-    # This would be called by Flutterwave/MTN/Airtel API
-    payload = json.loads(request.body)
-    ref = payload['tx_ref']
-    
-    try:
-        mm_transaction = MobileMoneyTransaction.objects.get(transaction_ref=ref)
-        transaction = mm_transaction.transaction
-        
-        if payload['status'] == 'successful':
-            # Update transaction status
-            transaction.status = 'completed'
-            transaction.save()
-            
-            # Update account balance
-            account = transaction.user.account
-            
-            if transaction.transaction_type == 'mobile_money_deposit':
-                account.mobile_money_balance += transaction.amount
-                Notification.objects.create(
-                    user=transaction.user,
-                    notification_type="Mobile Money Deposit",
-                    amount=transaction.amount,
-                    message=f"Mobile Money deposit of UGX {transaction.amount} received"
-                )
-            elif transaction.transaction_type == 'mobile_money_withdrawal':
-                account.locked_funds -= transaction.amount
-                Notification.objects.create(
-                    user=transaction.user,
-                    notification_type="Mobile Money Withdrawal",
-                    amount=transaction.amount,
-                    message=f"Mobile Money withdrawal of UGX {transaction.amount} processed"
-                )
-            
-            account.save()
-            mm_transaction.is_reconciled = True
-            mm_transaction.save()
-            
-            return JsonResponse({'status': 'success'})
-    
-    except MobileMoneyTransaction.DoesNotExist:
-        pass
-    
-    return JsonResponse({'status': 'failed'}, status=400)
+  
