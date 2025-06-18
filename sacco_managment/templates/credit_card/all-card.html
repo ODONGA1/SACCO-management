@@ -33,12 +33,17 @@
                                             </div>
                                             <div class="bottom_card">
                                                 <div class="card_info">
-                                                    <div class="card_holder_name">${{ card.amount|intcomma }}</div>
+                                                    <div class="card_holder_name">${{ card.amount|intcomma }}     </div>
+                                                 
                                                     <div class="card_holder_name">{{ card.name }}</div>
                                                 </div>
-                                                <div class="card_info">
-                                                    <div class="card_holder_info">
-                                                        <span>{{ card.month }}</span><span class="slash">/</span><span>{{ card.year }}</span>
+
+                                            
+                                                
+
+                                                <div class="card_info" >
+                                                    <div class="card_holder_info"  > 
+                                                        <span class="slash">{{ card.month }}</span><span class="slash">/</span><span class="slash">{{ card.year }}</span>
                                                     </div>
                                                 </div>
                                             </div>
