@@ -37,29 +37,46 @@ def user_directory_path(instance, filename):
     filename = "%s_%s" % (instance.id, ext)
     return "user_{0}/{1}".format(instance.user.id, filename)
 
+
 class Account(models.Model):
-    
-     
-    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    user =  models.OneToOneField(User, on_delete=models.CASCADE)
-    account_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00) #123 345 789 102
-    account_number = ShortUUIDField(unique=True,length=10, max_length=25, prefix="217", alphabet="1234567890") #2175893745837
-    account_id = ShortUUIDField(unique=True,length=7, max_length=25, prefix="DEX", alphabet="1234567890") #2175893745837
-    pin_number = ShortUUIDField(unique=True,length=4, max_length=7, alphabet="1234567890") #2737
-    red_code = ShortUUIDField(unique=True,length=10, max_length=20, alphabet="abcdefgh1234567890") #2737
-    account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
+
+    id = models.UUIDField(primary_key=True, unique=True,
+                          default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    account_balance = models.DecimalField(
+        max_digits=12, decimal_places=2, default=0.00)  # 123 345 789 102
+    account_number = ShortUUIDField(
+        unique=True, length=10, max_length=25, prefix="217", alphabet="1234567890")  # 2175893745837
+    account_id = ShortUUIDField(unique=True, length=7, max_length=25,
+                                prefix="DEX", alphabet="1234567890")  # 2175893745837
+    pin_number = ShortUUIDField(
+        unique=True, length=4, max_length=7, alphabet="1234567890")  # 2737
+    red_code = ShortUUIDField(
+        unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890")  # 2737
+    account_status = models.CharField(
+        max_length=100, choices=ACCOUNT_STATUS, default="in-active")
     date = models.DateTimeField(auto_now_add=True)
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
-    recommended_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="recommended_by")
-    review = models.CharField(max_length=100, null=True, blank=True, default="Review")
-    
-    
+    # MOBILE MONEY
+    mobile_money_balance = models.DecimalField(
+        max_digits=12, decimal_places=2, default=0.00)
+    locked_funds = models.DecimalField(
+        max_digits=12, decimal_places=2, default=0.00)
+    recommended_by = models.ForeignKey(
+        User, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="recommended_by")
+    review = models.CharField(
+        max_length=100, null=True, blank=True, default="Review")
+
     class Meta:
         ordering = ['-date']
 
     def __str__(self):
         return f"{self.user}"
+
+    @property
+    def available_balance(self):
+        return self.account_balance + self.mobile_money_balance - self.locked_funds
 
 class KYC(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)

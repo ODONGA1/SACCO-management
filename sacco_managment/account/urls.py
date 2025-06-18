@@ -11,5 +11,6 @@ urlpatterns = [
     path("kyc-reg/", views.kyc_registration, name="kyc-reg"),
     path('credit-cards/', all_credit_cards, name='all-credit-cards'),
 
-    
+
+
 ]

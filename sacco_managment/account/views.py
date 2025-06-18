@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from core.forms import CreditCardForm
 from core.models import CreditCard, Notification, Transaction
-
+ 
 
 @login_required
 def account(request):
@@ -70,17 +70,17 @@ def dashboard(request):
         recent_transfer = Transaction.objects.filter(
             sender=request.user, transaction_type="transfer", status="completed").order_by("-id")[:1]
         recent_received_transfer = Transaction.objects.filter(
-            reciever=request.user, transaction_type="transfer").order_by("-id")[:1]
+            receiver=request.user, transaction_type="transfer").order_by("-id")[:1]
 
         sender_transaction = Transaction.objects.filter(
             sender=request.user, transaction_type="transfer").order_by("-id")
         receiver_transaction = Transaction.objects.filter(
-            reciever=request.user, transaction_type="transfer").order_by("-id")
+            receiver=request.user, transaction_type="transfer").order_by("-id")
 
         request_sender_transaction = Transaction.objects.filter(
             sender=request.user, transaction_type="request")
         request_receiver_transaction = Transaction.objects.filter(
-            reciever=request.user, transaction_type="request")
+            receiver=request.user, transaction_type="request")
 
         withdrawal_transactions = Transaction.objects.filter(
             sender=request.user, transaction_type="withdrawal").order_by("-id")
@@ -135,3 +135,42 @@ def dashboard(request):
 def all_credit_cards(request):
     cards = CreditCard.objects.filter(user=request.user)
     return render(request, "credit_card/all-card.html", {"credit_cards": cards})
+
+
+@login_required
+def mobile_money_deposit(request):
+    if request.method == 'POST':
+        form = MobileMoneyDepositForm(request.POST)
+        if form.is_valid():
+            # Initiate payment via Flutterwave/Yo! API
+            # This is a simulation - replace with actual API call
+            ref = f"MMD-{timezone.now().timestamp()}"
+            
+            # Create pending transaction
+            transaction = Transaction.objects.create(
+                user=request.user,
+                amount=form.cleaned_data['amount'],
+                transaction_type="mobile_money_deposit",
+                status="pending",
+                description=f"Mobile Money Deposit to {form.cleaned_data['phone_number']}"
+            )
+            
+            MobileMoneyTransaction.objects.create(
+                transaction=transaction,
+                provider=form.cleaned_data['provider'],
+                phone_number=form.cleaned_data['phone_number'],
+                transaction_ref=ref
+            )
+            
+            # Simulate API response
+            return render(request, 'mobile_money/payment_prompt.html', {
+                'phone': form.cleaned_data['phone_number'],
+                'amount': form.cleaned_data['amount'],
+                'ref': ref
+            })
+    else:
+        form = MobileMoneyDepositForm()
+    
+    return render(request, 'mobile_money/deposit.html', {'form': form})
+
+  

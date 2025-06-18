@@ -1,0 +1,51 @@
+{% extends "partials/dashboard-base.html" %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+<section class="dashboard-section body-collapse">
+  <div class="overlay pt-120">
+    <div class="container-fruid">
+      <div class="main-content">
+
+        <!-- Header Section -->
+        <div class="head-area d-flex align-items-center justify-content-between">
+          <h4>Mobile Money Transactions</h4>
+          <div class="filter-options">
+            <select class="form-select" id="type-filter">
+              <option value="all">All Transactions</option>
+              <option value="deposit">Deposits Only</option>
+              <option value="withdrawal">Withdrawals Only</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs mt-4" id="transactionTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab">Deposits</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="withdrawal-tab" data-bs-toggle="tab" data-bs-target="#withdrawal" type="button" role="tab">Withdrawals</button>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="transactionTabContent">
+
+          <!-- Deposit Tab -->
+          <div class="tab-pane fade show active" id="deposit" role="tabpanel">
+            {% include "partials/transaction-table.html" with transactions=deposits type="deposit" %}
+          </div>
+
+          <!-- Withdrawal Tab -->
+          <div class="tab-pane fade" id="withdrawal" role="tabpanel">
+            {% include "partials/transaction-table.html" with transactions=withdrawals type="withdrawal" %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

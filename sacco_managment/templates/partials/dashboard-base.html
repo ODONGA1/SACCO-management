@@ -201,9 +201,25 @@
                             </li>
                             <li>
                                 <a href="{% url 'financial_services:transaction_history' %}">
-                                    <img src="{% static 'assets1/images/icon/exchange.png' %}" alt="Exchange"> <span>transaction_history</span>
+                                    <img src="{% static 'assets1/images/icon/exchange.png' %}" alt="Exchange"> <span>Transaction history</span>
                                 </a>
                             </li>
+
+                             <!-- Mobile Money Menu -->
+                            <li>
+                                <a data-bs-toggle="collapse" href="#mobileMoneyMenu" role="button" aria-expanded="false" aria-controls="mobileMoneyMenu">
+                                    <img src="{% static 'assets1/images/icon/exchange.png' %}" alt="Mobile Money">
+                                    <span>Mobile Money</span>
+                                </a>
+                                <ul class="collapse list-unstyled ps-4" id="mobileMoneyMenu">
+                                    <li><a href="{% url 'core:mobile-money-deposit' %}">Deposit Funds</a></li>
+                                    <li><a href="{% url 'core:mobile-money-withdrawal' %}">Withdraw Funds</a></li>
+                                    <li><a href="{% url 'core:mobile-money-transactions' %}">Transaction History</a></li>
+                             
+                                </ul>
+                            </li>
+
+
 
                             <li>
                                 <a data-bs-toggle="collapse" href="#loansMenu" role="button" aria-expanded="false" aria-controls="loansMenu">

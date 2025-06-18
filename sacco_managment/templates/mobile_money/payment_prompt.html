@@ -1,0 +1,60 @@
+{% extends "partials/dashboard-base.html" %} 
+{% load humanize %} 
+{% load static %} 
+{% block content %}
+
+
+<!-- Dashboard Section start -->
+
+<section class="dashboard-section body-collapse pay step step-2">
+  <div class="overlay pt-120">
+    <div class="container-fruid">
+      <div class="main-content">
+        <div
+          class="head-area d-flex align-items-center justify-content-between"
+        >
+          <h4>Complete Payment</h4>
+        </div>
+
+        <div class="payment-prompt">
+          <div class="icon-area text-center mb-40">
+            <img
+              src="{% static 'assets1/images/icon/mobile-money.png' %}"
+              alt="icon"
+              width="100"
+            />
+          </div>
+
+          <p>
+            Check your phone <strong>{{ phone }}</strong> for a payment request
+          </p>
+
+          <p>Amount: <strong>UGX {{ amount|intcomma }}</strong></p>
+
+          <p>Reference: <strong>{{ ref }}</strong></p>
+
+          <div class="qr-code text-center my-40">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ ref }}"
+              alt="Payment QR"
+            />
+          </div>
+
+          <p class="text-center">
+            Transaction will be processed automatically once confirmed
+          </p>
+
+          <div class="footer-area mt-40 text-center">
+            <a href="{% url 'account:account' %}" class="active"
+              >Back to Account</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dashboard Section end -->
+
+{% endblock content %}

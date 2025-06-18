@@ -12,6 +12,13 @@ from .models import LoanApplication, LoanRepayment, Notification, Transaction, L
 from account.models import Account
 from .forms import LoanApplicationForm
 from django.db.models import Sum
+from django.views.decorators.csrf import csrf_exempt
+from .models import MobileMoneyTransaction
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import JsonResponse
+import json
+from .forms import MobileMoneyDepositForm, MobileMoneyWithdrawalForm
+from django.conf import settings
 
 def index(request):
     if request.user.is_authenticated:
@@ -117,9 +124,9 @@ def repay_loan(request, loan_id):
                 transaction_type="loan_repayment",
                 status="completed",
                 sender=request.user,
-                reciever=request.user,
+                receiver=request.user,
                 sender_account=account,
-                reciever_account=account,
+                receiver_account=account,
                 description=f"Loan repayment for {loan.loan_type}"
             )
             
@@ -163,3 +170,185 @@ def loan_history(request):
 def repayment_history(request):
     repayments = LoanRepayment.objects.filter(loan__user=request.user).order_by('-payment_date')
     return render(request, 'loan/repayment_history.html', {'repayments': repayments})
+
+
+
+@login_required
+def mobile_money_transactions(request):
+    deposits = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_deposit'
+    ).order_by('-date')
+    
+    withdrawals = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_withdrawal'
+    ).order_by('-date')
+    
+    return render(request, 'mobile_money/transactions.html', {
+        'deposits': deposits,
+        'withdrawals': withdrawals
+    })
+    
+
+@login_required
+def mobile_money_deposit(request):
+    if request.method == 'POST':
+        form = MobileMoneyDepositForm(request.POST)
+        if form.is_valid():
+            # Initiate payment via Flutterwave/Yo! API
+            ref = f"MMD-{timezone.now().timestamp()}"
+            
+            # Create pending transaction
+            transaction = Transaction.objects.create(
+                user=request.user,
+                amount=form.cleaned_data['amount'],
+                transaction_type="mobile_money_deposit",
+                status="pending",
+                description=f"Mobile Money Deposit to {form.cleaned_data['phone_number']}"
+            )
+            
+            MobileMoneyTransaction.objects.create(
+                transaction=transaction,
+                provider=form.cleaned_data['provider'],
+                phone_number=form.cleaned_data['phone_number'],
+                transaction_ref=ref
+            )
+            
+            # Simulate API response
+            return render(request, 'mobile_money/payment_prompt.html', {
+                'phone': form.cleaned_data['phone_number'],
+                'amount': form.cleaned_data['amount'],
+                'ref': ref
+            })
+    else:
+        form = MobileMoneyDepositForm()
+    
+    return render(request, 'mobile_money/deposit.html', {
+        'form': form,
+        'account': request.user.account
+    })
+
+@login_required
+def mobile_money_withdrawal(request):
+    if request.method == 'POST':
+        form = MobileMoneyWithdrawalForm(request.POST)
+        if form.is_valid():
+            account = request.user.account
+            amount = form.cleaned_data['amount']
+            
+            if account.available_balance < amount:
+                messages.error(request, "Insufficient funds")
+                return redirect('core:mobile-money-withdrawal')
+            
+            # Create withdrawal request
+            transaction = Transaction.objects.create(
+                user=request.user,
+                amount=amount,
+                transaction_type="mobile_money_withdrawal",
+                status="pending",
+                description=f"Mobile Money Withdrawal to {form.cleaned_data['phone_number']}"
+            )
+            
+            MobileMoneyTransaction.objects.create(
+                transaction=transaction,
+                provider=form.cleaned_data['provider'],
+                phone_number=form.cleaned_data['phone_number'],
+                transaction_ref=f"MMW-{timezone.now().timestamp()}"
+            )
+            
+            # Lock funds
+            account.locked_funds += amount
+            account.save()
+            
+            messages.success(request, "Withdrawal request submitted. Waiting for admin approval.")
+            return redirect('account:account')
+    else:
+        form = MobileMoneyWithdrawalForm()
+    
+    return render(request, 'mobile_money/withdrawal.html', {'form': form})
+
+@csrf_exempt
+def mobile_money_webhook(request):
+    # This would be called by Flutterwave/MTN/Airtel API
+    payload = json.loads(request.body)
+    ref = payload['tx_ref']
+    
+    try:
+        mm_transaction = MobileMoneyTransaction.objects.get(transaction_ref=ref)
+        transaction = mm_transaction.transaction
+        
+        if payload['status'] == 'successful':
+            # Update transaction status
+            transaction.status = 'completed'
+            transaction.save()
+            
+            # Update account balance
+            account = transaction.user.account
+            
+            if transaction.transaction_type == 'mobile_money_deposit':
+                account.mobile_money_balance += transaction.amount
+                Notification.objects.create(
+                    user=transaction.user,
+                    notification_type="Mobile Money Deposit",
+                    amount=transaction.amount,
+                    message=f"Mobile Money deposit of UGX {transaction.amount} received"
+                )
+            elif transaction.transaction_type == 'mobile_money_withdrawal':
+                account.locked_funds -= transaction.amount
+                Notification.objects.create(
+                    user=transaction.user,
+                    notification_type="Mobile Money Withdrawal",
+                    amount=transaction.amount,
+                    message=f"Mobile Money withdrawal of UGX {transaction.amount} processed"
+                )
+            
+            account.save()
+            mm_transaction.is_reconciled = True
+            mm_transaction.save()
+            
+            return JsonResponse({'status': 'success'})
+    
+    except MobileMoneyTransaction.DoesNotExist:
+        pass
+    
+    return JsonResponse({'status': 'failed'}, status=400)
+    
+    # core/views.py
+@staff_member_required
+def reconciliation_dashboard(request):
+    unreconciled = MobileMoneyTransaction.objects.filter(
+        is_reconciled=False
+    ).select_related('transaction')
+    
+    today = timezone.now().date()
+    daily_deposits = Transaction.objects.filter(
+        transaction_type='mobile_money_deposit',
+        status='completed',
+        date__date=today
+    ).aggregate(Sum('amount'))['amount__sum'] or 0
+    
+    return render(request, 'admin/reconciliation.html', {
+        'unreconciled': unreconciled,
+        'daily_deposits': daily_deposits,
+        'deposit_limits': settings.MOBILE_MONEY_CONFIG['DEPOSIT_LIMITS']
+    })
+    
+    
+    
+@login_required
+def mobile_money_transactions(request):
+    deposits = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_deposit'
+    ).select_related('mobile_money').order_by('-date')
+    
+    withdrawals = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_withdrawal'
+    ).select_related('mobile_money').order_by('-date')
+    
+    return render(request, 'mobile_money/transactions.html', {
+        'deposits': deposits,
+        'withdrawals': withdrawals
+    })

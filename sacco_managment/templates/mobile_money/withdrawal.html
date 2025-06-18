@@ -1,0 +1,99 @@
+{% extends "partials/dashboard-base.html" %} 
+{% load humanize %} 
+{% load static %} 
+{% block content %}
+
+
+<!-- Dashboard Section start -->
+
+<section class="dashboard-section body-collapse pay step step-2">
+
+<div class="overlay pt-120">
+
+<div class="container-fruid">
+
+<div class="main-content">
+
+<div class="head-area d-flex align-items-center justify-content-between">
+
+<h4>Mobile Money Withdrawal</h4>
+
+</div>
+
+<form method="post">
+
+{% csrf_token %}
+
+<div class="send-banance">
+
+<span class="mdr">Phone Number</span>
+
+<div class="input-area">
+
+<input class="xxlr" type="text" name="phone_number" placeholder="256XXXXXXXXX" required>
+
+</div>
+
+</div>
+
+<div class="send-banance">
+
+<span class="mdr">Provider</span>
+
+<div class="input-area">
+
+<select name="provider" required>
+
+<option value="">Select Provider</option>
+
+<option value="MTN">MTN</option>
+
+<option value="Airtel">Airtel</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="send-banance">
+
+<span class="mdr">Amount (UGX)</span>
+
+<div class="input-area">
+
+<input class="xxlr" type="number" name="amount" min="1000" step="100" placeholder="Enter amount" required>
+
+</div>
+
+<p>Available Balance: <b>UGX {{ request.user.account.available_balance|intcomma }}</b></p>
+
+{% if request.user.account.available_balance < 1000 %}
+
+<p class="text-danger">Minimum withdrawal amount is UGX 1,000</p>
+
+{% endif %}
+
+</div>
+
+<div class="footer-area mt-40">
+
+<a href="{% url 'account:account' %}">Cancel</a>
+
+<button type="submit" class="active">Request Withdrawal</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Dashboard Section end -->
+
+{% endblock content %}
