@@ -13,6 +13,8 @@ TRANSACTION_TYPE = (
     ("loan_disbursement", "Loan Disbursement"),  
     ("refund", "Refund"),
     ("request", "Payment Request"),
+    ("mobile_money_deposit", "Mobile Money Deposit"),
+    ("mobile_money_withdrawal", "Mobile Money Withdrawal"),
     ("none", "None")
 )
 
@@ -191,3 +193,17 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"Notification({self.user if self.user else 'Unknown User'} - {self.notification_type} - {self.date})"
+
+
+
+#MOBILE MONEY MODEL
+class MobileMoneyTransaction(models.Model):
+    transaction = models.OneToOneField(Transaction, on_delete=models.CASCADE, related_name='mobile_money')
+    provider = models.CharField(max_length=20, choices=PROVIDER_CHOICES)
+    phone_number = models.CharField(max_length=15)
+    transaction_ref = models.CharField(max_length=50, unique=True)
+    is_reconciled = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.provider} - {self.phone_number} - {self.transaction.amount}"

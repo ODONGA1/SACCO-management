@@ -20,3 +20,14 @@ def active_loan(request):
             status='active'
         ).first()}
     return {}
+
+
+
+def unprocessed_withdrawals(request):
+    if request.user.is_authenticated and request.user.is_staff:
+        count = Transaction.objects.filter(
+            transaction_type='mobile_money_withdrawal',
+            status='pending'
+        ).count()
+        return {'withdrawal_requests_count': count}
+    return {}

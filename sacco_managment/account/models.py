@@ -51,6 +51,9 @@ class Account(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
+    #MOBILE MONEY
+    mobile_money_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    locked_funds = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
     recommended_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="recommended_by")
     review = models.CharField(max_length=100, null=True, blank=True, default="Review")
     
@@ -60,6 +63,10 @@ class Account(models.Model):
 
     def __str__(self):
         return f"{self.user}"
+    
+     @property
+    def available_balance(self):
+        return self.account_balance + self.mobile_money_balance - self.locked_funds
 
 class KYC(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
