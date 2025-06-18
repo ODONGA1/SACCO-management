@@ -45,7 +45,8 @@ class Migration(migrations.Migration):
                 ("cvv", models.IntegerField()),
                 (
                     "amount",
-                    models.DecimalField(decimal_places=2, default=0.0, max_digits=12),
+                    models.DecimalField(
+                        decimal_places=2, default=0.0, max_digits=12),
                 ),
                 (
                     "card_type",
@@ -91,7 +92,8 @@ class Migration(migrations.Migration):
                             ("Credit Alert", "Credit Alert"),
                             ("Debit Alert", "Debit Alert"),
                             ("Sent Payment Request", "Sent Payment Request"),
-                            ("Recieved Payment Request", "Recieved Payment Request"),
+                            ("Recieved Payment Request",
+                             "Recieved Payment Request"),
                             ("Funded Credit Card", "Funded Credit Card"),
                             (
                                 "Withdrew Credit Card Funds",
@@ -154,7 +156,8 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "amount",
-                    models.DecimalField(decimal_places=2, default=0.0, max_digits=12),
+                    models.DecimalField(
+                        decimal_places=2, default=0.0, max_digits=12),
                 ),
                 (
                     "description",
@@ -194,20 +197,20 @@ class Migration(migrations.Migration):
                 ("date", models.DateTimeField(auto_now_add=True)),
                 ("updated", models.DateTimeField(blank=True, null=True)),
                 (
-                    "reciever",
+                    "receiver",
                     models.ForeignKey(
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
-                        related_name="reciever",
+                        related_name="receiver",
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),
                 (
-                    "reciever_account",
+                    "receiver_account",
                     models.ForeignKey(
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
-                        related_name="reciever_account",
+                        related_name="receiver_account",
                         to="account.account",
                     ),
                 ),
