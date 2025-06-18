@@ -48,3 +48,4 @@ class MobileMoneyWithdrawalForm(forms.Form):
     provider = forms.ChoiceField(choices=PROVIDER_CHOICES)
     amount = forms.DecimalField(
         max_digits=12, decimal_places=2, min_value=1000)
+
