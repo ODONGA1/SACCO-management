@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name="transaction",
-            name="reciever",
+            name="receiver",
         ),
         migrations.RemoveField(
             model_name="transaction",
-            name="reciever_account",
+            name="receiver_account",
         ),
         migrations.AddField(
             model_name="transaction",

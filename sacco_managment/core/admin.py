@@ -8,9 +8,9 @@ from .models import LoanApplication, LoanRepayment
 class TransactionAdmin(admin.ModelAdmin):
     list_editable = ['amount', 'status', 'transaction_type']
     list_display = ['user', 'amount', 'status',
-                    'transaction_type', 'reciever', 'sender']
+                    'transaction_type', 'receiver', 'sender']
     list_filter = ['transaction_type', 'status']
-    search_fields = ['user__username', 'reciever__username',
+    search_fields = ['user__username', 'receiver__username',
                      'sender__username', 'transaction_id']
     actions = ['process_withdrawals']
 
@@ -131,9 +131,9 @@ class LoanApplicationAdmin(admin.ModelAdmin):
                 transaction_type="loan_disbursement",
                 status="completed",
                 sender=None,  # System generated
-                reciever=loan.user,
+                receiver=loan.user,
                 sender_account=None,
-                reciever_account=account,
+                receiver_account=account,
                 description=f"Loan disbursement for {loan.loan_type}"
             )
 

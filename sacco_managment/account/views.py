@@ -70,17 +70,17 @@ def dashboard(request):
         recent_transfer = Transaction.objects.filter(
             sender=request.user, transaction_type="transfer", status="completed").order_by("-id")[:1]
         recent_received_transfer = Transaction.objects.filter(
-            reciever=request.user, transaction_type="transfer").order_by("-id")[:1]
+            receiver=request.user, transaction_type="transfer").order_by("-id")[:1]
 
         sender_transaction = Transaction.objects.filter(
             sender=request.user, transaction_type="transfer").order_by("-id")
         receiver_transaction = Transaction.objects.filter(
-            reciever=request.user, transaction_type="transfer").order_by("-id")
+            receiver=request.user, transaction_type="transfer").order_by("-id")
 
         request_sender_transaction = Transaction.objects.filter(
             sender=request.user, transaction_type="request")
         request_receiver_transaction = Transaction.objects.filter(
-            reciever=request.user, transaction_type="request")
+            receiver=request.user, transaction_type="request")
 
         withdrawal_transactions = Transaction.objects.filter(
             sender=request.user, transaction_type="withdrawal").order_by("-id")

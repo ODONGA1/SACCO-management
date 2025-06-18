@@ -124,9 +124,9 @@ def repay_loan(request, loan_id):
                 transaction_type="loan_repayment",
                 status="completed",
                 sender=request.user,
-                reciever=request.user,
+                receiver=request.user,
                 sender_account=account,
-                reciever_account=account,
+                receiver_account=account,
                 description=f"Loan repayment for {loan.loan_type}"
             )
             
