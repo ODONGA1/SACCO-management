@@ -1,3 +1,5 @@
+{% load humanize %}
+
 <div class="table-responsive mt-4">
   <table class="table">
     <thead>
@@ -34,3 +36,16 @@
     </tbody>
   </table>
 </div>
+
+<script>
+  document.getElementById('type-filter').addEventListener('change', function () {
+    const value = this.value;
+    if (value === 'deposit') {
+      document.getElementById('deposit-tab').click();
+    } else if (value === 'withdrawal') {
+      document.getElementById('withdrawal-tab').click();
+    } else {
+      document.getElementById('deposit-tab').click(); // default to deposits
+    }
+  });
+</script>
