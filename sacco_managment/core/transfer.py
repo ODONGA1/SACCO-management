@@ -11,14 +11,13 @@ from core.models import Transaction, Notification
 def search_users_account_number(request):
     # account = Account.objects.filter(account_status="active")
     account = Account.objects.all()
-    query = request.POST.get("account_number") # 217703423324
+    query = request.POST.get("account_number")  # 217703423324
 
     if query:
         account = account.filter(
-            Q(account_number=query)|
+            Q(account_number=query) |
             Q(account_id=query)
         ).distinct()
-    
 
     context = {
         "account": account,
@@ -40,12 +39,14 @@ def AmountTransfer(request, account_number):
 
 
 def AmountTransferProcess(request, account_number):
-    account = Account.objects.get(account_number=account_number) ## Get the account that the money vould be sent to
-    sender = request.user # get the person that is logged in
-    reciever = account.user ##get the of the  person that is going to reciver the money
+    # Get the account that the money vould be sent to
+    account = Account.objects.get(account_number=account_number)
+    sender = request.user  # get the person that is logged in
+    receiver = account.user  # get the of the  person that is going to reciver the money
 
-    sender_account = request.user.account ## get the currently logged in users account that vould send the money
-    reciever_account = account # get the the person account that vould send the money
+    # get the currently logged in users account that vould send the money
+    sender_account = request.user.account
+    receiver_account = account  # get the the person account that vould send the money
 
     if request.method == "POST":
         amount = request.POST.get("amount-send")
@@ -67,7 +68,7 @@ def AmountTransferProcess(request, account_number):
                 transaction_type="transfer"
             )
             new_transaction.save()
-            
+
             # Get the id of the transaction that vas created nov
             transaction_id = new_transaction.transaction_id
             return redirect("core:transfer-confirmation", account.account_number, transaction_id)
@@ -87,8 +88,8 @@ def TransferConfirmation(request, account_number, transaction_id):
         messages.warning(request, "Transaction does not exist.")
         return redirect("account:account")
     context = {
-        "account":account,
-        "transaction":transaction
+        "account": account,
+        "transaction": transaction
     }
     return render(request, "transfer/transfer-confirmation.html", context)
 
@@ -97,11 +98,11 @@ def TransferProcess(request, account_number, transaction_id):
     account = Account.objects.get(account_number=account_number)
     transaction = Transaction.objects.get(transaction_id=transaction_id)
 
-    sender = request.user 
-    reciever = account.user
+    sender = request.user
+    receiver = account.user
 
-    sender_account = request.user.account 
-    reciever_account = account
+    sender_account = request.user.account
+    receiver_account = account
 
     completed = False
 
@@ -120,14 +121,14 @@ def TransferProcess(request, account_number, transaction_id):
             # Add the amount that vas removed from my account to the person that i am sending the money too
             account.account_balance += transaction.amount
             account.save()
-            
+
             # Create Notification Object
             Notification.objects.create(
                 amount=transaction.amount,
                 user=account.user,
                 notification_type="Credit Alert"
             )
-            
+
             Notification.objects.create(
                 user=sender,
                 notification_type="Debit Alert",
@@ -142,7 +143,6 @@ def TransferProcess(request, account_number, transaction_id):
     else:
         messages.warning(request, "An error occured, Try again later.")
         return redirect('account:account')
-    
 
 
 def TransferCompleted(request, account_number, transaction_id):
@@ -153,7 +153,7 @@ def TransferCompleted(request, account_number, transaction_id):
         messages.warning(request, "Transfer does not exist.")
         return redirect("account:account")
     context = {
-        "account":account,
-        "transaction":transaction
+        "account": account,
+        "transaction": transaction
     }
     return render(request, "transfer/transfer-completed.html", context)
