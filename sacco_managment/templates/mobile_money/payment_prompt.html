@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="payment-prompt">
+    <h2>Complete Payment</h2>
+    <p>Check your phone <strong>{{ phone }}</strong> for a payment request</p>
+    <p>Amount: <strong>UGX {{ amount }}</strong></p>
+    <p>Reference: {{ ref }}</p>
+    
+    <div class="qr-code">
+        <!-- QR code would be generated here in production -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ ref }}" alt="Payment QR">
+    </div>
+    
+    <p>Transaction will be processed automatically</p>
+    <a href="{% url 'account:account' %}" class="btn">Back to Account</a>
+</div>
+{% endblock %}

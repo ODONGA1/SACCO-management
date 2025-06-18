@@ -163,3 +163,43 @@ def loan_history(request):
 def repayment_history(request):
     repayments = LoanRepayment.objects.filter(loan__user=request.user).order_by('-payment_date')
     return render(request, 'loan/repayment_history.html', {'repayments': repayments})
+
+
+
+@login_required
+def mobile_money_transactions(request):
+    deposits = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_deposit'
+    ).order_by('-date')
+    
+    withdrawals = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_withdrawal'
+    ).order_by('-date')
+    
+    return render(request, 'mobile_money/transactions.html', {
+        'deposits': deposits,
+        'withdrawals': withdrawals
+    })
+    
+    
+    # core/views.py
+@staff_member_required
+def reconciliation_dashboard(request):
+    unreconciled = MobileMoneyTransaction.objects.filter(
+        is_reconciled=False
+    ).select_related('transaction')
+    
+    today = timezone.now().date()
+    daily_deposits = Transaction.objects.filter(
+        transaction_type='mobile_money_deposit',
+        status='completed',
+        date__date=today
+    ).aggregate(Sum('amount'))['amount__sum'] or 0
+    
+    return render(request, 'admin/reconciliation.html', {
+        'unreconciled': unreconciled,
+        'daily_deposits': daily_deposits,
+        'deposit_limits': settings.MOBILE_MONEY_CONFIG['DEPOSIT_LIMITS']
+    })

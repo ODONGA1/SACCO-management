@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Mobile Money Withdrawal</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>Available Balance: UGX {{ request.user.account.available_balance }}</p>
+    <button type="submit">Request Withdrawal</button>
+</form>
+{% endblock %}

@@ -9,7 +9,38 @@ class TransactionAdmin(admin.ModelAdmin):
     list_display = ['user', 'amount', 'status', 'transaction_type', 'reciever', 'sender']
     list_filter = ['transaction_type', 'status']
     search_fields = ['user__username', 'reciever__username', 'sender__username', 'transaction_id']
-
+    actions = ['process_withdrawals']
+     
+     def process_withdrawals(self, request, queryset):
+        withdrawals = queryset.filter(
+            transaction_type='mobile_money_withdrawal',
+            status='pending'
+        )
+        
+        for transaction in withdrawals:
+            mm_trans = transaction.mobile_money.first()
+            if mm_trans:
+                # In production: Call Flutterwave Payout API
+                # Simulate success
+                transaction.status = 'completed'
+                transaction.save()
+                
+                # Release locked funds
+                account = transaction.user.account
+                account.locked_funds -= transaction.amount
+                account.save()
+                
+                Notification.objects.create(
+                    user=transaction.user,
+                    notification_type="Withdrawal Processed",
+                    amount=transaction.amount,
+                    message=f"Withdrawal of UGX {transaction.amount} to {mm_trans.phone_number} completed"
+                )
+        
+        self.message_user(request, f"Processed {withdrawals.count()} withdrawals")
+        
+        
+         
     def save_model(self, request, obj, form, change):
         """Handle deposit and withdrawal logic in the admin panel."""
         if not change:  # Only handle new transactions
