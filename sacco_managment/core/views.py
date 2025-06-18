@@ -15,7 +15,10 @@ from django.db.models import Sum
 from django.views.decorators.csrf import csrf_exempt
 from .models import MobileMoneyTransaction
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.http import JsonResponse
+import json
+from .forms import MobileMoneyDepositForm, MobileMoneyWithdrawalForm
+from django.conf import settings
 
 def index(request):
     if request.user.is_authenticated:
@@ -194,7 +197,6 @@ def mobile_money_deposit(request):
         form = MobileMoneyDepositForm(request.POST)
         if form.is_valid():
             # Initiate payment via Flutterwave/Yo! API
-            # This is a simulation - replace with actual API call
             ref = f"MMD-{timezone.now().timestamp()}"
             
             # Create pending transaction
@@ -222,7 +224,10 @@ def mobile_money_deposit(request):
     else:
         form = MobileMoneyDepositForm()
     
-    return render(request, 'mobile_money/deposit.html', {'form': form})
+    return render(request, 'mobile_money/deposit.html', {
+        'form': form,
+        'account': request.user.account
+    })
 
 @login_required
 def mobile_money_withdrawal(request):
@@ -330,3 +335,20 @@ def reconciliation_dashboard(request):
     })
     
     
+    
+@login_required
+def mobile_money_transactions(request):
+    deposits = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_deposit'
+    ).select_related('mobile_money').order_by('-date')
+    
+    withdrawals = Transaction.objects.filter(
+        user=request.user,
+        transaction_type='mobile_money_withdrawal'
+    ).select_related('mobile_money').order_by('-date')
+    
+    return render(request, 'mobile_money/transactions.html', {
+        'deposits': deposits,
+        'withdrawals': withdrawals
+    })

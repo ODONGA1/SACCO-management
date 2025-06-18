@@ -1,0 +1,36 @@
+<div class="table-responsive mt-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Reference</th>
+        <th>Phone Number</th>
+        <th>Provider</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for txn in transactions %}
+        <tr>
+          <td>{{ txn.date|date:"M d, Y" }}</td>
+          <td>{{ txn.mobile_money.transaction_ref|default:"N/A" }}</td>
+          <td>{{ txn.mobile_money.phone_number|default:"N/A" }}</td>
+          <td>{{ txn.mobile_money.provider|default:"N/A" }}</td>
+          <td class="{% if type == 'deposit' %}text-success{% else %}text-danger{% endif %}">
+            UGX {{ txn.amount|intcomma }}
+          </td>
+          <td>
+            <span class="badge bg-{% if txn.status == 'completed' %}success{% elif txn.status == 'pending' %}warning{% else %}danger{% endif %}">
+              {{ txn.status|title }}
+            </span>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6" class="text-center">No {{ type }} transactions found</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

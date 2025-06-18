@@ -34,6 +34,7 @@ urlpatterns = [
     
     # PWA URLs
     path('', include('pwa.urls')),
+ 
 ]
 
 if settings.DEBUG:
