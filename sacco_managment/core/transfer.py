@@ -59,10 +59,10 @@ def AmountTransferProcess(request, account_number):
                 user=request.user,
                 amount=amount,
                 description=description,
-                reciever=reciever,
+                receiver=receiver,
                 sender=sender,
                 sender_account=sender_account,
-                reciever_account=reciever_account,
+                receiver_account=receiver_account,
                 status="processing",
                 transaction_type="transfer"
             )

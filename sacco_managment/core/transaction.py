@@ -51,7 +51,7 @@ def deposit_money(request):
                 transaction_type="deposit",
                 status="completed",
                 sender=request.user,
-                reciever=request.user,
+                receiver=request.user,
                 sender_account=request.user.account,
                 reciever_account=request.user.account
             )
@@ -79,7 +79,7 @@ def withdraw_money(request):
                     transaction_type="withdrawal",
                     status="completed",
                     sender=request.user,
-                    reciever=request.user,
+                    receiver=request.user,
                     sender_account=request.user.account,
                     reciever_account=request.user.account
                 )
