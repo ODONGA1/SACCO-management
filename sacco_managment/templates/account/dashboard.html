@@ -1,5 +1,6 @@
-{% extends "partials/dashboard-base.html" %} {% load static %} {% load humanize
-%} {% block content %}
+{% extends "partials/dashboard-base.html" %} {% load static %} 
+{% load humanize %} 
+{% block content %}
 
 <!-- Dashboard Section start -->
 <section class="dashboard-section body-collapse">
@@ -341,11 +342,12 @@
                             <p class="text-success">{{s.status|title}}</p>
                             {% endif %} {% if s.status == 'request_settled' %}
                             <p class="text-success">{{s.status|title}}</p>
-                            {% endif %} {% if s.status == 'request_processing'
-                            %}
+                            {% if s.status == 'request_processing' %}
                             <p class="inprogress">{{s.status|title}}</p>
-                            {% endif %}
+                            {% endif %} 
+                            {% endfor %}
                           </td>
+
                           <td>
                             <p>+${{s.amount|intcomma}}</p>
                           </td>
