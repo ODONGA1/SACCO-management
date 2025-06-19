@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts-->
+  <div class="container-fluid">
+    <div class="row">
+      {% include
+      'forms/form_controls/checkbox_and_radio/components/custom-radio.html' %}
+      {% include
+      'forms/form_controls/checkbox_and_radio/components/custom-checkbox.html'
+      %} {% include
+      'forms/form_controls/checkbox_and_radio/components/animated-radio-buttons.html'
+      %} {% include
+      'forms/form_controls/checkbox_and_radio/components/animated-checkbox-buttons.html'
+      %} {% include
+      'forms/form_controls/checkbox_and_radio/components/square-checkbox.html'
+      %}
+    </div>
+  </div>
+  <!-- Container-fluid Ends-->
+</div>
+{% endblock content %} {% block scriptcontent %}
+<!-- Plugins JS start-->
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<!-- Plugins JS Ends-->
+{% endblock scriptcontent %}
