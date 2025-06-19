@@ -1,0 +1,18 @@
+{% extends 'base-other-page.html' %}{% load static %}
+{% load sass_tags %}
+{% block css %}
+<!-- Plugins css start-->
+
+<!-- Plugins css Ends-->
+{% endblock css %}
+{% block content %}
+{% include 'others/authentication/login/components/login.html' %}
+{% endblock content %}
+{% block scriptcontent %}
+<!-- Plugins JS start-->
+<script>
+    document.getElementById('id_username').value = 'admin'
+    document.getElementById('id_password').value = 'admin'
+</script>
+<!-- Plugins JS Ends-->
+{% endblock scriptcontent %}

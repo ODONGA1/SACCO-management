@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block content
+%}
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts-->
+  <div class="container-fluid">
+    <div class="row">
+      {% include
+      'forms/form_widgets/clipboard/components/clipboard-on-text-input.html' %}
+      {% include
+      'forms/form_widgets/clipboard/components/clipboard-on-textarea.html' %} {%
+      include
+      'forms/form_widgets/clipboard/components/clipboard-on-paragraph.html' %}
+      {% include
+      'forms/form_widgets/clipboard/components/copy-portion-of-paragraph.html'
+      %}
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block scriptcontent %}
+<!-- Plugins JS start-->
+<script src="{% static 'assets2/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets2/js/clipboard/clipboard.min.js' %}"></script>
+<script src="{% static 'assets2/js/clipboard/clipboard-script.js' %}"></script>
+<script src="{% static 'assets2/js/tooltip-init.js' %}"></script>
+<!-- Plugins JS Ends-->
+{% endblock scriptcontent %}
