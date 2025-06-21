@@ -14,6 +14,7 @@
   <link rel="icon" href="{% static 'assets2/images/logo/favicon-icon.png' %}" type="image/x-icon" />
   <link rel="shortcut icon" href="{% static 'assets2/images/logo/favicon-icon.png' %}" type="image/x-icon" />
   <title>SACCO admin dashboard</title>
+
   <!-- Google font-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
@@ -34,7 +35,7 @@
   <link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/feather-icon.scss' %}" />
   <!-- Plugins css start-->
   <link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/vendors/scrollbar.scss' %}" />
-  <link rel="manifest" href="{% static 'manifest.json' %}">
+  <link rel="manifest" href="{% static 'manifest.json' %}" />
 
   {% block css %}{% endblock css %}
 
@@ -46,20 +47,53 @@
   <link id="color" rel="stylesheet" href="{% sass_src 'assets2/scss/color-1.scss' %}" media="screen" />
   <!-- Responsive css-->
   <link rel="stylesheet" type="text/css" href="{% sass_src 'assets2/scss/responsive.scss' %}" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/font-awesome.scss' %}" />
+  <!-- ico-font-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/icofont.scss' %}" />
+  <!-- Themify icon-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/themify.scss' %}" />
+  <!-- Flag icon-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/flag-icon.scss' %}" />
+  <!-- Feather icon-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/feather-icon.scss' %}" />
+  <!-- Plugins css start-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/scrollbar.scss' %}" />
+  {% block css %}{% endblock css %}
+
+  <!-- Plugins css Ends-->
+  <!-- Bootstrap css-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/bootstrap.scss' %}" />
+  <!-- App css-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/style.scss' %}" />
+  <link id="color" rel="stylesheet" href="{% sass_src 'assets3/scss/color-1.scss' %}" media="screen" />
+  <!-- Responsive css-->
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/responsive.scss' %}" />
+
+
 </head>
 
 <body class="{{layout}}">
-  <!-- Loader starts-->
-  <div class="loader-wrapper">
-    <div class="loader">
-      <div class="loader-bar"></div>
-      <div class="loader-bar"></div>
-      <div class="loader-bar"></div>
-      <div class="loader-bar"></div>
-      <div class="loader-bar"></div>
-      <div class="loader-ball"></div>
+ 
+ <!-- Loader starts-->
+    <div class="loader-wrapper">
+      <div class="loader">
+        <div class="loader-bar"></div>
+        <div class="loader-bar"></div>
+        <div class="loader-bar"></div>
+        <div class="loader-bar"></div>
+        <div class="loader-bar"></div>
+        <div class="loader-ball"></div>
+      </div>
     </div>
-  </div>
   <!-- Loader ends-->
   <!-- tap on top starts-->
   <div class="tap-top"><i data-feather="chevrons-up"></i></div>

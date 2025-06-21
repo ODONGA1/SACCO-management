@@ -1,0 +1,32 @@
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
+<!-- Plugins css start-->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets3/scss/vendors/timepicker.scss' %}"
+/>
+<!-- Plugins css Ends-->
+{% endblock css %} {% block content %}
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts-->
+  <div class="container-fluid">
+    <div class="row">
+      {% include 'forms/form_widgets/timepicker/components/default.html' %} {%
+      include 'forms/form_widgets/timepicker/components/align-to-top.html' %} {%
+      include
+      'forms/form_widgets/timepicker/components/option-in-javascript.html' %} {%
+      include 'forms/form_widgets/timepicker/components/default-value.html' %}
+    </div>
+  </div>
+  <!-- Container-fluid ends                    -->
+</div>
+{% endblock content %} {% block scriptcontent %}
+<!-- Plugins JS start-->
+<script src="{% static 'assets3/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets3/js/time-picker/jquery-clockpicker.min.js' %}"></script>
+<script src="{% static 'assets3/js/time-picker/highlight.min.js' %}"></script>
+<script src="{% static 'assets3/js/time-picker/clockpicker.js' %}"></script>
+<!-- Plugins JS Ends-->
+{% endblock scriptcontent %}

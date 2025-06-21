@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% load sass_tags %} {% block css %}
+<!-- Plugins css start-->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'assets3/css/vendors/todo.css'%}"
+/>
+<!-- Plugins css Ends-->
+{% endblock %} {% block content %}
+
+<div class="page-body">
+  {% include "layout/breadcrumb.html" %}
+
+  <div class="container-fluid">
+    {% include "to_do_database/components/to-do-database.html" %}
+  </div>
+</div>
+
+{% endblock %} {% block scriptcontent %}
+<!-- Plugins JS start-->
+<script src="{% static 'assets3/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets3/js/todo/todo.js'%}"></script>
+<script src="{% static 'assets3/js/tooltip-init.js'%}"></script>
+<!-- Plugins JS Ends-->
+{% endblock %}

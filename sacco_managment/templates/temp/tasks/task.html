@@ -1,0 +1,30 @@
+{% extends 'base.html' %}{% load static %} {% load sass_tags %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets3/scss/vendors/select2.scss' %}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% sass_src 'assets3/scss/vendors/date-picker.scss' %}"
+/>
+{% endblock css %} {% block content %}
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts-->
+  {% include 'tasks/components/task.html' %}
+  <!-- Container-fluid Ends-->
+</div>
+{% endblock content %} {% block scriptcontent %}
+<script src="{% static 'assets3/js/sidebar-menu.js' %}"></script>
+<script src="{% static 'assets3/js/datepicker/date-picker/datepicker.js' %}"></script>
+<script src="{% static 'assets3/js/datepicker/date-picker/datepicker.en.js' %}"></script>
+<script src="{% static 'assets3/js/datepicker/date-picker/datepicker.custom.js' %}"></script>
+<script src="{% static 'assets3/js/select2/select2.full.min.js' %}"></script>
+<script src="{% static 'assets3/js/select2/select2-custom.js' %}"></script>
+<script src="{% static 'assets3/js/form-validation-custom.js' %}"></script>
+<script src="{% static 'assets3/js/task/custom.js' %}"></script>
+
+{% endblock scriptcontent %}
