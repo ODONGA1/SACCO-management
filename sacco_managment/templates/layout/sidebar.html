@@ -11,15 +11,6 @@
         display: block;
     }
 
-    .sidebar-link .toggle-icon {
-        float: right;
-        transition: transform 0.3s ease;
-    }
-
-    .sidebar-list.active .toggle-icon i {
-        transform: rotate(180deg);
-    }
-
     .sidebar-link {
         cursor: pointer;
         display: flex;
@@ -27,10 +18,29 @@
         justify-content: space-between;
     }
 
+    .sidebar-link .toggle-icon {
+        margin-left: 8px;
+        display: flex;
+        align-items: center;
+        font-size: 12px;  
+        transition: transform 0.35s ease-in-out;  
+    }
+
+    .sidebar-list.active .toggle-icon i {
+        transform: rotate(180deg);
+    }
+
     .sidebar-link svg {
         margin-right: 8px;
+        min-width: 24px;
+    }
+
+    .sidebar-link span {
+        flex-grow: 1;
     }
 </style>
+
+
 
 
 <div class="sidebar-wrapper">
