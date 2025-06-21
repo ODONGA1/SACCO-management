@@ -174,3 +174,13 @@ def mobile_money_deposit(request):
     return render(request, 'mobile_money/deposit.html', {'form': form})
 
   
+  
+@login_required
+def calendar(request):
+    context = {
+        "breadcrumb": {
+            "parent": "Calendar",
+            "child": "Calendar Basic"
+        }
+    }
+    return render(request, 'calendar/calendar-basic.html', context)
