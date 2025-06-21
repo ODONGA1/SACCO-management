@@ -3,42 +3,45 @@
 
 
 <style>
-    .sidebar-submenu {
-        display: none;
-    }
+.sidebar-submenu {
+    display: none;
+    padding-left: 20px;
+}
 
-    .sidebar-list.active .sidebar-submenu {
-        display: block;
-    }
+.sidebar-list.active .sidebar-submenu {
+    display: block;
+}
 
-    .sidebar-link {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.sidebar-link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+}
 
-    .sidebar-link .toggle-icon {
-        margin-left: 8px;
-        display: flex;
-        align-items: center;
-        font-size: 12px;  
-        transition: transform 0.35s ease-in-out;  
-    }
+.sidebar-link .toggle-icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+}
 
-    .sidebar-list.active .toggle-icon i {
-        transform: rotate(180deg);
-    }
+.sidebar-list.active > .sidebar-link .toggle-icon {
+    transform: rotate(180deg);
+}
 
-    .sidebar-link svg {
-        margin-right: 8px;
-        min-width: 24px;
-    }
+.sidebar-list.active > .sidebar-link span,
+.sidebar-list.active .sidebar-submenu a {
+    font-weight: bold;
+}
 
-    .sidebar-link span {
-        flex-grow: 1;
-    }
+.sidebar-link svg {
+    margin-right: 8px;
+    min-width: 24px;
+}
 </style>
+
 
 
 
@@ -73,7 +76,7 @@
                     </li>
                     
                     <!-- Dashboard -->
-                    <li class="sidebar-list">
+                     <li class="sidebar-list {% if request.resolver_match.url_name in 'dashboard account' %}active{% endif %}">
                         <a class="sidebar-link sidebar-title link-nav" href="{% url 'account:dashboard' %}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g>
@@ -94,7 +97,7 @@
                     </li>
                     
                     <!-- Transactions -->
-                    <li class="sidebar-list">
+                    <li class="sidebar-list {% if request.resolver_match.url_name == 'transactions' %}active{% endif %}">
                         <a class="sidebar-link sidebar-title link-nav" href="{% url 'core:transactions' %}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g>
@@ -111,7 +114,7 @@
                     </li>
                     
                     <!-- Pay & Receive -->
-                    <li class="sidebar-list">
+                    <li class="sidebar-list {% if request.resolver_match.url_name in 'search-account request-search-account' %}active{% endif %}">
                         <a class="sidebar-link sidebar-title" href="#">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g>
@@ -131,7 +134,7 @@
                     </li>
                     
                     <!-- Mobile Money -->
-                    <li class="sidebar-list">
+                    <li class="sidebar-list {% if request.resolver_match.url_name in 'mobile-money-deposit mobile-money-withdrawal mobile-money-transactions' %}active{% endif %}">
                         <a class="sidebar-link sidebar-title" href="#">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g>
@@ -214,7 +217,7 @@
                     </li>
                     
                     <!-- Account -->
-                    <li class="sidebar-list">
+                    <li class="sidebar-list {% if request.resolver_match.url_name == 'account' %}active{% endif %}">
                         <a class="sidebar-link sidebar-title link-nav" href="{% url 'account:account' %}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g>
@@ -270,27 +273,25 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sidebarLinks = document.querySelectorAll('.sidebar-list > .sidebar-link');
+document.addEventListener("DOMContentLoaded", function () {
+    const sidebarLinks = document.querySelectorAll('.sidebar-list > .sidebar-link');
 
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                // If submenu exists, toggle; otherwise follow link
-                const parentLi = this.closest('.sidebar-list');
-                const submenu = parentLi.querySelector('.sidebar-submenu');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const parentLi = this.closest('.sidebar-list');
+            const submenu = parentLi.querySelector('.sidebar-submenu');
 
-                if (submenu) {
-                    e.preventDefault();
-                    parentLi.classList.toggle('active');
+            if (submenu) {
+                e.preventDefault();
+                parentLi.classList.toggle('active');
 
-                    // Close other menus (optional)
-                    document.querySelectorAll('.sidebar-list').forEach(item => {
-                        if (item !== parentLi) {
-                            item.classList.remove('active');
-                        }
-                    });
-                }
-            });
+                document.querySelectorAll('.sidebar-list').forEach(item => {
+                    if (item !== parentLi) {
+                        item.classList.remove('active');
+                    }
+                });
+            }
         });
     });
+});
 </script>
