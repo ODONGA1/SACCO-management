@@ -1,13 +1,13 @@
 {% extends 'partials/dashboard-base.html' %}
-{% load static %} 
+{% load static %}
 {% load humanize %}
-{% load sass_tags %} 
+{% load sass_tags %}
 {% block css %}
 <!-- Plugins css start-->
 <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/animate.scss' %}" />
 <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/vendors/calendar.scss' %}" />
 <!-- Plugins css Ends-->
-{% endblock css %} 
+{% endblock css %}
 {% block content %}
 <div class="page-body">
   {% include 'layout/breadcrumb.html' %}

@@ -1,9 +1,11 @@
-{% extends "partials/dashboard-base.html" %} 
-{% load static %} 
-{% load humanize%} 
+{% extends "partials/dashboard-base.html" %}
+{% load static %}
+{% load humanize%}
 {% block content %}
+  
 <!-- Dashboard Section start -->
 <section class="dashboard-section body-collapse">
+
   <div class="overlay pt-120">
     <div class="container-fruid">
       <div class="row">
@@ -13,83 +15,45 @@
               <div class="section-text">
                 <h5>Transactions</h5>
                 <p>Updated every several minutes</p>
+
+         
               </div>
-              <div
-                class="top-area d-flex align-items-center justify-content-between"
-              >
+              <div class="top-area d-flex align-items-center justify-content-between">
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item" role="presentation">
-                    <button
-                      class="nav-link active"
-                      id="latest-tab"
-                      data-bs-toggle="tab"
-                      data-bs-target="#latest"
-                      type="button"
-                      role="tab"
-                      aria-controls="latest"
-                      aria-selected="true"
-                    >
+                    <button class="nav-link active" id="latest-tab" data-bs-toggle="tab" data-bs-target="#latest"
+                      type="button" role="tab" aria-controls="latest" aria-selected="true">
                       Sent
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button
-                      class="nav-link"
-                      id="upcoming-tab"
-                      data-bs-toggle="tab"
-                      data-bs-target="#upcoming"
-                      type="button"
-                      role="tab"
-                      aria-controls="upcoming"
-                      aria-selected="false"
-                    >
+                    <button class="nav-link" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming"
+                      type="button" role="tab" aria-controls="upcoming" aria-selected="false">
                       Received
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button
-                      class="nav-link"
-                      id="sender-request-tab"
-                      data-bs-toggle="tab"
-                      data-bs-target="#sender-request"
-                      type="button"
-                      role="tab"
-                      aria-controls="upcoming"
-                      aria-selected="false"
-                    >
+                    <button class="nav-link" id="sender-request-tab" data-bs-toggle="tab"
+                      data-bs-target="#sender-request" type="button" role="tab" aria-controls="upcoming"
+                      aria-selected="false">
                       Sent Requests
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button
-                      class="nav-link"
-                      id="receiver-request-tab"
-                      data-bs-toggle="tab"
-                      data-bs-target="#receiver-request"
-                      type="button"
-                      role="tab"
-                      aria-controls="upcoming"
-                      aria-selected="false"
-                    >
+                    <button class="nav-link" id="receiver-request-tab" data-bs-toggle="tab"
+                      data-bs-target="#receiver-request" type="button" role="tab" aria-controls="upcoming"
+                      aria-selected="false">
                       Received Requests
                     </button>
                   </li>
                 </ul>
                 <div class="view-all d-flex align-items-center">
                   <a href="javascript:void(0)">View All</a>
-                  <img
-                    src="{% static 'assets1/images/icon/right-arrow.png' %}"
-                    alt="icon"
-                  />
+                  <img src="{% static 'assets1/images/icon/right-arrow.png' %}" alt="icon" />
                 </div>
               </div>
               <div class="tab-content mt-40">
-                <div
-                  class="tab-pane fade show active"
-                  id="latest"
-                  role="tabpanel"
-                  aria-labelledby="latest-tab"
-                >
+                <div class="tab-pane fade show active" id="latest" role="tabpanel" aria-labelledby="latest-tab">
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -103,10 +67,7 @@
                       </thead>
                       <tbody>
                         {% for s in sender_transaction %}
-                        <tr
-                          data-bs-toggle="modal"
-                          data-bs-target="#transactionsMod"
-                        >
+                        <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
                           <th scope="row">
                             <p>{{s.receiver.kyc.full_name|title}}</p>
                             <p class="mdr">{{s.transaction_type|title}}</p>
@@ -130,11 +91,8 @@
                             <p>-UGX{{s.amount|intcomma}}</p>
                           </td>
                           <td>
-                            <a
-                              href="{% url 'core:transaction-detail' s.transaction_id %}"
-                              class=""
-                              ><i class="fas fa-eye"></i
-                            ></a>
+                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i
+                                class="fas fa-eye"></i></a>
                           </td>
                         </tr>
                         {% endfor %}
@@ -142,12 +100,7 @@
                     </table>
                   </div>
                 </div>
-                <div
-                  class="tab-pane fade"
-                  id="upcoming"
-                  role="tabpanel"
-                  aria-labelledby="upcoming-tab"
-                >
+                <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -161,10 +114,7 @@
                       </thead>
                       <tbody>
                         {% for s in receiver_transaction %}
-                        <tr
-                          data-bs-toggle="modal"
-                          data-bs-target="#transactionsMod"
-                        >
+                        <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
                           <th scope="row">
                             <p>{{s.sender.kyc.full_name|title}}</p>
                             <p class="mdr">{{s.transaction_type|title}}</p>
@@ -188,11 +138,8 @@
                             <p>+UGX{{s.amount|intcomma}}</p>
                           </td>
                           <td>
-                            <a
-                              href="{% url 'core:transaction-detail' s.transaction_id %}"
-                              class=""
-                              ><i class="fas fa-eye"></i
-                            ></a>
+                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i
+                                class="fas fa-eye"></i></a>
                           </td>
                         </tr>
                         {% endfor %}
@@ -200,12 +147,7 @@
                     </table>
                   </div>
                 </div>
-                <div
-                  class="tab-pane fade"
-                  id="sender-request"
-                  role="tabpanel"
-                  aria-labelledby="sender-request-tab"
-                >
+                <div class="tab-pane fade" id="sender-request" role="tabpanel" aria-labelledby="sender-request-tab">
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -219,10 +161,7 @@
                       </thead>
                       <tbody>
                         {% for s in request_sender_transaction %}
-                        <tr
-                          data-bs-toggle="modal"
-                          data-bs-target="#transactionsMod"
-                        >
+                        <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
                           <th scope="row">
                             <p>{{s.receiver.kyc.full_name|title}}</p>
                             <p class="mdr">{{s.transaction_type|title}}</p>
@@ -231,44 +170,44 @@
                             <p><small>{{s.date|date:"h:i"}}</small></p>
                             <p class="mdr">{{s.date|date:"d M, Y"}}</p>
                           </td>
-                          
+
                           <td>
                             {% if s.status == 'completed' or s.status == 'request_sent' or s.status == 'request_settled' %}
                               <p class="text-success">{{ s.status|title }}</p>
-                            {% elif s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing' %}
-                              <p class="inprogress">{{ s.status|title }}</p>
-                            {% elif s.status == 'failed' %}
-                              <p class="danger">{{ s.status|title }}</p>
                             {% else %}
-                              <p class="text-muted">{{ s.status|title }}</p>
+                              {% if s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing' %}
+                                <p class="inprogress">{{ s.status|title }}</p>
+                              {% else %}
+                                {% if s.status == 'failed' %}
+                                  <p class="danger">{{ s.status|title }}</p>
+                                {% else %}
+                                  <p class="text-muted">{{ s.status|title }}</p>
+                                {% endif %}
+                              {% endif %}
                             {% endif %}
                           </td>
+
 
 
 
                           <td>
                             <p>+${{s.amount|intcomma}}</p>
                           </td>
-                          
-                          
+
+
                           <td>
                             {% if s.status == "request_sent" or s.status == "request_processing" %}
-                              <a
-                                href="{% url 'core:transaction-detail' s.transaction_id %}"
-                                class="btn btn-primary"
-                              >
-                                <i class="fas fa-eye"></i> View
-                              </a>
-                              <a
-                                href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
-                                class="btn btn-danger"
-                              >
-                                <i class="fas fa-x"></i> Delete
-                              </a>
+                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-primary">
+                              <i class="fas fa-eye"></i> View
+                            </a>
+                            <a href="{% url 'core:delete-request' s.sender.account.account_number s.transaction_id %}"
+                              class="btn btn-danger">
+                              <i class="fas fa-x"></i> Delete
+                            </a>
                             {% elif s.status == "request_settled" %}
-                              <a class="btn btn-success">
-                                <i class="fas fa-check-circle"></i> Settled
-                              </a>
+                            <a class="btn btn-success">
+                              <i class="fas fa-check-circle"></i> Settled
+                            </a>
                             {% endif %}
                           </td>
 
@@ -281,12 +220,7 @@
                     </table>
                   </div>
                 </div>
-                <div
-                  class="tab-pane fade"
-                  id="receiver-request"
-                  role="tabpanel"
-                  aria-labelledby="receiver-request-tab"
-                >
+                <div class="tab-pane fade" id="receiver-request" role="tabpanel" aria-labelledby="receiver-request-tab">
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -300,10 +234,7 @@
                       </thead>
                       <tbody>
                         {% for s in request_receiver_transaction %}
-                        <tr
-                          data-bs-toggle="modal"
-                          data-bs-target="#transactionsMod"
-                        >
+                        <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
                           <th scope="row">
                             <p>{{s.sender.kyc.full_name|title}}</p>
                             <p class="mdr">{{s.transaction_type|title}}</p>
@@ -312,41 +243,32 @@
                             <p><small>{{s.date|date:"h:i"}}</small></p>
                             <p class="mdr">{{s.date|date:"d M, Y"}}</p>
                           </td>
-                          
-                          
+
+
                           <td>
                             {% if s.status in 'completed request_sent request_settled' %}
-                              <p class="text-success">{{ s.status|title }}</p>
+                            <p class="text-success">{{ s.status|title }}</p>
                             {% elif s.status in 'pending processing request_processing' %}
-                              <p class="inprogress">{{ s.status|title }}</p>
+                            <p class="inprogress">{{ s.status|title }}</p>
                             {% elif s.status == 'failed' %}
-                              <p class="danger">{{ s.status|title }}</p>
+                            <p class="danger">{{ s.status|title }}</p>
                             {% else %}
-                              <p>{{ s.status|title }}</p>
+                            <p>{{ s.status|title }}</p>
                             {% endif %}
                           </td>
-                          
-                          
+
+
                           <td>
                             <p>+UGX{{s.amount|intcomma}}</p>
                           </td>
                           <td>
                             {% if s.status == "request_sent" %}
-                            <a
-                              href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
-                              class="btn btn-primary"
-                              ><i class="fas fa-check-circle"></i> Settle</a
-                            >
-                            <a
-                              href="{% url 'core:transaction-detail' s.transaction_id %}"
-                              class="btn btn-danger"
-                            >
-                              <i class="fas fa-x"></i> Cancel</a
-                            >
+                            <a href="{% url 'core:settlement-confirmation' s.sender.account.account_number s.transaction_id %}"
+                              class="btn btn-primary"><i class="fas fa-check-circle"></i> Settle</a>
+                            <a href="{% url 'core:transaction-detail' s.transaction_id %}" class="btn btn-danger">
+                              <i class="fas fa-x"></i> Cancel</a>
                             {% endif %} {% if s.status == "request_settled" %}
-                            <a href="" class="btn btn-success"
-                              ><i class="fas fa-check-circle"></i> Settled</a
-                            >
+                            <a href="" class="btn btn-success"><i class="fas fa-check-circle"></i> Settled</a>
                             {% endif %}
                           </td>
                         </tr>
