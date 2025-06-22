@@ -9,9 +9,12 @@
             </div> -->
             <div class="toggle-sidebar">
                 <div class="status_toggle sidebar-toggle d-flex">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="sidebarToggle" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <g>
                             <g>
+
+
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M21.0003 6.6738C21.0003 8.7024 19.3551 10.3476 17.3265 10.3476C15.2979 10.3476 13.6536 8.7024 13.6536 6.6738C13.6536 4.6452 15.2979 3 17.3265 3C19.3551 3 21.0003 4.6452 21.0003 6.6738Z"
                                     stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -28,12 +31,16 @@
                                     d="M10.3467 17.2619C10.3467 19.2905 8.7024 20.9348 6.6729 20.9348C4.6452 20.9348 3 19.2905 3 17.2619C3 15.2333 4.6452 13.5881 6.6729 13.5881C8.7024 13.5881 10.3467 15.2333 10.3467 17.2619Z"
                                     stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 </path>
+
+
                             </g>
                         </g>
                     </svg>
                 </div>
             </div>
         </div>
+
+
         <div class="left-side-header col ps-0 d-none d-md-block">
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">
@@ -85,7 +92,7 @@
                         <input type="text" placeholder="Search here..." />
                     </div>
                 </li>
-                
+
                 <li class="onhover-dropdown">
                     <div class="notification-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,18 +203,23 @@
                 <li class="profile-nav onhover-dropdown pe-0 py-0 me-0">
                     <div class="media profile-media">
                         {% if request.user.kyc.image.url %}
-                            <img style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="User">
+                        <img style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;"
+                            src="{{ request.user.kyc.image.url }}" alt="User">
                         {% else %}
-                            <img src="{% static 'assets1/images/default.jpg' %}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" alt="User">
+                        <img src="{% static 'assets1/images/default.jpg' %}"
+                            style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" alt="User">
                         {% endif %}
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li>
                             <div class="media profile-media">
                                 {% if request.user.kyc.image.url %}
-                                    <img style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="User">
+                                <img style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"
+                                    src="{{ request.user.kyc.image.url }}" alt="User">
                                 {% else %}
-                                    <img src="{% static 'assets1/images/default.jpg' %}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="User">
+                                <img src="{% static 'assets1/images/default.jpg' %}"
+                                    style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"
+                                    alt="User">
                                 {% endif %}
                                 <div class="media-body">
                                     <h5>{{kyc.full_name|title}}</h5>
@@ -220,13 +232,15 @@
                             <a href="{% url 'account:account' %}"><i data-feather="user"></i><span>Account</span></a>
                         </li>
                         <li>
-                            <a href="{% url 'account:dashboard' %}"><i data-feather="home"></i><span>Dashboard</span></a>
+                            <a href="{% url 'account:dashboard' %}"><i
+                                    data-feather="home"></i><span>Dashboard</span></a>
                         </li>
                         <li>
                             <a href="#"><i data-feather="settings"></i><span>Settings</span></a>
                         </li>
                         <li>
-                            <a href="{% url 'user_auths:logout' %}"><i data-feather="log-out"></i><span>Logout</span></a>
+                            <a href="{% url 'user_auths:logout' %}"><i
+                                    data-feather="log-out"></i><span>Logout</span></a>
                         </li>
                     </ul>
                 </li>
@@ -234,3 +248,20 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleIcon = document.getElementById("sidebarToggle");
+        const sidebar = document.querySelector(".sidebar");
+        const body = document.body;
+
+        if (toggleIcon && sidebar) {
+            toggleIcon.addEventListener("click", function () {
+                console.log("Toggle clicked");
+                body.classList.toggle("sidebar-collapsed");
+                sidebar.classList.toggle("collapsed");
+            });
+        }
+    });
+</script>
