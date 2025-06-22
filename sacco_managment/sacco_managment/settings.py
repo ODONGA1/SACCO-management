@@ -109,6 +109,7 @@ STATICFILES_FINDERS = [
 
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(BASE_DIR, 'static/assets2/scss'),
+    os.path.join(BASE_DIR, 'static/assets3/scss'),
 ]
 
 
@@ -221,6 +222,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "user_auths.User"
 
+SASS_PROCESSOR_ROOT = BASE_DIR / 'static'
 
 
 
