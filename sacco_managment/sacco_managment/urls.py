@@ -34,6 +34,7 @@ urlpatterns = [
     
     # PWA URLs
     path('', include('pwa.urls')),
+    path('support/', include('support.urls', namespace='support')),
  
 ]
 
