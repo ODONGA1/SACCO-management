@@ -1,7 +1,9 @@
 from django import forms
 from account.models import KYC
 from django.forms import ImageField, FileInput, DateInput, TextInput
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from .models import StaffPermission
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -27,4 +29,45 @@ class KYCForm(forms.ModelForm):
         }
 
 
- 
+class StaffCreationForm(UserCreationForm):
+    ROLE_CHOICES = (
+        ('SUPPORT', 'Support Staff'),
+        ('LOAN_OFFICER', 'Loan Officer'),
+        ('ACCOUNT_MANAGER', 'Account Manager'),
+        ('ADMIN', 'System Admin'),
+    )
+    
+    role = forms.ChoiceField(choices=ROLE_CHOICES)
+    can_view_balances = forms.BooleanField(required=False)
+    can_reset_passwords = forms.BooleanField(required=False)
+    can_approve_loans = forms.BooleanField(required=False)
+    can_edit_kyc = forms.BooleanField(required=False)
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+        
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.role = 'STAFF'  # Set as staff by default
+        if commit:
+            user.save()
+        return user
+
+class StaffEditForm(forms.ModelForm):
+    ROLE_CHOICES = (
+        ('SUPPORT', 'Support Staff'),
+        ('LOAN_OFFICER', 'Loan Officer'),
+        ('ACCOUNT_MANAGER', 'Account Manager'),
+        ('ADMIN', 'System Admin'),
+    )
+    
+    role = forms.ChoiceField(choices=ROLE_CHOICES)
+    can_view_balances = forms.BooleanField(required=False)
+    can_reset_passwords = forms.BooleanField(required=False)
+    can_approve_loans = forms.BooleanField(required=False)
+    can_edit_kyc = forms.BooleanField(required=False)
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'is_active')

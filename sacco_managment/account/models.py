@@ -31,6 +31,13 @@ IDENTITY_TYPE = (
     ("international_passport", "International Passport")
 )
 
+# Add STAFF_ROLES at the top
+STAFF_ROLES = (
+    ('SUPPORT', 'Support Staff'),
+    ('LOAN_OFFICER', 'Loan Officer'),
+    ('ACCOUNT_MANAGER', 'Account Manager'),
+    ('ADMIN', 'System Admin')
+)
 
 def user_directory_path(instance, filename):
     ext = filename.split(".")[-1]
@@ -110,6 +117,41 @@ class KYC(models.Model):
         ordering = ['-date']
 
 
+# Add StaffPermission model
+class StaffPermission(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=20, choices=STAFF_ROLES)
+    can_view_balances = models.BooleanField(default=False)
+    can_reset_passwords = models.BooleanField(default=False)
+    can_approve_loans = models.BooleanField(default=False)
+    can_edit_kyc = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.role}"
+
+
+def create_staff_permission(sender, instance, created, **kwargs):
+    if created and instance.role in ['STAFF', 'ADMIN', 'SUPER_ADMIN']:
+        StaffPermission.objects.get_or_create(user=instance)
+
+post_save.connect(create_staff_permission, sender=User)
+
+
+#audits
+class AuditLog(models.Model):
+    ACTION_CHOICES = (
+        ('LOGIN', 'User Login'),
+        ('PASSWORD_RESET', 'Password Reset'),
+        ('ACCOUNT_EDIT', 'Account Modified'),
+    )
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    action = models.CharField(max_length=50, choices=ACTION_CHOICES)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    details = models.TextField()
+    ip_address = models.GenericIPAddressField()
+
+    def __str__(self):
+        return f"{self.get_action_display()} by {self.user} at {self.timestamp}"
 
 def create_account(sender, instance, created, **kwargs):
     if created:
