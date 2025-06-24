@@ -15,7 +15,12 @@ from django.views.generic import FormView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
+from django.db.models import Count, Sum
+from datetime import datetime, timedelta
+
 
 @login_required
 def account(request):
@@ -196,23 +201,98 @@ def calendar(request):
     return render(request, 'calendar/calendar-basic.html', context)
 
 
+@admin_required
+def admin_dashboard(request):
+    # Calculate time periods
+    today = timezone.now().date()
+    month_ago = today - timedelta(days=30)
+    
+    # Staff statistics
+    total_staff = StaffPermission.objects.count()
+    active_staff = StaffPermission.objects.filter(
+        user__is_active=True
+    ).count()
+    
+    # Financial statistics
+    total_deposits = Account.objects.aggregate(
+        total=Sum('account_balance') + Sum('mobile_money_balance')
+    )['total'] or 0
+    
+    # Member growth
+    member_growth = User.objects.filter(
+        role='MEMBER',
+        date_joined__gte=month_ago
+    ).count()
+    
+    # System activities
+    admin_actions = AuditLog.objects.filter(
+        action__in=['USER_CREATE', 'USER_EDIT', 'KYC_APPROVE'],
+        timestamp__gte=month_ago
+    ).order_by('-timestamp')[:10]
+
+    context = {
+        'title': 'Admin Dashboard',
+        'breadcrumb': {
+            'parent': 'Dashboard',
+            'child': 'Admin Portal'
+        },
+        'stats': {
+            'total_staff': total_staff,
+            'active_staff': active_staff,
+            'total_deposits': total_deposits,
+            'member_growth': member_growth,
+        },
+        'admin_actions': admin_actions,
+        'current_date': today.strftime("%B %d, %Y"),
+    }
+    return render(request, 'account/admin/dashboard.html', context)
 
 # STAFF
 @staff_required
 def staff_dashboard(request):
+    # Calculate statistics
+    today = timezone.now().date()
+    week_ago = today - timedelta(days=7)
+    
+    # Member statistics
     total_members = User.objects.filter(role='MEMBER').count()
+    new_members_week = User.objects.filter(
+        role='MEMBER', 
+        date_joined__gte=week_ago
+    ).count()
+    
+    # KYC statistics
     pending_kyc = KYC.objects.filter(kyc_confirmed=False).count()
+    approved_kyc = KYC.objects.filter(kyc_confirmed=True).count()
     
-    # Get recent activities (last 10 actions by current staff)
-    recent_activities = AuditLog.objects.filter(
-        user=request.user
+    # Transaction statistics
+    recent_transactions = Transaction.objects.select_related(
+        'sender', 'receiver'
+    ).order_by('-date')[:5]
+    
+    # Recent activities
+    activities = AuditLog.objects.filter(
+        timestamp__gte=week_ago
     ).order_by('-timestamp')[:10]
+
+    context = {
+        'title': 'Staff Dashboard',
+        'breadcrumb': {
+            'parent': 'Dashboard',
+            'child': 'Staff Portal'
+        },
+        'stats': {
+            'total_members': total_members,
+            'new_members_week': new_members_week,
+            'pending_kyc': pending_kyc,
+            'approved_kyc': approved_kyc,
+        },
+        'recent_transactions': recent_transactions,
+        'activities': activities,
+        'current_date': today.strftime("%B %d, %Y"),
+    }
+    return render(request, 'account/staff/dashboard.html', context)
     
-    return render(request, 'account/staff/dashboard.html', {
-        'total_members': total_members,
-        'pending_kyc': pending_kyc,
-        'recent_activities': recent_activities
-    })
 
 @staff_required
 def user_profiles(request):
@@ -230,16 +310,32 @@ def password_resets(request):
         'reset_requests': []
     })
 
+
 @staff_required
 def kyc_review(request):
-    pending_kyc = KYC.objects.filter(kyc_confirmed=False)
+    pending_kyc = KYC.objects.filter(kyc_confirmed=False).select_related('user', 'account')
+    
+    if request.method == 'POST':
+        kyc_id = request.POST.get('kyc_id')
+        action = request.POST.get('action')
+        
+        try:
+            kyc = KYC.objects.get(id=kyc_id)
+            if action == 'approve':
+                kyc.account.kyc_confirmed = True
+                kyc.account.save()
+                messages.success(request, f"KYC for {kyc.user.username} approved.")
+            elif action == 'reject':
+                messages.info(request, f"KYC for {kyc.user.username} rejected.")
+            return redirect('account:kyc_review')
+        except KYC.DoesNotExist:
+            messages.error(request, "KYC record not found.")
+    
     return render(request, 'account/staff/kyc_review.html', {
         'pending_kyc': pending_kyc
     })
-
-
-
-
+    
+    
 
 # staff functions
 @admin_required
@@ -326,20 +422,36 @@ def manage_staff(request):
 
 # staff login
 class StaffLoginView(FormView):
-    template_name = 'registration/staff_login.html'
+    template_name = 'account/staff_login.html'
     form_class = AuthenticationForm
-    success_url = reverse_lazy('account:staff_dashboard')
+    success_url = reverse_lazy('account:staff_dashboard')  # Default fallback
     
     def form_valid(self, form):
-        user = form.get_user()
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        login_type = self.request.POST.get('login_type', 'staff')
         
-        # Check if user has staff privileges
-        if user.role in ['STAFF', 'ADMIN', 'SUPER_ADMIN']:
+        user = authenticate(self.request, username=username, password=password)
+        
+        if user is not None:
+            # Check user role and login type match
+            if login_type == 'admin' and user.role not in ['ADMIN', 'SUPER_ADMIN']:
+                messages.error(self.request, "You don't have admin privileges")
+                return self.form_invalid(form)
+                
+            if login_type == 'staff' and user.role not in ['STAFF', 'ADMIN', 'SUPER_ADMIN']:
+                messages.error(self.request, "You don't have staff privileges")
+                return self.form_invalid(form)
+            
             login(self.request, user)
-            return super().form_valid(form)
+            
+            # Redirect based on role
+            if user.role in ['ADMIN', 'SUPER_ADMIN']:
+                return redirect('account:admin_dashboard')
+            elif user.role == 'STAFF':
+                return redirect('account:staff_dashboard')
         
-        # If not staff, show error
-        messages.error(self.request, "You don't have permission to access the staff area")
+        messages.error(self.request, "Invalid username or password")
         return self.form_invalid(form)
 
 # ADMIN
