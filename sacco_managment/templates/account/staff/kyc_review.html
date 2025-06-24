@@ -1,95 +1,179 @@
 {% extends "account/base.html" %}
 
-{% block page_title %}KYC Review{% endblock %}
+{% block page_title %}KYC Verification{% endblock %}
 
 {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
 <li class="breadcrumb-item"><a href="#">Verification</a></li>
 <li class="breadcrumb-item active" aria-current="page">KYC Review</li>
 {% endblock %}
 
 {% block header_actions %}
-<div class="d-flex">
-    <div class="btn-group me-2">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            <i class="fas fa-filter me-1"></i> Filter
+<div class="d-flex align-items-center gap-3">
+    <div class="position-relative flex-grow-1" style="max-width: 400px;">
+        <input type="text" class="form-control form-control-lg ps-5" placeholder="Search KYC submissions...">
+        <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="statusFilter" data-bs-toggle="dropdown">
+            <i class="fas fa-filter me-1"></i> Status: Pending
         </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Pending Review</a></li>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item active" href="#">Pending Review</a></li>
             <li><a class="dropdown-item" href="#">Approved</a></li>
             <li><a class="dropdown-item" href="#">Rejected</a></li>
+            <li><a class="dropdown-item" href="#">All Submissions</a></li>
         </ul>
-    </div>
-    <div class="input-group" style="width: 300px;">
-        <input type="text" class="form-control" placeholder="Search KYC...">
-        <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-        </button>
     </div>
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    {% for kyc in pending_kyc %}
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                <h6 class="mb-0">KYC #{{ kyc.id|slice:":8" }}</h6>
-                <span class="badge bg-warning">Pending</span>
-            </div>
-            <div class="card-body">
-                <div class="text-center mb-3">
-                    <div class="avatar mb-2">
-                        <img src="{{ kyc.image.url }}" class="rounded-circle" width="80" height="80" alt="User Photo">
+<div class="row g-4">
+    {% if pending_kyc %}
+        {% for kyc in pending_kyc %}
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center border-0 py-3">
+                    <div>
+                        <span class="badge bg-warning-light text-warning rounded-pill">
+                            <i class="fas fa-clock me-1"></i> Pending Review
+                        </span>
+                        <small class="text-muted d-block mt-1">Submitted {{ kyc.date|timesince }} ago</small>
                     </div>
-                    <h5>{{ kyc.full_name }}</h5>
-                    <div class="text-muted small">
-                        {{ kyc.get_identity_type_display }}
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-light rounded-circle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Download Documents</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-link me-2"></i>View Member Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Delete Submission</a></li>
+                        </ul>
                     </div>
                 </div>
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Gender:</span>
-                        <strong>{{ kyc.get_gender_display }}</strong>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Date of Birth:</span>
-                        <strong>{{ kyc.date_of_birth|date:"d M Y" }}</strong>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Location:</span>
-                        <strong>{{ kyc.city }}, {{ kyc.country }}</strong>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Submitted:</span>
-                        <strong>{{ kyc.date|timesince }} ago</strong>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer bg-white d-flex justify-content-between">
-                <button class="btn btn-sm btn-success">
-                    <i class="fas fa-check me-1"></i> Approve
-                </button>
-                <button class="btn btn-sm btn-danger">
-                    <i class="fas fa-times me-1"></i> Reject
-                </button>
-                <button class="btn btn-sm btn-primary">
-                    <i class="fas fa-eye me-1"></i> View
-                </button>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="avatar avatar-xxl mb-3">
+                            {% if kyc.image %}
+                                <img src="{{ kyc.image.url }}" class="rounded-circle border" alt="User Photo">
+                            {% else %}
+                                <div class="avatar-initials bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
+                                    {{ kyc.get_initials }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <h5 class="mb-1">{{ kyc.full_name }}</h5>
+                        <div class="text-muted small">
+                            {{ kyc.get_identity_type_display }}: {{ kyc.identity_number }}
+                        </div>
+                    </div>
+                    
+                    <div class="kyc-details">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-primary-light text-primary me-3">
+                                <i class="fas fa-venus-mars"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">Gender</small>
+                                <div class="fw-bold">{{ kyc.get_gender_display }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-success-light text-success me-3">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">Date of Birth</small>
+                                <div class="fw-bold">{{ kyc.date_of_birth|date:"d M Y" }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-circle bg-info-light text-info me-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted">Location</small>
+                                <div class="fw-bold">{{ kyc.city }}, {{ kyc.country }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-0 pt-0 pb-3">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-danger me-md-2" type="button">
+                            <i class="fas fa-times me-1"></i> Reject
+                        </button>
+                        <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#approveModal{{ kyc.id }}">
+                            <i class="fas fa-check me-1"></i> Approve
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    {% empty %}
+
+        <!-- Approve Confirmation Modal -->
+        <div class="modal fade" id="approveModal{{ kyc.id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Approval</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to approve this KYC submission for <strong>{{ kyc.full_name }}</strong>?</p>
+                        <div class="alert alert-warning mt-3">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            This action cannot be undone. The member will gain full access to their account.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-success">Confirm Approval</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
     <div class="col-12">
-        <div class="card">
+        <div class="card border-0 shadow-sm">
             <div class="card-body text-center py-5">
-                <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
-                <h4>No Pending KYC Submissions</h4>
-                <p class="text-muted">All KYC documents have been reviewed and processed.</p>
+                <div class="py-4">
+                    <i class="fas fa-check-circle fa-4x text-success mb-4"></i>
+                    <h3>No Pending KYC Submissions</h3>
+                    <p class="text-muted lead">All KYC documents have been reviewed and processed.</p>
+                    <a href="#" class="btn btn-outline-primary">
+                        <i class="fas fa-history me-2"></i> View Approved Submissions
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    {% endfor %}
+    {% endif %}
 </div>
+
+<style>
+    .icon-circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .avatar-initials {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+</style>
 {% endblock %}

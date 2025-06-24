@@ -4,142 +4,266 @@
 {% block page_title %}Staff Dashboard{% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row g-4">
     <!-- Stats Cards -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-start border-primary border-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <h6 class="text-uppercase text-muted">Total Members</h6>
-                        <h2 class="mb-0">{{ total_members|intcomma }}</h2>
+                        <span class="badge bg-primary-light text-primary mb-2">Members</span>
+                        <h2 class="mb-2">{{ total_members|intcomma }}</h2>
+                        <div class="d-flex align-items-center">
+                            <span class="text-success small me-2">
+                                <i class="fas fa-arrow-up me-1"></i> 5.2%
+                            </span>
+                            <span class="text-muted small">vs last month</span>
+                        </div>
                     </div>
-                    <div class="icon-shape bg-primary text-white rounded-circle">
+                    <div class="icon-circle bg-primary-light text-primary">
                         <i class="fas fa-users"></i>
                     </div>
                 </div>
             </div>
+            <div class="card-footer bg-white border-0 py-2">
+                <a href="#" class="text-primary small d-flex align-items-center">
+                    View all members <i class="fas fa-chevron-right ms-1 small"></i>
+                </a>
+            </div>
         </div>
     </div>
     
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-start border-warning border-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <h6 class="text-uppercase text-muted">Pending KYC</h6>
-                        <h2 class="mb-0">{{ pending_kyc|intcomma }}</h2>
+                        <span class="badge bg-warning-light text-warning mb-2">Verification</span>
+                        <h2 class="mb-2">{{ pending_kyc|intcomma }}</h2>
+                        <div class="d-flex align-items-center">
+                            <span class="text-danger small me-2">
+                                <i class="fas fa-arrow-down me-1"></i> 2.1%
+                            </span>
+                            <span class="text-muted small">vs last week</span>
+                        </div>
                     </div>
-                    <div class="icon-shape bg-warning text-white rounded-circle">
+                    <div class="icon-circle bg-warning-light text-warning">
                         <i class="fas fa-id-card"></i>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-start border-info border-4">
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h6 class="text-uppercase text-muted">Password Resets</h6>
-                        <h2 class="mb-0">12</h2>
-                    </div>
-                    <div class="icon-shape bg-info text-white rounded-circle">
-                        <i class="fas fa-key"></i>
-                    </div>
-                </div>
+            <div class="card-footer bg-white border-0 py-2">
+                <a href="{% url 'account:kyc_review' %}" class="text-warning small d-flex align-items-center">
+                    Review KYC <i class="fas fa-chevron-right ms-1 small"></i>
+                </a>
             </div>
         </div>
     </div>
     
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-start border-success border-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
             <div class="card-body">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between align-items-start">
                     <div>
-                        <h6 class="text-uppercase text-muted">Today's Activity</h6>
-                        <h2 class="mb-0">24</h2>
+                        <span class="badge bg-info-light text-info mb-2">Resets</span>
+                        <h2 class="mb-2">12</h2>
+                        <div class="d-flex align-items-center">
+                            <span class="text-success small me-2">
+                                <i class="fas fa-arrow-up me-1"></i> 15.8%
+                            </span>
+                            <span class="text-muted small">vs yesterday</span>
+                        </div>
                     </div>
-                    <div class="icon-shape bg-success text-white rounded-circle">
+                    <div class="icon-circle bg-info-light text-info">
+                        <i class="fas fa-key"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white border-0 py-2">
+                <a href="{% url 'account:password_resets' %}" class="text-info small d-flex align-items-center">
+                    Manage resets <i class="fas fa-chevron-right ms-1 small"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <span class="badge bg-success-light text-success mb-2">Activity</span>
+                        <h2 class="mb-2">24</h2>
+                        <div class="d-flex align-items-center">
+                            <span class="text-success small me-2">
+                                <i class="fas fa-arrow-up me-1"></i> 8.3%
+                            </span>
+                            <span class="text-muted small">vs yesterday</span>
+                        </div>
+                    </div>
+                    <div class="icon-circle bg-success-light text-success">
                         <i class="fas fa-chart-line"></i>
                     </div>
                 </div>
+            </div>
+            <div class="card-footer bg-white border-0 py-2">
+                <a href="#" class="text-success small d-flex align-items-center">
+                    View activity <i class="fas fa-chevron-right ms-1 small"></i>
+                </a>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">
+<div class="row mt-4 g-4">
     <!-- Recent Activities -->
     <div class="col-lg-8">
-        <div class="card">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
                 <h5 class="mb-0">Recent Activities</h5>
-                <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Last 7 days
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">Last 7 days</a></li>
+                        <li><a class="dropdown-item" href="#">Last 30 days</a></li>
+                        <li><a class="dropdown-item" href="#">This year</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-body p-0">
+            <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Action</th>
-                                <th>Member</th>
-                                <th>Time</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
+                    <table class="table table-borderless mb-0">
                         <tbody>
                             {% for activity in recent_activities %}
-                            <tr>
-                                <td>
-                                    <i class="fas fa-{{ activity.icon }} me-2 text-{{ activity.color }}"></i>
-                                    {{ activity.get_action_display }}
+                            <tr class="border-bottom">
+                                <td style="width: 50px;">
+                                    <div class="icon-circle bg-{{ activity.color }}-light text-{{ activity }}">
+                                        <i class="fas fa-{{ activity.icon }}"></i>
+                                    </div>
                                 </td>
-                                <td>{{ activity.user.username }}</td>
-                                <td>{{ activity.timestamp|timesince }} ago</td>
                                 <td>
-                                    <span class="badge bg-{{ activity.badge_color }}">
+                                    <div>
+                                        <strong>{{ activity.get_action_display }}</strong>
+                                        <div class="text-muted small">
+                                            {{ activity.user.username }} • {{ activity.timestamp|timesince }} ago
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-end">
+                                    <span class="badge bg-{{ activity.badge_color }}-light text-{{ activity.badge_color }} rounded-pill">
                                         {{ activity.get_status_display }}
                                     </span>
                                 </td>
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="4" class="text-center py-4">No recent activities found</td>
+                                <td colspan="3" class="text-center py-4">
+                                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                    <h5>No Recent Activities</h5>
+                                    <p class="text-muted">System activities will appear here</p>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
+            <div class="card-footer bg-white border-0 py-2">
+                <a href="#" class="text-primary small d-flex align-items-center justify-content-center">
+                    View all activities <i class="fas fa-chevron-right ms-1 small"></i>
+                </a>
+            </div>
         </div>
     </div>
     
     <!-- Quick Actions -->
     <div class="col-lg-4">
-        <div class="card">
-            <div class="card-header bg-white">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 py-3">
                 <h5 class="mb-0">Quick Actions</h5>
             </div>
             <div class="card-body">
                 <div class="d-grid gap-3">
-                    <a href="{% url 'account:user_profiles' %}" class="btn btn-primary">
-                        <i class="fas fa-user-plus me-2"></i> Add New Member
+                    <a href="{% url 'account:user_profiles' %}" class="btn btn-primary btn-lg text-start">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-circle bg-white text-primary me-3">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Add New Member</h6>
+                                <small class="text-white-50">Register a new SACCO member</small>
+                            </div>
+                        </div>
                     </a>
-                    <a href="{% url 'account:kyc_review' %}" class="btn btn-warning">
-                        <i class="fas fa-file-alt me-2"></i> Review KYC Submissions
+                    
+                    <a href="{% url 'account:kyc_review' %}" class="btn btn-warning btn-lg text-start">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-circle bg-white text-warning me-3">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Review KYC</h6>
+                                <small class="text-white-50">{{ pending_kyc }} pending submissions</small>
+                            </div>
+                        </div>
                     </a>
-                    <a href="{% url 'account:password_resets' %}" class="btn btn-info">
-                        <i class="fas fa-unlock-alt me-2"></i> Reset Password
+                    
+                    <a href="{% url 'account:password_resets' %}" class="btn btn-info btn-lg text-start">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-circle bg-white text-info me-3">
+                                <i class="fas fa-unlock-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Password Resets</h6>
+                                <small class="text-white-50">Manage member access</small>
+                            </div>
+                        </div>
                     </a>
-                    <a href="#" class="btn btn-success">
-                        <i class="fas fa-file-export me-2"></i> Generate Report
+                    
+                    <a href="#" class="btn btn-success btn-lg text-start">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-circle bg-white text-success me-3">
+                                <i class="fas fa-file-export"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Generate Report</h6>
+                                <small class="text-white-50">Export member data</small>
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .icon-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .bg-primary-light {
+        background-color: rgba(26, 79, 114, 0.1);
+    }
+    .bg-warning-light {
+        background-color: rgba(243, 156, 18, 0.1);
+    }
+    .bg-info-light {
+        background-color: rgba(44, 156, 219, 0.1);
+    }
+    .bg-success-light {
+        background-color: rgba(39, 174, 96, 0.1);
+    }
+    .bg-danger-light {
+        background-color: rgba(231, 76, 60, 0.1);
+    }
+</style>
 {% endblock %}
