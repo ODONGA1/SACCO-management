@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     
     # PWA
     "pwa",
-    # 'sass_processor',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -109,6 +109,7 @@ STATICFILES_FINDERS = [
 
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(BASE_DIR, 'static/assets2/scss'),
+    os.path.join(BASE_DIR, 'static/assets3/scss'),
 ]
 
 
@@ -221,8 +222,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "user_auths.User"
 
+SASS_PROCESSOR_ROOT = BASE_DIR / 'static'
 
-
+OPENAI_API_KEY = "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"
 
 # PWA Settings
 PWA_APP_NAME = 'Prime SACCO'

@@ -1,8 +1,11 @@
-{% extends 'partials/dashboard-base.html' %} {% load static %} {% load humanize
-%} {% block content %}
+{% extends 'partials/dashboard-base.html' %}
+{% load static %}
+{% load humanize%}
+{% block content %}
 
 <!-- Dashboard Section start -->
 <section class="dashboard-section body-collapse">
+  {% include 'layout/breadcrumb.html' %}
   <div class="overlay pt-120">
     <div class="container-fruid">
       <div class="row">
@@ -17,11 +20,8 @@
                         <div class="modal-content">
                           <div class="modal-header justify-content-between">
                             <h5>Transaction Details</h5>
-                            <a href="{% url 'account:dashboard' %}"
-                              ><i class="material-symbols-outlined"
-                                >arrow_back</i
-                              ></a
-                            >
+                            <a href="{% url 'account:dashboard' %}"><i
+                                class="material-symbols-outlined">arrow_back</i></a>
                           </div>
                           <div class="main-content">
                             <div class="row">
@@ -65,10 +65,8 @@
                                   <ul class="payment-details">
                                     <li>
                                       <span>Payment Amount</span>
-                                      <span
-                                        >{{transaction.amount|intcomma}}
-                                        USD</span
-                                      >
+                                      <span>{{transaction.amount|intcomma}}
+                                        USD</span>
                                     </li>
                                     <li>
                                       <span>Fee</span>
@@ -76,36 +74,26 @@
                                     </li>
                                     <li>
                                       <span>Total Amount</span>
-                                      <span
-                                        >{{transaction.amount|intcomma}}
-                                        USD</span
-                                      >
+                                      <span>{{transaction.amount|intcomma}}
+                                        USD</span>
                                     </li>
                                   </ul>
                                   <ul class="payment-info">
                                     <li>
                                       <p>Payment From</p>
-                                      <span class="mdr"
-                                        >{{transaction.sender.kyc.full_name|title}}</span
-                                      >
+                                      <span class="mdr">{{transaction.sender.kyc.full_name|title}}</span>
                                     </li>
                                     <li>
                                       <p>Payment To</p>
-                                      <span class="mdr"
-                                        >{{transaction.receiver.kyc.full_name|title}}</span
-                                      >
+                                      <span class="mdr">{{transaction.receiver.kyc.full_name|title}}</span>
                                     </li>
                                     <li>
                                       <p>Payment Description</p>
-                                      <span class="mdr"
-                                        >{{transaction.description}}</span
-                                      >
+                                      <span class="mdr">{{transaction.description}}</span>
                                     </li>
                                     <li>
                                       <p>Transaction ID:</p>
-                                      <span class="mdr"
-                                        >{{transaction.transaction_id}}</span
-                                      >
+                                      <span class="mdr">{{transaction.transaction_id}}</span>
                                     </li>
                                   </ul>
                                 </div>
