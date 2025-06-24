@@ -3,14 +3,16 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.conf import settings
+from django.core.cache import cache
 import openai
-
-
-
+import logging
 
 
 # Set OpenAI API key from settings
 openai.api_key = settings.OPENAI_API_KEY
+
+
+logger = logging.getLogger(__name__)
 
 
 def faq(request):
@@ -25,41 +27,68 @@ def tutorial(request):
     })
 
 
-@csrf_exempt  # Keep this ONLY if you're manually handling CSRF via JS (as you are)
+@csrf_exempt
 def chatbot(request):
     """
-    POST  => returns JSON response from GEMS AI
-    GET   => renders chat UI
+    Combined view handling:
+    - GET: Renders chat interface (support/chatbot.html)
+    - POST: Processes chat messages with GEMS AI
     """
     if request.method == "POST":
+        # Rate limiting (5 requests per minute)
+        ip = request.META.get('REMOTE_ADDR')
+        cache_key = f"chatbot_{ip}"
+        if cache.get(cache_key, 0) >= 20:
+            return JsonResponse({
+                'reply': _("Please wait a moment before sending more messages"),
+                'status': 'rate_limited'
+            }, status=429)
+        cache.incr(cache_key, timeout=60)
+
         message = request.POST.get("message", "").strip()
+        lang = request.POST.get("lang", "en")  # New language parameter
 
         if not message:
-            return JsonResponse({"reply": "Please type a message to continue."})
+            return JsonResponse({
+                'reply': _("Please type a message to continue"),
+                'status': 'empty_message'
+            })
 
         try:
-            # Call OpenAI's ChatCompletion API
+            # Language-specific system prompts
+            system_prompts = {
+                'en': _("You are GEMS AI, Gem SACCO's virtual assistant..."),
+                'lg': _("Oli GEMS AI, omuyambi wa Gem SACCO..."),
+                'fr': _("Vous êtes GEMS AI, l'assistant virtuel..."),
+                'sw': _("Wewe ni GEMS AI, msaidizi wa Gem SACCO...")
+            }
+
             response = openai.ChatCompletion.create(
-                model="gpt-4",
+                model=getattr(settings, 'OPENAI_MODEL', "gpt-4"),
                 messages=[
                     {
                         "role": "system",
-                        "content": (
-                            "You are GEMS AI, Gem SACCO’s virtual assistant. "
-                            "Help users understand accounts, KYC, loans, savings, "
-                            "mobile money, crypto wallets and general support. "
-                            "Be friendly, concise, and NEVER give legal advice."
-                        )
+                        "content": system_prompts.get(lang, 'en')
                     },
                     {"role": "user", "content": message}
-                ]
+                ],
+                temperature=0.7
             )
             reply = response.choices[0].message["content"]
+            
+            return JsonResponse({
+                'reply': reply,
+                'status': 'success'
+            })
+
         except Exception as e:
-            print("OpenAI Error:", e)
-            reply = "GEMS AI is not available at the moment. Please try again later."
+            logger.error(f"Chatbot error: {str(e)}", exc_info=True)
+            return JsonResponse({
+                'reply': _("GEMS AI is not available at the moment. Please try again later."),
+                'status': 'error'
+            }, status=500)
 
-        return JsonResponse({"reply": reply})
-
-    # If GET request → show the chatbot interface
-    return render(request, "support/chatbot.html")
+    # GET request - render chat interface
+    return render(request, "support/chatbot.html", {
+        'default_lang': request.COOKIES.get('gemsai_lang', 'en')
+    })

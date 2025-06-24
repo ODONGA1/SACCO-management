@@ -1,26 +1,36 @@
 {% extends 'partials/dashboard-base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
-
 <div class="page-body">
-      {% include 'layout/breadcrumb.html' %}
   <div class="col-lg-12 featured-tutorial">
     <div class="header-faq">
-      <h3 class="mb-0">GEMS AI</h3>
-      <p class="mb-4">Chat with GEMS AI like you're messaging a friend.</p>
+      <h3 class="mb-0">{% trans "GEMS AI" %}</h3>
+      <p class="mb-4">{% trans "Chat with GEMS AI in your preferred language" %}</p>
     </div>
 
     <div class="row justify-content-center">
       <div class="col-xl-6 col-md-8">
         <div class="card product-box">
           <div class="card-body p-0">
-            <div id="chatbox" class="chat-box p-3" style="height: 450px; overflow-y: auto; background: #f5f5f5; border-radius: 10px 10px 0 0;">
-              <!-- Messages will appear here -->
+            <div class="px-3 pt-3">
+              <select id="lang" class="form-select form-select-sm" style="width: auto;">
+                <option value="en">🇬🇧 English</option>
+                <option value="lg">🇺🇬 Luganda</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="sw">🇰🇪 Swahili</option>
+              </select>
             </div>
+            
+            <div id="chatbox" class="chat-box p-3" style="height: 450px; overflow-y: auto; background: #f5f5f5; border-radius: 10px 10px 0 0;">
+              <!-- Messages appear here -->
+            </div>
+            
             <div class="input-group p-3 border-top" style="border-radius: 0 0 10px 10px; background: #fff;">
-              <input type="text" id="user-input" class="form-control" placeholder="Type your message..." />
-              <button class="btn btn-primary" id="send-btn"><i class="fa fa-paper-plane"></i></button>
+              <input type="text" id="user-input" class="form-control" placeholder="{% trans 'Type your message...' %}" />
+              <button class="btn btn-primary" id="send-btn">
+                <i class="fa fa-paper-plane"></i> {% trans "Send" %}
+              </button>
             </div>
           </div>
         </div>
@@ -33,18 +43,19 @@
   .chat-box {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
   }
 
   .chat-bubble {
-    max-width: 75%;
-    padding: 10px 15px;
+    max-width: 80%;
+    padding: 12px 16px;
     border-radius: 18px;
     line-height: 1.4;
     word-wrap: break-word;
     font-size: 0.95rem;
     opacity: 0;
     animation: fadeIn 0.3s forwards;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
 
   .user-bubble {
@@ -70,82 +81,119 @@
     padding-left: 10px;
   }
 
+  .chat-time {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 4px;
+    text-align: right;
+  }
+
   @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
+    to { opacity: 1; }
   }
 </style>
 
 <script>
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
+  document.addEventListener('DOMContentLoaded', function() {
+    const chatbox = document.getElementById('chatbox');
+    const input = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const langSelect = document.getElementById('lang');
+
+    // Load saved language preference
+    const savedLang = localStorage.getItem('gemsai_lang');
+    if (savedLang) langSelect.value = savedLang;
+
+    function scrollChatToBottom() {
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function formatTime(date = new Date()) {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function addMessage(content, type) {
+      const bubble = document.createElement('div');
+      bubble.className = `chat-bubble ${type}-bubble`;
+      
+      const timeDiv = document.createElement('div');
+      timeDiv.className = 'chat-time';
+      timeDiv.textContent = formatTime();
+      
+      bubble.innerHTML = `<div>${content}</div>`;
+      bubble.appendChild(timeDiv);
+      
+      chatbox.appendChild(bubble);
+      scrollChatToBottom();
+    }
+
+    function showTyping() {
+      const typing = document.createElement('div');
+      typing.className = 'chat-bubble bot-bubble typing-indicator';
+      typing.id = 'typing';
+      typing.textContent = langSelect.value === 'lg' ? 
+        'GEMS AI azimba ekigambo...' : 'GEMS AI is typing...';
+      chatbox.appendChild(typing);
+      scrollChatToBottom();
+    }
+
+    function removeTyping() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
+
+    function getCSRFToken() {
+      const cookie = document.cookie.match(/csrftoken=([^;]+)/);
+      return cookie ? cookie[1] : null;
+    }
+
+    async function sendMessage() {
+      const message = input.value.trim();
+      if (!message) return;
+
+      addMessage(message, 'user');
+      input.value = '';
+      showTyping();
+
+      try {
+        const response = await fetch("{% url 'support:chatbot' %}", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCSRFToken()
+          },
+          body: new URLSearchParams({
+            message: message,
+            lang: langSelect.value
+          })
+        });
+
+        const data = await response.json();
+        removeTyping();
+        addMessage(data.reply, 'bot');
+      } catch (error) {
+        removeTyping();
+        const errorMsg = langSelect.value === 'lg' ? 
+          'GEMS AI teri ku mukutu kati. Gezako nateeko akaseera akawerako.' : 
+          'GEMS AI is not available. Please try again later.';
+        addMessage(errorMsg, 'bot');
       }
     }
-    return cookieValue;
-  }
 
-  const chatbox = document.getElementById('chatbox');
-  const input = document.getElementById('user-input');
-  const sendBtn = document.getElementById('send-btn');
-
-  function scrollChatToBottom() {
-    chatbox.scrollTop = chatbox.scrollHeight;
-  }
-
-  function addMessage(content, type) {
-    const div = document.createElement('div');
-    div.className = `chat-bubble ${type}-bubble`;
-    div.textContent = content;
-    chatbox.appendChild(div);
-    scrollChatToBottom();
-  }
-
-  function sendMessage(message) {
-    if (!message.trim()) return;
-
-    addMessage(message, 'user');
-    input.value = '';
-
-    // Show typing indicator
-    const typing = document.createElement('div');
-    typing.className = 'chat-bubble bot-bubble typing-indicator';
-    typing.id = 'typing';
-    typing.innerHTML = 'GEMS AI is typing...';
-    chatbox.appendChild(typing);
-    scrollChatToBottom();
-
-    fetch("{% url 'support:chatbot' %}", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRFToken': getCookie('csrftoken')
-      },
-      body: new URLSearchParams({ message: message })
-    })
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('typing').remove();
-      addMessage(data.reply, 'bot');
-    })
-    .catch(() => {
-      document.getElementById('typing').remove();
-      addMessage('GEMS AI is not available at the moment. Please try again later.', 'bot');
+    // Event listeners
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
+    langSelect.addEventListener('change', () => {
+      localStorage.setItem('gemsai_lang', langSelect.value);
     });
-  }
 
-  sendBtn.addEventListener('click', () => sendMessage(input.value));
-  input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage(input.value);
+    // Welcome message
+    setTimeout(() => {
+      const welcomeMsg = langSelect.value === 'lg' ? 
+        "Nkulamusizza! Nze GEMS AI, ndi omuyambi w'omunda wa Gem SACCO. Nsobola okukuyamba ki?" :
+        "Welcome! I'm GEMS AI, your Gem SACCO assistant. How can I help you today?";
+      addMessage(welcomeMsg, 'bot');
+    }, 500);
   });
 </script>
-
 {% endblock %}
