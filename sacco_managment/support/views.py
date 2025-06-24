@@ -1,26 +1,34 @@
+from django.utils.translation import gettext as _
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.conf import settings
 import openai
 
-openai.api_key = settings.OPENAI_API_KEY        # ← key straight from settings
+
+
+
+
+# Set OpenAI API key from settings
+openai.api_key = settings.OPENAI_API_KEY
 
 
 def faq(request):
-    return render(request, "faq/faq.html",
-                  {"breadcrumb": {"parent": "FAQ", "child": "FAQ"}})
+    return render(request, "faq/faq.html", {
+        "breadcrumb": {"parent": "FAQ", "child": "FAQ"}
+    })
 
 
 def tutorial(request):
-    return render(request, "support/tutorial.html",
-                  {"breadcrumb": {"parent": "Support", "child": "Tutorial"}})
+    return render(request, "support/tutorial.html", {
+        "breadcrumb": {"parent": "Support", "child": "Tutorial"}
+    })
 
 
-@csrf_exempt
+@csrf_exempt  # Keep this ONLY if you're manually handling CSRF via JS (as you are)
 def chatbot(request):
     """
-    POST  => JSON  {reply: "..."}
+    POST  => returns JSON response from GEMS AI
     GET   => renders chat UI
     """
     if request.method == "POST":
@@ -30,6 +38,7 @@ def chatbot(request):
             return JsonResponse({"reply": "Please type a message to continue."})
 
         try:
+            # Call OpenAI's ChatCompletion API
             response = openai.ChatCompletion.create(
                 model="gpt-4",
                 messages=[
@@ -39,20 +48,18 @@ def chatbot(request):
                             "You are GEMS AI, Gem SACCO’s virtual assistant. "
                             "Help users understand accounts, KYC, loans, savings, "
                             "mobile money, crypto wallets and general support. "
-                            "Be friendly, concise and NEVER give legal advice."
-                        ),
+                            "Be friendly, concise, and NEVER give legal advice."
+                        )
                     },
-                    {"role": "user", "content": message},
-                ],
+                    {"role": "user", "content": message}
+                ]
             )
             reply = response.choices[0].message["content"]
         except Exception as e:
-            # Log for debugging
-            print("OpenAI error →", e)
-            reply = ("GEMS AI is not available at the moment. "
-                     "Please try again later.")
+            print("OpenAI Error:", e)
+            reply = "GEMS AI is not available at the moment. Please try again later."
 
         return JsonResponse({"reply": reply})
 
-    # GET → render UI
+    # If GET request → show the chatbot interface
     return render(request, "support/chatbot.html")
