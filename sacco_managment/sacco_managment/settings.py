@@ -304,6 +304,8 @@ JAZZMIN_SETTINGS = {
     "theme": "flatly",
     "dark_mode_theme": "cyborg",
     "show_ui_builder": True,
+    "logout_url": "admin:logout",   
+    "logout_redirect_url": "admin:login",
 
     # Custom Icons & Styling
     "icons": {
