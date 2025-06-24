@@ -261,9 +261,9 @@ def staff_dashboard(request):
         date_joined__gte=week_ago
     ).count()
     
-    # KYC statistics
-    pending_kyc = KYC.objects.filter(kyc_confirmed=False).count()
-    approved_kyc = KYC.objects.filter(kyc_confirmed=True).count()
+    # KYC statistics - fixed to use account relationship
+    pending_kyc = Account.objects.filter(kyc_submitted=True, kyc_confirmed=False).count()
+    approved_kyc = Account.objects.filter(kyc_confirmed=True).count()
     
     # Transaction statistics
     recent_transactions = Transaction.objects.select_related(
@@ -422,7 +422,7 @@ def manage_staff(request):
 
 # staff login
 class StaffLoginView(FormView):
-    template_name = 'account/staff_login.html'
+    template_name = 'registration/staff_login.html'
     form_class = AuthenticationForm
     success_url = reverse_lazy('account:staff_dashboard')  # Default fallback
     

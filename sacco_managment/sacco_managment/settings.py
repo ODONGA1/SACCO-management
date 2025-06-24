@@ -105,7 +105,7 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = not DEBUG  # True in production
 CSRF_TRUSTED_ORIGINS = ['https://sacco-management.onrender.com'] 
 
-
+LOGOUT_REDIRECT_URL = '/account/login/'
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -296,6 +296,8 @@ JAZZMIN_SETTINGS = {
     "site_icon": "img/favicon.ico",
     "welcome_sign": "Welcome to Gems SACCO Administration Portal",
     "copyright": "Prime SACCO Ltd ",
+    
+ 
 
 
     # Theme Settings

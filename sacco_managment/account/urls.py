@@ -8,6 +8,8 @@ from core.decorators import staff_required, admin_required
 app_name = "account"
 
 urlpatterns = [
+    
+    path("logout/", LogoutView.as_view(), name="logout"),
     # Member URLs
     path("dashboard/", views.dashboard, name="dashboard"),
     path("", views.account, name="account"),

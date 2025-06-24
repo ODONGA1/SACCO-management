@@ -83,6 +83,7 @@ class KYC(models.Model):
     mobile = models.CharField(max_length=100)
     fax = models.CharField(max_length=100)
     date_created = models.DateTimeField(auto_now_add=True)
+    kyc_confirmed = models.BooleanField(default=False) 
 
     class Meta:
         ordering = ['-date_created']
