@@ -1,0 +1,55 @@
+{% extends "partials/dashboard-base.html" %}
+{% block content %}
+
+<!-- Dashboard Section start -->
+<section class="dashboard-section body-collapse reports">
+  <div class="overlay pt-120">
+    <div class="container-fruid">
+      <div class="main-content">
+        <div class="head-area">
+          <h4>Delete Report</h4>
+        </div>
+
+        <div class="delete-confirmation-card">
+          <div class="alert alert-warning">
+            <div class="d-flex align-items-center">
+              <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+              <h5 class="mb-0">Are you sure you want to delete this report?</h5>
+            </div>
+          </div>
+
+          <div class="report-details">
+            <div class="detail-item">
+              <span class="detail-label">Report Type:</span>
+              <span class="detail-value">
+                <i class="fas fa-file-{% if report.format == 'PDF' %}pdf text-danger{% else %}excel text-success{% endif %} me-2"></i>
+                {{ report.get_report_type_display }}
+              </span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Date Range:</span>
+              <span class="detail-value">{{ report.start_date|date:"M d, Y" }} to {{ report.end_date|date:"M d, Y" }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Generated On:</span>
+              <span class="detail-value">{{ report.generated_at|date:"M d, Y H:i" }}</span>
+            </div>
+          </div>
+
+          <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-footer">
+              <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash me-2"></i> Confirm Delete
+              </button>
+              <a href="{% url 'reports:report_history' %}" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Dashboard Section end -->
+
+{% endblock %}
