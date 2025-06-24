@@ -95,7 +95,7 @@ MIDDLEWARE = [
 ]
 
 # Logout settings
-LOGOUT_REDIRECT_URL = '/admin/login/'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/admin/'
 LOGIN_URL = '/admin/login/'
 
@@ -105,7 +105,7 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = not DEBUG  # True in production
 CSRF_TRUSTED_ORIGINS = ['https://sacco-management.onrender.com'] 
 
-LOGOUT_REDIRECT_URL = '/account/login/'
+
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -132,7 +132,7 @@ USER_AGENTS_CACHE = 'default'
 
 ROOT_URLCONF = "sacco_managment.urls"
 
-LOGOUT_REDIRECT_URL = '/admin/login/'
+
 
 
 TEMPLATES = [
@@ -304,8 +304,7 @@ JAZZMIN_SETTINGS = {
     "theme": "flatly",
     "dark_mode_theme": "cyborg",
     "show_ui_builder": True,
-    "logout_url": "admin:logout",   
-    "logout_redirect_url": "admin:login",
+    
 
     # Custom Icons & Styling
     "icons": {
@@ -324,7 +323,7 @@ JAZZMIN_SETTINGS = {
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-dot-circle",
     "logout_url": "/admin/logout/",
-    "logout_redirect_url": "/admin/login/",
+    "logout_redirect_url": "/",
 
     # Top Menu Configuration
     "topmenu_links": [
