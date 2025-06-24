@@ -13,8 +13,6 @@
                         xmlns="http://www.w3.org/2000/svg">
                         <g>
                             <g>
-
-
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M21.0003 6.6738C21.0003 8.7024 19.3551 10.3476 17.3265 10.3476C15.2979 10.3476 13.6536 8.7024 13.6536 6.6738C13.6536 4.6452 15.2979 3 17.3265 3C19.3551 3 21.0003 4.6452 21.0003 6.6738Z"
                                     stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -31,8 +29,6 @@
                                     d="M10.3467 17.2619C10.3467 19.2905 8.7024 20.9348 6.6729 20.9348C4.6452 20.9348 3 19.2905 3 17.2619C3 15.2333 4.6452 13.5881 6.6729 13.5881C8.7024 13.5881 10.3467 15.2333 10.3467 17.2619Z"
                                     stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 </path>
-
-
                             </g>
                         </g>
                     </svg>
@@ -251,17 +247,93 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const toggleIcon = document.getElementById("sidebarToggle");
-        const sidebar = document.querySelector(".sidebar");
-        const body = document.body;
+ 
 
-        if (toggleIcon && sidebar) {
-            toggleIcon.addEventListener("click", function () {
-                console.log("Toggle clicked");
-                body.classList.toggle("sidebar-collapsed");
-                sidebar.classList.toggle("collapsed");
-            });
+ 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleIcon = document.getElementById("sidebarToggle");
+    const sidebarWrapper = document.querySelector(".sidebar-wrapper");
+    const body = document.body;
+
+    if (toggleIcon && sidebarWrapper) {
+        // Click handler for the toggle button
+        toggleIcon.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Toggle the collapsed state
+            body.classList.toggle("sidebar-collapsed");
+            sidebarWrapper.classList.toggle("collapsed");
+            
+            // Store state in localStorage
+            localStorage.setItem("sidebarCollapsed", body.classList.contains("sidebar-collapsed"));
+        });
+
+        // Initialize from localStorage
+        if (localStorage.getItem("sidebarCollapsed") === "true") {
+            body.classList.add("sidebar-collapsed");
+            sidebarWrapper.classList.add("collapsed");
         }
-    });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                const isClickInsideSidebar = sidebarWrapper.contains(e.target);
+                const isClickOnToggle = toggleIcon.contains(e.target);
+                
+                if (!isClickInsideSidebar && !isClickOnToggle) {
+                    body.classList.remove("sidebar-collapsed");
+                    sidebarWrapper.classList.remove("collapsed");
+                }
+            }
+        });
+    }
+});
+
 </script>
+
+<style>
+/* Sidebar styles */
+.sidebar-wrapper {
+    transition: transform 0.3s ease;
+    width: 280px; /* Adjust to your sidebar width */
+}
+
+/* Collapsed state */
+.sidebar-collapsed .sidebar-wrapper {
+    transform: translateX(-100%);
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    .sidebar-wrapper {
+        position: fixed;
+        height: 100vh;
+        z-index: 1000;
+        background: #fff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        transform: translateX(-100%);
+    }
+    
+    .sidebar-wrapper.collapsed {
+        transform: translateX(0);
+    }
+    
+    /* Overlay for mobile */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+    }
+    
+    .sidebar-wrapper.collapsed + .sidebar-overlay {
+        display: block;
+    }
+}
+</style>

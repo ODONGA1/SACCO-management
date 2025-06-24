@@ -40,22 +40,67 @@
     margin-right: 8px;
     min-width: 24px;
 }
+
+/* Sidebar collapsed state */
+.sidebar-wrapper.collapsed {
+    width: 60px; /* Adjust width as needed */
+    overflow: hidden;
+}
+
+/* Hide submenu and text in collapsed state */
+.sidebar-wrapper.collapsed .sidebar-submenu,
+.sidebar-wrapper.collapsed .sidebar-title span,
+.sidebar-wrapper.collapsed .toggle-icon,
+.sidebar-wrapper.collapsed .sidebar-img-section {
+    display: none;
+}
+
+/* Optional: Adjust logo visibility in collapsed state */
+.sidebar-wrapper.collapsed .logo-wrapper {
+    display: none;
+}
+
+.sidebar-wrapper.collapsed .logo-icon-wrapper {
+    display: block;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar-wrapper {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    z-index: 1000;
+    background: #fff;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+  }
+
+  .sidebar-wrapper.collapsed {
+    transform: translateX(-100%);
+  }
+
+  .back-btn {
+    cursor: pointer;
+    padding: 10px;
+  }
+}
 </style>
 
 
 
 
 
-<div class="sidebar-wrapper">
+<div class="sidebar-wrapper" id="sidebar">
     <div>
         <div class="logo-wrapper">
             <a href="{% url 'account:dashboard' %}">
                 <img class="img-fluid for-light" src="{% static 'assets1/images/logo1.png' %}" alt="Logo" />
                 <img class="img-fluid for-dark" src="{% static 'assets1/images/logo1.png' %}" alt="Logo" />
             </a>
-            <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+            <div class="back-btn  "><i class="fa fa-angle-left"></i></div>
         </div>
-        <div class="logo-icon-wrapper">
+        <div class="logo-icon-wrapper ">
             <a href="{% url 'account:dashboard' %}">
                 <img class="img-fluid" src="{% static 'assets1/images/logo1.png' %}" alt="Logo" />
             </a>
@@ -326,6 +371,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         });
+    });
+});
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Sidebar submenu toggling (already existing)
+    const sidebarLinks = document.querySelectorAll('.sidebar-list > .sidebar-link');
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const parentLi = this.closest('.sidebar-list');
+            const submenu = parentLi.querySelector('.sidebar-submenu');
+
+            if (submenu) {
+                e.preventDefault();
+                parentLi.classList.toggle('active');
+
+                document.querySelectorAll('.sidebar-list').forEach(item => {
+                    if (item !== parentLi) {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+
+    // Sidebar collapse toggle using back-btn
+    const backBtn = document.querySelector('.back-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    backBtn.addEventListener('click', function () {
+        sidebar.classList.toggle('collapsed');
     });
 });
 </script>
