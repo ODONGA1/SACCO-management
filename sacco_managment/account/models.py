@@ -1,123 +1,96 @@
 from django.db import models
-import uuid
-from shortuuid.django_fields import ShortUUIDField
-from user_auths.models import User
+from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
+from shortuuid.django_fields import ShortUUIDField
+import uuid
 
+User = get_user_model()
 
 ACCOUNT_STATUS = (
     ("active", "Active"),
     ("pending", "Pending"),
-    ("in-active", "In-active")
+    ("in-active", "Inactive"),
 )
 
 MARITAL_STATUS = (
     ("married", "Married"),
     ("single", "Single"),
-    ("other", "Other")
+    ("other", "Other"),
 )
 
 GENDER = (
     ("male", "Male"),
     ("female", "Female"),
-    ("other", "Other")
+    ("other", "Other"),
 )
-
 
 IDENTITY_TYPE = (
     ("national_id_card", "National ID Card"),
-    ("Refugee_id_card", "Refugee ID Card"),
-    ("drivers_licence", "Drives Licence"),
-    ("international_passport", "International Passport")
+    ("refugee_id_card", "Refugee ID Card"),
+    ("drivers_license", "Driver’s License"),
+    ("international_passport", "International Passport"),
 )
 
-# Add STAFF_ROLES at the top
 STAFF_ROLES = (
     ('SUPPORT', 'Support Staff'),
     ('LOAN_OFFICER', 'Loan Officer'),
     ('ACCOUNT_MANAGER', 'Account Manager'),
-    ('ADMIN', 'System Admin')
+    ('ADMIN', 'System Admin'),
 )
 
-def user_directory_path(instance, filename):
-    ext = filename.split(".")[-1]
-    filename = "%s_%s" % (instance.id, ext)
-    return "user_{0}/{1}".format(instance.user.id, filename)
-
-
 class Account(models.Model):
-
-    id = models.UUIDField(primary_key=True, unique=True,
-                          default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    account_balance = models.DecimalField(
-        max_digits=12, decimal_places=2, default=0.00)  # 123 345 789 102
-    account_number = ShortUUIDField(
-        unique=True, length=10, max_length=25, prefix="217", alphabet="1234567890")  # 2175893745837
-    account_id = ShortUUIDField(unique=True, length=7, max_length=25,
-                                prefix="DEX", alphabet="1234567890")  # 2175893745837
-    pin_number = ShortUUIDField(
-        unique=True, length=4, max_length=7, alphabet="1234567890")  # 2737
-    red_code = ShortUUIDField(
-        unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890")  # 2737
-    account_status = models.CharField(
-        max_length=100, choices=ACCOUNT_STATUS, default="in-active")
-    date = models.DateTimeField(auto_now_add=True)
+    account_number = ShortUUIDField(unique=True, length=10, prefix="217", alphabet="1234567890")
+    account_id = ShortUUIDField(unique=True, length=7, prefix="DEX", alphabet="1234567890")
+    pin_number = ShortUUIDField(unique=True, length=4, alphabet="1234567890")
+    red_code = ShortUUIDField(unique=True, length=10, alphabet="abcdefgh1234567890")
+    account_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    mobile_money_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    locked_funds = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    account_status = models.CharField(max_length=20, choices=ACCOUNT_STATUS, default="in-active")
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
-    # MOBILE MONEY
-    mobile_money_balance = models.DecimalField(
-        max_digits=12, decimal_places=2, default=0.00)
-    locked_funds = models.DecimalField(
-        max_digits=12, decimal_places=2, default=0.00)
-    recommended_by = models.ForeignKey(
-        User, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="recommended_by")
-    review = models.CharField(
-        max_length=100, null=True, blank=True, default="Review")
+    recommended_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='recommended_accounts')
+    review = models.CharField(max_length=100, null=True, blank=True, default="Review")
+    date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['-date_created']
 
     def __str__(self):
-        return f"{self.user}"
+        return f"{self.user.username}'s Account"
 
     @property
     def available_balance(self):
         return self.account_balance + self.mobile_money_balance - self.locked_funds
 
 class KYC(models.Model):
-    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    user =  models.OneToOneField(User, on_delete=models.CASCADE)
-    account =  models.OneToOneField(Account, on_delete=models.CASCADE, null=True, blank=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    account = models.OneToOneField(Account, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=1000)
     image = models.ImageField(upload_to="kyc", default="default.jpg")
     marrital_status = models.CharField(choices=MARITAL_STATUS, max_length=40)
     gender = models.CharField(choices=GENDER, max_length=40)
     identity_type = models.CharField(choices=IDENTITY_TYPE, max_length=140)
     identity_image = models.ImageField(upload_to="kyc", null=True, blank=True)
-    date_of_birth = models.DateTimeField(auto_now_add=False)
+    date_of_birth = models.DateField()
     signature = models.ImageField(upload_to="kyc")
-
-    # Address
     country = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
+    mobile = models.CharField(max_length=100)
+    fax = models.CharField(max_length=100)
+    date_created = models.DateTimeField(auto_now_add=True)
+    kyc_confirmed = models.BooleanField(default=False) 
 
-    # Contact Detail
-    mobile = models.CharField(max_length=1000)
-    fax = models.CharField(max_length=1000)
-    date = models.DateTimeField(auto_now_add=True)
-
+    class Meta:
+        ordering = ['-date_created']
 
     def __str__(self):
-        return f"{self.user}"    
+        return f"KYC for {self.user.username}"
 
-    
-    class Meta:
-        ordering = ['-date']
-
-
-# Add StaffPermission model
 class StaffPermission(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=20, choices=STAFF_ROLES)
@@ -125,19 +98,10 @@ class StaffPermission(models.Model):
     can_reset_passwords = models.BooleanField(default=False)
     can_approve_loans = models.BooleanField(default=False)
     can_edit_kyc = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return f"{self.user.username} - {self.role}"
 
-
-def create_staff_permission(sender, instance, created, **kwargs):
-    if created and instance.role in ['STAFF', 'ADMIN', 'SUPER_ADMIN']:
-        StaffPermission.objects.get_or_create(user=instance)
-
-post_save.connect(create_staff_permission, sender=User)
-
-
-#audits
 class AuditLog(models.Model):
     ACTION_CHOICES = (
         ('LOGIN', 'User Login'),
@@ -150,20 +114,26 @@ class AuditLog(models.Model):
     details = models.TextField()
     ip_address = models.GenericIPAddressField()
 
+    class Meta:
+        ordering = ['-timestamp']
+
     def __str__(self):
         return f"{self.get_action_display()} by {self.user} at {self.timestamp}"
+
+# SIGNALS
 
 def create_account(sender, instance, created, **kwargs):
     if created:
         Account.objects.create(user=instance)
 
-def save_account(sender, instance,**kwargs):
-    instance.account.save()
+def save_account(sender, instance, **kwargs):
+    if hasattr(instance, 'account'):
+        instance.account.save()
+
+def create_staff_permission(sender, instance, created, **kwargs):
+    if created and instance.role in ['STAFF', 'ADMIN', 'SUPER_ADMIN']:
+        StaffPermission.objects.get_or_create(user=instance)
 
 post_save.connect(create_account, sender=User)
 post_save.connect(save_account, sender=User)
-
-# some more model
-
-
-
+post_save.connect(create_staff_permission, sender=User)

@@ -13,7 +13,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
+
+load_dotenv() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +43,8 @@ LANGUAGES = [
     ('en', 'English'),
     ('fr', 'French'),
     ('sw', 'Swahili'),
+    ('lg', 'Luganda'),
+    
 ]
 
 LOCALE_PATHS = [
@@ -86,6 +91,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_user_agents.middleware.UserAgentMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 # Logout settings
@@ -99,7 +105,7 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = not DEBUG  # True in production
 CSRF_TRUSTED_ORIGINS = ['https://sacco-management.onrender.com'] 
 
-
+LOGOUT_REDIRECT_URL = '/account/login/'
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -224,7 +230,10 @@ AUTH_USER_MODEL = "user_auths.User"
 
 SASS_PROCESSOR_ROOT = BASE_DIR / 'static'
 
-OPENAI_API_KEY = "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"
+OPENAI_MODEL = os.getenv('OPENAI_MODEL', 'gpt-3.5-turbo')
+
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # PWA Settings
 PWA_APP_NAME = 'Prime SACCO'
@@ -287,12 +296,16 @@ JAZZMIN_SETTINGS = {
     "site_icon": "img/favicon.ico",
     "welcome_sign": "Welcome to Gems SACCO Administration Portal",
     "copyright": "Prime SACCO Ltd ",
+    
+ 
 
 
     # Theme Settings
     "theme": "flatly",
     "dark_mode_theme": "cyborg",
     "show_ui_builder": True,
+    "logout_url": "admin:logout",   
+    "logout_redirect_url": "admin:login",
 
     # Custom Icons & Styling
     "icons": {

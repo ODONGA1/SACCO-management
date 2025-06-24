@@ -889,7 +889,7 @@ label {
     width: 30px;
     height: 30px;
     left: -40px;
-    background-image: url(../images/icon/flag-usa.png);
+    background-image: url(../images/icon/flag-ug.png);
     background-repeat: no-repeat;
 }
 
@@ -898,7 +898,7 @@ label {
 }
 
 .banner-section .overlay .banner-content .send-money .currency-area .right-side.recipient .nice-select .current::before {
-    background-image: url(../images/icon/flag-aus.png);
+    background-image: url(../images/icon/flag-usa.png);
     background-repeat: no-repeat;
 }
 

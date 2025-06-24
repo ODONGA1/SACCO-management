@@ -18,24 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth.views import LogoutView
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),   
+    
     path("", include("core.urls")),
     path("user/", include("user_auths.urls")),
     path("account/", include("account.urls")),
     path("financial_services/", include("financial_services.urls")),
     
-    # Proper logout URL configuration
-    path('admin/logout/', require_http_methods(["GET", "POST"])(LogoutView.as_view()), name='admin_logout'),
-    
     # PWA URLs
     path('', include('pwa.urls')),
     path('support/', include('support.urls', namespace='support')),
- 
 ]
 
 if settings.DEBUG:

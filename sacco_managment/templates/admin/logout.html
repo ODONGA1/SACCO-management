@@ -3,14 +3,17 @@
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
-<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-&rsaquo; {% trans 'Log out' %}
+  <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+  &rsaquo; {% trans 'Log out' %}
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="logout-confirmation">
-    <p>{% trans "Thanks for spending some quality time with the Web site today." %}</p>
-    <p><a href="{% url 'admin:login' %}" class="btn btn-primary">{% trans 'Log in again' %}</a></p>
+<div class="logout-confirmation" style="padding: 20px; text-align: center;">
+    <h1>{% trans "You have been logged out." %}</h1>
+    <p class="mt-3">{% trans "Thanks for using our system." %}</p>
+    <a href="{% url 'admin:login' %}" class="btn btn-primary mt-3">
+        {% trans 'Log in again' %}
+    </a>
 </div>
 {% endblock %}
