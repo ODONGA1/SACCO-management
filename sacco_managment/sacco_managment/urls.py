@@ -30,6 +30,7 @@ urlpatterns = [
     # PWA URLs
     path('', include('pwa.urls')),
     path('support/', include('support.urls', namespace='support')),
+    path('reports/', include('reports.urls')),
 ]
 
 if settings.DEBUG:

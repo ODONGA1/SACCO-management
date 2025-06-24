@@ -4296,3 +4296,83 @@ label {
     padding-top: 10%;
 
 }
+
+
+
+
+
+
+
+/* Reports */
+
+/* Reports Section */
+.report-form-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.format-options {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.report-history-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-state .empty-icon {
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.delete-confirmation-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.report-details {
+    margin: 20px 0;
+}
+
+.detail-item {
+    display: flex;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-label {
+    font-weight: 600;
+    width: 150px;
+    color: #666;
+}
+
+.detail-value {
+    flex: 1;
+}
+
+.form-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+}
+
+
+/* Reports css ends here */

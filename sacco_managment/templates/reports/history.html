@@ -1,0 +1,78 @@
+{% extends "partials/dashboard-base.html" %}
+{% load humanize %}
+{% block content %}
+
+<!-- Dashboard Section start -->
+<section class="dashboard-section body-collapse reports">
+  <div class="overlay pt-120">
+    <div class="container-fruid">
+      <div class="main-content">
+        <div class="head-area d-flex align-items-center justify-content-between">
+          <h4>Report History</h4>
+          <div>
+            <a href="{% url 'reports:generate_report' %}" class="btn btn-sm btn-primary me-2">
+              <i class="fas fa-plus"></i> New Report
+            </a>
+          </div>
+        </div>
+
+        <div class="report-history-card">
+          {% if reports %}
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>Report Type</th>
+                  <th>Date Range</th>
+                  <th>Generated On</th>
+                  <th>Format</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for report in reports %}
+                <tr>
+                  <td>
+                    <i class="fas fa-file-{% if report.format == 'PDF' %}pdf text-danger{% else %}excel text-success{% endif %} me-2"></i>
+                    {{ report.get_report_type_display }}
+                  </td>
+                  <td>{{ report.start_date|date:"M d, Y" }} - {{ report.end_date|date:"M d, Y" }}</td>
+                  <td>{{ report.generated_at|date:"M d, Y H:i" }}</td>
+                  <td>{{ report.get_format_display }}</td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <a href="{% url 'reports:download_report' report.id %}" 
+                         class="btn btn-outline-primary" title="Download">
+                        <i class="fas fa-download"></i>
+                      </a>
+                      <a href="{% url 'reports:delete_report' report.id %}" 
+                         class="btn btn-outline-danger" title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <div class="empty-state">
+            <div class="empty-icon">
+              <i class="fas fa-file-alt fa-4x text-muted"></i>
+            </div>
+            <h5>No reports generated yet</h5>
+            <p>Generate your first financial report to see it appear here</p>
+            <a href="{% url 'reports:generate_report' %}" class="btn btn-primary mt-3">
+              <i class="fas fa-plus me-2"></i> Create Report
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Dashboard Section end -->
+
+{% endblock %}
