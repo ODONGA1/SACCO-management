@@ -1,0 +1,52 @@
+{% load static %}
+{% load sass_tags %}
+
+<div class="container-fluid calendar-basic">
+  <div class="card">
+    <div class="card-body">
+      <!-- Navigation Header -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <button class="btn btn-primary" data-action="move-today">Today</button>
+        <div id="renderRange" class="fw-bold"></div>
+        <div class="d-flex align-items-center">
+          <!-- Calendar Type Dropdown -->
+          <div class="dropdown me-2">
+            <button class="btn btn-primary dropdown-toggle" id="dropdownMenu-calendarType" data-bs-toggle="dropdown">
+              <i id="calendarTypeIcon"></i> <span id="calendarTypeName">Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" data-action="toggle-daily"><i class="fa fa-bars me-2"></i>Daily</a></li>
+              <li><a class="dropdown-item" data-action="toggle-weekly"><i class="fa fa-th-large me-2"></i>Weekly</a></li>
+              <li><a class="dropdown-item" data-action="toggle-monthly"><i class="fa fa-th me-2"></i>Monthly</a></li>
+              <li><a class="dropdown-item" data-action="toggle-weeks2"><i class="fa fa-th-large me-2"></i>2 Weeks</a></li>
+              <li><a class="dropdown-item" data-action="toggle-weeks3"><i class="fa fa-th-large me-2"></i>3 Weeks</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" data-action="toggle-workweek"><input type="checkbox" checked> Show weekends</a></li>
+              <li><a class="dropdown-item" data-action="toggle-start-day-1"><input type="checkbox"> Start on Monday</a></li>
+              <li><a class="dropdown-item" data-action="toggle-narrow-weekend"><input type="checkbox"> Narrow weekends</a></li>
+            </ul>
+          </div>
+          <!-- Navigation Buttons -->
+          <div>
+            <button class="btn btn-primary me-1" data-action="move-prev"><i class="fa fa-angle-left"></i></button>
+            <button class="btn btn-primary" data-action="move-next"><i class="fa fa-angle-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Schedule Button -->
+      <div class="mb-3">
+        <button class="btn btn-success" id="btn-new-schedule" data-bs-toggle="modal">New Schedule</button>
+      </div>
+
+      <!-- View All Calendars Option -->
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="all" id="viewAll" checked>
+        <label class="form-check-label" for="viewAll"><strong>View All</strong></label>
+      </div>
+
+      <!-- Calendar Display -->
+      <div id="calendar"></div>
+    </div>
+  </div>
+</div>

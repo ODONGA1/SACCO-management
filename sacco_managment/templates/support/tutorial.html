@@ -1,0 +1,18 @@
+{% extends 'partials/dashboard-base.html' %}
+{% load humanize %}
+{% load static %}
+{% load sass_tags %}
+
+
+{% block content %}
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts-->
+  {% include 'support/tuto/tuto-videos.html' %}
+  <!-- Container-fluid Ends-->
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,202 @@
+{% load static %}
+{% load humanize %}
+{% load sass_tags %}
+
+<div class="col-lg-12 featured-tutorial">
+  <div class="header-faq">
+    <h3 class="mb-0">Featured Tutorials</h3>
+    <p class="mb-4">Master new skills with our expert-led courses</p>
+  </div>
+  <div class="row">
+    <!-- Web Design Course -->
+    <div class="col-xl-3 xl-50 col-sm-6 box-col-6">
+      <div class="card features-faq product-box">
+        <div class="faq-image product-img">
+          <img class="img-fluid" src="{% static 'assets3/images/faq/1.jpg' %}" alt="Web Design Course"/>
+          <div class="product-hover">
+            <ul>
+              <li><a href="/detailed_course"><i class="icon-link"></i></a></li>
+              <li><a href="#"><i class="icon-import"></i></a></li>
+            </ul>
+          </div>
+          <div class="availability-badge available">Available Now</div>
+        </div>
+        <div class="card-body">
+          <a href="/detailed_course">
+            <h6>Web Design Fundamentals</h6>
+          </a>
+          <p>
+            Learn HTML5, CSS3, and responsive design principles to create beautiful websites. Perfect for beginners with hands-on projects.
+          </p>
+          <div class="course-meta">
+            <span><i class="fa fa-video"></i> 12 Lessons</span>
+            <span><i class="fa fa-clock"></i> 8 Hours</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span>Updated {{ "2022-01-19"|naturalday }}</span>
+          <ul class="rating pull-right">
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star-half font-primary"></i></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Development Course -->
+    <div class="col-xl-3 xl-50 col-sm-6 box-col-6">
+      <div class="card features-faq product-box">
+        <div class="faq-image product-img">
+          <img class="img-fluid" src="{% static 'assets3/images/faq/2.jpg' %}" alt="Web Development Course"/>
+          <div class="product-hover">
+            <ul>
+              <li><a href="/detailed_course"><i class="icon-link"></i></a></li>
+              <li><a href="#"><i class="icon-import"></i></a></li>
+            </ul>
+          </div>
+          <div class="availability-badge available">Available Now</div>
+        </div>
+        <div class="card-body">
+          <a href="/detailed_course">
+            <h6>Full-Stack Development</h6>
+          </a>
+          <p>
+            Master JavaScript, Node.js, and React to build modern web applications. Includes database integration and deployment.
+          </p>
+          <div class="course-meta">
+            <span><i class="fa fa-video"></i> 24 Lessons</span>
+            <span><i class="fa fa-clock"></i> 15 Hours</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span>Updated {{ "2023-03-15"|naturalday }}</span>
+          <ul class="rating pull-right">
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- UI Design Course (Coming Soon) -->
+    <div class="col-xl-3 xl-50 col-sm-6 box-col-6">
+      <div class="card features-faq product-box coming-soon">
+        <div class="faq-image product-img">
+          <img class="img-fluid" src="{% static 'assets3/images/faq/3.jpg' %}" alt="UI Design Course"/>
+          <div class="product-hover">
+            <ul>
+              <li><a href="#"><i class="icon-link"></i></a></li>
+              <li><a href="#"><i class="icon-import"></i></a></li>
+            </ul>
+          </div>
+          <div class="availability-badge coming-soon">Coming Soon</div>
+        </div>
+        <div class="card-body">
+          <h6>Advanced UI Design</h6>
+          <p class="coming-soon-text">
+            Join the waitlist for our comprehensive UI design course covering Figma, prototyping, and design systems.
+          </p>
+          <div class="course-meta">
+            <span><i class="fa fa-bell"></i> Notify Me</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span>Expected Q3 2024</span>
+          <ul class="rating pull-right">
+            <li><i class="fa fa-star-o font-primary"></i></li>
+            <li><i class="fa fa-star-o font-primary"></i></li>
+            <li><i class="fa fa-star-o font-primary"></i></li>
+            <li><i class="fa fa-star-o font-primary"></i></li>
+            <li><i class="fa fa-star-o font-primary"></i></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- UX Design Course -->
+    <div class="col-xl-3 xl-50 col-sm-6 box-col-6">
+      <div class="card features-faq product-box">
+        <div class="faq-image product-img">
+          <img class="img-fluid" src="{% static 'assets3/images/faq/4.jpg' %}" alt="UX Design Course"/>
+          <div class="product-hover">
+            <ul>
+              <li><a href="/detailed_course"><i class="icon-link"></i></a></li>
+              <li><a href="#"><i class="icon-import"></i></a></li>
+            </ul>
+          </div>
+          <div class="availability-badge available">Available Now</div>
+        </div>
+        <div class="card-body">
+          <a href="/detailed_course">
+            <h6>UX Research & Strategy</h6>
+          </a>
+          <p>
+            Learn user research methods, persona development, and interaction design to create exceptional user experiences.
+          </p>
+          <div class="course-meta">
+            <span><i class="fa fa-video"></i> 18 Lessons</span>
+            <span><i class="fa fa-clock"></i> 10 Hours</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span>Updated {{ "2023-11-05"|naturalday }}</span>
+          <ul class="rating pull-right">
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star font-primary"></i></li>
+            <li><i class="fa fa-star-half font-primary"></i></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .availability-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .availability-badge.available {
+    background-color: #28a745;
+  }
+  .availability-badge.coming-soon {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  .coming-soon .card-body h6 {
+    color: #6c757d;
+  }
+  .coming-soon-text {
+    color: #6c757d;
+    font-style: italic;
+  }
+  .course-meta {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #6c757d;
+  }
+  .course-meta span {
+    margin-right: 10px;
+  }
+  .product-box {
+    transition: transform 0.3s;
+  }
+  .product-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+</style>

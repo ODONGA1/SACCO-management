@@ -1,0 +1,28 @@
+{% extends 'partials/dashboard-base.html' %}
+{% load static %} 
+{% load sass_tags %} 
+{% load humanize %}
+{% block content%}
+
+<div class="page-body">
+  {% include 'layout/breadcrumb.html' %}
+
+  <!-- Container-fluid starts-->
+  <div class="container-fluid">
+    <div class="faq-wrap">
+      <div class="row">
+        {% include 'faq/components/faq.html' %} 
+        {% include 'faq/components/quick-questions.html' %} 
+
+      </div>
+    </div>
+  </div>
+  <!-- Container-fluid Ends-->
+</div>
+{% endblock content %} {% block scriptcontent %}
+<!-- Plugins JS start-->
+<!-- <script src="{% static 'assets3/js/sidebar-menu.js' %}"></script> -->
+<script src="{% static 'assets3/js/height-equal.js' %}"></script>
+<!-- Plugins JS Ends-->
+{% endblock scriptcontent %}
+

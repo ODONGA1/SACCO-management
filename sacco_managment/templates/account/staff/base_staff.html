@@ -1,0 +1,45 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Staff Navigation</span>
+                </h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'staff_dashboard' %}active{% endif %}" 
+                           href="{% url 'account:staff_dashboard' %}">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'user_profiles' %}active{% endif %}" 
+                           href="{% url 'account:user_profiles' %}">
+                            Member Profiles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'password_resets' %}active{% endif %}" 
+                           href="{% url 'account:password_resets' %}">
+                            Password Resets
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'kyc_review' %}active{% endif %}" 
+                           href="{% url 'account:kyc_review' %}">
+                            KYC Review
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            {% block staff_content %}{% endblock %}
+        </main>
+    </div>
+</div>
+{% endblock %}

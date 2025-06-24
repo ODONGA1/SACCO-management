@@ -1,0 +1,215 @@
+{% extends "account/base.html" %}
+{% load humanize %}
+
+{% block page_title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Stats -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-start border-primary border-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-uppercase text-muted">Total Staff</h6>
+                        <h2 class="mb-0">{{ total_staff|intcomma }}</h2>
+                    </div>
+                    <div class="icon-shape bg-primary text-white rounded-circle">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-start border-success border-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-uppercase text-muted">Total Deposits</h6>
+                        <h2 class="mb-0">UGX {{ total_deposits|intcomma }}</h2>
+                    </div>
+                    <div class="icon-shape bg-success text-white rounded-circle">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-start border-info border-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-uppercase text-muted">Active Loans</h6>
+                        <h2 class="mb-0">{{ active_loans|intcomma }}</h2>
+                    </div>
+                    <div class="icon-shape bg-info text-white rounded-circle">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-start border-warning border-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-uppercase text-muted">System Health</h6>
+                        <h2 class="mb-0">
+                            <span class="badge bg-success">Excellent</span>
+                        </h2>
+                    </div>
+                    <div class="icon-shape bg-warning text-white rounded-circle">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Staff Activity -->
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Staff Activity</h5>
+                <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Staff Member</th>
+                                <th>Role</th>
+                                <th>Last Activity</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for staff in staff_activity %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar me-3">
+                                            <i class="fas fa-user-circle fa-2x text-secondary"></i>
+                                        </div>
+                                        <div>
+                                            <strong>{{ staff.user.get_full_name }}</strong>
+                                            <div class="text-muted small">{{ staff.user.email }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-primary">{{ staff.get_role_display }}</span>
+                                </td>
+                                <td>{{ staff.user.last_login|timesince }} ago</td>
+                                <td>
+                                    <span class="badge bg-{% if staff.user.is_active %}success{% else %}danger{% endif %}">
+                                        {% if staff.user.is_active %}Active{% else %}Inactive{% endif %}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center py-4">No staff activity found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- System Alerts -->
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">System Alerts</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning d-flex align-items-center mb-3">
+                    <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                    <div>
+                        <h6 class="alert-heading">Pending KYC Submissions</h6>
+                        <p class="mb-0">{{ pending_kyc|intcomma }} KYC documents require review</p>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info d-flex align-items-center mb-3">
+                    <i class="fas fa-info-circle fa-2x me-3"></i>
+                    <div>
+                        <h6 class="alert-heading">System Update Available</h6>
+                        <p class="mb-0">Version 2.3.1 is ready for installation</p>
+                    </div>
+                </div>
+                
+                <div class="alert alert-success d-flex align-items-center mb-3">
+                    <i class="fas fa-check-circle fa-2x me-3"></i>
+                    <div>
+                        <h6 class="alert-heading">Backup Successful</h6>
+                        <p class="mb-0">Nightly database backup completed at 2:30 AM</p>
+                    </div>
+                </div>
+                
+                <div class="alert alert-danger d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle fa-2x me-3"></i>
+                    <div>
+                        <h6 class="alert-heading">Security Alert</h6>
+                        <p class="mb-0">3 failed login attempts detected</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <!-- Audit Log Summary -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Recent Audit Logs</h5>
+                <a href="{% url 'account:audit_logs' %}" class="btn btn-sm btn-outline-primary">View All Logs</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>User</th>
+                                <th>Action</th>
+                                <th>Details</th>
+                                <th>IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in audit_logs %}
+                            <tr>
+                                <td>{{ log.timestamp|date:"d M Y H:i" }}</td>
+                                <td>{{ log.user.username }}</td>
+                                <td>{{ log.get_action_display }}</td>
+                                <td>{{ log.details|truncatechars:40 }}</td>
+                                <td>{{ log.ip_address }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center py-4">No audit logs found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
