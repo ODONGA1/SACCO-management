@@ -23,7 +23,7 @@
                   {% for recent_recieved_transfer in recent_recieved_transfer %}
                   <h5 class="receive">
                     Last Received
-                    <span>${{recent_recieved_transfer.amount|intcomma}}</span>
+                    <span>USD {{recent_recieved_transfer.amount|intcomma}}</span>
                   </h5>
 
                   {% endfor %}
@@ -51,7 +51,7 @@
                   </div>
                   <div class="right-bottom">
                     {% for recent_transfer in recent_transfer %}
-                    <h4><small>${{recent_transfer.amount|intcomma}}</small></h4>
+                    <h4><small>USD{{recent_transfer.amount|intcomma}}</small></h4>
                     {% endfor %}
                     <h5><small>Recent Transfer</small></h5>
                   </div>
@@ -148,7 +148,7 @@
                             {% endif %}
                           </td>
                           <td>
-                            <p>-${{s.amount|intcomma}}</p>
+                            <p>-UGX{{s.amount|intcomma}}</p>
                           </td>
                           <td>
                             <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i
@@ -195,7 +195,7 @@
                             {% endif %}
                           </td>
                           <td>
-                            <p>+${{s.amount|intcomma}}</p>
+                            <p>+UGX{{s.amount|intcomma}}</p>
                           </td>
                           <td>
                             <a href="{% url 'core:transaction-detail' s.transaction_id %}" class=""><i
@@ -250,7 +250,7 @@
 
 
                           <td>
-                            <p>+${{s.amount|intcomma}}</p>
+                            <p>+UGX{{s.amount|intcomma}}</p>
                           </td>
                           <td>
                             {% if s.status == "request_sent" or s.status == "request_processing" %}
@@ -315,7 +315,7 @@
                           </td>
 
                           <td>
-                            <p>+${{s.amount|intcomma}}</p>
+                            <p>+UGX{{s.amount|intcomma}}</p>
                           </td>
                           <td>
                             {% if s.status == "request_sent" %}
@@ -372,7 +372,7 @@
                         <div class="bottom_card">
                           <div class="card_info">
                             <div class="card_holder_name">
-                              ${{c.amount|intcomma}}
+                              UGX{{c.amount|intcomma}}
                             </div>
                             <div class="card_holder_name">{{c.name}}</div>
                           </div>
@@ -445,17 +445,17 @@
                   <a href="javascript:void(0)" class="d-flex">
                     <div class="text-area">
                       {% if n.notification_type == "Credit Alert" %}
-                      <p class="mdr">You received a payment of <b>${{ n.amount }}</b></p>
+                      <p class="mdr">You received a payment of <b>UGX{{ n.amount }}</b></p>
                       {% elif n.notification_type == "Debit Alert" %}
-                      <p class="mdr">You sent a payment of <b>${{ n.amount }}</b></p>
+                      <p class="mdr">You sent a payment of <b>UGX{{ n.amount }}</b></p>
                       {% elif n.notification_type == "Sent Payment Request" %}
-                      <p class="mdr">You sent a <b>payment request</b> of <b>${{ n.amount }}</b></p>
+                      <p class="mdr">You sent a <b>payment request</b> of <b>UGX{{ n.amount }}</b></p>
                       {% elif n.notification_type == "Recieved Payment Request" %}
-                      <p class="mdr">You received a <b>payment request</b> of <b>${{ n.amount }}</b></p>
+                      <p class="mdr">You received a <b>payment request</b> of <b>UGX{{ n.amount }}</b></p>
                       {% elif n.notification_type == "Funded Credit Card" %}
-                      <p class="mdr">You funded your credit card with <b>${{ n.amount }}</b></p>
+                      <p class="mdr">You funded your credit card with <b>UGX{{ n.amount }}</b></p>
                       {% elif n.notification_type == "Withdrew Credit Card Funds" %}
-                      <p class="mdr">You withdrew <b>${{ n.amount }}</b> from your credit card</p>
+                      <p class="mdr">You withdrew <b>UGX{{ n.amount }}</b> from your credit card</p>
                       {% elif n.notification_type == "Deleted Credit Card" %}
                       <p class="mdr">You deleted your credit card</p>
                       {% elif n.notification_type == "Added Credit Card" %}
@@ -537,7 +537,7 @@
                             <span>17 Oct, 2020</span>
                           </p>
                           <p class="right">
-                            <span>$160.48</span>
+                            <span>UGX160.48</span>
                             <span>Withdraw</span>
                           </p>
                         </li>
@@ -547,7 +547,7 @@
                             <span>15 Oct, 2021</span>
                           </p>
                           <p class="right">
-                            <span>$106.58</span>
+                            <span>UGX106.58</span>
                             <span>Withdraw</span>
                           </p>
                         </li>
@@ -557,7 +557,7 @@
                             <span>12 Oct, 2020</span>
                           </p>
                           <p class="right">
-                            <span>$176.58</span>
+                            <span>UGX176.58</span>
                             <span>Withdraw</span>
                           </p>
                         </li>
@@ -567,7 +567,7 @@
                             <span>25 Oct, 2020</span>
                           </p>
                           <p class="right">
-                            <span>$167.85</span>
+                            <span>UGX167.85</span>
                             <span>Withdraw</span>
                           </p>
                         </li>

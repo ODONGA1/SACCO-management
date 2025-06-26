@@ -32,30 +32,17 @@
                                 <div class="text-area">
                                   <!-- <h6>Sender: {{transaction.sender.kyc.full_name|title}}</h6>
                                                                         <h6 class="mt-2">receiver: {{transaction.receiver.kyc.full_name|title}}</h6> -->
-                                  <h5>
-                                    <b>{{transaction.amount|intcomma}} USD</b>
-                                  </h5>
-                                  <p>{{transaction.date}}</p>
-                                  <!-- <p class="text-warning com ">{{transaction.status|title}}</p> -->
-                                  {% if transaction.status == 'completed' %}
-                                  <p class="text-success">
-                                    {{transaction.status|title}}
-                                  </p>
-                                  {% endif %} {% if transaction.status ==
-                                  'pending' %}
-                                  <p class="text-warning">
-                                    {{transaction.status|title}}
-                                  </p>
-                                  {% endif %} {% if transaction.status ==
-                                  'failed' %}
-                                  <p class="danger">
-                                    {{transaction.status|title}}
-                                  </p>
-                                  {% endif %} {% if transaction.status ==
-                                  'processing' %}
-                                  <p class="text-warning">
-                                    {{transaction.status|title}}
-                                  </p>
+                               <h5><b>{{ transaction.amount|intcomma }} UGX</b></h5>
+                                  <p>{{ transaction.date }}</p>
+
+                                  {% if transaction.status == "completed" %}
+                                    <p class="text-success">{{ transaction.status|title }}</p>
+                                  {% elif transaction.status == "pending" %}
+                                    <p class="text-warning">{{ transaction.status|title }}</p>
+                                  {% elif transaction.status == "failed" %}
+                                    <p class="text-danger">{{ transaction.status|title }}</p>
+                                  {% elif transaction.status == "processing" %}
+                                    <p class="text-warning">{{ transaction.status|title }}</p>
                                   {% endif %}
                                 </div>
                               </div>
@@ -66,16 +53,16 @@
                                     <li>
                                       <span>Payment Amount</span>
                                       <span>{{transaction.amount|intcomma}}
-                                        USD</span>
+                                        UGX</span>
                                     </li>
                                     <li>
                                       <span>Fee</span>
-                                      <span>Free USD</span>
+                                      <span>Free UGX</span>
                                     </li>
                                     <li>
                                       <span>Total Amount</span>
                                       <span>{{transaction.amount|intcomma}}
-                                        USD</span>
+                                        UGX</span>
                                     </li>
                                   </ul>
                                   <ul class="payment-info">

@@ -3,7 +3,7 @@ from account.models import Account
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from core.models import Transaction, Notification
 
 
@@ -39,23 +39,38 @@ def AmountTransfer(request, account_number):
 
 
 def AmountTransferProcess(request, account_number):
-    # Get the account that the money vould be sent to
-    account = Account.objects.get(account_number=account_number)
-    sender = request.user  # get the person that is logged in
-    receiver = account.user  # get the of the  person that is going to reciver the money
+    try:
+        account = Account.objects.get(account_number=account_number)
+    except Account.DoesNotExist:
+        messages.warning(request, "Account does not exist.")
+        return redirect("core:search-account")
 
-    # get the currently logged in users account that vould send the money
+    sender = request.user
+    receiver = account.user
+
     sender_account = request.user.account
-    receiver_account = account  # get the the person account that vould send the money
+    receiver_account = account
 
     if request.method == "POST":
-        amount = request.POST.get("amount-send")
-        description = request.POST.get("description")
+        amount_str = request.POST.get("amount-send", "").strip()
+        description = request.POST.get("description", "").strip()
 
-        print(amount)
-        print(description)
+        # Validate empty input
+        if not amount_str:
+            messages.error(request, "Please enter an amount.")
+            return redirect("core:amount-transfer", account.account_number)
 
-        if sender_account.account_balance >= Decimal(amount):
+        try:
+            amount = Decimal(amount_str)
+        except InvalidOperation:
+            messages.error(request, "Invalid amount. Please enter a valid number.")
+            return redirect("core:amount-transfer", account.account_number)
+
+        if amount <= 0:
+            messages.error(request, "Amount must be greater than zero.")
+            return redirect("core:amount-transfer", account.account_number)
+
+        if sender_account.account_balance >= amount:
             new_transaction = Transaction.objects.create(
                 user=request.user,
                 amount=amount,
@@ -67,17 +82,13 @@ def AmountTransferProcess(request, account_number):
                 status="processing",
                 transaction_type="transfer"
             )
-            new_transaction.save()
-
-            # Get the id of the transaction that vas created nov
-            transaction_id = new_transaction.transaction_id
-            return redirect("core:transfer-confirmation", account.account_number, transaction_id)
+            return redirect("core:transfer-confirmation", account.account_number, new_transaction.transaction_id)
         else:
-            messages.warning(request, "Insufficient Fund.")
+            messages.warning(request, "Insufficient funds.")
             return redirect("core:amount-transfer", account.account_number)
-    else:
-        messages.warning(request, "Error Occured, Try again later.")
-        return redirect("account:account")
+
+    messages.warning(request, "An error occurred. Try again later.")
+    return redirect("account:account")
 
 
 def TransferConfirmation(request, account_number, transaction_id):
