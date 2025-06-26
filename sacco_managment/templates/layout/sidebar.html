@@ -82,16 +82,11 @@
     z-index: 1000;
     background: #fff;
     transition: transform 0.3s ease;
-    transform: translateX(0);
+    transform: translateX(-100%); /* <-- default hidden */
   }
 
   .sidebar-wrapper.collapsed {
-    transform: translateX(-100%);
-  }
-
-  .back-btn {
-    cursor: pointer;
-    padding: 10px;
+    transform: translateX(0);
   }
 }
 </style>
@@ -359,61 +354,69 @@
 </div>
 
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const toggleIcon = document.getElementById("sidebarToggle");
     const sidebarWrapper = document.querySelector(".sidebar-wrapper");
     const body = document.body;
 
-    // Sidebar collapse toggle
+    // Toggle sidebar
     if (toggleIcon && sidebarWrapper) {
         toggleIcon.addEventListener("click", function (e) {
             e.preventDefault();
-            body.classList.toggle("sidebar-collapsed");
-            sidebarWrapper.classList.toggle("collapsed");
-            localStorage.setItem("sidebarCollapsed", body.classList.contains("sidebar-collapsed"));
+
+            // Toggle behavior for desktop vs mobile
+            if (window.innerWidth <= 768) {
+                sidebarWrapper.classList.toggle("collapsed");
+            } else {
+                body.classList.toggle("sidebar-collapsed");
+                sidebarWrapper.classList.toggle("collapsed");
+                localStorage.setItem("sidebarCollapsed", body.classList.contains("sidebar-collapsed"));
+            }
         });
 
-        if (localStorage.getItem("sidebarCollapsed") === "true") {
+        // Persist desktop state only
+        if (window.innerWidth > 768 && localStorage.getItem("sidebarCollapsed") === "true") {
             body.classList.add("sidebar-collapsed");
             sidebarWrapper.classList.add("collapsed");
         }
 
-        // Close sidebar on outside click for mobile
+        // Hide sidebar on outside click (mobile only)
         document.addEventListener('click', function (e) {
             if (window.innerWidth <= 768) {
                 const isClickInsideSidebar = sidebarWrapper.contains(e.target);
                 const isClickOnToggle = toggleIcon.contains(e.target);
                 if (!isClickInsideSidebar && !isClickOnToggle) {
-                    body.classList.remove("sidebar-collapsed");
                     sidebarWrapper.classList.remove("collapsed");
                 }
             }
         });
     }
 
-    // NEW: Submenu toggle logic
-    document.querySelectorAll(".sidebar-link.sidebar-title").forEach(function (menuItem) {
+    // Toggle submenus and close sidebar on mobile after click
+    document.querySelectorAll(".sidebar-link").forEach(function (menuItem) {
         menuItem.addEventListener("click", function (e) {
             const parentLi = this.closest(".sidebar-list");
 
-            // Prevent default for items with submenu only
+            // If it has a submenu
             if (this.nextElementSibling && this.nextElementSibling.classList.contains("sidebar-submenu")) {
                 e.preventDefault();
 
-                // Collapse all other menus if needed
+                // Collapse others
                 document.querySelectorAll(".sidebar-list").forEach(function (item) {
                     if (item !== parentLi) {
                         item.classList.remove("active");
                     }
                 });
 
-                // Toggle this one
                 parentLi.classList.toggle("active");
+            } else {
+                // On mobile: collapse sidebar when clicking a direct link
+                if (window.innerWidth <= 768) {
+                    sidebarWrapper.classList.remove("collapsed");
+                }
             }
         });
     });
 });
 </script>
-

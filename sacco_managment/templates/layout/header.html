@@ -247,80 +247,90 @@
 
 
 <script>
- 
-
- 
-
 document.addEventListener("DOMContentLoaded", function () {
-    const toggleIcon = document.getElementById("sidebarToggle");
+    const sidebarToggle = document.getElementById("sidebarToggle");
     const sidebarWrapper = document.querySelector(".sidebar-wrapper");
     const body = document.body;
 
-    if (toggleIcon && sidebarWrapper) {
-        // Click handler for the toggle button
-        toggleIcon.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Toggle the collapsed state
+    if (!sidebarToggle || !sidebarWrapper) {
+        console.warn("Sidebar toggle or wrapper not found.");
+        return;
+    }
+
+    // Toggle sidebar on click
+    sidebarToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (window.innerWidth <= 768) {
+            // On mobile: toggle visibility
+            sidebarWrapper.classList.toggle("collapsed");
+        } else {
+            // On desktop: collapse and remember in localStorage
             body.classList.toggle("sidebar-collapsed");
             sidebarWrapper.classList.toggle("collapsed");
-            
-            // Store state in localStorage
             localStorage.setItem("sidebarCollapsed", body.classList.contains("sidebar-collapsed"));
-        });
-
-        // Initialize from localStorage
-        if (localStorage.getItem("sidebarCollapsed") === "true") {
-            body.classList.add("sidebar-collapsed");
-            sidebarWrapper.classList.add("collapsed");
         }
+    });
 
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(e) {
+    // Restore collapsed state on desktop
+    if (window.innerWidth > 768 && localStorage.getItem("sidebarCollapsed") === "true") {
+        body.classList.add("sidebar-collapsed");
+        sidebarWrapper.classList.add("collapsed");
+    }
+
+    // Auto-close sidebar when clicking outside (on mobile only)
+    document.addEventListener("click", function (e) {
+        const clickedInsideSidebar = sidebarWrapper.contains(e.target);
+        const clickedToggle = sidebarToggle.contains(e.target);
+
+        if (window.innerWidth <= 768 && !clickedInsideSidebar && !clickedToggle) {
+            sidebarWrapper.classList.remove("collapsed");
+        }
+    });
+
+    // Optional: collapse sidebar after menu link click on mobile
+    document.querySelectorAll(".sidebar-link").forEach(function (link) {
+        link.addEventListener("click", function () {
             if (window.innerWidth <= 768) {
-                const isClickInsideSidebar = sidebarWrapper.contains(e.target);
-                const isClickOnToggle = toggleIcon.contains(e.target);
-                
-                if (!isClickInsideSidebar && !isClickOnToggle) {
-                    body.classList.remove("sidebar-collapsed");
-                    sidebarWrapper.classList.remove("collapsed");
-                }
+                sidebarWrapper.classList.remove("collapsed");
             }
         });
-    }
+    });
 });
-
 </script>
 
+
+
+
 <style>
-/* Sidebar styles */
-.sidebar-wrapper {
-    transition: transform 0.3s ease;
-    width: 280px; /* Adjust to your sidebar width */
+/* Desktop collapsed - just hide with translateX if needed */
+@media (min-width: 769px) {
+    .sidebar-collapsed .sidebar-wrapper {
+        width: 80px; /* Or your collapsed width */
+        transform: none; /* Remove horizontal slide on desktop */
+    }
 }
 
-/* Collapsed state */
-.sidebar-collapsed .sidebar-wrapper {
-    transform: translateX(-100%);
-}
-
-/* Mobile specific styles */
+/* Mobile styles */
 @media (max-width: 768px) {
     .sidebar-wrapper {
         position: fixed;
+        top: 0;
+        left: 0;
         height: 100vh;
+        width: 280px;
         z-index: 1000;
         background: #fff;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         transform: translateX(-100%);
+        transition: transform 0.3s ease;
     }
-    
+
     .sidebar-wrapper.collapsed {
         transform: translateX(0);
     }
-    
-    /* Overlay for mobile */
+
+    /* Optional: Overlay behind sidebar on mobile */
     .sidebar-overlay {
         position: fixed;
         top: 0;
@@ -331,9 +341,10 @@ document.addEventListener("DOMContentLoaded", function () {
         z-index: 999;
         display: none;
     }
-    
+
     .sidebar-wrapper.collapsed + .sidebar-overlay {
         display: block;
     }
 }
+
 </style>
