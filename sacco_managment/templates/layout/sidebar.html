@@ -64,6 +64,15 @@
     display: block;
 }
 
+.onhover-dropdown .onhover-show-div {
+    position: absolute;
+    z-index: 1050;
+    display: none;
+}
+
+.onhover-dropdown:hover .onhover-show-div {
+    display: block;
+}
 
 @media (max-width: 768px) {
   .sidebar-wrapper {
@@ -353,59 +362,58 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const sidebarLinks = document.querySelectorAll('.sidebar-list > .sidebar-link');
+    const toggleIcon = document.getElementById("sidebarToggle");
+    const sidebarWrapper = document.querySelector(".sidebar-wrapper");
+    const body = document.body;
 
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            const parentLi = this.closest('.sidebar-list');
-            const submenu = parentLi.querySelector('.sidebar-submenu');
+    // Sidebar collapse toggle
+    if (toggleIcon && sidebarWrapper) {
+        toggleIcon.addEventListener("click", function (e) {
+            e.preventDefault();
+            body.classList.toggle("sidebar-collapsed");
+            sidebarWrapper.classList.toggle("collapsed");
+            localStorage.setItem("sidebarCollapsed", body.classList.contains("sidebar-collapsed"));
+        });
 
-            if (submenu) {
+        if (localStorage.getItem("sidebarCollapsed") === "true") {
+            body.classList.add("sidebar-collapsed");
+            sidebarWrapper.classList.add("collapsed");
+        }
+
+        // Close sidebar on outside click for mobile
+        document.addEventListener('click', function (e) {
+            if (window.innerWidth <= 768) {
+                const isClickInsideSidebar = sidebarWrapper.contains(e.target);
+                const isClickOnToggle = toggleIcon.contains(e.target);
+                if (!isClickInsideSidebar && !isClickOnToggle) {
+                    body.classList.remove("sidebar-collapsed");
+                    sidebarWrapper.classList.remove("collapsed");
+                }
+            }
+        });
+    }
+
+    // NEW: Submenu toggle logic
+    document.querySelectorAll(".sidebar-link.sidebar-title").forEach(function (menuItem) {
+        menuItem.addEventListener("click", function (e) {
+            const parentLi = this.closest(".sidebar-list");
+
+            // Prevent default for items with submenu only
+            if (this.nextElementSibling && this.nextElementSibling.classList.contains("sidebar-submenu")) {
                 e.preventDefault();
-                parentLi.classList.toggle('active');
 
-                document.querySelectorAll('.sidebar-list').forEach(item => {
+                // Collapse all other menus if needed
+                document.querySelectorAll(".sidebar-list").forEach(function (item) {
                     if (item !== parentLi) {
-                        item.classList.remove('active');
+                        item.classList.remove("active");
                     }
                 });
+
+                // Toggle this one
+                parentLi.classList.toggle("active");
             }
         });
     });
 });
 </script>
 
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Sidebar submenu toggling (already existing)
-    const sidebarLinks = document.querySelectorAll('.sidebar-list > .sidebar-link');
-
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            const parentLi = this.closest('.sidebar-list');
-            const submenu = parentLi.querySelector('.sidebar-submenu');
-
-            if (submenu) {
-                e.preventDefault();
-                parentLi.classList.toggle('active');
-
-                document.querySelectorAll('.sidebar-list').forEach(item => {
-                    if (item !== parentLi) {
-                        item.classList.remove('active');
-                    }
-                });
-            }
-        });
-    });
-
-    // Sidebar collapse toggle using back-btn
-    const backBtn = document.querySelector('.back-btn');
-    const sidebar = document.getElementById('sidebar');
-
-    backBtn.addEventListener('click', function () {
-        sidebar.classList.toggle('collapsed');
-    });
-});
-</script>
