@@ -1,4 +1,4 @@
-# reports/admin.py
+#reports/admin.py
 from django.contrib import admin
 from .models import FinancialReport
 from django.utils.html import format_html
