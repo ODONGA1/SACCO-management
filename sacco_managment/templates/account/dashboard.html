@@ -298,22 +298,15 @@
                             <p class="mdr">{{s.date|date:"d M, Y"}}</p>
                           </td>
                           <td>
-                            {% if s.status == 'completed' or s.status == 'request_sent' or s.status == 'request_settled'
-                            %}
-                            <p class="text-success">{{ s.status|title }}</p>
+                            {% if s.status == 'completed' or s.status == 'request_sent' or s.status == 'request_settled' %}
+                              <p class="text-success">{{ s.status|title }}</p>
+                            {% elif s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing' %}
+                              <p class="inprogress">{{ s.status|title }}</p>
+                            {% elif s.status == 'failed' %}
+                              <p class="danger">{{ s.status|title }}</p>
                             {% else %}
-                            {% if s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing'
-                            %}
-                            <p class="inprogress">{{ s.status|title }}</p>
-                            {% else %}
-                            {% if s.status == 'failed' %}
-                            <p class="danger">{{ s.status|title }}</p>
-                            {% else %}
-                            <p>{{ s.status|title }}</p>
+                              <p>{{ s.status|title }}</p>
                             {% endif %}
-                            {% endif %}
-                            {% endif %}
-
                           </td>
 
                           <td>

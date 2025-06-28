@@ -9,13 +9,13 @@
   <div class="row default-according style-1 faq-accordion" id="accordionoc">
     <div class="col-xl-8 xl-60 col-lg-6 col-md-7 box-col-7">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header" id="headingJoin">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseicon"
               aria-expanded="false" aria-controls="collapseicon"><i data-feather="help-circle"></i> How do I join the SACCO?</button>
           </h5>
         </div>
-        <div class="collapse" id="collapseicon" aria-labelledby="collapseicon" data-parent="#accordionoc">
+        <div class="collapse" id="collapseicon" aria-labelledby="collapseicon" data-parent="#accordionoc" >
           <div class="card-body">
             <p>To join our SACCO, visit any of our branches with your national ID, passport photo, and minimum share capital. You'll need to fill out a membership application form and attend a brief orientation session.</p>
           </div>
@@ -305,5 +305,8 @@
   </div>
 </div>
 
-<!-- Required Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+  feather.replace();
+</script>

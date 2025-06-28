@@ -10,6 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SACCO Management - Portal</title>
 
+ <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="shortcut icon" href="{% static 'assets/images/favicon-32x32.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
@@ -20,6 +22,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/arafat-font.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/plugin/animate.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
 
 
     <!-- Custom CSS -->
@@ -48,6 +51,31 @@
         }
     </script>
 
+      <style>
+        .whatsapp-float {
+            position: fixed;
+            bottom: 80px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            z-index: 1000;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #1ebea5;
+            color: white;
+            text-decoration: none;
+        }
+
+        .whatsapp-icon {
+            font-size: 24px;
+        }
+    </style>
 
 </head>
 
@@ -76,10 +104,12 @@
     <script src="{% static 'assets/js/plugin/plugin.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
 
-
   
 
-
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/256705756582" class="whatsapp-float" target="_blank" title="Chat with The SACCO Team On WhatsApp">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
 </body>
 
 </html>
