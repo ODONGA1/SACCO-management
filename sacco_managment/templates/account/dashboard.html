@@ -23,7 +23,7 @@
                   {% for recent_recieved_transfer in recent_recieved_transfer %}
                   <h5 class="receive">
                     Last Received
-                    <span>USD {{recent_recieved_transfer.amount|intcomma}}</span>
+                    <span>UGX {{recent_recieved_transfer.amount|intcomma}}</span>
                   </h5>
 
                   {% endfor %}
@@ -33,7 +33,7 @@
                     <select>
                       <option value="1">UGX Shillings</option>
                       <option value="2">US Dollar</option>
-                 
+
                     </select>
                     <div class="dropdown-area">
                       <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -298,18 +298,20 @@
                             <p class="mdr">{{s.date|date:"d M, Y"}}</p>
                           </td>
                           <td>
-                              {% if s.status == 'completed' or s.status == 'request_sent' or s.status == 'request_settled' %}
-                              <p class="text-success">{{ s.status|title }}</p>
+                            {% if s.status == 'completed' or s.status == 'request_sent' or s.status == 'request_settled'
+                            %}
+                            <p class="text-success">{{ s.status|title }}</p>
                             {% else %}
-                              {% if s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing' %}
-                                <p class="inprogress">{{ s.status|title }}</p>
-                              {% else %}
-                                {% if s.status == 'failed' %}
-                                  <p class="danger">{{ s.status|title }}</p>
-                                {% else %}
-                                  <p>{{ s.status|title }}</p>
-                                {% endif %}
-                              {% endif %}
+                            {% if s.status == 'pending' or s.status == 'processing' or s.status == 'request_processing'
+                            %}
+                            <p class="inprogress">{{ s.status|title }}</p>
+                            {% else %}
+                            {% if s.status == 'failed' %}
+                            <p class="danger">{{ s.status|title }}</p>
+                            {% else %}
+                            <p>{{ s.status|title }}</p>
+                            {% endif %}
+                            {% endif %}
                             {% endif %}
 
                           </td>
@@ -585,7 +587,7 @@
                           <input class="xxlr" placeholder="400.00" type="number" />
                           <select>
                             <option value="1">UGX</option>
-                      
+
                           </select>
                         </div>
                         <div class="bottom-area d-flex align-items-center justify-content-between">
@@ -688,57 +690,53 @@
   <div class="container-fruid">
     <div class="row">
       <div class="col-lg-6">
-        <div class="modal fade" id="transactionsMod" aria-hidden="true">
+
+        <div class="modal fade" id="transactionsMod" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header justify-content-between">
                 <h5>Transaction Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </div>
-              <div class="main-content">
+              <div class="modal-body">
                 <div class="row">
                   <div class="col-sm-5 text-center">
                     <div class="icon-area">
                       <img src="{% static 'assets1/images/icon/transaction-details-icon.png' %}" alt="icon" />
                     </div>
                     <div class="text-area">
-                      <h6>Envato Pty Ltd</h6>
-                      <p>16 Jan 2022</p>
-                      <h3>717.14 UGX/h3>
-                      <p class="com">Completed</p>
+                      <h6 id="popup-name">Name</h6>
+                      <p id="popup-date">Date</p>
+                      <h3 id="popup-amount">UGX 0</h3>
+                      <p id="popup-status" class="com">Status</p>
                     </div>
                   </div>
                   <div class="col-sm-7">
                     <div class="right-area">
                       <h6>Transaction Details</h6>
                       <ul class="payment-details">
-                        <li>
-                          <span>Payment Amount</span>
-                          <span>718.64 UGX</span>
-                        </li>
-                        <li>
-                          <span>Fee</span>
-                          <span>1.50 UGX</span>
-                        </li>
-                        <li>
-                          <span>Total Amount</span>
-                          <span>717.14 UGX</span>
-                        </li>
+                        <li><span>Payment Amount</span><span id="popup-payment-amount">UGX 0</span></li>
+                        <li><span>Fee</span><span id="popup-fee">UGX 0</span></li>
+                        <li><span>Total Amount</span><span id="popup-total">UGX 0</span></li>
                       </ul>
                       <ul class="payment-info">
                         <li>
-                          <p>Payment From</p>
-                          <span class="mdr">Envato Pty Ltd</span>
+                          <p>Transaction Type</p>
+                          <span id="popup-type" class="mdr">Type</span>
                         </li>
                         <li>
-                          <p>Payment Description</p>
-                          <span class="mdr">Envato Feb 2025 Member Payment</span>
+                          <p>Description</p>
+                          <span id="popup-description" class="mdr">Description</span>
                         </li>
                         <li>
                           <p>Transaction ID:</p>
-                          <span class="mdr">6559595979565959895559595</span>
+                          <span id="popup-transaction-id" class="mdr">ID</span>
+                        </li>
+                        <li>
+                          <p>Time:</p>
+                          <span id="popup-time" class="mdr">Time</span>
                         </li>
                       </ul>
                     </div>
@@ -748,6 +746,10 @@
             </div>
           </div>
         </div>
+
+
+
+
       </div>
     </div>
   </div>
@@ -757,4 +759,38 @@
 
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  var transactionModal = document.getElementById('transactionsMod');
+  transactionModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget.closest('tr');
 
+    document.getElementById('popup-name').textContent = button.getAttribute('data-name');
+    document.getElementById('popup-date').textContent = button.getAttribute('data-date');
+    document.getElementById('popup-time').textContent = button.getAttribute('data-time');
+    document.getElementById('popup-amount').textContent = 'UGX ' + parseFloat(button.getAttribute('data-amount')).toLocaleString();
+    document.getElementById('popup-status').textContent = button.getAttribute('data-status').charAt(0).toUpperCase() + button.getAttribute('data-status').slice(1);
+    document.getElementById('popup-payment-amount').textContent = 'UGX ' + parseFloat(button.getAttribute('data-amount')).toLocaleString();
+    document.getElementById('popup-fee').textContent = 'UGX ' + parseFloat(button.getAttribute('data-fee')).toLocaleString();
+    document.getElementById('popup-total').textContent = 'UGX ' + parseFloat(button.getAttribute('data-total')).toLocaleString();
+    document.getElementById('popup-type').textContent = button.getAttribute('data-type');
+    document.getElementById('popup-description').textContent = button.getAttribute('data-description');
+    document.getElementById('popup-transaction-id').textContent = button.getAttribute('data-transaction-id');
+
+    // Set status color dynamically
+    var statusEl = document.getElementById('popup-status');
+    var status = button.getAttribute('data-status');
+    statusEl.className = '';
+    if (status === 'completed' || status === 'request_settled') {
+      statusEl.classList.add('text-success');
+    } else if (status === 'pending' || status === 'processing' || status === 'request_processing') {
+      statusEl.classList.add('inprogress');
+    } else if (status === 'failed') {
+      statusEl.classList.add('danger');
+    } else {
+      statusEl.classList.add('text-secondary');
+    }
+  });
+});
+
+</script>
