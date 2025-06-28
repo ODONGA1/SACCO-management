@@ -46,7 +46,7 @@
               </div>
               <div class="bottom-area d-xxl-flex">
                 <a href="{% url 'user_auths:register' %}" class="cmn-btn">Open a Free Account</a>
-                <a class="cmn-btn active mfp-iframe popupvideo" href="#" style="color: #fff;">See How it Works</a>
+                <a class="cmn-btn active mfp-iframe popupvideo" href="#" style="color: #fff;" id="howitwork">See How it Works</a>
               </div>
             </div>
           </div>
@@ -468,7 +468,7 @@
 <!-- App Download end -->
 
 <!-- Testimonials start -->
-<section class="testimonials">
+<section class="testimonials" id="testimonials">
   <div class="overlay pt-120 pb-120">
     <div class="container">
       <div class="row justify-content-center">
@@ -504,11 +504,11 @@
             </p>
             <div class="profile-area d-flex align-items-center">
               <div class="icon-area">
-                <img src="{% static 'assets/images/testimonials-img-1.png' %}" alt="icon" />
+                <!-- <img src="{% static 'assets/images/testimonials-img-1.png' %}" alt="icon" /> -->
               </div>
               <div class="text-area">
-                <h5>Aspen Press</h5>
-                <p>Web Designer</p>
+                <h5>John Mary</h5>
+                <p>Business Owner</p>
               </div>
             </div>
           </div>
@@ -524,18 +524,15 @@
             </div>
             <h5 class="title-area">Great Fast Reliable Service</h5>
             <p class="xlr">
-              "SACCO has always been a reliable solution for my business. I am
-              very satisfied with their speedy service and professional customer
-              care. I highly recommend SACCO to businesses with regular overseas
-              payments."
+              "As a member of the police force, I appreciate the convenience and efficiency of the SACCO platform. It has made managing my finances so much easier."
             </p>
             <div class="profile-area d-flex align-items-center">
               <div class="icon-area">
-                <img src="{% static 'assets/images/testimonials-img-2.png' %}" alt="icon" />
+                <!-- <img src="{% static 'assets/images/testimonials-img-2.png' %}" alt="icon" /> -->
               </div>
               <div class="text-area">
-                <h5>Courtney Henry</h5>
-                <p>Balance Studio</p>
+                <h5>Ssemwanga Henry</h5>
+                <p>Police Officer</p>
               </div>
             </div>
           </div>
@@ -549,20 +546,17 @@
               <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
               <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
             </div>
-            <h5 class="title-area">Great Fast Reliable Service</h5>
+            <h5 class="title-area">Send Money </h5>
             <p class="xlr">
-              "SACCO has always been a reliable solution for my business. I am
-              very satisfied with their speedy service and professional customer
-              care. I highly recommend SACCO to businesses with regular overseas
-              payments."
+              "I am tailor and I have been using SACCO for my business transactions. The platform is user-friendly and the customer support is always there to help. I highly recommend it to anyone looking for a reliable financial solution."
             </p>
             <div class="profile-area d-flex align-items-center">
               <div class="icon-area">
-                <img src="{% static 'assets/images/testimonials-img-3.png' %}" alt="icon" />
+                <!-- <img src="{% static 'assets/images/testimonials-img-3.png' %}" alt="icon" /> -->
               </div>
               <div class="text-area">
-                <h5>Paul Howell</h5>
-                <p>President of Sales</p>
+                <h5>Carol Bahati</h5>
+                <p>Tailor</p>
               </div>
             </div>
           </div>
@@ -576,20 +570,17 @@
               <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
               <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
             </div>
-            <h5 class="title-area">Great Fast Reliable Service</h5>
+            <h5 class="title-area">Smart savings</h5>
             <p class="xlr">
-              "SACCO has always been a reliable solution for my business. I am
-              very satisfied with their speedy service and professional customer
-              care. I highly recommend SACCO to businesses with regular overseas
-              payments."
+              "As a student, I appreciate the convenience and efficiency of the SACCO platform. It has made managing my finances so much easier."
             </p>
             <div class="profile-area d-flex align-items-center">
               <div class="icon-area">
-                <img src="{% static 'assets/images/testimonials-img-2.png' %}" alt="icon" />
+                <!-- <img src="{% static 'assets/images/testimonials-img-2.png' %}" alt="icon" /> -->
               </div>
               <div class="text-area">
-                <h5>Courtney Henry</h5>
-                <p>Balance Studio</p>
+                <h5>Peace Ishimwe</h5>
+                <p>Student</p>
               </div>
             </div>
           </div>
@@ -601,7 +592,7 @@
 <!-- App Download end -->
 
 <!-- FAQs In start -->
-<section class="faqs-section">
+<section class="faqs-section" id="faqs">
   <div class="overlay pt-120 pb-120">
     <div class="container">
       <div class="row d-flex justify-content-center">
@@ -799,7 +790,18 @@
       <div class="row gy-5 justify-content-between">
         <!-- Logo and Description -->
         <div class="col-lg-4 col-md-6">
+
+            
+          
           <div class="footer-widget">
+            <p>        
+            <a href="{% url 'core:index' %}" class="footer-logo">
+              <img src="{% static 'assets/images/logo.png' %}" alt="SACCO Logo" width="200px" />
+            </a>
+
+          
+            </p>
+  <br>
             <h4 class="widget-title">About Us</h4>
             <p>
               Our SACCO platform empowers communities by providing digital access to savings, loans, and secure global payments. We are committed to financial inclusion, transparency, and growth.
@@ -818,11 +820,12 @@
           <div class="footer-widget">
             <h4 class="widget-title">Quick Links</h4>
             <ul class="footer-links">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">FAQs</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="{% url 'core:index' %}">Home</a></li>
+              <li><a href="#howitwork">How it works</a></li>
+              <li><a href="{% url 'user_auths:login' %}">Login</a></li>
+              <li><a href="{% url 'user_auths:register' %}">Register</a></li>
+              <li><a href="#faqs">FAQs</a></li>
+               
             </ul>
           </div>
         </div>
@@ -868,7 +871,7 @@
 <style>
   /* Footer Section */
 .footer-section {
-  background-color: #0c1e3a;
+  background-color: #0d2407;
   color: #ffffff;
   font-size: 15px;
 }
@@ -967,3 +970,4 @@
 
 
 {% endblock content %}
+
