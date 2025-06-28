@@ -2,15 +2,31 @@
 {% block content %} 
 {% load static %}
 <!-- Banner Section start -->
-<section class="banner-section index">
-  <div class="overlay">
+<section class="banner-section index" style="position: relative;">
+  <div class="overlay" style="
+    background: 
+      linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%),
+      url('{% static 'assets/images/background.jpg' %}') center/cover no-repeat;
+  ">
+
+  
+  <div class="overlay"
+  style="
+    background: 
+      linear-gradient(180deg, #075615 0%, rgba(58, 91, 69, 0) 100%),
+      url('{% static 'assets/images/background.jpg' %}') center/cover no-repeat;
+  "
+  >
     <div class="shape-area">
       <img src="{% static 'assets/images/banner-box.png' %}" class="obj-1" alt="image" />
       <img src="{% static 'assets/images/banner-human.png' %}" class="obj-2" alt="image" />
+
+
       <img src="{% static 'assets/images/banner-rocket.png' %}" class="obj-3" alt="image" />
       <img src="{% static 'assets/images/banner-clock.png' %}" class="obj-4" alt="image" />
     </div>
-    <div class="banner-content">
+    <div class="banner-content"
+    >
       <div class="container wow fadeInUp">
         <div class="content-shape">
           <img src="{% static 'assets/images/banner-wallet.png' %}" class="obj-1" alt="image" />
@@ -19,9 +35,9 @@
           <div class="col-lg-5 col-md-6">
             <div class="main-content">
               <div class="top-area section-text">
-                <h5 class="sub-title">Trusted by over 3M customers</h5>
-                <h1 class="title">Empowering Your SACCO, Together</h1>
-                <p class="xlr">
+                <h5 class="sub-title" style="color: #fff;">Trusted by over 3M customers</h5>
+                <h1 class="title" style="color: #fff;">Empowering Your SACCO, Together</h1>
+                <p class="xlr" style="color: #fff;">
                   Join over 3 million members who trust our secure and efficient
                   platform to manage their collective growth. Easily save,
                   access affordable loans, and contribute towards shared
@@ -30,7 +46,7 @@
               </div>
               <div class="bottom-area d-xxl-flex">
                 <a href="{% url 'user_auths:register' %}" class="cmn-btn">Open a Free Account</a>
-                <a class="cmn-btn active mfp-iframe popupvideo" href="#">See How it Works</a>
+                <a class="cmn-btn active mfp-iframe popupvideo" href="#" style="color: #fff;">See How it Works</a>
               </div>
             </div>
           </div>
@@ -235,7 +251,7 @@
       <div class="row">
         <div class="col-xxl-6 col-xl-5 order-xl-0 order-1">
           <div class="image-area d-rtl left-side">
-            <img src="{% static 'assets/images/global-payment-img.png' %}" alt="global payment" class="max-un" />
+            <img src="{% static 'assets/images/globalpayment.jpg' %}" alt="global payment" class="max-un" />
           </div>
         </div>
         <div class="col-xxl-6 col-xl-7">
