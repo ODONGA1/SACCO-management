@@ -2,34 +2,6 @@
 {% load sass_tags %}
 
 <style>
-
-
-
-    /* Back button styles */
-.back-btn {
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.mobile-back {
-    cursor: pointer;
-    padding: 10px;
-    display: none; /* Hidden by default on desktop */
-}
-
-@media (max-width: 768px) {
-    .mobile-back {
-        display: flex;
-        align-items: center;
-    }
-    
-    .back-btn {
-        display: none; /* Hide the desktop back button on mobile */
-    }
-}
 /* Base Sidebar Styles */
 .sidebar-wrapper {
     position: fixed;
@@ -50,27 +22,45 @@
     width: 0;
 }
 
+/* Adjust main content when sidebar is hidden */
 .sidebar-collapsed .page-body-wrapper {
     margin-left: 0;
 }
 
 /* Mobile Behavior */
-/* Mobile Behavior */
 @media (max-width: 768px) {
     .sidebar-wrapper {
         transform: translateX(-100%);
+        width: 280px;
     }
     
     .sidebar-wrapper.mobile-collapsed {
         transform: translateX(0);
     }
     
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
     .sidebar-overlay.active {
         opacity: 1;
         visibility: visible;
     }
+    
+    /* Keep margin for mobile */
+    .sidebar-collapsed .page-body-wrapper {
+        margin-left: 0;
+    }
 }
-
 
 /* Submenu Styles */
 .sidebar-submenu {
@@ -363,72 +353,28 @@
     </div>
 </div>
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Get all necessary elements
-    const toggleIcon = document.getElementById("sidebarToggle");
-    const sidebar = document.querySelector(".sidebar-wrapper");
-    const overlay = document.querySelector(".sidebar-overlay");
-    const body = document.body;
-    const backBtn = document.querySelector(".back-btn");
-
-    // Debugging - check if elements exist
-    console.log("Toggle Icon:", toggleIcon);
-    console.log("Sidebar:", sidebar);
-    console.log("Back Button:", backBtn);
-
-    // Toggle sidebar function
-    function toggleSidebar() {
-        console.log("Toggling sidebar...");
-        
-        if (window.innerWidth <= 768) {
-            // Mobile behavior
-            console.log("Mobile behavior");
-            sidebar.classList.toggle("mobile-collapsed");
-            overlay.classList.toggle("active");
-            body.style.overflow = sidebar.classList.contains("mobile-collapsed") ? "hidden" : "";
-        } else {
-            // Desktop behavior
-            console.log("Desktop behavior");
-            body.classList.toggle("sidebar-collapsed");
-            localStorage.setItem("sidebarCollapsed", body.classList.contains("sidebar-collapsed"));
-        }
-    }
-
-    // Initialize based on saved state (desktop only)
-    if (window.innerWidth > 768 && localStorage.getItem("sidebarCollapsed") === "true") {
-        body.classList.add("sidebar-collapsed");
-    }
-
-    // Header toggle button click
-    if (toggleIcon) {
-        toggleIcon.addEventListener("click", function(e) {
-            e.preventDefault();
-            console.log("Header toggle clicked");
-            toggleSidebar();
-        });
-    }
-
-    // Sidebar back button click (near logo)
-    if (backBtn) {
-        backBtn.addEventListener("click", function(e) {
-            e.preventDefault();
-            console.log("Back button clicked");
-            toggleSidebar();
-        });
-    }
-
-    // Overlay click to close (mobile)
-    if (overlay) {
-        overlay.addEventListener("click", function() {
-            console.log("Overlay clicked");
-            if (window.innerWidth <= 768) {
-                sidebar.classList.remove("mobile-collapsed");
-                overlay.classList.remove("active");
-                body.style.overflow = "";
+    // Toggle submenus
+    document.querySelectorAll(".sidebar-link").forEach(function(menuItem) {
+        menuItem.addEventListener("click", function(e) {
+            const parentLi = this.closest(".sidebar-list");
+            const hasSubmenu = this.nextElementSibling && 
+                              this.nextElementSibling.classList.contains("sidebar-submenu");
+            
+            if (hasSubmenu) {
+                e.preventDefault();
+                
+                // Collapse others
+                document.querySelectorAll(".sidebar-list").forEach(function(item) {
+                    if (item !== parentLi) {
+                        item.classList.remove("active");
+                    }
+                });
+                
+                parentLi.classList.toggle("active");
             }
         });
-    }
+    });
 });
 </script>
