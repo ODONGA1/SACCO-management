@@ -55,6 +55,71 @@
   <!-- Responsive css-->
   <link rel="stylesheet" type="text/css" href="{% sass_src 'assets3/scss/responsive.scss' %}" />
 
+
+   <style>
+/* Main layout structure */
+.page-body-wrapper {
+    margin-left: 250px; /* Same as sidebar width */
+    transition: margin-left 0.3s ease;
+    min-height: calc(100vh - 80px);
+}
+
+/* Sidebar styles */
+.sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    z-index: 1001;
+    background: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+/* Collapsed state - Desktop */
+.sidebar-collapsed .sidebar-wrapper {
+    transform: translateX(-100%);
+}
+
+.sidebar-collapsed .page-body-wrapper {
+    margin-left: 0;
+}
+
+/* Mobile behavior */
+@media (max-width: 768px) {
+    .sidebar-wrapper {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar-wrapper.mobile-visible {
+        transform: translateX(0);
+    }
+    
+    .page-body-wrapper {
+        margin-left: 0 !important;
+    }
+    
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+    </style>
 </head>
 
 <body>
@@ -96,7 +161,7 @@
 
 
 
-      
+
     {% include 'layout/sidebar.html' %}
 
 

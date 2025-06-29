@@ -246,9 +246,6 @@
 </div>
 
  
-
-
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const toggleIcon = document.getElementById("sidebarToggle");
@@ -262,19 +259,19 @@ document.addEventListener("DOMContentLoaded", function() {
     function toggleSidebar() {
         if (window.innerWidth <= 768) {
             // Mobile behavior
-            sidebar.classList.toggle("mobile-collapsed");
+            sidebar.classList.toggle("mobile-visible");
             overlay.classList.toggle("active");
-            body.style.overflow = sidebar.classList.contains("mobile-collapsed") ? "hidden" : "";
+            body.style.overflow = sidebar.classList.contains("mobile-visible") ? "hidden" : "";
         } else {
-            // Desktop behavior
+            // Desktop behavior - completely hide/show
             body.classList.toggle("sidebar-collapsed");
             localStorage.setItem("sidebarCollapsed", body.classList.contains("sidebar-collapsed"));
         }
     }
 
     // Close sidebar function (mobile only)
-    function closeSidebar() {
-        sidebar.classList.remove("mobile-collapsed");
+    function closeMobileSidebar() {
+        sidebar.classList.remove("mobile-visible");
         overlay.classList.remove("active");
         body.style.overflow = "";
     }
@@ -292,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Overlay click to close (mobile)
     if (overlay) {
-        overlay.addEventListener("click", closeSidebar);
+        overlay.addEventListener("click", closeMobileSidebar);
     }
 
     // Close sidebar when clicking outside on mobile
@@ -300,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (window.innerWidth <= 768 && 
             !sidebar.contains(e.target) && 
             !toggleIcon.contains(e.target)) {
-            closeSidebar();
+            closeMobileSidebar();
         }
     });
 
@@ -308,9 +305,10 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("resize", function() {
         if (window.innerWidth > 768) {
             // Reset mobile styles when switching to desktop
-            sidebar.classList.remove("mobile-collapsed");
-            if (overlay) overlay.classList.remove("active");
-            body.style.overflow = "";
+            closeMobileSidebar();
+        } else {
+            // Reset desktop styles when switching to mobile
+            body.classList.remove("sidebar-collapsed");
         }
     });
 });
